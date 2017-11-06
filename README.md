@@ -21,7 +21,6 @@ GraphicsMagick is required to be installed. For example (with `brew`): `brew ins
 - `cd decidim-diba`
 - Install dependencies: `bundle install`
 - Setup database: `bin/rails db:setup`
-- Add fake data to the database: `bin/rails db:seed`
 - Launch development server: `bin/rails server`
 
 More information can be found in the Decidim github repository: https://github.com/decidim/decidim
