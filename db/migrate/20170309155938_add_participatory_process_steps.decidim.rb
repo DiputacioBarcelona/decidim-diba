@@ -1,5 +1,6 @@
 # This migration comes from decidim (originally 20161017085822)
 class AddParticipatoryProcessSteps < ActiveRecord::Migration[5.0]
+
   def change
     create_table :decidim_participatory_process_steps do |t|
       t.jsonb :title, null: false
@@ -8,10 +9,11 @@ class AddParticipatoryProcessSteps < ActiveRecord::Migration[5.0]
       t.datetime :start_date
       t.datetime :end_date
       t.references :decidim_participatory_process,
-        foreign_key: true,
-        index: { name: 'index_decidim_processes_steps__on_decidim_process_id' }
+                   foreign_key: true,
+                   index: { name: 'index_decidim_processes_steps__on_decidim_process_id' }
 
       t.timestamps
     end
   end
+
 end

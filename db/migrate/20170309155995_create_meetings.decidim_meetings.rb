@@ -1,5 +1,6 @@
 # This migration comes from decidim_meetings (originally 20161130121354)
 class CreateMeetings < ActiveRecord::Migration[5.0]
+
   def change
     create_table :decidim_meetings_meetings do |t|
       t.jsonb :title
@@ -18,4 +19,5 @@ class CreateMeetings < ActiveRecord::Migration[5.0]
       t.timestamps
     end
   end
+
 end

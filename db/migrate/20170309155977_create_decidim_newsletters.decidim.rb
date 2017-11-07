@@ -1,5 +1,6 @@
 # This migration comes from decidim (originally 20170213081133)
 class CreateDecidimNewsletters < ActiveRecord::Migration[5.0]
+
   def change
     create_table :decidim_newsletters do |t|
       t.jsonb :subject
@@ -13,4 +14,5 @@ class CreateDecidimNewsletters < ActiveRecord::Migration[5.0]
       t.timestamps
     end
   end
+
 end

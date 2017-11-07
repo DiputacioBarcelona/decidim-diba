@@ -1,5 +1,6 @@
 # This migration comes from decidim (originally 20160920140207)
 class DeviseInvitableAddToDecidimUsers < ActiveRecord::Migration[4.2]
+
   def up
     change_table :decidim_users do |t|
       t.string     :invitation_token
@@ -21,4 +22,5 @@ class DeviseInvitableAddToDecidimUsers < ActiveRecord::Migration[4.2]
       t.remove :invitations_count, :invitation_limit, :invitation_sent_at, :invitation_accepted_at, :invitation_token, :invitation_created_at
     end
   end
+
 end

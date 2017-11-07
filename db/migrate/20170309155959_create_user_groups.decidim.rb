@@ -1,5 +1,6 @@
 # This migration comes from decidim (originally 20170119145359)
 class CreateUserGroups < ActiveRecord::Migration[5.0]
+
   def change
     create_table :decidim_user_groups do |t|
       t.string :name, null: false
@@ -9,4 +10,5 @@ class CreateUserGroups < ActiveRecord::Migration[5.0]
       t.timestamps
     end
   end
+
 end

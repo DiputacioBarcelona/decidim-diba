@@ -1,5 +1,6 @@
 # This migration comes from decidim (originally 20170220110740)
 class RemoveStepsShortDescription < ActiveRecord::Migration[5.0]
+
   def change
     Decidim::ParticipatoryProcessStep.transaction do
       Decidim::ParticipatoryProcessStep.find_each do |step|
@@ -19,4 +20,5 @@ class RemoveStepsShortDescription < ActiveRecord::Migration[5.0]
     end
     desc
   end
+
 end

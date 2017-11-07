@@ -1,5 +1,6 @@
 # This migration comes from decidim (originally 20161010102356)
 class TranslateProcesses < ActiveRecord::Migration[5.0]
+
   def change
     remove_column :decidim_participatory_processes, :title
     remove_column :decidim_participatory_processes, :subtitle
@@ -13,4 +14,5 @@ class TranslateProcesses < ActiveRecord::Migration[5.0]
       t.jsonb :description, null: false
     end
   end
+
 end
