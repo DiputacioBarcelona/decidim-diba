@@ -15,7 +15,7 @@ AllCops:
 Documentation:
   Enabled: false
 
-Style/MultilineOperationIndentation:
+Layout/MultilineOperationIndentation:
   Enabled: false
 
 Style/CommandLiteral:
@@ -83,7 +83,7 @@ Style/PercentLiteralDelimiters:
      '%W': '[]'
      '%x': '()'
 
-Style/EmptyLinesAroundClassBody:
+Layout/EmptyLinesAroundClassBody:
   EnforcedStyle: empty_lines
 
 Metrics/LineLength:
@@ -107,7 +107,7 @@ Metrics/ClassLength:
 Metrics/ModuleLength:
   Max: 150
 
-Style/VariableNumber:
+Naming/VariableNumber:
   EnforcedStyle: 'snake_case'
 
 # ActiveAdmin, some config files (like rails environments or simple form) and the Rspec
