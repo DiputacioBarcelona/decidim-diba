@@ -16,7 +16,9 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'pry-coolline'
   gem 'pry-rails'
+  gem 'rspec-rails', '~> 3.6.0'
   gem 'rubocop', require: false
+  gem 'spring-commands-rspec'
   gem 'webmock'
 end
 
