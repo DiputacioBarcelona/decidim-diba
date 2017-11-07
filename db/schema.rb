@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(version: 20171107144186) do
     t.index ["entry_date"], name: "index_decidim_accountability_timeline_entries_on_entry_date"
   end
 
-  create_table "decidim_attachments", force: :cascade do |t|
+  create_table "decidim_attachments", id: :serial, force: :cascade do |t|
     t.jsonb "title", null: false
     t.jsonb "description"
     t.string "file", null: false
@@ -69,7 +69,7 @@ ActiveRecord::Schema.define(version: 20171107144186) do
     t.index ["attached_to_id", "attached_to_type"], name: "index_decidim_attachments_on_attached_to"
   end
 
-  create_table "decidim_authorizations", force: :cascade do |t|
+  create_table "decidim_authorizations", id: :serial, force: :cascade do |t|
     t.string "name", null: false
     t.jsonb "metadata"
     t.integer "decidim_user_id", null: false
@@ -80,7 +80,7 @@ ActiveRecord::Schema.define(version: 20171107144186) do
     t.index ["decidim_user_id"], name: "index_decidim_authorizations_on_decidim_user_id"
   end
 
-  create_table "decidim_budgets_line_items", force: :cascade do |t|
+  create_table "decidim_budgets_line_items", id: :serial, force: :cascade do |t|
     t.integer "decidim_order_id"
     t.integer "decidim_project_id"
     t.index ["decidim_order_id", "decidim_project_id"], name: "decidim_budgets_line_items_order_project_unique", unique: true
@@ -88,7 +88,7 @@ ActiveRecord::Schema.define(version: 20171107144186) do
     t.index ["decidim_project_id"], name: "index_decidim_budgets_line_items_on_decidim_project_id"
   end
 
-  create_table "decidim_budgets_orders", force: :cascade do |t|
+  create_table "decidim_budgets_orders", id: :serial, force: :cascade do |t|
     t.integer "decidim_user_id"
     t.integer "decidim_feature_id"
     t.datetime "checked_out_at"
@@ -99,7 +99,7 @@ ActiveRecord::Schema.define(version: 20171107144186) do
     t.index ["decidim_user_id"], name: "index_decidim_budgets_orders_on_decidim_user_id"
   end
 
-  create_table "decidim_budgets_projects", force: :cascade do |t|
+  create_table "decidim_budgets_projects", id: :serial, force: :cascade do |t|
     t.jsonb "title"
     t.jsonb "description"
     t.integer "budget", null: false
@@ -112,7 +112,7 @@ ActiveRecord::Schema.define(version: 20171107144186) do
     t.index ["decidim_scope_id"], name: "index_decidim_budgets_projects_on_decidim_scope_id"
   end
 
-  create_table "decidim_categories", force: :cascade do |t|
+  create_table "decidim_categories", id: :serial, force: :cascade do |t|
     t.jsonb "name", null: false
     t.jsonb "description", null: false
     t.integer "parent_id"
@@ -132,7 +132,7 @@ ActiveRecord::Schema.define(version: 20171107144186) do
     t.index ["decidim_category_id"], name: "index_decidim_categorizations_on_decidim_category_id"
   end
 
-  create_table "decidim_comments_comment_votes", force: :cascade do |t|
+  create_table "decidim_comments_comment_votes", id: :serial, force: :cascade do |t|
     t.integer "weight", null: false
     t.integer "decidim_comment_id", null: false
     t.integer "decidim_author_id", null: false
@@ -143,7 +143,7 @@ ActiveRecord::Schema.define(version: 20171107144186) do
     t.index ["decidim_comment_id"], name: "decidim_comments_comment_vote_comment"
   end
 
-  create_table "decidim_comments_comments", force: :cascade do |t|
+  create_table "decidim_comments_comments", id: :serial, force: :cascade do |t|
     t.text "body", null: false
     t.string "decidim_commentable_type", null: false
     t.integer "decidim_commentable_id", null: false
@@ -161,7 +161,7 @@ ActiveRecord::Schema.define(version: 20171107144186) do
     t.index ["decidim_root_commentable_type", "decidim_root_commentable_id"], name: "decidim_comments_comment_root_commentable"
   end
 
-  create_table "decidim_features", force: :cascade do |t|
+  create_table "decidim_features", id: :serial, force: :cascade do |t|
     t.string "manifest_name"
     t.jsonb "name"
     t.integer "participatory_space_id", null: false
@@ -183,7 +183,7 @@ ActiveRecord::Schema.define(version: 20171107144186) do
     t.index ["decidim_user_id"], name: "index_decidim_follows_on_decidim_user_id"
   end
 
-  create_table "decidim_identities", force: :cascade do |t|
+  create_table "decidim_identities", id: :serial, force: :cascade do |t|
     t.string "provider", null: false
     t.string "uid", null: false
     t.integer "decidim_user_id", null: false
@@ -207,7 +207,7 @@ ActiveRecord::Schema.define(version: 20171107144186) do
     t.index ["decidim_user_id"], name: "index_decidim_impersonation_logs_on_decidim_user_id"
   end
 
-  create_table "decidim_meetings_meetings", force: :cascade do |t|
+  create_table "decidim_meetings_meetings", id: :serial, force: :cascade do |t|
     t.jsonb "title"
     t.jsonb "description"
     t.datetime "start_time"
@@ -246,7 +246,7 @@ ActiveRecord::Schema.define(version: 20171107144186) do
     t.index ["decidim_user_id"], name: "index_decidim_meetings_registrations_on_decidim_user_id"
   end
 
-  create_table "decidim_moderations", force: :cascade do |t|
+  create_table "decidim_moderations", id: :serial, force: :cascade do |t|
     t.integer "decidim_participatory_space_id", null: false
     t.string "decidim_reportable_type", null: false
     t.integer "decidim_reportable_id", null: false
@@ -261,7 +261,7 @@ ActiveRecord::Schema.define(version: 20171107144186) do
     t.index ["report_count"], name: "decidim_moderations_report_count"
   end
 
-  create_table "decidim_newsletters", force: :cascade do |t|
+  create_table "decidim_newsletters", id: :serial, force: :cascade do |t|
     t.jsonb "subject"
     t.jsonb "body"
     t.integer "organization_id"
@@ -287,7 +287,7 @@ ActiveRecord::Schema.define(version: 20171107144186) do
     t.index ["decidim_user_id"], name: "index_decidim_notifications_on_decidim_user_id"
   end
 
-  create_table "decidim_organizations", force: :cascade do |t|
+  create_table "decidim_organizations", id: :serial, force: :cascade do |t|
     t.string "name", null: false
     t.string "host", null: false
     t.string "default_locale", null: false
@@ -318,7 +318,7 @@ ActiveRecord::Schema.define(version: 20171107144186) do
     t.index ["name"], name: "index_decidim_organizations_on_name", unique: true
   end
 
-  create_table "decidim_pages_pages", force: :cascade do |t|
+  create_table "decidim_pages_pages", id: :serial, force: :cascade do |t|
     t.jsonb "body"
     t.integer "decidim_feature_id"
     t.datetime "created_at", null: false
@@ -326,7 +326,7 @@ ActiveRecord::Schema.define(version: 20171107144186) do
     t.index ["decidim_feature_id"], name: "index_decidim_pages_pages_on_decidim_feature_id"
   end
 
-  create_table "decidim_participatory_process_groups", force: :cascade do |t|
+  create_table "decidim_participatory_process_groups", id: :serial, force: :cascade do |t|
     t.jsonb "name", null: false
     t.jsonb "description", null: false
     t.string "hero_image"
@@ -336,7 +336,7 @@ ActiveRecord::Schema.define(version: 20171107144186) do
     t.index ["decidim_organization_id"], name: "decidim_participatory_process_group_organization"
   end
 
-  create_table "decidim_participatory_process_steps", force: :cascade do |t|
+  create_table "decidim_participatory_process_steps", id: :serial, force: :cascade do |t|
     t.jsonb "title", null: false
     t.jsonb "description"
     t.date "start_date"
@@ -352,7 +352,7 @@ ActiveRecord::Schema.define(version: 20171107144186) do
     t.index ["position"], name: "index_order_by_position_for_steps"
   end
 
-  create_table "decidim_participatory_process_user_roles", force: :cascade do |t|
+  create_table "decidim_participatory_process_user_roles", id: :serial, force: :cascade do |t|
     t.integer "decidim_user_id"
     t.integer "decidim_participatory_process_id"
     t.string "role"
@@ -361,7 +361,7 @@ ActiveRecord::Schema.define(version: 20171107144186) do
     t.index ["decidim_participatory_process_id", "decidim_user_id", "role"], name: "index_unique_user_and_process_role", unique: true
   end
 
-  create_table "decidim_participatory_processes", force: :cascade do |t|
+  create_table "decidim_participatory_processes", id: :serial, force: :cascade do |t|
     t.string "slug", null: false
     t.string "hashtag"
     t.integer "decidim_organization_id"
@@ -392,7 +392,7 @@ ActiveRecord::Schema.define(version: 20171107144186) do
     t.index ["decidim_organization_id"], name: "index_decidim_processes_on_decidim_organization_id"
   end
 
-  create_table "decidim_proposals_proposal_votes", force: :cascade do |t|
+  create_table "decidim_proposals_proposal_votes", id: :serial, force: :cascade do |t|
     t.integer "decidim_proposal_id", null: false
     t.integer "decidim_author_id", null: false
     t.datetime "created_at", null: false
@@ -402,7 +402,7 @@ ActiveRecord::Schema.define(version: 20171107144186) do
     t.index ["decidim_proposal_id"], name: "decidim_proposals_proposal_vote_proposal"
   end
 
-  create_table "decidim_proposals_proposals", force: :cascade do |t|
+  create_table "decidim_proposals_proposals", id: :serial, force: :cascade do |t|
     t.text "title", null: false
     t.text "body", null: false
     t.integer "decidim_feature_id", null: false
@@ -429,7 +429,7 @@ ActiveRecord::Schema.define(version: 20171107144186) do
     t.index ["title"], name: "decidim_proposals_proposal_title_search"
   end
 
-  create_table "decidim_reports", force: :cascade do |t|
+  create_table "decidim_reports", id: :serial, force: :cascade do |t|
     t.integer "decidim_moderation_id", null: false
     t.integer "decidim_user_id", null: false
     t.string "reason", null: false
@@ -441,7 +441,7 @@ ActiveRecord::Schema.define(version: 20171107144186) do
     t.index ["decidim_user_id"], name: "decidim_reports_user"
   end
 
-  create_table "decidim_resource_links", force: :cascade do |t|
+  create_table "decidim_resource_links", id: :serial, force: :cascade do |t|
     t.string "from_type", null: false
     t.integer "from_id", null: false
     t.string "to_type", null: false
@@ -460,7 +460,7 @@ ActiveRecord::Schema.define(version: 20171107144186) do
     t.index ["decidim_organization_id"], name: "index_decidim_scope_types_on_decidim_organization_id"
   end
 
-  create_table "decidim_scopes", force: :cascade do |t|
+  create_table "decidim_scopes", id: :serial, force: :cascade do |t|
     t.integer "decidim_organization_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -476,7 +476,7 @@ ActiveRecord::Schema.define(version: 20171107144186) do
     t.index ["scope_type_id"], name: "index_decidim_scopes_on_scope_type_id"
   end
 
-  create_table "decidim_static_pages", force: :cascade do |t|
+  create_table "decidim_static_pages", id: :serial, force: :cascade do |t|
     t.jsonb "title", null: false
     t.string "slug", null: false
     t.jsonb "content", null: false
@@ -521,7 +521,7 @@ ActiveRecord::Schema.define(version: 20171107144186) do
     t.index ["decidim_feature_id"], name: "index_decidim_surveys_surveys_on_decidim_feature_id"
   end
 
-  create_table "decidim_system_admins", force: :cascade do |t|
+  create_table "decidim_system_admins", id: :serial, force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -536,7 +536,7 @@ ActiveRecord::Schema.define(version: 20171107144186) do
     t.index ["reset_password_token"], name: "index_decidim_system_admins_on_reset_password_token", unique: true
   end
 
-  create_table "decidim_user_group_memberships", force: :cascade do |t|
+  create_table "decidim_user_group_memberships", id: :serial, force: :cascade do |t|
     t.integer "decidim_user_id", null: false
     t.integer "decidim_user_group_id", null: false
     t.datetime "created_at", null: false
@@ -546,7 +546,7 @@ ActiveRecord::Schema.define(version: 20171107144186) do
     t.index ["decidim_user_id"], name: "index_decidim_user_group_memberships_on_decidim_user_id"
   end
 
-  create_table "decidim_user_groups", force: :cascade do |t|
+  create_table "decidim_user_groups", id: :serial, force: :cascade do |t|
     t.string "name", null: false
     t.string "document_number", null: false
     t.string "phone", null: false
@@ -560,7 +560,7 @@ ActiveRecord::Schema.define(version: 20171107144186) do
     t.index ["decidim_organization_id", "name"], name: "index_decidim_user_groups_names_on_organization_id", unique: true
   end
 
-  create_table "decidim_users", force: :cascade do |t|
+  create_table "decidim_users", id: :serial, force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
