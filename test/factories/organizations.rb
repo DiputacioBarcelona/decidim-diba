@@ -1,3 +1,4 @@
+# rubocop:disable Metrics/BlockLength
 FactoryGirl.define do
   factory :organization, class: Decidim::Organization do
     name { Faker::Company.unique.name }
@@ -8,8 +9,16 @@ FactoryGirl.define do
     youtube_handler { Faker::Hipster.word }
     github_handler { Faker::Hipster.word }
     sequence(:host) { |n| "#{n}.lvh.me" }
-    description { Decidim::Faker::Localized.wrapped('<p>', '</p>') { Decidim::Faker::Localized.sentence(2) } }
-    welcome_text { Decidim::Faker::Localized.wrapped('<p>', '</p>') { Decidim::Faker::Localized.sentence(2) } }
+    description do
+      Decidim::Faker::Localized.wrapped('<p>', '</p>') do
+        Decidim::Faker::Localized.sentence(2)
+      end
+    end
+    welcome_text do
+      Decidim::Faker::Localized.wrapped('<p>', '</p>') do
+        Decidim::Faker::Localized.sentence(2)
+      end
+    end
     homepage_image { test_file('city.jpeg', 'image/jpeg') }
     favicon { test_file('icon.png', 'image/png') }
     default_locale { I18n.default_locale }

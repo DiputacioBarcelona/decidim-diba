@@ -18,6 +18,7 @@ Decidim.configure do |config|
     }
   end
 
+  # rubocop:disable AsciiComments
   # Currency unit
   # config.currency_unit = "€"
 end

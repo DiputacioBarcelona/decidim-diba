@@ -7,6 +7,7 @@ AllCops:
       - 'db/schema.rb'
       - 'db/structure.sql'
       - 'db/seeds.rb'
+      - 'db/migrate/*'
       - '.bundle/**/*'
       - 'vendor/**/*'
 
