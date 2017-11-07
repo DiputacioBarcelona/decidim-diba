@@ -18,6 +18,10 @@ group :development, :test do
   gem 'pry-rails'
   gem 'rubocop', require: false
   gem 'webmock'
+
+  # Rspec with rails and spring integration
+  gem 'rspec-rails'
+  gem 'spring-commands-rspec'
 end
 
 group :development do
