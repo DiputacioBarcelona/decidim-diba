@@ -597,6 +597,7 @@ DEPENDENCIES
   pry-coolline
   pry-rails
   puma (~> 3.0)
+  rubocop
   sidekiq
   spring
   spring-watcher-listen (~> 2.0.0)
@@ -609,4 +610,4 @@ RUBY VERSION
    ruby 2.4.0p0
 
 BUNDLED WITH
-   1.14.6
+   1.16.0
