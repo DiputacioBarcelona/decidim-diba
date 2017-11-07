@@ -1,6 +1,5 @@
 # This migration comes from decidim (originally 20161123085134)
 class AddCategories < ActiveRecord::Migration[5.0]
-
   def change
     create_table :decidim_categories do |t|
       t.jsonb :name, null: false
@@ -9,5 +8,4 @@ class AddCategories < ActiveRecord::Migration[5.0]
       t.integer :decidim_participatory_process_id, index: true
     end
   end
-
 end

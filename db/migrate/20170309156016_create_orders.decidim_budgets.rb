@@ -1,6 +1,5 @@
 # This migration comes from decidim_budgets (originally 20170130095615)
 class CreateOrders < ActiveRecord::Migration[5.0]
-
   def change
     create_table :decidim_budgets_orders do |t|
       t.references :decidim_user, index: true
@@ -10,7 +9,6 @@ class CreateOrders < ActiveRecord::Migration[5.0]
       t.timestamps
     end
 
-    add_index :decidim_budgets_orders, %i(decidim_user_id decidim_feature_id), unique: true, name: 'decidim_budgets_order_user_feature_unique'
+    add_index :decidim_budgets_orders, [:decidim_user_id, :decidim_feature_id], unique: true, name: "decidim_budgets_order_user_feature_unique"
   end
-
 end

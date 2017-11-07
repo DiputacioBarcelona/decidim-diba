@@ -1,11 +1,10 @@
 # This migration comes from decidim_system (originally 20160919105637)
 class DeviseCreateDecidimAdmins < ActiveRecord::Migration[5.0]
-
   def change
     create_table :decidim_system_admins do |t|
       ## Database authenticatable
-      t.string :email,              null: false, default: ''
-      t.string :encrypted_password, null: false, default: ''
+      t.string :email,              null: false, default: ""
+      t.string :encrypted_password, null: false, default: ""
 
       ## Recoverable
       t.string   :reset_password_token
@@ -25,5 +24,4 @@ class DeviseCreateDecidimAdmins < ActiveRecord::Migration[5.0]
     add_index :decidim_system_admins, :email,                unique: true
     add_index :decidim_system_admins, :reset_password_token, unique: true
   end
-
 end

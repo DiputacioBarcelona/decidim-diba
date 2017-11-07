@@ -1,6 +1,5 @@
 # This migration comes from decidim_results (originally 20170116104125)
 class CreateResults < ActiveRecord::Migration[5.0]
-
   def change
     create_table :decidim_results_results do |t|
       t.jsonb :title
@@ -13,5 +12,4 @@ class CreateResults < ActiveRecord::Migration[5.0]
       t.timestamps
     end
   end
-
 end

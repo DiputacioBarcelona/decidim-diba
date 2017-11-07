@@ -1,6 +1,5 @@
 # This migration comes from decidim_admin (originally 20161102144648)
 class AddAdminParticipatoryProcessUserRoles < ActiveRecord::Migration[5.0]
-
   def change
     create_table :decidim_admin_participatory_process_user_roles do |t|
       t.integer :decidim_user_id
@@ -10,9 +9,8 @@ class AddAdminParticipatoryProcessUserRoles < ActiveRecord::Migration[5.0]
     end
 
     add_index :decidim_admin_participatory_process_user_roles,
-              %i(decidim_participatory_process_id decidim_user_id role),
-              unique: true,
-              name: 'index_unique_user_and_process_role'
+      [:decidim_participatory_process_id, :decidim_user_id, :role],
+      unique: true,
+      name: "index_unique_user_and_process_role"
   end
-
 end

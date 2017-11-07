@@ -1,6 +1,5 @@
 # This migration comes from decidim_proposals (originally 20161212110850)
 class CreateDecidimProposals < ActiveRecord::Migration[5.0]
-
   def change
     create_table :decidim_proposals_proposals do |t|
       t.text :title, null: false
@@ -13,5 +12,4 @@ class CreateDecidimProposals < ActiveRecord::Migration[5.0]
       t.timestamps
     end
   end
-
 end

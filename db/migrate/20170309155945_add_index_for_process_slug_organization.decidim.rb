@@ -1,11 +1,9 @@
 # This migration comes from decidim (originally 20161110092735)
 class AddIndexForProcessSlugOrganization < ActiveRecord::Migration[5.0]
-
   def change
     add_index :decidim_participatory_processes,
-              %i(decidim_organization_id slug),
-              unique: true,
-              name: 'index_unique_process_slug_and_organization'
+      [:decidim_organization_id, :slug],
+      unique: true,
+      name: "index_unique_process_slug_and_organization"
   end
-
 end
