@@ -5,17 +5,29 @@
 #
 class CensusFileAuthorizationHandler < Decidim::AuthorizationHandler
 
-  # This is the input to validate against
+  # This is from the JSON file
+  attribute :minimum_age, Integer
+
+  # This is the input (from the user) to validate against
   attribute :document_id, String
 
   # This is the validation to perform
   # If passed, is authorized
+  validates :minimum_age, presence: true
   validates :document_id, presence: true
-  validate :censed_and_add_metadata
+  validate :censed
+  validate :older_or_equal_than_minimum_age
 
-  def censed_and_add_metadata
+  # Checks if the document_number belongs to the census
+  def censed
     return if census_for_user
     errors.add(:document_number, I18n.t('errors.messages.not_censed'))
+  end
+
+  # Check the person age based on the minimum_age and census birthdate
+  def older_or_equal_than_minimum_age
+    return if census_for_user.birthdate <= minimum_age.years.ago
+    errors.add(:minimum_age, I18n.t('errors.messages.younger_than_minimum_age', age: minimuim_age))
   end
 
   def authorized?
