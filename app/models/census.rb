@@ -9,11 +9,19 @@ class Census < ApplicationRecord
 
   def self.import(file)
     Census.delete_all
-    CSV.foreach(file, headers: true) do |row|
-      dni = row[0].strip
-      date = Date.strptime(row[1].strip, '%d/%m/%Y')
-      Census.create!(id_document: dni, birthdate: date)
+
+    errored = []
+    CSV.foreach(file, headers: true, col_sep: ';') do |row|
+      begin
+        dni = (row[0] || '').strip
+        date = Date.strptime((row[1] || '').strip, '%d/%m/%Y')
+        Census.create!(id_document: dni, birthdate: date)
+      rescue StandardError
+        errored << row.to_s
+      end
     end
+
+    { errored: errored }
   end
 
 end

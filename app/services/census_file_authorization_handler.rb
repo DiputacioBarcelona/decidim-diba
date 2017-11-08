@@ -27,7 +27,8 @@ class CensusFileAuthorizationHandler < Decidim::AuthorizationHandler
   # Check the person age based on the minimum_age and census birthdate
   def older_or_equal_than_minimum_age
     return if census_for_user.birthdate <= minimum_age.years.ago
-    errors.add(:minimum_age, I18n.t('errors.messages.younger_than_minimum_age', age: minimuim_age))
+    errors.add(:minimum_age,
+               I18n.t('errors.messages.younger_than_minimum_age', age: minimuim_age))
   end
 
   def authorized?

@@ -10,4 +10,5 @@ class CensusesController < ApplicationController
     Census.import(params[:file].path) if params[:file]
     redirect_to census_path
   end
+
 end
