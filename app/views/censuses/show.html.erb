@@ -1,7 +1,7 @@
 <h1>Census</h1>
 
-<% if Census.last_import_at %>
-  <div>Se importaron <%= Census.count %> entradas el <%= Census.last_import_at %></div>
+<% if @censuses.count > 0 %>
+  <div>Se importaron <%= @censuses.count %> entradas el <%= @censuses.last_import_at %></div>
 <% end %>
 
 

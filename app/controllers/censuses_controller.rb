@@ -1,9 +1,7 @@
 class CensusesController < ApplicationController
 
   def show
-    @count = Census.count
-    @last = Census.last
-    @all = Census.all
+    @censuses = OpenStruct.new(count: Census.count, last_import_at: Census.last_import_at)
   end
 
   def create
