@@ -1,0 +1,14 @@
+<h1>Census</h1>
+
+<% if Census.last_import_at %>
+  <div>Se importaron <%= Census.count %> entradas el <%= Census.last_import_at %></div>
+<% end %>
+
+
+<h2>Sube un nuevo censo</h2>
+
+<%= form_tag census_path, multipart: true do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag 'Import CSV' %>
+<% end %>
+
