@@ -1,2 +1,5 @@
 es:
-  test: 'Prueba'
+  decidim:
+    authorization_handlers:
+      census_file_authorization_handler:
+        name: 'Edad mínima requerida'

@@ -4,7 +4,7 @@
 Decidim.configure do |config|
   config.application_name = 'Decidim DIBA'
   config.mailer_sender    = 'decidim@diba.cat'
-  config.authorization_handlers = []
+  config.authorization_handlers = [CensusFileAuthorizationHandler]
 
   # Uncomment this lines to set your preferred locales
   # config.available_locales = %i{en ca es}
