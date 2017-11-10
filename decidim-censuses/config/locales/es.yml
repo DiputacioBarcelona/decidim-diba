@@ -1,9 +1,17 @@
 es:
   decidim:
     authorization_handlers:
-      census_file_authorization_handler:
-        name: Edad mínima requerida
+      census_authorization_handler:
+        name: Censo
+    activemodel:
+      attributes:
+        census_authorization_handler:
+          id_document: DNI
     censuses:
+      errors:
+        messages:
+          not_censed: El DNI no pertence al censo
+          younger_than_minimum_age: Deberías ser mayor de %{age} años
       admin:
         menu:
           censuses: Subir censo
