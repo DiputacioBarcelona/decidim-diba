@@ -13,6 +13,7 @@ module Decidim
         def create
           authorize! :create, Census
           Census.import(params[:file].path) if params[:file]
+          flash[:notice] = t('.success', count: Census.count)
           redirect_to census_uploads_path
         end
 

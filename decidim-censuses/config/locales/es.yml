@@ -13,6 +13,9 @@ es:
           not_censed: El DNI no pertence al censo
           younger_than_minimum_age: Deberías ser mayor de %{age} años
       admin:
+        census_uploads:
+          create:
+            success: Se han importado con éxito %{count} elementos
         menu:
           censuses: Subir censo
         show:
