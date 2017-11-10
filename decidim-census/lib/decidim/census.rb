@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'decidim/census/admin'
-# require 'decidim/census/engine'
+require 'decidim/census/engine'
 require 'decidim/census/admin_engine'
 # require 'decidim/census/feature'
 
