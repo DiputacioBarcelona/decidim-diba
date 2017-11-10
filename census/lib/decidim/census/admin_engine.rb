@@ -11,6 +11,10 @@ module Decidim
         resource :census_uploads, only: %i(show create)
       end
 
+      ActiveSupport::Inflector.inflections(:en) do |inflect|
+        inflect.irregular 'census', 'censuses'
+      end
+
     end
   end
 end

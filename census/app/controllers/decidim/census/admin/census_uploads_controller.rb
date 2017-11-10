@@ -1,10 +1,10 @@
 module Decidim
   module Census
     module Admin
-      class CensusUploadsController < Decidim::Census::ApplicationController
+      class CensusUploadsController < Decidim::Census::Admin::ApplicationController
 
         def show
-          render plain: 'hola'
+          @censuses = OpenStruct.new(count: 0, last_import_at: nil)
         end
 
       end
