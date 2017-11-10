@@ -1,3 +1,9 @@
+PATH
+  remote: census
+  specs:
+    decidim-census (0.1.0)
+      rails (~> 5.1.4)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -589,6 +595,7 @@ PLATFORMS
 DEPENDENCIES
   byebug
   decidim (~> 0.7.2)
+  decidim-census!
   decidim-dev (~> 0.7.2)
   factory_girl_rails
   faker (~> 1.7.3)

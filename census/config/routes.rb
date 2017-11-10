@@ -1,2 +1,2 @@
-Census::Engine.routes.draw do
+Decidim::Census::AdminEngine.routes.draw do
 end
