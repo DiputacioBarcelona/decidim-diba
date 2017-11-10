@@ -2,7 +2,6 @@
 
 module Decidim
   module Censuses
-    # Census only
     class AdminEngine < ::Rails::Engine
 
       isolate_namespace Decidim::Censuses::Admin

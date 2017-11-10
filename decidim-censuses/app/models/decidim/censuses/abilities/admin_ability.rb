@@ -9,7 +9,7 @@ module Decidim
 
         def define_abilities
           super
-          can :show, Decidim::Census::Census
+          can :manage, Decidim::Censuses::Census
         end
 
       end

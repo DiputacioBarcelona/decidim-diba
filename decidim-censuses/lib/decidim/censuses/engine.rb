@@ -24,7 +24,7 @@ module Decidim
       initializer 'decidim_census.add_admin_menu' do
         Decidim.menu :admin_menu do |menu|
           menu.item I18n.t('menu.censuses', scope: 'decidim.censuses.admin'),
-                    decidim_census_admin.census_uploads_path,
+                    decidim_censuses_admin.census_uploads_path,
                     icon_name: 'upload',
                     position: 6,
                     active: :inclusive

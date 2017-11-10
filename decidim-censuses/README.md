@@ -1,6 +1,8 @@
 # Census
 
-> Add census authorization to Decidim at Diputació of Barcelona
+> Add census authorization to Decidim platform
+
+Allows to upload a census CSV file to perform authorizations agains real user age.
 
 ## Installation
 
