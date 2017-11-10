@@ -1,28 +1,22 @@
 # Census
-Short description and motivation.
 
-## Usage
-How to use my plugin.
+> Add census authorization to Decidim at Diputació of Barcelona
 
 ## Installation
+
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'census'
+gem 'decidim-census'
 ```
 
 And then execute:
+
 ```bash
 $ bundle
+$ bin/rails railties:install:migrations
 ```
-
-Or install it yourself as:
-```bash
-$ gem install census
-```
-
-## Contributing
-Contribution directions go here.
 
 ## License
-The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
+
+AGPLv3 (same as Decidim)

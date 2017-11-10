@@ -1,3 +1,4 @@
+# This migration comes from decidim_census (originally 20171110102910)
 class CreateDecidimCensusCensuses < ActiveRecord::Migration[5.1]
 
   def change

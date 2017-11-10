@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Decidim
-  module Censuses
+  module Census
     module Abilities
       # Defines the abilities related to surveys for a logged in admin user.
       # Intended to be used with `cancancan`.
@@ -9,7 +9,7 @@ module Decidim
 
         def define_abilities
           super
-          can :manage, Census
+          can :show, Decidim::Census::Census
         end
 
       end

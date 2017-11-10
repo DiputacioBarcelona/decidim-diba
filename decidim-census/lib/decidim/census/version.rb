@@ -1,5 +1,6 @@
 module Decidim
   module Census
-    VERSION = '0.1.0'.freeze
+    # Uses the latest matching Decidim version
+    VERSION = '0.7.2'.freeze
   end
 end
