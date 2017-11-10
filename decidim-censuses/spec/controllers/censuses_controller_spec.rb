@@ -1,4 +1,4 @@
-require 'rails_helper'
+require 'spec_helper'
 
 RSpec.describe CensusesController, type: :controller do
   describe 'POST #create' do

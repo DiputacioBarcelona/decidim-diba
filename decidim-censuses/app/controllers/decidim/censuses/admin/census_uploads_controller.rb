@@ -5,7 +5,9 @@ module Decidim
 
         def show
           authorize! :show, Census
-          @censuses = OpenStruct.new(count: Census.count, last_import_at: Census.last_import_at)
+          @censuses = OpenStruct.new(
+            count: Census.count, last_import_at: Census.last_import_at
+          )
         end
 
         def create
