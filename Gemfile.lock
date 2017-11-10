@@ -1,7 +1,7 @@
 PATH
-  remote: decidim-census
+  remote: decidim-censuses
   specs:
-    decidim-census (0.7.2)
+    decidim-censuses (0.7.2)
       decidim-admin (= 0.7.2)
       rails (~> 5.1.4)
 
@@ -596,7 +596,7 @@ PLATFORMS
 DEPENDENCIES
   byebug
   decidim (~> 0.7.2)
-  decidim-census!
+  decidim-censuses!
   decidim-dev (~> 0.7.2)
   factory_girl_rails
   faker (~> 1.7.3)

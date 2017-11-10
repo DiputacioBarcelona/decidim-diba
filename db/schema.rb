@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171110105244) do
+ActiveRecord::Schema.define(version: 20171108145524) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -137,12 +137,6 @@ ActiveRecord::Schema.define(version: 20171110105244) do
     t.datetime "updated_at", null: false
     t.index ["categorizable_type", "categorizable_id"], name: "decidim_categorizations_categorizable_id_and_type"
     t.index ["decidim_category_id"], name: "index_decidim_categorizations_on_decidim_category_id"
-  end
-
-  create_table "decidim_census_censuses", force: :cascade do |t|
-    t.string "id_document"
-    t.date "birthdate"
-    t.datetime "created_at", null: false
   end
 
   create_table "decidim_comments_comment_votes", id: :serial, force: :cascade do |t|

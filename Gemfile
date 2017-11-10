@@ -29,6 +29,5 @@ group :development do
   gem 'web-console'
 end
 
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'decidim-census', path: 'decidim-census'
+gem 'decidim-censuses', path: 'decidim-censuses'
 gem 'tzinfo-data', platforms: %i(mingw mswin x64_mingw jruby)
