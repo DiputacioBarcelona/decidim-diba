@@ -13,25 +13,13 @@ module Decidim
         end
       end
 
-      initializer 'decidim_census.configure_decidim' do |_app|
+      initializer 'decidim_census.add_authorization_handlers' do |_app|
         Decidim.configure do |config|
-          config.admin_abilities += [
-            'Decidim::Censuses::Abilities::AdminAbility'
-          ]
           config.authorization_handlers += [
             'CensusAuthorizationHandler'
           ]
         end
-      end
-
-      initializer 'decidim_census.add_admin_menu' do
-        Decidim.menu :admin_menu do |menu|
-          menu.item I18n.t('menu.censuses', scope: 'decidim.censuses.admin'),
-                    decidim_censuses_admin.census_uploads_path,
-                    icon_name: 'upload',
-                    position: 6,
-                    active: :inclusive
-        end
+        Decidim::ActionAuthorizer.prepend AuthorizeWithAge
       end
 
     end

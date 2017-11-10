@@ -1,12 +1,12 @@
 es:
+  activemodel:
+    attributes:
+      census_authorization_handler:
+        id_document: DNI
   decidim:
     authorization_handlers:
       census_authorization_handler:
         name: Censo
-    activemodel:
-      attributes:
-        census_authorization_handler:
-          id_document: DNI
     censuses:
       errors:
         messages:
