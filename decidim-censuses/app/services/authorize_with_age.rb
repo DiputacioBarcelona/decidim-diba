@@ -10,6 +10,25 @@ module AuthorizeWithAge
   private
 
   def authorize_with_age
+    return status(:missing) unless valid_metadata?
+    return status(:invalid, fields: [:birthdate]) if current_age < minimum_age
+    status(:ok)
+  end
+
+  def valid_metadata?
+    !authorization.metadata['birthdate'].nil?
+  end
+
+  def birthdate
+    @birthdate ||= Date.strptime(authorization.metadata['birthdate'], '%Y/%m/%d')
+  end
+
+  def current_age
+    now = Date.current
+    extra_year = (now.month > birthdate.month) || (
+      now.month == birthdate.month && now.day >= birthdate.day
+    )
+    now.year - birthdate.year - (extra_year ? 0 : 1)
   end
 
   def minimum_age

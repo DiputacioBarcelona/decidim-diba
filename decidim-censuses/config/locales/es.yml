@@ -7,6 +7,8 @@ es:
     authorization_handlers:
       census_authorization_handler:
         name: Censo
+        fields:
+          birthdate: 'No cumples la edad mínima requerida. (FIXME: decidim añade no válido)'
     censuses:
       errors:
         messages:
