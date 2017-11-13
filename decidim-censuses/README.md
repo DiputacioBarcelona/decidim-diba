@@ -17,7 +17,24 @@ And then execute:
 ```bash
 $ bundle
 $ bin/rails railties:install:migrations
+$ bin/rails db:migrate
 ```
+
+## Run tests
+
+Create a dummy app:
+
+```bash
+$ bin/rails decidim:generate_test_app
+```
+
+And run tests:
+
+```bash
+$ cd decidim-censuses
+$ rspec
+```
+
 
 ## License
 
