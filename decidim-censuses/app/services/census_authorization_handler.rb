@@ -11,26 +11,15 @@ class CensusAuthorizationHandler < Decidim::AuthorizationHandler
   # If passed, is authorized
   validates :id_document, presence: true
   validate :censed
-  validate :older_or_equal_than_minimum_age
+
+  def metadata
+    { birthdate: census_for_user&.birthdate&.strftime('%Y/%m/%d') }
+  end
 
   # Checks if the id_document belongs to the census
   def censed
     return if census_for_user
     errors.add(:id_document, I18n.t('decidim.censuses.errors.messages.not_censed'))
-  end
-
-  # TODO: inject the minimum age
-  def minimum_age
-    18
-  end
-
-  # Check the person age based on the minimum_age and census birthdate
-  def older_or_equal_than_minimum_age
-    # TODO: no tendría que comprobar esto, pero algo pasa con las validaciones
-    return if census_for_user && census_for_user.birthdate <= minimum_age.years.ago
-    errors.add(:id_document,
-               I18n.t('decidim.censuses.errors.messages.younger_than_minimum_age',
-                      age: minimum_age))
   end
 
   def authorized?
