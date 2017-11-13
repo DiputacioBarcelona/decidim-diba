@@ -1,9 +1,14 @@
 require 'spec_helper'
+require 'pry'
 
 RSpec.describe Decidim::Censuses::Admin::CensusUploadsController, type: :controller do
+  routes { Decidim::Censuses::AdminEngine.routes }
+
   describe 'POST #create' do
     it 'imports the csv data' do
-      file = fixture_file_upload('data1.csv')
+      Census = Decidim::Censuses::Census
+      # Don't know why don't prepend with `spec/fixtures` automatically
+      file = fixture_file_upload('spec/fixtures/data1.csv')
       post :create, params: { file: file }
       expect(Census.count).to be 2
       expect(Census.first.id_document).to eq '1111A'

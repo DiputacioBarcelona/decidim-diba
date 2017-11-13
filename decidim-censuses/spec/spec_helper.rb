@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'decidim/dev'
+require 'decidim/admin'
 
 ENV['ENGINE_NAME'] = File.dirname(File.dirname(__FILE__)).split('/').last
 
