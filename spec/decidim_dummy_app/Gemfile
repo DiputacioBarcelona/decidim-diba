@@ -7,6 +7,7 @@ ruby RUBY_VERSION
 # This is the original line, but it doesn't work
 # gem "decidim", path: "../.."
 gem 'decidim', '~> 0.7.2'
+gem 'decidim-admin', '~> 0.7.2'
 
 # Uncomment the following line if you want to use decidim-assemblies plugin
 # gem "decidim-assemblies", path: "../.."

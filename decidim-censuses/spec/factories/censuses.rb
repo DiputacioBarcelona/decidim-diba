@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :census do
-    id_document 'MyString'
-    birthdate '2017-11-08'
+    id_document '123456789A'
+    birthdate '20/11/2017'
   end
 end

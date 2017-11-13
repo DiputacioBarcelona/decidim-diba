@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe CensusesController, type: :controller do
+RSpec.describe Decidim::Censuses::Admin::CensusUploadsController, type: :controller do
   describe 'POST #create' do
     it 'imports the csv data' do
       file = fixture_file_upload('data1.csv')
