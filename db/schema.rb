@@ -141,7 +141,7 @@ ActiveRecord::Schema.define(version: 20171110120821) do
 
   create_table "decidim_censuses_censuses", force: :cascade do |t|
     t.string "id_document"
-    t.date "birthdate"
+    t.string "birthdate"
     t.datetime "created_at", null: false
   end
 

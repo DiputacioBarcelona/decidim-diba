@@ -18,7 +18,6 @@ Gem::Specification.new do |s|
   s.test_files = Dir['spec/**/*']
 
   s.add_dependency 'rails', '~> 5.1.4'
-  s.add_dependency 'activerecord-import', '~> 0.20.0'
   s.add_dependency 'decidim', Decidim::Censuses::VERSION
   s.add_dependency 'decidim-admin', Decidim::Censuses::VERSION
 

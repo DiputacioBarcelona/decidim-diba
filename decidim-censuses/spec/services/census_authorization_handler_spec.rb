@@ -10,7 +10,7 @@ RSpec.describe CensusAuthorizationHandler do
   end
 
   it 'generates birthdate metadata' do
-    FactoryGirl.create :census, id_document: '1234A', birthdate: '21/11/1990'
+    FactoryGirl.create :census, id_document: '1234A', birthdate: '1990/11/21'
     expect(handler.valid?).to be true
     expect(handler.metadata).to eq(birthdate: '1990/11/21')
   end

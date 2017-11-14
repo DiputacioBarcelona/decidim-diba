@@ -8,9 +8,9 @@ RSpec.describe Decidim::Censuses::Census, type: :model do
     expect(Census.last_import_at).to eq(last.created_at)
   end
 
-  it 'cretates an import result report when import a file' do
+  it 'returns the number of errored rows' do
     file = file_fixture('with-errors.csv')
     report = Census.load_csv(file)
-    expect(report[:errored]).to eq(["12323B,fecha-no-valida\n", "sasd,\n"])
+    expect(report[:errors]).to be 2
   end
 end

@@ -13,7 +13,7 @@ class CensusAuthorizationHandler < Decidim::AuthorizationHandler
   validate :censed
 
   def metadata
-    { birthdate: census_for_user&.birthdate&.strftime('%Y/%m/%d') }
+    { birthdate: census_for_user&.birthdate }
   end
 
   # Checks if the id_document belongs to the census
