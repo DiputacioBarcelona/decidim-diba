@@ -9,6 +9,7 @@ en:
         name: Censo
         fields:
           birthdate: 'Edad mínima requerida'
+          edad: 'FIXME: why is this required?'
     censuses:
       errors:
         messages:

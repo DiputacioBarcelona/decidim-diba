@@ -22,4 +22,5 @@ Gem::Specification.new do |s|
   s.add_dependency 'decidim-admin', Decidim::Censuses::VERSION
 
   s.add_development_dependency 'decidim-dev', Decidim::Censuses::VERSION
+  s.add_development_dependency 'faker'
 end

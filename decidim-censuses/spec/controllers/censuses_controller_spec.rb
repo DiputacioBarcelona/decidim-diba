@@ -2,11 +2,17 @@ require 'spec_helper'
 require 'pry'
 
 RSpec.describe Decidim::Censuses::Admin::CensusUploadsController,
-               skip: true, type: :controller do
+               type: :controller do
+
+  include Warden::Test::Helpers
+
   routes { Decidim::Censuses::AdminEngine.routes }
+  let!(:organization) { FactoryGirl.create :organization }
+  let(:user) { FactoryGirl.create :user, :confirmed, organization: organization, admin: true }
 
   describe 'POST #create' do
     it 'imports the csv data' do
+      login_as user, scope: :user
       Census = Decidim::Censuses::Census
       # Don't know why don't prepend with `spec/fixtures` automatically
       file = fixture_file_upload('spec/fixtures/data1.csv')
@@ -19,6 +25,7 @@ RSpec.describe Decidim::Censuses::Admin::CensusUploadsController,
 
   describe 'GET #show' do
     it 'returns http success' do
+      login_as user, scope: :user
       get :show
       expect(response).to have_http_status(:success)
     end
