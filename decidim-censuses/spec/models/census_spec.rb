@@ -10,7 +10,7 @@ RSpec.describe Decidim::Censuses::Census, type: :model do
 
   it 'cretates an import result report when import a file' do
     file = file_fixture('with-errors.csv')
-    report = Census.import(file)
+    report = Census.load_csv(file)
     expect(report[:errored]).to eq(["12323B,fecha-no-valida\n", "sasd,\n"])
   end
 end

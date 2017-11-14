@@ -1,7 +1,6 @@
 require 'csv'
 require 'faker'
 
-
 CSV.open('example.csv', 'wb', col_sep: ';') do |csv|
   csv << ['DNI', 'Data (mm/dd/aaaa)']
   1.upto(50 * 1000) do

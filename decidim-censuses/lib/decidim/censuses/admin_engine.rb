@@ -23,7 +23,7 @@ module Decidim
         Decidim.menu :admin_menu do |menu|
           menu.item I18n.t('menu.censuses', scope: 'decidim.censuses.admin'),
                     decidim_censuses_admin.census_uploads_path,
-                    icon_name: 'upload',
+                    icon_name: 'spreadsheet',
                     position: 6,
                     active: :inclusive
         end

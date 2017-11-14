@@ -1,4 +1,6 @@
 require 'csv'
+require 'activerecord-import/base'
+ActiveRecord::Import.require_adapter('postgres')
 
 module Decidim
   module Censuses
@@ -9,23 +11,29 @@ module Decidim
         last ? last.created_at : nil
       end
 
-      def self.import(file)
+      def self.load_csv(file)
         Census.delete_all
 
-        errored = []
+        errors = 0
+        columns = %i(id_document birthdate)
+        values = []
         CSV.foreach(file, headers: true, col_sep: ';') do |row|
           begin
-            dni = (row[0] || '').strip
-            date = Date.strptime((row[1] || '').strip, '%d/%m/%Y')
-            Census.create!(id_document: dni, birthdate: date)
+            values << [
+              (row[0] || '').strip,
+              Date.strptime((row[1] || '').strip, '%d/%m/%Y')
+            ]
           rescue StandardError
-            errored << row.to_s
+            errors += 1
           end
         end
 
-        { errored: errored }
-      end
+        Rails.logger.silence do
+          Census.import columns, values, validate: false
+        end
 
+        { errors: errors }
+      end
     end
   end
 end
