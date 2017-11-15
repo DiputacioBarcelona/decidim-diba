@@ -20,5 +20,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'decidim-core', s.version
   s.add_dependency 'savon', '~> 2.11.2'
+  s.add_dependency 'virtus-multiparams', '~> 0.1.1'
+
   s.add_development_dependency 'decidim-dev', s.version
 end
