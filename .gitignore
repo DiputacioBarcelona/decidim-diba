@@ -25,3 +25,4 @@ public/uploads
 # Ignore env variables
 .env
 .env.*
+.vscode/

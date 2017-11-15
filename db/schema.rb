@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171107144186) do
+ActiveRecord::Schema.define(version: 20171115100531) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "censuses", force: :cascade do |t|
+    t.string "id_document"
+    t.date "birthdate"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "decidim_accountability_results", id: :serial, force: :cascade do |t|
     t.jsonb "title"
@@ -132,6 +139,12 @@ ActiveRecord::Schema.define(version: 20171107144186) do
     t.index ["decidim_category_id"], name: "index_decidim_categorizations_on_decidim_category_id"
   end
 
+  create_table "decidim_censuses_censuses", force: :cascade do |t|
+    t.string "id_document"
+    t.string "birthdate"
+    t.datetime "created_at", null: false
+  end
+
   create_table "decidim_comments_comment_votes", id: :serial, force: :cascade do |t|
     t.integer "weight", null: false
     t.integer "decidim_comment_id", null: false
@@ -159,6 +172,23 @@ ActiveRecord::Schema.define(version: 20171107144186) do
     t.index ["decidim_author_id"], name: "decidim_comments_comment_author"
     t.index ["decidim_commentable_type", "decidim_commentable_id"], name: "decidim_comments_comment_commentable"
     t.index ["decidim_root_commentable_type", "decidim_root_commentable_id"], name: "decidim_comments_comment_root_commentable"
+  end
+
+  create_table "decidim_dummy_resources", force: :cascade do |t|
+    t.string "title"
+    t.text "address"
+    t.float "latitude"
+    t.float "longitude"
+    t.bigint "decidim_feature_id"
+    t.bigint "decidim_author_id"
+    t.bigint "decidim_category_id"
+    t.bigint "decidim_scope_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["decidim_author_id"], name: "index_decidim_dummy_resources_on_decidim_author_id"
+    t.index ["decidim_category_id"], name: "index_decidim_dummy_resources_on_decidim_category_id"
+    t.index ["decidim_feature_id"], name: "index_decidim_dummy_resources_on_decidim_feature_id"
+    t.index ["decidim_scope_id"], name: "index_decidim_dummy_resources_on_decidim_scope_id"
   end
 
   create_table "decidim_features", id: :serial, force: :cascade do |t|
