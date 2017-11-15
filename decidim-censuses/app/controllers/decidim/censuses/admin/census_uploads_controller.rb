@@ -13,8 +13,9 @@ module Decidim
         def create
           authorize! :create, Census
           if params[:file]
-            result = Census.load_csv(params[:file].path)
-            flash[:notice] = t('.success', count: Census.count, errors: result[:errors])
+            result = CensusCsvService.load(params[:file].path)
+            Census.merge_all result[:values]
+            flash[:notice] = t('.success', count: Census.count, errors: result[:error_count])
           end
           redirect_to census_uploads_path
         end

@@ -1,4 +1,5 @@
 require 'csv'
+require 'pry'
 
 module Decidim
   module Censuses
@@ -9,31 +10,31 @@ module Decidim
         last ? last.created_at : nil
       end
 
+      def self.merge_all(values)
+        insert_all(values)
+        remove_duplicates
+      end
+
+      private_class_method
+
       def self.insert_all(values)
         table_name = Census.table_name
         columns = %w[id_document birthdate created_at].join(',')
         now = Time.current
         values = values.map { |row| "('#{row[0]}', '#{row[1]}', '#{now}')" }.join(',')
         sql = "INSERT INTO #{table_name} (#{columns}) VALUES #{values}"
-        Census.delete_all
         ActiveRecord::Base.connection.execute(sql)
       end
 
-      def self.load_csv(file)
-        errors = 0
-        values = []
-        CSV.foreach(file, headers: true, col_sep: ';') do |row|
-          begin
-            id_document = (row[0] || '').strip
-            birthdate = Date.strptime((row[1] || '').strip, '%d/%m/%Y')
-            values << [id_document, birthdate.strftime('%Y/%m/%d')]
-          rescue StandardError
-            errors += 1
-          end
-        end
+      def self.remove_duplicates
+        duplicated_id_documents = Census.select(:id_document)
+                                        .group(:id_document)
+                                        .having('count(id_document)>1')
+                                        .map(&:id_document)
 
-        Census.insert_all(values)
-        { errors: errors }
+        duplicated_id_documents.each do |id_doc|
+          Census.where(id_document: id_doc).order(id: :desc).all[1..-1].each(&:destroy)
+        end
       end
 
     end
