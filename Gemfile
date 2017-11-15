@@ -4,6 +4,7 @@ ruby '2.4.0'
 
 gem 'decidim', '~> 0.7.2'
 gem 'decidim-census', path: 'decidim-census'
+gem 'decidim-diba_census_api', path: 'decidim-diba_census_api'
 
 gem 'letter_opener_web'
 gem 'puma', '~> 3.10'
@@ -31,3 +32,4 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'web-console'
 end
+
