@@ -13,6 +13,7 @@ PATH
     decidim-diba_census_api (0.7.2)
       decidim-core (= 0.7.2)
       savon (~> 2.11.2)
+      virtus-multiparams (~> 0.1.1)
 
 GEM
   remote: https://rubygems.org/

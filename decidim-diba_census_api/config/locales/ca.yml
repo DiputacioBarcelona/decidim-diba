@@ -1,5 +1,21 @@
 ca:
+  activemodel:
+    attributes:
+      diba_census_api_authorization_handler:
+        document_type: Tipus de document
+        id_document: Número de document
+        birthdate: Data de naixement
   decidim:
     authorization_handlers:
       diba_census_api_authorization_handler:
         name: Diputació de Barcelona Census API
+        document_types:
+          dni: 'DNI'
+          nie: 'NIE'
+          passport: 'Pasaporte'
+  diba_census_api_authorization:
+    form:
+      date_select:
+        day: 'Dia'
+        month: 'Mès'
+        year: 'Any'
