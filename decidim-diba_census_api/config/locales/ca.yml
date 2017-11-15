@@ -1,0 +1,5 @@
+ca:
+  decidim:
+    authorization_handlers:
+      diba_census_api_authorization_handler:
+        name: Diputació de Barcelona Census API

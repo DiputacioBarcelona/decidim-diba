@@ -1,10 +1,10 @@
 # Decidim::DibaCensusApi
-Short description and motivation.
 
-## Usage
-How to use my plugin.
+A decidim package to provice user authorizations agains the Diputació of Barcelona census API
+
 
 ## Installation
+
 Add this line to your application's Gemfile:
 
 ```ruby
@@ -12,17 +12,13 @@ gem 'decidim-diba_census_api'
 ```
 
 And then execute:
-```bash
-$ bundle
-```
 
-Or install it yourself as:
 ```bash
-$ gem install decidim-diba_census_api
+bundle
+bin/rails decidim_diba_census_api:install:migrations
+bin/rails db:migrate
 ```
-
-## Contributing
-Contribution directions go here.
 
 ## License
-The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
+
+AGPLv3 (same as Decidim)
