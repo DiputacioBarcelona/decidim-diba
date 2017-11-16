@@ -16,9 +16,14 @@ ca:
           not_censed: El DNI no pertence al censo
           younger_than_minimum_age: Deberías ser mayor de %{age} años
       admin:
+        delete_all:
+          title: 'Borrar todos los datos de censo'
+          confirm: Esta acción no se puede deshacer. ¿Estás seguro/a de que deseas continuar?
         census_uploads:
           create:
             success: Se han importado con éxito %{count} elementos (%{errors} errores)
+          delete_all:
+            success: Se han borrado todos los datos censales
         instructions:
           title: 'Necesitas activar el módulo de censos para esta organización'
           body: Para ello debes entrar en administración del sistema y añadir "CensusAuthorizationHandler" a la lista de autorizaciones
@@ -27,7 +32,7 @@ ca:
         show:
           title: Datos de censo actuales
           data: Hay %{count} registros subidos el día %{due_date}
-          empty: No se han subido datos censales
+          empty: No hay datos censales. Usa el formulario de abajo para importar usando un fichero CSV.
         new:
           info: 'Debe ser un fichero generado por excel con dos columnas: DNI y fecha de nacimiento'
           title: Subir un nuevo censo

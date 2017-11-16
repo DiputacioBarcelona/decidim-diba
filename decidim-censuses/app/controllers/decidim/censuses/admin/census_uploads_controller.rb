@@ -23,6 +23,13 @@ module Decidim
           redirect_to census_uploads_path
         end
 
+        def delete_all
+          authorize! :destroy, Census
+          Census.delete_all
+          flash[:notice] = t('.success')
+          redirect_to census_uploads_path
+        end
+
         private
 
         def show_setup_instructions_if_needed

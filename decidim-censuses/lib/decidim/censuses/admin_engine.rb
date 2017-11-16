@@ -8,6 +8,7 @@ module Decidim
 
       routes do
         resource :census_uploads, only: %i(show create)
+        post 'censuses/delete_all', to: 'census_uploads#delete_all'
       end
 
       initializer 'decidim_census.add_admin_authorizations' do |_app|
@@ -19,7 +20,6 @@ module Decidim
       end
 
       initializer 'decidim_census.add_admin_menu' do
-        # FIXME: icon_name
         Decidim.menu :admin_menu do |menu|
           menu.item I18n.t('menu.censuses', scope: 'decidim.censuses.admin'),
                     decidim_censuses_admin.census_uploads_path,
