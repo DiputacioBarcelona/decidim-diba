@@ -39,5 +39,4 @@ RSpec.describe Decidim::Censuses::Admin::CensusUploadsController,
       expect(Census.last.id_document).to eq '3333C'
     end
   end
-
 end

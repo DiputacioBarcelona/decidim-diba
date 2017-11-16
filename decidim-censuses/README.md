@@ -4,6 +4,12 @@
 
 Allows to upload a census CSV file to perform authorizations agains real user age.
 
+## Usage
+
+This module provides a model `Decidim::Censuses::Census` to store census information (identity document and birth date).
+
+It has an admin controller to upload CSV files with the information. When importing files all records are inserted and the duplicates are removed in a background job for performance reasons.
+
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -34,6 +40,7 @@ And run tests:
 $ cd decidim-censuses
 $ rspec
 ```
+
 
 
 ## License

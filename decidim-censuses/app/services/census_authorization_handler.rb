@@ -33,8 +33,7 @@ class CensusAuthorizationHandler < Decidim::AuthorizationHandler
   private
 
   def census_for_user
-    normalized = CensusCsvService.normalize_id_document(id_document)
-    @census_for_user ||= Decidim::Censuses::Census.find_by(id_document: normalized)
+    @census_for_user ||= Decidim::Censuses::Census.for_document(id_document)
     @census_for_user
   end
 
