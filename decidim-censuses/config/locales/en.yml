@@ -9,7 +9,7 @@ en:
         name: Censo
         fields:
           birthdate: 'Edad mínima requerida'
-          edad: 'FIXME: why is this required?'
+          edad: "FIXME: why is this needed?"
     censuses:
       errors:
         messages:
@@ -19,6 +19,9 @@ en:
         census_uploads:
           create:
             success: Se han importado con éxito %{count} elementos (%{errors} errores)
+        instructions:
+          title: 'Necesitas activar el módulo de censos para esta organización'
+          body: Para ello debes entrar en administración del sistema y añadir "CensusAuthorizationHandler" a la lista de autorizaciones
         menu:
           censuses: Subir censo
         show:

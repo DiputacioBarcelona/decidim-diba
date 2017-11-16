@@ -19,7 +19,7 @@ module Decidim
             'CensusAuthorizationHandler'
           ]
         end
-        Decidim::ActionAuthorizer.prepend AuthorizeWithAge
+        Decidim::ActionAuthorizer.prepend Decidim::Censuses::Extensions::AuthorizeWithAge
       end
 
     end

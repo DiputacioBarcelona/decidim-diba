@@ -2,6 +2,7 @@ module Decidim
   module Censuses
     module Admin
       class CensusUploadsController < Decidim::Admin::ApplicationController
+        before_action :show_setup_instructions_if_needed
 
         def show
           authorize! :show, Census
@@ -22,6 +23,11 @@ module Decidim
           redirect_to census_uploads_path
         end
 
+        private
+
+        def show_setup_instructions_if_needed
+          render :instructions unless current_organization.available_authorizations.include? 'CensusAuthorizationHandler'
+        end
       end
     end
   end

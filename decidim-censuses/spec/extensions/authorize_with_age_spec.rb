@@ -24,9 +24,9 @@ class AuthorizerStub
   end
 
 end
-AuthorizerStub.prepend AuthorizeWithAge
+AuthorizerStub.prepend Decidim::Censuses::Extensions::AuthorizeWithAge
 
-RSpec.describe AuthorizeWithAge do
+RSpec.describe Decidim::Censuses::Extensions::AuthorizeWithAge do
   it 'authorizes with age metadata' do
     authorizer = AuthorizerStub.new('1970/11/21', '20')
     expect(authorizer.authorize[:code]).to be :ok
