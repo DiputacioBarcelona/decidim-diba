@@ -8,7 +8,7 @@ RSpec.describe Decidim::Censuses::Admin::CensusUploadsController,
 
   routes { Decidim::Censuses::AdminEngine.routes }
 
-  let(:organization) { FactoryGirl.create :organization }
+  let(:organization) { FactoryGirl.create :organization, available_authorizations: ['CensusAuthorizationHandler'] }
   let(:user) { FactoryGirl.create :user, :confirmed, organization: organization, admin: true }
 
   before :each do
@@ -37,6 +37,19 @@ RSpec.describe Decidim::Censuses::Admin::CensusUploadsController,
       expect(Census.count).to be 3
       expect(Census.first.id_document).to eq '1111A'
       expect(Census.last.id_document).to eq '3333C'
+    end
+  end
+
+  describe 'POST #delete_all' do
+    it 'clear all census data' do
+      login_as user, scope: :user
+
+      5.times { FactoryGirl.create :census }
+      post :delete_all
+      binding.pry
+      expect(response).to have_http_status(:success)
+
+      expect(Decidim::Censuses::Census.count).to be 0
     end
   end
 end

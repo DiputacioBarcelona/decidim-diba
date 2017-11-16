@@ -24,6 +24,7 @@ module Decidim
         end
 
         def delete_all
+          binding.pry
           authorize! :destroy, Census
           Census.delete_all
           flash[:notice] = t('.success')
