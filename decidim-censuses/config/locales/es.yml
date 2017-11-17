@@ -2,30 +2,27 @@ es:
   activemodel:
     attributes:
       census_authorization_handler:
-        id_document: DNI
+        id_document: Documento de identidad
   decidim:
     authorization_handlers:
       census_authorization_handler:
         name: Censo
-        fields:
-          birthdate: 'Edad mínima requerida'
-          edad: "FIXME: why is this needed?"
     censuses:
       errors:
         messages:
-          not_censed: El DNI no pertence al censo
+          not_censed: No apareces en el censo
           younger_than_minimum_age: Deberías ser mayor de %{age} años
       admin:
         delete_all:
-          title: 'Borrar todos los datos de censo'
-          confirm: Esta acción no se puede deshacer. ¿Estás seguro/a de que deseas continuar?
+          title: Borrar todos los datos de censo
+          confirm: Borrar el censo no se puede deshacer. ¿Estás seguro/a de que deseas continuar?
         census_uploads:
           create:
             success: Se han importado con éxito %{count} elementos (%{errors} errores)
           delete_all:
             success: Se han borrado todos los datos censales
         instructions:
-          title: 'Necesitas activar el módulo de censos para esta organización'
+          title: Necesitas activar el módulo de censos para esta organización
           body: Para ello debes entrar en administración del sistema y añadir "CensusAuthorizationHandler" a la lista de autorizaciones
         menu:
           censuses: Subir censo
@@ -34,7 +31,7 @@ es:
           data: Hay %{count} registros subidos el día %{due_date}
           empty: No hay datos censales. Usa el formulario de abajo para importar usando un fichero CSV.
         new:
-          info: 'Debe ser un fichero generado por excel con dos columnas: DNI y fecha de nacimiento'
+          info: 'Debe ser un fichero generado por excel con dos columnas: documento de identidad y fecha de nacimiento'
           title: Subir un nuevo censo
           file: Archivo excel .csv con los datos del censo
           submit: Subir archivo
