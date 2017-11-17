@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171115100531) do
+ActiveRecord::Schema.define(version: 20171117131037) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -344,6 +344,9 @@ ActiveRecord::Schema.define(version: 20171115100531) do
     t.text "header_snippets"
     t.jsonb "cta_button_text"
     t.string "cta_button_path"
+    t.string "diba_census_api_ine"
+    t.string "diba_census_api_username"
+    t.string "diba_census_api_password"
     t.index ["host"], name: "index_decidim_organizations_on_host", unique: true
     t.index ["name"], name: "index_decidim_organizations_on_name", unique: true
   end
