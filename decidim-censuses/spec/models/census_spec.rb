@@ -16,20 +16,6 @@ RSpec.describe Decidim::Censuses::Census, type: :model do
     end
   end
 
-  describe 'query methods' do
-    it 'returns last import date' do
-      last = Census.create(id_document: 'AAA', birthdate: '1/1/10')
-      expect(Census.last_import_at).to eq(last.created_at)
-    end
-
-    it 'retrieve the number of unique documents' do
-      %w[AAA BBB AAA AAA].each do |doc|
-        FactoryGirl.create(:census, id_document: doc)
-      end
-      expect(Census.count_unique).to be 2
-    end
-  end
-
   it 'inserts a collection of values' do
     Census.insert_all([['1111A', '1990/12/1'], ['2222B', '1990/12/2']])
     expect(Census.count).to be 2

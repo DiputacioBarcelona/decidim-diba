@@ -2,13 +2,12 @@ module Decidim
   module Censuses
     module Admin
       class CensusUploadsController < Decidim::Admin::ApplicationController
+
         before_action :show_setup_instructions_if_needed
 
         def show
           authorize! :show, Census
-          @censuses = OpenStruct.new(
-            count: Census.count_unique, last_import_at: Census.last_import_at
-          )
+          @status = Status.new
         end
 
         def create
@@ -24,7 +23,6 @@ module Decidim
         end
 
         def delete_all
-          binding.pry
           authorize! :destroy, Census
           Census.delete_all
           flash[:notice] = t('.success')
@@ -36,6 +34,7 @@ module Decidim
         def show_setup_instructions_if_needed
           render :instructions unless current_organization.available_authorizations.include? 'CensusAuthorizationHandler'
         end
+
       end
     end
   end

@@ -5,18 +5,9 @@ module Decidim
   module Censuses
     class Census < ApplicationRecord
 
-      def self.count_unique
-        Census.distinct.count(:id_document)
-      end
-
       def self.for_document(string)
         id_doc = to_id_document(string)
         Census.where(id_document: id_doc).order(created_at: :desc, id: :desc).first
-      end
-
-      def self.last_import_at
-        last = Census.order(created_at: :desc).first
-        last ? last.created_at : nil
       end
 
       def self.to_id_document(string)

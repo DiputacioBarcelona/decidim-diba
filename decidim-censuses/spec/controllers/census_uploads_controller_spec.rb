@@ -46,7 +46,6 @@ RSpec.describe Decidim::Censuses::Admin::CensusUploadsController,
 
       5.times { FactoryGirl.create :census }
       post :delete_all
-      binding.pry
       expect(response).to have_http_status(:success)
 
       expect(Decidim::Censuses::Census.count).to be 0

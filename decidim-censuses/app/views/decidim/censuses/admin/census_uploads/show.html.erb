@@ -6,9 +6,9 @@
     </h2>
   </div>
   <div class="card-section">
-    <% if @censuses.count > 0 %>
-      <p><%= t('decidim.censuses.admin.show.data', count: @censuses.count, 
-        due_date: l(@censuses.last_import_at, format: :long)) %>
+    <% if @status.count > 0 %>
+      <p><%= t('decidim.censuses.admin.show.data', count: @status.count, 
+        due_date: l(@status.last_import_at, format: :long)) %>
       </p>
       <%= link_to t('decidim.censuses.admin.delete_all.title'), 
         censuses_delete_all_path, 
