@@ -10,16 +10,16 @@ module Decidim
         resource :api_config, only: %i(show edit update)
       end
 
-      # initializer 'decidim_census.add_admin_menu' do
-      #   # FIXME: icon
-      #   Decidim.menu :admin_menu do |menu|
-      #     menu.item I18n.t('menu.censuses', scope: 'decidim.censuses.admin'),
-      #               decidim_censuses_admin.census_uploads_path,
-      #               icon_name: 'spreadsheet',
-      #               position: 6,
-      #               active: :inclusive
-      #   end
-      # end
+      initializer 'decidim.diba_census_api.add_admin_menu' do
+        # Icons seems to be from: https://useiconic.com/open
+        Decidim.menu :admin_menu do |menu|
+          menu.item I18n.t('menu', scope: 'decidim.diba_census_api.admin'),
+                    decidim_diba_census_api_admin.api_config_path,
+                    icon_name: 'globe',
+                    position: 6,
+                    active: :inclusive
+        end
+      end
 
     end
   end
