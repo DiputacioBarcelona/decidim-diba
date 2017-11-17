@@ -346,6 +346,9 @@ ActiveRecord::Schema.define(version: 20171120130226) do
     t.text "header_snippets"
     t.jsonb "cta_button_text"
     t.string "cta_button_path"
+    t.string "diba_census_api_ine"
+    t.string "diba_census_api_username"
+    t.string "diba_census_api_password"
     t.index ["host"], name: "index_decidim_organizations_on_host", unique: true
     t.index ["name"], name: "index_decidim_organizations_on_name", unique: true
   end

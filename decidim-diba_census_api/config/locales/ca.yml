@@ -1,4 +1,10 @@
 ca:
+  activerecord:
+    attributes:
+      decidim/organization:
+        diba_census_api_ine: INE
+        diba_census_api_username: Usuario
+        diba_census_api_password: Contraseña
   activemodel:
     attributes:
       diba_census_api_authorization_handler:
@@ -13,6 +19,15 @@ ca:
           dni: 'DNI'
           nie: 'NIE'
           passport: 'Pasaporte'
+    diba_census_api:
+      admin:
+        api_configs:
+          show:
+            title: Configuración de API de Censo para %{name}
+            edit: Modificar configuración
+          edit:
+            title: 'Editar la configuración del API de Censo'
+            submit: 'Guardar configuración'
   diba_census_api_authorization:
     form:
       date_select:
