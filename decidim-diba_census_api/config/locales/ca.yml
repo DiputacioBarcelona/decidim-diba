@@ -21,6 +21,7 @@ ca:
           passport: 'Pasaporte'
     diba_census_api:
       admin:
+        menu: 'API Censo'
         api_configs:
           show:
             title: Configuración de API de Censo para %{name}
