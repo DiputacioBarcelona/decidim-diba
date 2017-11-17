@@ -29,6 +29,10 @@ ca:
           edit:
             title: 'Editar la configuración del API de Censo'
             submit: 'Guardar configuración'
+          instructions:
+            title: 'Debes activar este módulo para continuar'
+            body: Para ello debes entrar en administración del sistema y activar "DibaCensusApiAuthorizationHandler" en la lista de autorizaciones disponibles 
+
   diba_census_api_authorization:
     form:
       date_select:
