@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   mount Decidim::Core::Engine => '/'
-  mount Decidim::Censuses::AdminEngine => '/'
+  mount Decidim::Censuses::AdminEngine => '/admin'
 
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: '/letter_opener'
