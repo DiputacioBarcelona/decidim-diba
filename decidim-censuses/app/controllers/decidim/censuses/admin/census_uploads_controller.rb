@@ -3,7 +3,7 @@ module Decidim
     module Admin
       class CensusUploadsController < Decidim::Admin::ApplicationController
 
-        before_action :show_setup_instructions_if_needed
+        before_action :show_instructions, unless: :module_active?
 
         def show
           authorize! :show, Census
@@ -31,8 +31,12 @@ module Decidim
 
         private
 
-        def show_setup_instructions_if_needed
-          render :instructions unless current_organization.available_authorizations.include? 'CensusAuthorizationHandler'
+        def show_instructions
+          render :instructions
+        end
+
+        def module_active?
+          current_organization.available_authorizations.include? 'CensusAuthorizationHandler'
         end
 
       end
