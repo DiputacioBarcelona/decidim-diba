@@ -3,6 +3,13 @@ es:
     attributes:
       census_authorization_handler:
         id_document: Documento de identidad
+        birthdate: Fecha de nacimiento
+  census_authorization:
+    form:
+      date_select:
+        day: Día
+        month: Mes
+        year: Año
   decidim:
     authorization_handlers:
       census_authorization_handler:
@@ -10,7 +17,7 @@ es:
     censuses:
       errors:
         messages:
-          not_censed: No apareces en el censo
+          not_censed: No hemos podido encontrar tu DNI con esta fecha de nacimiento en nuestro Censo. Por favor, ponte en contacto con un administrador
           younger_than_minimum_age: Deberías ser mayor de %{age} años
       admin:
         delete_all:

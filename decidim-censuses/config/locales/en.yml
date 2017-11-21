@@ -3,6 +3,13 @@ en:
     attributes:
       census_authorization_handler:
         id_document: Identification document
+        birthdate: Date of birth
+  census_authorization:
+    form:
+      date_select:
+        day: Day
+        month: Month
+        year: Year
   decidim:
     authorization_handlers:
       census_authorization_handler:

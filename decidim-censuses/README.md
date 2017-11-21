@@ -2,7 +2,8 @@
 
 > Add census authorization to Decidim platform
 
-Allows to upload a census CSV file to perform authorizations agains real user age.
+Allows to upload a census CSV file to perform authorizations against
+real users parameterised by their age.
 
 ## Usage
 
@@ -15,33 +16,31 @@ It has an admin controller to upload CSV files with the information. When import
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'decidim-census'
+gem 'decidim-censuses'
 ```
 
 And then execute:
 
 ```bash
-$ bundle
-$ bin/rails railties:install:migrations
-$ bin/rails db:migrate
+bundle
+bin/rails decidim_censuses:install:migrations
+bin/rails db:migrate
 ```
 
 ## Run tests
 
-Create a dummy app:
+Create a dummy app in your application (if not present):
 
 ```bash
-$ bin/rails decidim:generate_test_app
+bin/rails decidim:generate_test_app
 ```
 
 And run tests:
 
 ```bash
-$ cd decidim-censuses
-$ rspec
+cd decidim-censuses
+rspec
 ```
-
-
 
 ## License
 

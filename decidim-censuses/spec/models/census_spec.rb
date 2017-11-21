@@ -3,7 +3,7 @@ require 'spec_helper'
 RSpec.describe Decidim::Censuses::Census, type: :model do
   Census = Decidim::Censuses::Census
 
-  describe 'for_document' do
+  describe 'get census for a given identity document' do
     it 'returns the last inserted when duplicates' do
       FactoryGirl.create(:census, id_document: 'AAA')
       last = FactoryGirl.create(:census, id_document: 'AAA')
@@ -32,7 +32,7 @@ RSpec.describe Decidim::Censuses::Census, type: :model do
     end
 
     it 'normalizes dates' do
-      expect(Census.to_birthdate('20/3/1992')).to eq '1992/03/20'
+      expect(Census.to_birthdate('20/3/1992')).to eq Date.strptime('1992/03/20', '%Y/%m/%d')
       expect(Census.to_birthdate('1/20/1992')).to be nil
       expect(Census.to_birthdate('n/3/1992')).to be nil
     end

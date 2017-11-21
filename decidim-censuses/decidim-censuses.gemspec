@@ -20,6 +20,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'rails', '~> 5.1.4'
   s.add_dependency 'decidim', Decidim::Censuses::VERSION
   s.add_dependency 'decidim-admin', Decidim::Censuses::VERSION
+  s.add_dependency 'virtus-multiparams', '~> 0.1.1'
 
   s.add_development_dependency 'decidim-dev', Decidim::Censuses::VERSION
   s.add_development_dependency 'faker'

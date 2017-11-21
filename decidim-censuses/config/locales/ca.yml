@@ -3,6 +3,13 @@ ca:
     attributes:
       census_authorization_handler:
         id_document: Document d'identitat
+        birthdate: Data de naixement        
+  census_authorization:
+    form:
+      date_select:
+        day: Dia
+        month: Mès
+        year: Any      
   decidim:
     authorization_handlers:
       census_authorization_handler:

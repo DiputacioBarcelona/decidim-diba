@@ -16,7 +16,7 @@ module Decidim
       end
 
       def self.to_birthdate(string)
-        Date.strptime((string || '').strip, '%d/%m/%Y').strftime('%Y/%m/%d')
+        Date.strptime((string || '').strip, '%d/%m/%Y')
       rescue StandardError
         nil
       end

@@ -3,7 +3,7 @@ module Decidim
     module Admin
       class CensusUploadsController < Decidim::Admin::ApplicationController
 
-        before_action :show_instructions, unless: :module_active?
+        before_action :show_instructions, unless: :census_authorization_active_in_organization?
 
         def show
           authorize! :show, Census
@@ -14,7 +14,7 @@ module Decidim
           authorize! :create, Census
           if params[:file]
             data = CsvData.new(params[:file].path)
-            Census.insert_all data.values
+            Census.insert_all(data.values)
             RemoveDuplicatesJob.perform_later
             flash[:notice] = t('.success', count: data.values.count,
                                            errors: data.errors.count)
@@ -25,8 +25,7 @@ module Decidim
         def delete_all
           authorize! :destroy, Census
           Census.delete_all
-          flash[:notice] = t('.success')
-          redirect_to census_uploads_path
+          redirect_to census_uploads_path, notice: t('.success')
         end
 
         private
@@ -35,7 +34,7 @@ module Decidim
           render :instructions
         end
 
-        def module_active?
+        def census_authorization_active_in_organization?
           current_organization.available_authorizations.include? 'CensusAuthorizationHandler'
         end
 

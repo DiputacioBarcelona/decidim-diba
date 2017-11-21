@@ -15,6 +15,8 @@ module Decidim
 
       initializer 'decidim_census.add_authorization_handlers' do |_app|
         Decidim.configure do |config|
+          # WARNING: Some migrations requires this to be a class
+          # But it seems that the rest of the project requires to be a string
           config.authorization_handlers += [
             'CensusAuthorizationHandler'
           ]
