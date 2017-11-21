@@ -2,7 +2,7 @@
 module Decidim
   module Census
     module Admin
-      class CensusUploadsController < Decidim::Admin::ApplicationController
+      class CensusesController < Decidim::Admin::ApplicationController
 
         before_action :show_instructions, unless: :census_authorization_active_in_organization?
 
@@ -20,13 +20,13 @@ module Decidim
             flash[:notice] = t('.success', count: data.values.count,
                                            errors: data.errors.count)
           end
-          redirect_to census_uploads_path
+          redirect_to censuses_path
         end
 
         def delete_all
           authorize! :destroy, CensusDatum
           CensusDatum.clear(current_organization)
-          redirect_to census_uploads_path, notice: t('.success')
+          redirect_to censuses_path, notice: t('.success')
         end
 
         private

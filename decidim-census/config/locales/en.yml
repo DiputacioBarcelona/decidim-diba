@@ -23,7 +23,7 @@ en:
         delete_all:
           title: Delete all census data
           confirm: Delete all the census can not be undone. Are you sure you want to continue?
-        census_uploads:
+        censuses:
           create:
             success: Successfully imported %{count} items (%{errors} errors)
           delete_all:

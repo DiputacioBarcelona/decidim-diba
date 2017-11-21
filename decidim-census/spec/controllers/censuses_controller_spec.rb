@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 # rubocop:disable Metrics/BlockLength
-RSpec.describe Decidim::Census::Admin::CensusUploadsController,
+RSpec.describe Decidim::Census::Admin::CensusesController,
                type: :controller do
 
   include Warden::Test::Helpers

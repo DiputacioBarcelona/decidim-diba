@@ -23,7 +23,7 @@ ca:
         delete_all:
           title: Esborrar totes les dades del cens
           confirm: Aquesta acció no es pot desfer. Estàs segur/a que voleu continuar?
-        census_uploads:
+        censuses:
           create:
             success: S'han importat amb èxit %{count} elements (%{errors} errors)
           delete_all:

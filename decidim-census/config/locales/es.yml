@@ -23,7 +23,7 @@ es:
         delete_all:
           title: Borrar todos los datos de censo
           confirm: Borrar el censo no se puede deshacer. ¿Estás seguro/a que deseas continuar?
-        census_uploads:
+        censuses:
           create:
             success: Se han importado con éxito %{count} elementos (%{errors} errores)
           delete_all:
