@@ -2,22 +2,22 @@ ca:
   activemodel:
     attributes:
       census_authorization_handler:
-        id_document: Document d'identitat
-        birthdate: Data de naixement        
+        id_document: Document d'identitat (DNI, NIF, Passaport o Targeta de Residència)
+        birthdate: Data de naixement
   census_authorization:
     form:
       date_select:
         day: Dia
-        month: Mès
-        year: Any      
+        month: Mes
+        year: Any
   decidim:
     authorization_handlers:
       census_authorization_handler:
-        name: Cens
+        name: Padró Municipal
     census:
       errors:
         messages:
-          not_censed: No està en el cens
+          not_censed: No hem pogut trobar el teu document d'identitat amb aquesta data de naixement al padró municipal. Si les dades són correctes i el problema persisteix, siusplau, posa't en contacte amb un administrador.
           younger_than_minimum_age: Hauries de ser major de %{age} anys
       admin:
         destroy:

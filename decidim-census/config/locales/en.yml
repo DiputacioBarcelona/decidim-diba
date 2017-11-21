@@ -2,7 +2,7 @@ en:
   activemodel:
     attributes:
       census_authorization_handler:
-        id_document: Identification document
+        id_document: Identification document (DNI, NIF, Password or Residence Card)
         birthdate: Date of birth
   census_authorization:
     form:
@@ -13,11 +13,11 @@ en:
   decidim:
     authorization_handlers:
       census_authorization_handler:
-        name: Census
+        name: Municipality Census
     census:
       errors:
         messages:
-          not_censed: You are not in the census
+          not_censed: We could not find your document ID matching with this birthdate in our Census. If the data entered is correct and the problem persists, please, contact an administrator.
           younger_than_minimum_age: You should be older than %{age} years
       admin:
         destroy:
