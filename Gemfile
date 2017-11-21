@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 ruby '2.4.0'
 
 gem 'decidim', '~> 0.7.2'
-gem 'decidim-censuses', path: 'decidim-censuses'
+gem 'decidim-census', path: 'decidim-census'
 
 gem 'letter_opener_web'
 gem 'puma', '~> 3.10'

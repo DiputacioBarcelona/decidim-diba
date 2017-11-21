@@ -1,0 +1,44 @@
+es:
+  activemodel:
+    attributes:
+      census_authorization_handler:
+        id_document: Documento de identidad
+        birthdate: Fecha de nacimiento
+  census_authorization:
+    form:
+      date_select:
+        day: Día
+        month: Mes
+        year: Año
+  decidim:
+    authorization_handlers:
+      census_authorization_handler:
+        name: Censo
+    census:
+      errors:
+        messages:
+          not_censed: No hemos podido encontrar tu DNI con esta fecha de nacimiento en nuestro Censo. Por favor, ponte en contacto con un administrador
+          younger_than_minimum_age: Deberías ser mayor de %{age} años
+      admin:
+        delete_all:
+          title: Borrar todos los datos de censo
+          confirm: Borrar el censo no se puede deshacer. ¿Estás seguro/a de que deseas continuar?
+        census_uploads:
+          create:
+            success: Se han importado con éxito %{count} elementos (%{errors} errores)
+          delete_all:
+            success: Se han borrado todos los datos censales
+        instructions:
+          title: Necesitas activar el módulo de censos para esta organización
+          body: Para ello debes entrar en administración del sistema y añadir "CensusAuthorizationHandler" a la lista de autorizaciones
+        menu:
+          census: Subir censo
+        show:
+          title: Datos de censo actuales
+          data: Hay %{count} registros subidos el día %{due_date}
+          empty: No hay datos censales. Usa el formulario de abajo para importar usando un fichero CSV.
+        new:
+          info: 'Debe ser un fichero generado por excel con dos columnas: documento de identidad y fecha de nacimiento'
+          title: Subir un nuevo censo
+          file: Archivo excel .csv con los datos del censo
+          submit: Subir archivo

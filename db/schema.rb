@@ -132,7 +132,7 @@ ActiveRecord::Schema.define(version: 20171120130226) do
     t.index ["decidim_category_id"], name: "index_decidim_categorizations_on_decidim_category_id"
   end
 
-  create_table "decidim_censuses_censuses", force: :cascade do |t|
+  create_table "decidim_census_census_data", force: :cascade do |t|
     t.string "id_document"
     t.date "birthdate"
     t.datetime "created_at", null: false
