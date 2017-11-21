@@ -20,13 +20,13 @@ ca:
           not_censed: No està en el cens
           younger_than_minimum_age: Hauries de ser major de %{age} anys
       admin:
-        delete_all:
+        destroy:
           title: Esborrar totes les dades del cens
           confirm: Aquesta acció no es pot desfer. Estàs segur/a que voleu continuar?
         censuses:
           create:
             success: S'han importat amb èxit %{count} elements (%{errors} errors)
-          delete_all:
+          destroy:
             success: S'han esborrat totes les dades censals
         instructions:
           title: Necessites activar el mòdul de censos per a aquesta organització

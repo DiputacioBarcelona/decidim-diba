@@ -7,8 +7,7 @@ module Decidim
       isolate_namespace Decidim::Census::Admin
 
       routes do
-        resource :censuses, only: %i(show create delete)
-        post 'censuses/delete_all', to: 'censuses#delete_all'
+        resource :censuses, only: %i(show create destroy)
       end
 
       initializer 'decidim_census.add_admin_authorizations' do |_app|

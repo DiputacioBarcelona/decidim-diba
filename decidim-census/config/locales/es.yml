@@ -20,13 +20,13 @@ es:
           not_censed: No hemos podido encontrar tu DNI con esta fecha de nacimiento en nuestro Censo. Por favor, ponte en contacto con un administrador
           younger_than_minimum_age: Deberías ser mayor de %{age} años
       admin:
-        delete_all:
+        destroy:
           title: Borrar todos los datos de censo
           confirm: Borrar el censo no se puede deshacer. ¿Estás seguro/a que deseas continuar?
         censuses:
           create:
             success: Se han importado con éxito %{count} elementos (%{errors} errores)
-          delete_all:
+          destroy:
             success: Se han borrado todos los datos censales
         instructions:
           title: Necesitas activar el módulo de censos para esta organización

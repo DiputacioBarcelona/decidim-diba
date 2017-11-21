@@ -48,7 +48,7 @@ RSpec.describe Decidim::Census::Admin::CensusesController,
       sign_in user
 
       5.times { FactoryGirl.create :census_datum, organization: organization }
-      post :delete_all
+      delete :destroy
       expect(response).to have_http_status(:redirect)
 
       expect(Decidim::Census::CensusDatum.count).to be 0

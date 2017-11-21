@@ -23,7 +23,7 @@ module Decidim
           redirect_to censuses_path
         end
 
-        def delete_all
+        def destroy
           authorize! :destroy, CensusDatum
           CensusDatum.clear(current_organization)
           redirect_to censuses_path, notice: t('.success')

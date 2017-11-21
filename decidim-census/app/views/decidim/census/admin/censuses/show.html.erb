@@ -10,11 +10,11 @@
       <p><%= t('decidim.census.admin.show.data', count: @status.count, 
         due_date: l(@status.last_import_at, format: :long)) %>
       </p>
-      <%= link_to t('decidim.census.admin.delete_all.title'), 
-        censuses_delete_all_path, 
-        method: 'post',
+      <%= link_to t('decidim.census.admin.destroy.title'), 
+        censuses_path, 
+        method: :delete,
         class: 'button alert',
-        data: { confirm: t('decidim.census.admin.delete_all.confirm') } %>
+        data: { confirm: t('decidim.census.admin.destroy.confirm') } %>
       <% else %>
         <p><%= t('admin.show.empty', scope: 'decidim.census') %></p>
     <% end %>

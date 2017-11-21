@@ -20,13 +20,13 @@ en:
           not_censed: You are not in the census
           younger_than_minimum_age: You should be older than %{age} years
       admin:
-        delete_all:
+        destroy:
           title: Delete all census data
           confirm: Delete all the census can not be undone. Are you sure you want to continue?
         censuses:
           create:
             success: Successfully imported %{count} items (%{errors} errors)
-          delete_all:
+          destroy:
             success: All census data have been deleted
         instructions:
           title: You need to activate the census module for this organization
