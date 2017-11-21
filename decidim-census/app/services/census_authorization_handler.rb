@@ -1,12 +1,14 @@
 # frozen_string_literal: true
 
+require 'pry'
+
 require 'virtus/multiparams'
 
 # An AuthorizationHandler that uses information uploaded from a CSV file
 # to authorize against the age of the user
 class CensusAuthorizationHandler < Decidim::AuthorizationHandler
 
-  # Virtus Multiparams allows the Date and DateTime attributes 
+  # Virtus Multiparams allows the Date and DateTime attributes
   # to be expressed in days, months and years (see documentation)
   include Virtus::Multiparams
 
@@ -41,8 +43,8 @@ class CensusAuthorizationHandler < Decidim::AuthorizationHandler
   private
 
   def census_for_user
-    @census_for_user ||= Decidim::Census::CensusDatum.for_document(id_document)
-    @census_for_user
+    @census_for_user ||= Decidim::Census::CensusDatum
+                         .search_id_document(user.organization, id_document)
   end
 
 end

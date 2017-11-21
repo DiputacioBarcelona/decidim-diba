@@ -2,25 +2,26 @@ require 'spec_helper'
 
 # rubocop:disable Metrics/BlockLength
 RSpec.describe Decidim::Census::CensusDatum, type: :model do
+  let(:organization) { FactoryGirl.create :organization }
   CensusDatum = Decidim::Census::CensusDatum
 
   describe 'get census for a given identity document' do
     it 'returns the last inserted when duplicates' do
       FactoryGirl.create(:census_datum, id_document: 'AAA')
-      last = FactoryGirl.create(:census_datum, id_document: 'AAA')
-      expect(CensusDatum.for_document('AAA')).to eq(last)
+      last = FactoryGirl.create(:census_datum, id_document: 'AAA', organization: organization)
+      expect(CensusDatum.search_id_document(organization, 'AAA')).to eq(last)
     end
 
     it 'normalizes the document' do
-      census = FactoryGirl.create(:census_datum, id_document: 'AAA')
-      expect(CensusDatum.for_document('a-a-a')).to eq(census)
+      census = FactoryGirl.create(:census_datum, id_document: 'AAA', organization: organization)
+      expect(CensusDatum.search_id_document(organization, 'a-a-a')).to eq(census)
     end
   end
 
   it 'inserts a collection of values' do
-    CensusDatum.insert_all([['1111A', '1990/12/1'], ['2222B', '1990/12/2']])
+    CensusDatum.insert_all(organization, [['1111A', '1990/12/1'], ['2222B', '1990/12/2']])
     expect(CensusDatum.count).to be 2
-    CensusDatum.insert_all([['1111A', '2001/12/1'], ['3333C', '1990/12/3']])
+    CensusDatum.insert_all(organization, [['1111A', '2001/12/1'], ['3333C', '1990/12/3']])
     expect(CensusDatum.count).to be 4
   end
 

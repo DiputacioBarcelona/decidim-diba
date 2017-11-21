@@ -1,6 +1,6 @@
 require 'spec_helper'
-require 'pry'
 
+# rubocop:disable Metrics/BlockLength
 RSpec.describe Decidim::Census::Admin::CensusUploadsController,
                type: :controller do
 
@@ -47,7 +47,7 @@ RSpec.describe Decidim::Census::Admin::CensusUploadsController,
     it 'clear all census data' do
       sign_in user
 
-      5.times { FactoryGirl.create :census_datum }
+      5.times { FactoryGirl.create :census_datum, organization: organization }
       post :delete_all
       expect(response).to have_http_status(:redirect)
 

@@ -133,9 +133,11 @@ ActiveRecord::Schema.define(version: 20171120130226) do
   end
 
   create_table "decidim_census_census_data", force: :cascade do |t|
+    t.bigint "decidim_organization_id"
     t.string "id_document"
     t.date "birthdate"
     t.datetime "created_at", null: false
+    t.index ["decidim_organization_id"], name: "index_decidim_census_census_data_on_decidim_organization_id"
   end
 
   create_table "decidim_comments_comment_votes", id: :serial, force: :cascade do |t|
@@ -613,6 +615,7 @@ ActiveRecord::Schema.define(version: 20171120130226) do
 
   add_foreign_key "decidim_authorizations", "decidim_users"
   add_foreign_key "decidim_categorizations", "decidim_categories"
+  add_foreign_key "decidim_census_census_data", "decidim_organizations"
   add_foreign_key "decidim_identities", "decidim_organizations"
   add_foreign_key "decidim_newsletters", "decidim_users", column: "author_id"
   add_foreign_key "decidim_participatory_process_steps", "decidim_participatory_processes"

@@ -8,15 +8,15 @@ module Decidim
 
         def show
           authorize! :show, CensusDatum
-          @status = Status.new
+          @status = Status.new(current_organization)
         end
 
         def create
           authorize! :create, CensusDatum
           if params[:file]
             data = CsvData.new(params[:file].path)
-            CensusDatum.insert_all(data.values)
-            RemoveDuplicatesJob.perform_later
+            CensusDatum.insert_all(current_organization, data.values)
+            RemoveDuplicatesJob.perform_later(current_organization)
             flash[:notice] = t('.success', count: data.values.count,
                                            errors: data.errors.count)
           end
@@ -25,7 +25,7 @@ module Decidim
 
         def delete_all
           authorize! :destroy, CensusDatum
-          CensusDatum.delete_all
+          CensusDatum.clear(current_organization)
           redirect_to census_uploads_path, notice: t('.success')
         end
 
