@@ -14,6 +14,8 @@ ca:
     authorization_handlers:
       census_authorization_handler:
         name: Padró Municipal
+        fields:
+          birthdate: Data de naixement
     census:
       errors:
         messages:

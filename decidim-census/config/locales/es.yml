@@ -14,6 +14,8 @@ es:
     authorization_handlers:
       census_authorization_handler:
         name: Padrón Municipal
+        fields:
+          birthdate: Fecha de nacimiento
     census:
       errors:
         messages:
