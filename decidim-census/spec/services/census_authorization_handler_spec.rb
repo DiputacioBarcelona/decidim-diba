@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'pry'
 
 # rubocop:disable Metrics/BlockLength
 RSpec.describe CensusAuthorizationHandler do

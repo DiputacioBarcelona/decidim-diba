@@ -1,5 +1,3 @@
-require 'pry'
-
 module Decidim
   module Census
     module Extensions
