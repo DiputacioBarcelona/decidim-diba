@@ -1,3 +1,5 @@
+require 'pry'
+
 module Decidim
   module Census
     module Extensions
@@ -14,7 +16,7 @@ module Decidim
 
         def authorize_with_age
           return status(:missing) unless valid_metadata?
-          return status(:invalid, fields: [:birthdate]) if current_age < minimum_age
+          return status(:invalid, fields: [:birthdate]) unless valid_age?
           status(:ok)
         end
 
@@ -22,16 +24,12 @@ module Decidim
           !authorization.metadata['birthdate'].nil?
         end
 
-        def birthdate
-          @birthdate ||= Date.strptime(authorization.metadata['birthdate'], '%Y/%m/%d')
+        def valid_age?
+          (birthdate + minimum_age.years) <= Date.current
         end
 
-        def current_age
-          now = Date.current
-          extra_year = (now.month > birthdate.month) || (
-            now.month == birthdate.month && now.day >= birthdate.day
-          )
-          now.year - birthdate.year - (extra_year ? 0 : 1)
+        def birthdate
+          @birthdate ||= Date.strptime(authorization.metadata['birthdate'], '%Y/%m/%d')
         end
 
         def minimum_age
