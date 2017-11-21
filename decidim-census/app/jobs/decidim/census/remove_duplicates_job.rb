@@ -9,7 +9,9 @@ module Decidim
         duplicated_census(organization).pluck(:id_document).each do |id_document|
           CensusDatum.inside(organization)
                      .where(id_document: id_document)
-                     .order(id: :desc).all[1..-1].each(&:delete)
+                     .order(id: :desc)
+                     .all[1..-1]
+                     .each(&:delete)
         end
       end
 

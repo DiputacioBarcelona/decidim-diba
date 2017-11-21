@@ -27,16 +27,16 @@ RSpec.describe Decidim::Census::CensusDatum, type: :model do
 
   describe 'normalization methods' do
     it 'normalizes id document' do
-      expect(CensusDatum.to_id_document('1234a')).to eq '1234A'
-      expect(CensusDatum.to_id_document('   1234a  ')).to eq '1234A'
-      expect(CensusDatum.to_id_document(')($·$')).to eq ''
-      expect(CensusDatum.to_id_document(nil)).to eq ''
+      expect(CensusDatum.normalize_id_document('1234a')).to eq '1234A'
+      expect(CensusDatum.normalize_id_document('   1234a  ')).to eq '1234A'
+      expect(CensusDatum.normalize_id_document(')($·$')).to eq ''
+      expect(CensusDatum.normalize_id_document(nil)).to eq ''
     end
 
     it 'normalizes dates' do
-      expect(CensusDatum.to_birthdate('20/3/1992')).to eq Date.strptime('1992/03/20', '%Y/%m/%d')
-      expect(CensusDatum.to_birthdate('1/20/1992')).to be nil
-      expect(CensusDatum.to_birthdate('n/3/1992')).to be nil
+      expect(CensusDatum.parse_date('20/3/1992')).to eq Date.strptime('1992/03/20', '%Y/%m/%d')
+      expect(CensusDatum.parse_date('1/20/1992')).to be nil
+      expect(CensusDatum.parse_date('n/3/1992')).to be nil
     end
   end
 end

@@ -11,21 +11,20 @@ module Decidim
 
       # Search for a specific document id inside a organization
       def self.search_id_document(organization, id_document)
-        id_doc = to_id_document(id_document)
         CensusDatum.inside(organization)
-                   .where(id_document: id_doc)
+                   .where(id_document: normalize_id_document(id_document))
                    .order(created_at: :desc, id: :desc)
                    .first
       end
 
       # Normalizes a id document string (remove invalid characters)
-      def self.to_id_document(string)
+      def self.normalize_id_document(string)
         return '' unless string
         string.gsub(/[^A-z0-9]/, '').upcase
       end
 
       # Convert a date from string to a Date object
-      def self.to_birthdate(string)
+      def self.parse_date(string)
         Date.strptime((string || '').strip, '%d/%m/%Y')
       rescue StandardError
         nil
