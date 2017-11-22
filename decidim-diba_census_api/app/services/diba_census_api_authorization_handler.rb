@@ -5,13 +5,12 @@ require 'virtus/multiparams'
 # An AuthorizationHandler that uses the DibaCensusApiService to create authorizations
 class DibaCensusApiAuthorizationHandler < Decidim::AuthorizationHandler
 
-  include ActionView::Helpers::SanitizeHelper
   include Virtus::Multiparams
 
   # This is the input (from the user) to validate against
   attribute :document_type, Symbol
   attribute :id_document, String
-  attribute :birthdate, String
+  attribute :birthdate, Date
 
   # This is the validation to perform
   # If passed, is authorized
@@ -21,7 +20,7 @@ class DibaCensusApiAuthorizationHandler < Decidim::AuthorizationHandler
   # validate :censed
 
   def metadata
-    { birthdate: "#{birthdate[0]}/#{birthdate[1]}/#{birthdate[2]}" }
+    { birthdate: date.strftime('%Y/%m/%d') }
   end
 
   def census_document_types
@@ -39,7 +38,14 @@ class DibaCensusApiAuthorizationHandler < Decidim::AuthorizationHandler
   private
 
   def census_for_user
-    OpenStruct.new birthdate: birthdate, document_type: document_type, id_document: id_document
+    @service = DibaCensusApiService.new(api_config)
+    @service.call(birthdate: birthdate, document_type: document_type, id_document: id_document)
+  end
+
+  def api_config
+    { ine: user.organization.diba_census_api_ine,
+      username: user.organization.diba_census_api_username,
+      password: user.organization.diba_census_api_password }
   end
 
 end

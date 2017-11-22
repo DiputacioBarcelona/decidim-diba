@@ -2,6 +2,7 @@ module Decidim
   module DibaCensusApi
     module Admin
       class ApiConfigsController < Decidim::Admin::ApplicationController
+
         before_action :show_instructions, unless: :module_active?
 
         def show
@@ -36,6 +37,7 @@ module Decidim
         def module_active?
           current_organization.available_authorizations.include? 'DibaCensusApiAuthorizationHandler'
         end
+
       end
     end
   end

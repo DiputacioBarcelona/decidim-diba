@@ -1,6 +1,16 @@
 require 'savon'
 
-class DibaCensusApiService
+class DibaCensusApi
+
+  def initialize(ine: 'AA', username: 'Decidim', password: 'Decidim2017')
+    @ine = ine
+    @username = username
+    @password = password
+  end
+
+  def call(birthdate:, document_type:, id_document:)
+    { birthdate: birthdate, document_type: document_type, id_document: id_document, ine: @ine }
+  end
 
   def self.request(params)
     client = Savon.client(wsdl: 'http://accede-pre.diba.cat/services/Ci?wsdl')
