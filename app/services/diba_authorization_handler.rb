@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'pry'
-
 require 'virtus/multiparams'
 
 # An AuthorizationHandler that uses the DibaCensusApiService to create authorizations

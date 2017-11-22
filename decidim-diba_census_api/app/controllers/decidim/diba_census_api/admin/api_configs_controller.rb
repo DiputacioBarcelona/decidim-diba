@@ -38,7 +38,6 @@ module Decidim
           current_organization.available_authorizations.include? 'DibaCensusApiAuthorizationHandler'
         end
 
-
       end
     end
   end
