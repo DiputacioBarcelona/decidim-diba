@@ -1,2 +1,11 @@
-es:
-  test: 'Prueba'
+ca:
+  activemodel:
+    attributes:
+      diba_authorization_handler:
+        document_type: Tipo de documento
+        id_document: Número de documento
+        birthdate: Fecha de nacimiento
+  decidim:
+    authorization_handlers:
+      diba_authorization_handler:
+        name: 'Censo de la Diputació de Barcelona'

@@ -1,0 +1,11 @@
+en:
+  activemodel:
+    attributes:
+      iba_authorization_handler:
+        document_type: Document type
+        id_document: Identity document
+        birthdate: Date of birth
+  decidim:
+    authorization_handlers:
+      diba_authorization_handler:
+        name: 'Diputació of Barcelona census'
