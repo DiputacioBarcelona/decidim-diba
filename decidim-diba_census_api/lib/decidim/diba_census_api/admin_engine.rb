@@ -16,7 +16,7 @@ module Decidim
           menu.item I18n.t('menu', scope: 'decidim.diba_census_api.admin'),
                     decidim_diba_census_api_admin.api_config_path,
                     icon_name: 'globe',
-                    position: 6,
+                    position: 7,
                     active: :inclusive
         end
       end

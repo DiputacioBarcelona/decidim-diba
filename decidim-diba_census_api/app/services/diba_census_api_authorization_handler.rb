@@ -20,7 +20,7 @@ class DibaCensusApiAuthorizationHandler < Decidim::AuthorizationHandler
   # validate :censed
 
   def metadata
-    { birthdate: date.strftime('%Y/%m/%d') }
+    { birthdate: birthdate.strftime('%Y/%m/%d') }
   end
 
   def census_document_types

@@ -17,7 +17,7 @@ module Decidim
             'DibaCensusApiAuthorizationHandler'
           ]
         end
-        # Decidim::ActionAuthorizer.prepend AuthorizeWithAge
+        Decidim::ActionAuthorizer.prepend Decidim::Census::Extensions::AuthorizeWithAge
       end
 
     end

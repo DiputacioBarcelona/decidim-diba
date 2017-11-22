@@ -1,4 +1,4 @@
-ca:
+es:
   activerecord:
     attributes:
       decidim/organization:
@@ -8,29 +8,29 @@ ca:
   activemodel:
     attributes:
       diba_census_api_authorization_handler:
-        document_type: Tipus de document
-        id_document: Número de document
-        birthdate: Data de naixement
+        document_type: Tipo de documento
+        id_document: Número de documento
+        birthdate: Fecha de nacimiento
   decidim:
     authorization_handlers:
       diba_census_api_authorization_handler:
-        name: Diputació de Barcelona Census API
+        name: API de censo de la Diputació de Barcelona
         document_types:
-          dni: 'DNI'
-          nie: 'NIE'
-          passport: 'Pasaporte'
+          dni: DNI
+          nie: NIE
+          passport: Pasaporte
     diba_census_api:
       admin:
-        menu: 'API Censo'
+        menu: Configurar API censo
         api_configs:
           show:
             title: Configuración de API de Censo para %{name}
             edit: Modificar configuración
           edit:
-            title: 'Editar la configuración del API de Censo'
-            submit: 'Guardar configuración'
+            title: Editar la configuración del API de Censo
+            submit: Guardar configuración
           instructions:
-            title: 'Debes activar este módulo para continuar'
+            title: Debes activar este módulo para continuar
             body: Para ello debes entrar en administración del sistema y activar "DibaCensusApiAuthorizationHandler" en la lista de autorizaciones disponibles
           update:
             success: Configuración guardada
@@ -38,6 +38,6 @@ ca:
   diba_census_api_authorization:
     form:
       date_select:
-        day: 'Dia'
-        month: 'Mès'
-        year: 'Any'
+        day: Dia
+        month: Mes
+        year: Año

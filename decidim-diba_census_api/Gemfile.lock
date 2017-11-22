@@ -1,7 +1,17 @@
 PATH
+  remote: ../decidim-census
+  specs:
+    decidim-census (0.7.2)
+      decidim (= 0.7.2)
+      decidim-admin (= 0.7.2)
+      rails (~> 5.1.4)
+      virtus-multiparams (~> 0.1.1)
+
+PATH
   remote: .
   specs:
     decidim-diba_census_api (0.7.2)
+      decidim-census (= 0.7.2)
       decidim-core (= 0.7.2)
       savon (~> 2.11.2)
       virtus-multiparams (~> 0.1.1)
@@ -584,6 +594,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  decidim-census!
   decidim-dev (= 0.7.2)
   decidim-diba_census_api!
   pry-byebug

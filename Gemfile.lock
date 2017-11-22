@@ -11,6 +11,7 @@ PATH
   remote: decidim-diba_census_api
   specs:
     decidim-diba_census_api (0.7.2)
+      decidim-census (= 0.7.2)
       decidim-core (= 0.7.2)
       savon (~> 2.11.2)
       virtus-multiparams (~> 0.1.1)

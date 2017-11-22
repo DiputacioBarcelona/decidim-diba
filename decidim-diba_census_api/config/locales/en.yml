@@ -1,0 +1,43 @@
+en:
+  activerecord:
+    attributes:
+      decidim/organization:
+        diba_census_api_ine: INE
+        diba_census_api_username: Usuario
+        diba_census_api_password: Contraseña
+  activemodel:
+    attributes:
+      diba_census_api_authorization_handler:
+        document_type: Document type
+        id_document: Document number
+        birthdate: Date of birth
+  decidim:
+    authorization_handlers:
+      diba_census_api_authorization_handler:
+        name: Diputació de Barcelona Census API
+        document_types:
+          dni: DNI
+          nie: NIE
+          passport: Passport
+    diba_census_api:
+      admin:
+        menu: Census API config
+        api_configs:
+          show:
+            title: Census API configuration for %{name}
+            edit: Edit configuration
+          edit:
+            title: Edit census API configuration
+            submit: Save
+          instructions:
+            title: You need to activate the census module for this organization
+            body: To do this you must enter system administration and add "CensusAuthorizationHandler" to the list of authorizations
+          update:
+            success: Configuration saved!
+
+  diba_census_api_authorization:
+    form:
+      date_select:
+        day: 'Day'
+        month: 'Month'
+        year: 'Year'

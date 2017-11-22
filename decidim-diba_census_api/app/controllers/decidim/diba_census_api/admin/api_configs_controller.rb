@@ -19,7 +19,7 @@ module Decidim
           authorize! :update, Decidim::Organization
           @organization = current_organization
           @organization.update!(organization_params)
-          redirect_to api_config_path
+          redirect_to api_config_path, notice: t('.success')
         end
 
         private
