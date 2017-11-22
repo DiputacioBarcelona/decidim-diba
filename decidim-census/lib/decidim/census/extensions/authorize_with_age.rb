@@ -2,8 +2,14 @@ module Decidim
   module Census
     module Extensions
       module AuthorizeWithAge
+        # Handlers that requires AuthorizeWithAge authorization
+        AGE_HANDLERS = %w[
+          census_authorization_handler
+          diba_census_api_authorization_handler
+        ].freeze
+
         def authorize
-          if authorization_handler_name == 'census_authorization_handler'
+          if authorization_handler_name.in?(AGE_HANDLERS)
             authorize_with_age
           else
             super
