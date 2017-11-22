@@ -13,10 +13,10 @@ require 'decidim/dev/test/base_spec_helper'
 
 RSpec.configure do |config|
   config.before(:each) do
-    I18n.available_locales = %i(en ca es)
-    I18n.default_locale = :es
-    I18n.locale = :es
+    I18n.available_locales = %i(ca es en)
+    I18n.default_locale = :ca
+    I18n.locale = :ca
     Decidim.available_locales = %i(en ca es)
-    Decidim.default_locale = :es
+    Decidim.default_locale = :ca
   end
 end

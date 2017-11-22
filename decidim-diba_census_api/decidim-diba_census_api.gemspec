@@ -24,4 +24,5 @@ Gem::Specification.new do |s|
   s.add_dependency 'decidim-census', s.version
 
   s.add_development_dependency 'decidim-dev', s.version
+  s.add_development_dependency 'faker'
 end
