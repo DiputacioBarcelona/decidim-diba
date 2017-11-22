@@ -38,8 +38,7 @@ class CensusAuthorizationHandler < Decidim::AuthorizationHandler
     census_for_user.id_document
   end
 
-  private
-
+  # This method is used by DibaAuthorizationHandler
   def census_for_user
     @census_for_user ||= Decidim::Census::CensusDatum
                          .search_id_document(user.organization, id_document)

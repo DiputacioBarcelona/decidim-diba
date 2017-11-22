@@ -1,2 +1,11 @@
 ca:
-  test: 'Prova'
+  activemodel:
+    attributes:
+      diba_authorization_handler:
+        document_type: Tipus de document
+        id_document: Número de document
+        birthdate: Data de naixement
+  decidim:
+    authorization_handlers:
+      diba_authorization_handler:
+        name: 'Censo de Diputació de Barcelona'

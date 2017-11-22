@@ -1,0 +1,20 @@
+<div class="field">
+  <%= form.select :document_type, handler.census_document_types, prompt: true %>
+</div>
+
+<div class="field">
+  <%= form.text_field :id_document %>
+</div>
+
+<div class="field date">
+  <%= form.date_select :birthdate, start_year: 1900, default: 35.years.ago, prompt: {
+    day: t("day", scope: 'diba_census_api_authorization.form.date_select'),
+    month: t("month", scope: 'diba_census_api_authorization.form.date_select'),
+    year: t("year", scope: 'diba_census_api_authorization.form.date_select') } %>
+</div>
+
+<%= form.hidden_field :handler_name %>
+
+<div class="actions">
+  <%= form.submit t("authorize", scope: "decidim.authorizations.new"), class: "button expanded" %>
+</div>

@@ -1,9 +1,11 @@
 # frozen_string_literal: true
 
+require 'pry'
+
 require 'virtus/multiparams'
 
 # An AuthorizationHandler that uses the DibaCensusApiService to create authorizations
-class DibaCensusApiAuthorizationHandler < Decidim::AuthorizationHandler
+class DibaAuthorizationHandler < Decidim::AuthorizationHandler
 
   include Virtus::Multiparams
 
@@ -35,18 +37,23 @@ class DibaCensusApiAuthorizationHandler < Decidim::AuthorizationHandler
     errors.add(:id_document, I18n.t('decidim.census.errors.messages.not_censed'))
   end
 
-  # This method is used by DibaAuthorizationHandler
-  def census_for_user
-    @service = DibaCensusApi.new(api_config)
-    @service.call(birthdate: birthdate, document_type: document_type, id_document: id_document)
-  end
-
   private
 
-  def api_config
-    { ine: user.organization.diba_census_api_ine,
-      username: user.organization.diba_census_api_username,
-      password: user.organization.diba_census_api_password }
+  def census_for_user
+    api_handler.census_for_user || csv_handler.census_for_user
+  end
+
+  def api_handler
+    DibaCensusApiAuthorizationHandler.new(user: user,
+                                          document_type: document_type,
+                                          id_document: id_document,
+                                          birthdate: birthdate)
+  end
+
+  def csv_handler
+    CensusAuthorizationHandler.new(user: user,
+                                   id_document: id_document,
+                                   birthdate: birthdate)
   end
 
 end

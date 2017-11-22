@@ -9,7 +9,8 @@ class DibaCensusApi
   end
 
   def call(birthdate:, document_type:, id_document:)
-    { birthdate: birthdate, document_type: document_type, id_document: id_document, ine: @ine }
+    nil
+    #{ birthdate: birthdate, document_type: document_type, id_document: id_document, ine: @ine }
   end
 
   def self.request(params)
