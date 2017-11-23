@@ -2,9 +2,11 @@
 
 require 'virtus/multiparams'
 
-# An AuthorizationHandler that uses the DibaCensusApiService to create authorizations
+# An AuthorizationHandler that uses the DibaCensusApiAuthorizationHandle
+# with a fallback into the CensusAuthorizationHandler if the API fails
 class DibaAuthorizationHandler < Decidim::AuthorizationHandler
 
+  # Allows to interact Date with three fields: day, month, year
   include Virtus::Multiparams
 
   # This is the input (from the user) to validate against
