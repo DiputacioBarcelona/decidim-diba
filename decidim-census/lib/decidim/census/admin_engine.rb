@@ -23,7 +23,7 @@ module Decidim
           menu.item I18n.t('menu.census', scope: 'decidim.census.admin'),
                     decidim_census_admin.censuses_path,
                     icon_name: 'spreadsheet',
-                    position: 6,
+                    position: 7,
                     active: :inclusive
         end
       end
