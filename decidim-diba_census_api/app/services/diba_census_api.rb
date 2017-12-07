@@ -1,23 +1,34 @@
-require 'base64'
+# frozen_string_literal: true
+
+require 'digest'
 require 'faraday'
+require 'base64'
 
 class DibaCensusApi
 
   CensusApiResponse = Struct.new(:document_type, :id_document, :birthdate)
+  URL = 'http://accede-pre.diba.cat/services/Ci'
 
-  def initialize(username: 'Decidim', password:, ine: '998')
+  def initialize(username: 'Decidim', password:, public_key:, ine: '998')
     @ine = ine
     @username = username
-    @password = Base64.encode64(password)
+    @password = Digest::SHA1.base64digest(password)
+    @public_key = public_key
   end
 
-  def call(birthdate:, document_type:, id_document:)
-    id_document == '12345A' ? CensusApiResponse.new(document_type, id_document, birthdate) : nil
+  def send_request(document: '58958982T')
+    response = Faraday.post URL do |request|
+      request.headers['Content-Type'] = 'text/xml'
+      request.headers['SOAPAction'] = 'servicio'
+      request.body = request_body(document)
+    end
+    Nokogiri::XML(response.body)
   end
 
-  private
-
-  def payload
+  def payload(document)
+    fecha = encode_time(Time.now.utc)
+    nonce = big_random
+    token = create_token(nonce, fecha)
     <<~XML
       <e>
         <ope>
@@ -29,14 +40,17 @@ class DibaCensusApi
         <sec>
           <cli>ACCEDE</cli>
           <org>0</org>
-          <ent>#{@ine}</ent>
           <gestor>AOC</gestor>
+          <ent>#{@ine}</ent>
           <usu>#{@username}</usu>
           <pwd>#{@password}</pwd>
+          <fecha>#{fecha}</fecha>
+          <nonce>#{nonce}</nonce>
+          <token>#{token}</token>
         </sec>
         <par>
           <codigoTipoDocumento>1</codigoTipoDocumento>
-          <documento>58958982T</documento>
+          <documento>#{Base64.encode64(document)}</documento>
           <nombre></nombre>
           <particula1></particula1>
           <apellido1></apellido1>
@@ -49,7 +63,7 @@ class DibaCensusApi
     XML
   end
 
-  def body
+  def request_body(document)
     <<~XML
       <?xml version="1.0" encoding="UTF-8"?>
       <env:Envelope
@@ -60,11 +74,23 @@ class DibaCensusApi
           xmlns:ins0="http://gestion.util.aytos">
           <env:Body>
               <impl:servicio>
-                <e><![CDATA[#{payload}]]></e>
+                <e><![CDATA[#{payload(document)}]]></e>
               </impl:servicio>
           </env:Body>
       </env:Envelope>
     XML
+  end
+
+  def create_token(nonce, fecha)
+    Digest::SHA512.base64digest(nonce.to_s + fecha + @public_key)
+  end
+
+  def encode_time(time = Time.now.utc)
+    time.strftime('%Y%m%d%H%M%S')
+  end
+
+  def big_random
+    rand(2**24..2**48 - 1)
   end
 
 end
