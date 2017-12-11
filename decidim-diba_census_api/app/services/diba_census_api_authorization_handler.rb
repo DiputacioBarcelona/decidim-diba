@@ -37,16 +37,35 @@ class DibaCensusApiAuthorizationHandler < Decidim::AuthorizationHandler
 
   # This method is used by DibaAuthorizationHandler
   def census_for_user
+    return @census_for_user if defined? @census_for_user
+
     @service = DibaCensusApi.new(api_config)
-    @service.call(birthdate: birthdate, document_type: document_type, id_document: id_document)
+    @census_for_user = @service.call(
+      birthdate: birthdate,
+      document_type: document_type_code,
+      id_document: id_document
+    )
+    @census_for_user
   end
 
   private
 
+  def document_type_code
+    case document_type&.to_sym
+    when :dni
+      '01'
+    when :passport
+      '02'
+    when :nie
+      '03'
+    end
+  end
+
   def api_config
     { ine: user.organization.diba_census_api_ine,
       username: user.organization.diba_census_api_username,
-      password: user.organization.diba_census_api_password }
+      password: user.organization.diba_census_api_password,
+      public_key: 'llave1' }
   end
 
 end
