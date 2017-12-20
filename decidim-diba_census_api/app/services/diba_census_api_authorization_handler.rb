@@ -44,7 +44,6 @@ class DibaCensusApiAuthorizationHandler < Decidim::AuthorizationHandler
     census_for_user.id_document
   end
 
-  # This method is used by DibaAuthorizationHandler
   def census_for_user
     return @census_for_user if defined? @census_for_user
 
