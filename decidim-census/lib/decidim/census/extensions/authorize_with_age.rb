@@ -25,6 +25,7 @@ module Decidim
         end
 
         def valid_metadata?
+          return unless authorization
           !authorization.metadata['birthdate'].nil?
         end
 
