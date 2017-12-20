@@ -19,6 +19,13 @@ bin/rails decidim_diba_census_api:install:migrations
 bin/rails db:migrate
 ```
 
+## Configuration
+
+Once installed, the following env variables can be configured:
+
+- **DIBA_CENSUS_API_URL**: URL to the DIBA census web service
+- **DIBA_CENSUS_API_PUBLIC_KEY**: Public Key used in the DIBA web service authentication
+
 ## License
 
 AGPLv3 (same as Decidim)

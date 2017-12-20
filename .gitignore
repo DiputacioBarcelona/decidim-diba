@@ -25,5 +25,6 @@ public/uploads
 # Ignore env variables
 .env
 .env.*
+!.env.example
 .vscode/
 .DS_Store

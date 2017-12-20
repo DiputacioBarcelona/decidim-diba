@@ -8,4 +8,4 @@ ca:
   decidim:
     authorization_handlers:
       diba_authorization_handler:
-        name: 'Cens de Diputació de Barcelona'
+        name: 'Padró municipal'

@@ -15,6 +15,7 @@ gem 'uglifier', '>= 1.3.0'
 group :development, :test do
   gem 'byebug', platform: :mri
   gem 'decidim-dev', '~> 0.7.2'
+  gem 'dotenv-rails'
   gem 'factory_girl_rails'
   gem 'faker', '~> 1.7.3'
   gem 'pry-byebug'
@@ -32,4 +33,3 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'web-console'
 end
-

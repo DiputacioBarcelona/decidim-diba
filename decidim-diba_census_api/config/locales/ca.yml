@@ -3,8 +3,8 @@ ca:
     attributes:
       decidim/organization:
         diba_census_api_ine: INE
-        diba_census_api_username: Usuario
-        diba_census_api_password: Contraseña
+        diba_census_api_username: Usuari
+        diba_census_api_password: Contrasenya
   activemodel:
     attributes:
       diba_census_api_authorization_handler:
@@ -14,30 +14,30 @@ ca:
   decidim:
     authorization_handlers:
       diba_census_api_authorization_handler:
-        name: Diputació de Barcelona Census API
+        name: Padró Municipal
         document_types:
           dni: 'DNI'
           nie: 'NIE'
-          passport: 'Pasaporte'
+          passport: 'Passaport'
     diba_census_api:
       admin:
-        menu: 'API Censo'
+        menu: 'Cens via API'
         api_configs:
           show:
-            title: Configuración de API de Censo para %{name}
-            edit: Modificar configuración
+            title: Configuració de la API de la Diputació de Barcelona per %{name}
+            edit: Modificar la configuració
           edit:
-            title: 'Editar la configuración del API de Censo'
-            submit: 'Guardar configuración'
+            title: 'Editar la configuració de la API del cens'
+            submit: 'Desar la configuració'
           instructions:
-            title: 'Debes activar este módulo para continuar'
-            body: Para ello debes entrar en administración del sistema y activar "DibaCensusApiAuthorizationHandler" en la lista de autorizaciones disponibles
+            title: Has d'activar aquest modul abans de continuar
+            body: S'ha d'entrar a l'administrador del sistema i activar "DibaCensusApiAuthorizationHandler" a la llista d'autoritzacions disponibles.
           update:
-            success: Configuración guardada
+            success: Configuració desada
 
   diba_census_api_authorization:
     form:
       date_select:
         day: 'Dia'
-        month: 'Mès'
+        month: 'Mes'
         year: 'Any'

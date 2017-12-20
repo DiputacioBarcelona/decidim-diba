@@ -7,10 +7,12 @@
 </div>
 
 <div class="field date">
-  <%= form.date_select :birthdate, start_year: 1900, default: 35.years.ago, prompt: {
-    day: t("day", scope: 'diba_census_api_authorization.form.date_select'),
-    month: t("month", scope: 'diba_census_api_authorization.form.date_select'),
-    year: t("year", scope: 'diba_census_api_authorization.form.date_select') } %>
+  <%= form.date_select :birthdate, start_year: 1900,
+                                   end_year: Date.today.year,
+                                   default: 35.years.ago, prompt: {
+                                      day: t("day", scope: 'diba_census_api_authorization.form.date_select'),
+                                      month: t("month", scope: 'diba_census_api_authorization.form.date_select'),
+                                      year: t("year", scope: 'diba_census_api_authorization.form.date_select') } %>
 </div>
 
 <%= form.hidden_field :handler_name %>

@@ -266,6 +266,10 @@ GEM
       devise (>= 4.0.0)
     diff-lcs (1.3)
     docile (1.1.5)
+    dotenv (2.2.1)
+    dotenv-rails (2.2.1)
+      dotenv (= 2.2.1)
+      railties (>= 3.2, < 5.2)
     easy_translate (0.5.0)
       json
       thread
@@ -637,6 +641,7 @@ DEPENDENCIES
   decidim-census!
   decidim-dev (~> 0.7.2)
   decidim-diba_census_api!
+  dotenv-rails
   factory_girl_rails
   faker (~> 1.7.3)
   letter_opener_web

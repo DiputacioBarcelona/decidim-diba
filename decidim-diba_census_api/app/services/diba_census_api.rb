@@ -5,7 +5,7 @@ require 'faraday'
 require 'base64'
 
 #
-# Uses the Diputació of Barcelona census API to VALIDATE a birth of date of a person
+# Uses the Diputacio of Barcelona census API to VALIDATE a birth of date of a person
 # To send a request you MUST provide:
 # - document_type:
 # - id_document: A String with the identify document
@@ -13,24 +13,27 @@ require 'base64'
 #
 # EXAMPLE:
 # api = DibaCensusApi.new(password: 'password', public_key: 'key')
-# api.call(document_type: 1, id_document: '58958982T', birthdate: Date.parse('1991-05-05'))
+# api.call(document_type: 1,
+#          id_document: '58958982T',
+#          birthdate: Date.parse('1991-05-05'))
 class DibaCensusApi
 
   CensusApiData = Struct.new(:document_type, :id_document, :birthdate)
-  URL = 'http://accede-pre.diba.cat/services/Ci'
+  URL = ENV.fetch('DIBA_CENSUS_API_URL') { 'http://accede-pre.diba.cat/services/Ci' }
 
-  def initialize(username: 'Decidim', password:, public_key:, ine: '998')
+  def initialize(username: 'Decidim', password:, ine: '998')
     @ine = ine
     @username = username
     @password = Digest::SHA1.base64digest(password)
-    @public_key = public_key
+    @public_key = ENV.fetch('DIBA_CENSUS_API_PUBLIC_KEY') { 'public_key' }
   end
 
   def call(document_type:, id_document:, birthdate:)
     request = CensusApiData.new(document_type, id_document, birthdate)
     response = parse_response(send_request(request))
     encoded_date = extract_encoded_birth_date(response)
-    CensusApiData.new(document_type, id_document, decode_date(encoded_date)) if encoded_date
+    return if encoded_date.blank?
+    CensusApiData.new(document_type, id_document, decode_date(encoded_date))
   end
 
   private
@@ -44,13 +47,13 @@ class DibaCensusApi
   end
 
   def parse_response(response)
-    # The *real* response data is encoded as a xml string inside a xml node! WTF!
+    # The *real* response data is encoded as a xml string inside a xml node.
     parsed = Nokogiri::XML(response.body).remove_namespaces!
     Nokogiri::XML(parsed.xpath('//servicioResponse')[0])
   end
 
   def extract_encoded_birth_date(response)
-    response.xpath('//fechaNacimiento')[0]
+    response.xpath('//l_habitante/habitante/fechaNacimiento').text
   end
 
   def request_body(request)
@@ -103,7 +106,7 @@ class DibaCensusApi
           <particula2></particula2>
           <apellido2></apellido2>
           <fechaNacimiento>#{encode_date(request.birthdate)}</fechaNacimiento>
-          <busquedaExacta>0</busquedaExacta>
+          <busquedaExacta>1</busquedaExacta>
         </par>
       </e>
     XML
@@ -131,7 +134,7 @@ class DibaCensusApi
   def big_random
     # https://stackoverflow.com/questions/16546038/a-long-bigger-than-long-max-value
     # In fact is between [-2**63..2**63] but I experienced some errors when random number
-    # was close to the limits. WTF!
+    # was close to the limits.
     rand(2**24..2**48 - 1)
   end
 

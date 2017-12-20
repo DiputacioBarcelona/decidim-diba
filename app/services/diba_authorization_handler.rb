@@ -27,7 +27,12 @@ class DibaAuthorizationHandler < Decidim::AuthorizationHandler
 
   def census_document_types
     %i(dni nie passport).map do |type|
-      [I18n.t(type, scope: 'decidim.authorization_handlers.diba_census_api_authorization_handler.document_types'), type]
+      [
+        I18n.t(type, scope: %w[decidim authorization_handlers
+                               diba_census_api_authorization_handler
+                               document_types]),
+        type
+      ]
     end
   end
 
@@ -35,6 +40,10 @@ class DibaAuthorizationHandler < Decidim::AuthorizationHandler
   def censed
     return if census_for_user&.birthdate == birthdate
     errors.add(:id_document, I18n.t('decidim.census.errors.messages.not_censed'))
+  end
+
+  def unique_id
+    census_for_user.id_document
   end
 
   private

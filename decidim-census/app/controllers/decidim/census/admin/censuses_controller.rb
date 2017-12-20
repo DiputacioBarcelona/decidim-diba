@@ -4,7 +4,11 @@ module Decidim
     module Admin
       class CensusesController < Decidim::Admin::ApplicationController
 
-        before_action :show_instructions, unless: :census_authorization_active_in_organization?
+        CENSUS_AUTHORIZATIONS = %w[DibaAuthorizationHandler
+                                   CensusAuthorizationHandler].freeze
+
+        before_action :show_instructions,
+                      unless: :census_authorization_active_in_organization?
 
         def show
           authorize! :show, CensusDatum
@@ -36,7 +40,7 @@ module Decidim
         end
 
         def census_authorization_active_in_organization?
-          current_organization.available_authorizations.include? 'CensusAuthorizationHandler'
+          (current_organization.available_authorizations & CENSUS_AUTHORIZATIONS).any?
         end
 
       end
