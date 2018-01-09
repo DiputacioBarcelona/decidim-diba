@@ -14,6 +14,8 @@ es:
     authorization_handlers:
       census_authorization_handler:
         name: Padrón Municipal
+        explanation: Autoriza tu cuenta de usuario contra el Padrón Municipal
+        type: Excel
         fields:
           birthdate: Fecha de nacimiento
     census:
@@ -32,7 +34,7 @@ es:
             success: Se han borrado todos los datos censales
         instructions:
           title: Necesitas activar el módulo de censos para esta organización
-          body: Para ello debes entrar en administración del sistema y añadir "CensusAuthorizationHandler" a la lista de autorizaciones
+          body: Para ello debes entrar en administración del sistema y añadir la autorización de excel o la combinada en la organización
         menu:
           census: Subir censo
         show:

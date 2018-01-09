@@ -15,6 +15,8 @@ es:
     authorization_handlers:
       diba_census_api_authorization_handler:
         name: Padrón Municipal
+        explanation: Autoriza tu cuenta de usuario contra el Padrón Municipal
+        type: API
         document_types:
           dni: DNI
           nie: NIE
@@ -32,7 +34,7 @@ es:
             cancel: Volver atrás
           instructions:
             title: Debes activar este módulo para continuar
-            body: Para ello debes entrar en administración del sistema y activar "DibaCensusApiAuthorizationHandler" en la lista de autorizaciones disponibles
+            body: Para ello debes entrar en administración del sistema y añadir la autorización de API o la combinada en la organización
           update:
             success: Configuración guardada
 

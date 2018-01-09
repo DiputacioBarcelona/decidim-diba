@@ -14,6 +14,8 @@ en:
     authorization_handlers:
       census_authorization_handler:
         name: Municipality Census
+        explanation: Authorize your user account against the Municipality Census
+        type: Excel
         fields:
           birthdate: Birthdate
     census:
@@ -32,7 +34,7 @@ en:
             success: All census data have been deleted
         instructions:
           title: You need to activate the census module for this organization
-          body: To do this you must enter system administration and add "CensusAuthorizationHandler" to the list of authorizations
+          body: To do this you must enter system administration and add the excel or combined authorizations to the organization
         menu:
           census: Upload census
         show:

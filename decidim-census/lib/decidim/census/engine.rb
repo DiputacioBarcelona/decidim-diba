@@ -14,12 +14,8 @@ module Decidim
       end
 
       initializer 'decidim_census.add_authorization_handlers' do |_app|
-        Decidim.configure do |config|
-          # WARNING: Some migrations requires this to be a class
-          # But it seems that the rest of the project requires to be a string
-          config.authorization_handlers += [
-            'CensusAuthorizationHandler'
-          ]
+        Decidim::Verifications.register_workflow(:census_authorization_handler) do |auth|
+          auth.form = 'CensusAuthorizationHandler'
         end
         Decidim::ActionAuthorizer.prepend Decidim::Census::Extensions::AuthorizeWithAge
       end

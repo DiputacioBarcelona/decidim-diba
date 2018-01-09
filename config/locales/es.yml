@@ -8,4 +8,6 @@ es:
   decidim:
     authorization_handlers:
       diba_authorization_handler:
-        name: 'Padrón Municipal'
+        name: Padrón Municipal
+        explanation: Autoriza tu cuenta de usuario contra el Padrón Municipal
+        type: Combinado

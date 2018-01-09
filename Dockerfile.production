@@ -1,4 +1,4 @@
-FROM phusion/passenger-ruby24:0.9.20
+FROM phusion/passenger-ruby24:0.9.27
 MAINTAINER MarsBased "hola@marsbased.com"
 
 ENV HOME /home/app/decidim-diba
@@ -11,7 +11,7 @@ ENV LC_ALL en_US.UTF-8
 
 # Install software dependencies
 RUN apt-get update
-RUN apt-get install -y imagemagick gettext-base
+RUN apt-get install -y imagemagick gettext-base tzdata
 
 # Use baseimage-docker's init system.
 CMD ["/sbin/my_init"]

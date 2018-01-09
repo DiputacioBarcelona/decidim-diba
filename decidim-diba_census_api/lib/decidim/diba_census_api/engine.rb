@@ -12,11 +12,12 @@ module Decidim
       isolate_namespace Decidim::DibaCensusApi
 
       initializer 'decidim_diba_census_api.add_authorization_handlers' do |_app|
-        Decidim.configure do |config|
-          config.authorization_handlers += [
-            'DibaCensusApiAuthorizationHandler'
-          ]
+        Decidim::Verifications.register_workflow(
+          :diba_census_api_authorization_handler
+        ) do |auth|
+          auth.form = 'DibaCensusApiAuthorizationHandler'
         end
+
         Decidim::ActionAuthorizer.prepend Decidim::Census::Extensions::AuthorizeWithAge
       end
 

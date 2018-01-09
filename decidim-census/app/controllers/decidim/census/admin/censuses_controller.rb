@@ -4,8 +4,8 @@ module Decidim
     module Admin
       class CensusesController < Decidim::Admin::ApplicationController
 
-        CENSUS_AUTHORIZATIONS = %w[DibaAuthorizationHandler
-                                   CensusAuthorizationHandler].freeze
+        CENSUS_AUTHORIZATIONS = %w[diba_authorization_handler
+                                   census_authorization_handler].freeze
 
         before_action :show_instructions,
                       unless: :census_authorization_active_in_organization?

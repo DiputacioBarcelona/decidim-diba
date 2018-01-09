@@ -3,8 +3,8 @@ module Decidim
     module Admin
       class ApiConfigsController < Decidim::Admin::ApplicationController
 
-        API_AUTHORIZATIONS = %w[DibaAuthorizationHandler
-                                DibaCensusApiAuthorizationHandler].freeze
+        API_AUTHORIZATIONS = %w[diba_authorization_handler
+                                diba_census_api_authorization_handler].freeze
         before_action :show_instructions,
                       unless: :diba_api_authorization_active_in_organization?
 

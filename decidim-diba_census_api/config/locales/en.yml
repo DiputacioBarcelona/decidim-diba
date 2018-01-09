@@ -15,6 +15,8 @@ en:
     authorization_handlers:
       diba_census_api_authorization_handler:
         name: Municipality Census
+        explanation: Authorize your user account against the Municipality Census
+        type: API
         document_types:
           dni: DNI
           nie: NIE
@@ -32,7 +34,7 @@ en:
             cancel: 'Go Back'
           instructions:
             title: You need to activate the census module for this organization
-            body: To do this you must enter system administration and add "CensusAuthorizationHandler" to the list of authorizations
+            body: To do this you must enter system administration and add API or combined authorizations to the organization
           update:
             success: Configuration saved!
 

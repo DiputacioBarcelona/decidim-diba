@@ -9,11 +9,12 @@ RSpec.describe Decidim::Census::Admin::CensusesController,
   routes { Decidim::Census::AdminEngine.routes }
 
   let(:organization) do
-    FactoryGirl.create :organization, available_authorizations: ['CensusAuthorizationHandler']
+    FactoryBot.create :organization,
+                      available_authorizations: ['census_authorization_handler']
   end
 
   let(:user) do
-    FactoryGirl.create :user, :confirmed, organization: organization, admin: true
+    FactoryBot.create :user, :confirmed, organization: organization, admin: true
   end
 
   before :each do
@@ -47,7 +48,7 @@ RSpec.describe Decidim::Census::Admin::CensusesController,
     it 'clear all census data' do
       sign_in user
 
-      5.times { FactoryGirl.create :census_datum, organization: organization }
+      5.times { FactoryBot.create :census_datum, organization: organization }
       delete :destroy
       expect(response).to have_http_status(:redirect)
 

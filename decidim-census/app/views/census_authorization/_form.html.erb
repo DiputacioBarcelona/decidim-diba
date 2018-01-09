@@ -21,6 +21,8 @@
 %>
 <% if controller_name != 'managed_users' %>
   <div class="actions">
-    <%= form.submit t("authorize", scope: "decidim.authorizations.new"), class: "button expanded" %>
+    <%= form.submit t('authorize',
+                      scope: 'decidim.verifications.authorizations.new'),
+                      class: "button expanded" %>
   </div>
 <% end %>

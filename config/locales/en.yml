@@ -8,4 +8,6 @@ en:
   decidim:
     authorization_handlers:
       diba_authorization_handler:
-        name: 'Municipality Census'
+        name: Municipality Census
+        explanation: Authorize your user account against the Municipality Census
+        type: Combined

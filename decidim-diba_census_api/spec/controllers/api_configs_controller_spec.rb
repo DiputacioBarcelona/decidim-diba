@@ -9,11 +9,12 @@ RSpec.describe Decidim::DibaCensusApi::Admin::ApiConfigsController,
   routes { Decidim::DibaCensusApi::AdminEngine.routes }
 
   let(:organization) do
-    FactoryGirl.create :organization, available_authorizations: ['DibaCensusApiAuthorizationHandler']
+    FactoryBot.create :organization,
+                       available_authorizations: ['diba_census_api_authorization_handler']
   end
 
   let(:user) do
-    FactoryGirl.create :user, :confirmed, organization: organization, admin: true
+    FactoryBot.create :user, :confirmed, organization: organization, admin: true
   end
 
   before :each do

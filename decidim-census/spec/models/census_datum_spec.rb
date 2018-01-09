@@ -2,18 +2,18 @@ require 'spec_helper'
 
 # rubocop:disable Metrics/BlockLength
 RSpec.describe Decidim::Census::CensusDatum, type: :model do
-  let(:organization) { FactoryGirl.create :organization }
+  let(:organization) { FactoryBot.create :organization }
   CensusDatum = Decidim::Census::CensusDatum
 
   describe 'get census for a given identity document' do
     it 'returns the last inserted when duplicates' do
-      FactoryGirl.create(:census_datum, id_document: 'AAA')
-      last = FactoryGirl.create(:census_datum, id_document: 'AAA', organization: organization)
+      FactoryBot.create(:census_datum, id_document: 'AAA')
+      last = FactoryBot.create(:census_datum, id_document: 'AAA', organization: organization)
       expect(CensusDatum.search_id_document(organization, 'AAA')).to eq(last)
     end
 
     it 'normalizes the document' do
-      census = FactoryGirl.create(:census_datum, id_document: 'AAA', organization: organization)
+      census = FactoryBot.create(:census_datum, id_document: 'AAA', organization: organization)
       expect(CensusDatum.search_id_document(organization, 'a-a-a')).to eq(census)
     end
   end

@@ -2,8 +2,8 @@ require 'spec_helper'
 
 # rubocop:disable Metrics/BlockLength
 RSpec.describe CensusAuthorizationHandler do
-  let(:organization) { FactoryGirl.create(:organization) }
-  let(:user) { FactoryGirl.create(:user, organization: organization) }
+  let(:organization) { FactoryBot.create(:organization) }
+  let(:user) { FactoryBot.create(:user, organization: organization) }
   let(:dni) { '1234A' }
   let(:date) { Date.strptime('1990/11/21', '%Y/%m/%d') }
   let(:handler) do
@@ -12,9 +12,9 @@ RSpec.describe CensusAuthorizationHandler do
   end
 
   let(:census_datum) do
-    FactoryGirl.create(:census_datum, id_document: dni,
-                                      birthdate: date,
-                                      organization: organization)
+    FactoryBot.create(:census_datum, id_document: dni,
+                                     birthdate: date,
+                                     organization: organization)
   end
 
   it 'validates against database' do

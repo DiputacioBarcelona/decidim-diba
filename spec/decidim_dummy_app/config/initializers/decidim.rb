@@ -3,7 +3,10 @@
 Decidim.configure do |config|
   config.application_name = 'My Application Name'
   config.mailer_sender = 'change-me@domain.org'
-  config.authorization_handlers = ['Decidim::DummyAuthorizationHandler']
+
+  Decidim::Verifications.register_workflow(:dummy_authorization_handler) do |auth|
+    auth.form = 'Decidim::DummyAuthorizationHandler'
+  end
 
   # Change these lines to set your preferred locales
   config.default_locale = :en

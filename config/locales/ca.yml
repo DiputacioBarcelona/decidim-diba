@@ -9,3 +9,5 @@ ca:
     authorization_handlers:
       diba_authorization_handler:
         name: 'Padró municipal'
+        explanation: Autoritza el teu compte d'usuari contra el Padró Municipal
+        type: 'Combinat'

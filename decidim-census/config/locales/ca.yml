@@ -14,6 +14,8 @@ ca:
     authorization_handlers:
       census_authorization_handler:
         name: Padró Municipal
+        explanation: Autoritza el teu compte d'usuari contra el Padró Municipal
+        type: Excel
         fields:
           birthdate: Data de naixement
     census:
@@ -32,7 +34,7 @@ ca:
             success: S'han esborrat totes les dades censals
         instructions:
           title: Necessites activar el mòdul de censos per a aquesta organització
-          body: Per a això has d'entrar en administració del sistema i afegir "CensusAuthorizationHandler" a la llista d'autoritzacions
+          body: Per a això has d'entrar a l'administració del sistema i afegir l'autorització d'excel o la combinada a l'organització
         menu:
           census: Pujar cens
         show:
