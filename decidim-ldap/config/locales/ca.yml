@@ -1,0 +1,53 @@
+ca:
+  activerecord:
+    models:
+      decidim:
+        ldap_configuration: 'Configuració LDAP'
+    attributes:
+      decidim/ldap_configuration:
+        host: 'Host'
+        port: 'Port'
+        dn: 'DN de base'
+        authentication_query: 'Query d''autenticació'
+        username_field: 'Camp de nom d''usuari'
+        email_field: 'Camp de email'
+        name_field: 'Camp de nom'
+        password_field: 'Camp de password'
+        organization: 'Organització'
+  decidim:
+    ldap:
+      menu:
+        ldap: 'LDAP'
+      models:
+        ldap_configuration:
+          fields:
+            created_at: 'Data de creació'
+            name: 'Organització i DN'
+          name: 'Configuració LDAP'
+      ldap_configurations:
+        index:
+          title: 'LDAP'
+        new:
+          title: 'Nou LDAP'
+          create: 'Crear'
+        edit:
+          title: 'Editar LDAP'
+          update: 'Actualitzar'
+        create:
+          error: 'S''ha produït un error en crear una nova configuració LDAP.'
+          success: 'LDAP creat correctament.'
+        destroy:
+          success: 'La configuració LDAP s''ha eliminat correctament.'
+        update:
+          error: 'S''ha produït un error en actualitzar aquesta configuració LDAP.'
+          success: 'La configuració LDAP s''ha actualitzat correctament.'
+        form:
+          host: 'Host'
+          port: 'Port'
+          dn: 'DN de base'
+          authentication_query: 'Query d''autenticació'
+          username_field: 'Camp de nom d''usuari'
+          email_field: 'Camp de email'
+          name_field: 'Camp de nom'
+          password_field: 'Camp de password'
+          organization: 'Organització'

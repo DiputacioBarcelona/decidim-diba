@@ -273,6 +273,21 @@ ActiveRecord::Schema.define(version: 20180301101449) do
     t.index ["decidim_user_id"], name: "index_decidim_impersonation_logs_on_decidim_user_id"
   end
 
+  create_table "decidim_ldap_configurations", force: :cascade do |t|
+    t.bigint "organization_id"
+    t.string "host"
+    t.string "port"
+    t.string "dn"
+    t.string "authentication_query"
+    t.string "username_field"
+    t.string "email_field"
+    t.string "password_field"
+    t.string "name_field"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["organization_id"], name: "index_decidim_ldap_configurations_on_organization_id"
+  end
+
   create_table "decidim_meetings_meetings", id: :serial, force: :cascade do |t|
     t.jsonb "title"
     t.jsonb "description"

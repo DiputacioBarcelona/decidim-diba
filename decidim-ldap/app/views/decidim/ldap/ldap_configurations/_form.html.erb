@@ -1,0 +1,36 @@
+<div class="field">
+  <%= form.collection_select :organization, @organizations, :id, :name, prompt: true,
+      label: t('.organization') %>
+</div>
+
+<div class="field">
+  <%= form.text_field :host, label: t('.host') %>
+</div>
+
+<div class="field">
+  <%= form.text_field :port, label: t('.port') %>
+</div>
+
+<div class="field">
+  <%= form.text_field :dn, label: t('.dn') %>
+</div>
+
+<div class="field">
+  <%= form.text_field :authentication_query, label: t('.authentication_query') %>
+</div>
+
+<div class="field">
+  <%= form.text_field :username_field, label: t('.username_field') %>
+</div>
+
+<div class="field">
+  <%= form.text_field :email_field, label: t('.email_field') %>
+</div>
+
+<div class="field">
+  <%= form.text_field :password_field, label: t('.password_field') %>
+</div>
+
+<div class="field">
+  <%= form.text_field :name_field, label: t('.name_field') %>
+</div

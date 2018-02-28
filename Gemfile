@@ -6,6 +6,7 @@ gem 'decidim', '~> 0.9.3'
 gem 'decidim-age_action_authorization', path: 'decidim-age_action_authorization'
 gem 'decidim-census', path: 'decidim-census'
 gem 'decidim-diba_census_api', path: 'decidim-diba_census_api'
+gem 'decidim-ldap', path: 'decidim-ldap'
 
 gem 'letter_opener_web'
 gem 'puma', '~> 3.10'

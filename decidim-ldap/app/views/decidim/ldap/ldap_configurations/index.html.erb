@@ -1,0 +1,34 @@
+<% provide :title do %>
+  <h2><%= t('.title') %></h2>
+<% end %>
+
+<div class="actions title">
+  <%= link_to t('actions.new', scope: 'decidim.system', name: t('models.ldap_configuration.name', scope: 'decidim.ldap')), ['new', 'ldap_configuration'], class: 'new' %>
+</div>
+
+<table class="stack">
+  <thead>
+    <tr>
+      <th><%= t('models.ldap_configuration.fields.name', scope: 'decidim.ldap') %></th>
+      <th><%= t('models.ldap_configuration.fields.created_at', scope: 'decidim.ldap') %></th>
+      <th class="actions"><%= t('actions.title', scope: 'decidim.system') %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @ldap_configurations.each do |ldap_configuration| %>
+      <tr>
+        <td>
+          <%= link_to ldap_configuration.organization.name, ldap_configuration %><br />
+          <%= ldap_configuration.dn %>
+        </td>
+        <td>
+          <%= l ldap_configuration.created_at, format: :short %>
+        </td>
+        <td class="actions">
+          <%= link_to t('actions.edit', scope: 'decidim.system'), ['edit', ldap_configuration] %>
+          <%= link_to t('actions.destroy', scope: 'decidim.system'), ldap_configuration, method: :delete, class: 'small alert button', data: { confirm: t('actions.confirm_destroy', scope: 'decidim.system') } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

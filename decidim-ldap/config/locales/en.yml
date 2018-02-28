@@ -1,0 +1,53 @@
+en:
+  activerecord:
+    models:
+      decidim:
+        ldap_configuration: 'LDAP configuration'
+    attributes:
+      decidim/ldap_configuration:
+        host: 'Host'
+        port: 'Port'
+        dn: 'Base DN'
+        authentication_query: 'Authentication query'
+        username_field: 'Username field'
+        email_field: 'Email field'
+        name_field: 'Name field'
+        password_field: 'Password field'
+        organization: 'Organization'
+  decidim:
+    ldap:
+      menu:
+        ldap: 'LDAPs'
+      models:
+        ldap_configuration:
+          fields:
+            created_at: 'Created at'
+            name: 'Organization/DN'
+          name: 'LDAP configuration'
+      ldap_configurations:
+        index:
+          title: 'LDAP'
+        new:
+          title: 'New LDAP'
+          create: 'Create'
+        edit:
+          title: 'Edit LDAP'
+          update: 'Update'
+        create:
+          error: 'There was an error when creating a new LDAP configuration.'
+          success: 'LDAP configuration created successfully.'
+        destroy:
+          success: 'LDAP configuration successfully destroyed.'
+        update:
+          error: 'There was an error when updating this LDAP configuration.'
+          success: 'LDAP configuration updated successfully.'
+        form:
+          host: 'Host'
+          port: 'Port'
+          dn: 'Base DN'
+          authentication_query: 'Authentication query'
+          username_field: 'Username field'
+          email_field: 'Email field'
+          name_field: 'Name field'
+          password_field: 'Password field'
+          organization: 'Organization'

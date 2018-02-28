@@ -1,0 +1,28 @@
+version: 1
+
+dn: ou=people,dc=example,dc=com
+objectClass: top
+objectClass: organizationalUnit
+ou: people
+
+dn: uid=Alice,ou=people,dc=example,dc=com
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+userPassword: password1234
+cn: Alice Aardvark
+sn: Aardvark
+givenName: Alice
+mail: alice@example.net
+uid: Alice
+
+dn: uid=admin,ou=people,dc=example,dc=com
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+userPassword: password1234
+cn: Admin
+sn: Admin
+uid: admin

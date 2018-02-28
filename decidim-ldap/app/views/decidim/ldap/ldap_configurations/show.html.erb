@@ -1,0 +1,68 @@
+<% provide :title do %>
+  <h2>
+    <%= link_to @ldap_configuration.organization.name, @ldap_configuration %>
+  </h2>
+  <h3 class="subheader"><%= @ldap_configuration.dn %></h3>
+<% end %>
+
+<div>
+  <strong>
+    <%= Decidim::LdapConfiguration.human_attribute_name('host') %>
+  </strong>
+  <%= @ldap_configuration.host %>
+</div>
+
+<div>
+  <strong>
+    <%= Decidim::LdapConfiguration.human_attribute_name('port') %>
+  </strong>
+  <%= @ldap_configuration.port %>
+</div>
+
+<div>
+  <strong>
+    <%= Decidim::LdapConfiguration.human_attribute_name('dn') %>
+  </strong>
+  <%= @ldap_configuration.dn %>
+</div>
+
+<div>
+  <strong>
+    <%= Decidim::LdapConfiguration.human_attribute_name('authentication_query') %>
+  </strong>
+  <%= @ldap_configuration.authentication_query %>
+</div>
+
+<div>
+  <strong>
+    <%= Decidim::LdapConfiguration.human_attribute_name('username_field') %>
+  </strong>
+  <%= @ldap_configuration.username_field %>
+</div>
+
+<div>
+  <strong>
+    <%= Decidim::LdapConfiguration.human_attribute_name('email_field') %>
+  </strong>
+  <%= @ldap_configuration.email_field %>
+</div>
+
+<div>
+  <strong>
+    <%= Decidim::LdapConfiguration.human_attribute_name('name_field') %>
+  </strong>
+  <%= @ldap_configuration.name_field %>
+</div>
+
+<div>
+  <strong>
+    <%= Decidim::LdapConfiguration.human_attribute_name('password_field') %>
+  </strong>
+  <%= @ldap_configuration.password_field %>
+</div>
+
+<div class="actions">
+  <hr />
+  <%= link_to t('actions.edit', scope: 'decidim.system'), ['edit', @ldap_configuration] %>
+  <%= link_to t('actions.destroy', scope: 'decidim.system'), @ldap_configuration, method: :delete, class: 'small alert button', data: { confirm: t('actions.confirm_destroy', scope: 'decidim.system') } %>
+</div>

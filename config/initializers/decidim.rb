@@ -21,14 +21,15 @@ Decidim.configure do |config|
 
   # Geocoder configuration
   geocoder_config = Rails.application.secrets.geocoder
-  if geocoder_config['here_app_id'].present? && geocoder_config['here_app_code'].present?
+  if geocoder_config[:here_app_id].present? && geocoder_config[:here_app_code].present?
     config.geocoder = {
-      here_app_id: geocoder_config['here_app_id'],
-      here_app_code: geocoder_config['here_app_code']
+      here_app_id: geocoder_config[:here_app_id],
+      here_app_code: geocoder_config[:here_app_code]
     }
   end
+end
 
-  # rubocop:disable AsciiComments
-  # Currency unit
-  # config.currency_unit = "€"
+Decidim::Ldap.configure do |config|
+  config.ldap_username = Rails.application.secrets.ldap[:username]
+  config.ldap_password = Rails.application.secrets.ldap[:password]
 end

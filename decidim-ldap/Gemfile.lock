@@ -1,31 +1,5 @@
 PATH
-  remote: decidim-age_action_authorization
-  specs:
-    decidim-age_action_authorization (0.9.3)
-      decidim (= 0.9.3)
-      rails (~> 5.1.4)
-
-PATH
-  remote: decidim-census
-  specs:
-    decidim-census (0.9.3)
-      decidim (= 0.9.3)
-      decidim-admin (= 0.9.3)
-      decidim-age_action_authorization (= 0.9.3)
-      rails (~> 5.1.4)
-      virtus-multiparams (~> 0.1.1)
-
-PATH
-  remote: decidim-diba_census_api
-  specs:
-    decidim-diba_census_api (0.9.3)
-      decidim-age_action_authorization (= 0.9.3)
-      decidim-core (= 0.9.3)
-      savon (~> 2.11.2)
-      virtus-multiparams (~> 0.1.1)
-
-PATH
-  remote: decidim-ldap
+  remote: .
   specs:
     decidim-ldap (0.9.3)
       decidim-core (= 0.9.3)
@@ -77,9 +51,6 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.5.2)
       public_suffix (>= 2.0.2, < 4.0)
-    akami (1.3.1)
-      gyoku (>= 0.4.0)
-      nokogiri
     arel (8.0.0)
     ast (2.4.0)
     autoprefixer-rails (7.2.6)
@@ -93,7 +64,6 @@ GEM
       babel-source (>= 4.0, < 6)
       execjs (~> 2.0)
     bcrypt (3.1.11)
-    bindex (0.5.0)
     builder (3.2.3)
     byebug (10.0.0)
     cancancan (2.1.3)
@@ -114,7 +84,6 @@ GEM
       json
       simplecov
       url
-    coderay (1.1.2)
     coercible (1.0.0)
       descendants_tracker (~> 0.0.1)
     coffee-rails (4.2.2)
@@ -125,9 +94,6 @@ GEM
       execjs
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.5)
-    connection_pool (2.2.1)
-    coolline (0.5.0)
-      unicode_utils (~> 1.4)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
     crass (1.0.3)
@@ -289,10 +255,6 @@ GEM
       devise (>= 4.0.0)
     diff-lcs (1.3)
     docile (1.1.5)
-    dotenv (2.2.1)
-    dotenv-rails (2.2.1)
-      dotenv (= 2.2.1)
-      railties (>= 3.2, < 5.2)
     easy_translate (0.5.1)
       thread
       thread_safe
@@ -304,8 +266,8 @@ GEM
     factory_bot_rails (4.8.2)
       factory_bot (~> 4.8.2)
       railties (>= 3.0.0)
-    faker (1.7.3)
-      i18n (~> 0.5)
+    faker (1.8.7)
+      i18n (>= 0.7)
     faraday (0.12.2)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.23)
@@ -328,8 +290,6 @@ GEM
     graphiql-rails (1.4.9)
       rails
     graphql (1.7.13)
-    gyoku (1.3.1)
-      builder (>= 2.1.2)
     hashdiff (0.3.7)
     hashie (3.5.7)
     high_voltage (3.0.0)
@@ -337,9 +297,6 @@ GEM
     htmlentities (4.3.4)
     httparty (0.15.7)
       multi_xml (>= 0.5.2)
-    httpi (2.4.3)
-      rack
-      socksify
     i18n (0.9.5)
       concurrent-ruby (~> 1.0)
     i18n-tasks (0.9.20)
@@ -378,14 +335,6 @@ GEM
     kaminari-core (1.1.1)
     ladle (1.0.1)
       open4 (~> 1.0)
-    launchy (2.4.3)
-      addressable (~> 2.3)
-    letter_opener (1.5.0)
-      launchy (~> 2.2)
-    letter_opener_web (1.3.1)
-      actionmailer (>= 3.2)
-      letter_opener (~> 1.0)
-      railties (>= 3.2)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -410,7 +359,6 @@ GEM
     nio4r (2.2.0)
     nokogiri (1.8.2)
       mini_portile2 (~> 2.3.0)
-    nori (2.6.0)
     oauth (0.5.4)
     oauth2 (1.4.0)
       faraday (>= 0.8, < 0.13)
@@ -455,22 +403,10 @@ GEM
     premailer-rails (1.10.1)
       actionmailer (>= 3, < 6)
       premailer (~> 1.7, >= 1.7.9)
-    pry (0.11.3)
-      coderay (~> 1.1.0)
-      method_source (~> 0.9.0)
-    pry-byebug (3.6.0)
-      byebug (~> 10.0)
-      pry (~> 0.10)
-    pry-coolline (0.2.5)
-      coolline (~> 0.5)
-    pry-rails (0.3.6)
-      pry (>= 0.10.4)
     public_suffix (3.0.2)
     puma (3.11.2)
     rack (2.0.4)
     rack-cors (1.0.2)
-    rack-protection (2.0.0)
-      rack
     rack-test (0.8.3)
       rack (>= 1.0, < 3)
     rails (5.1.5)
@@ -577,23 +513,10 @@ GEM
       sprockets (> 2.11)
       sprockets-rails
       tilt
-    savon (2.11.2)
-      akami (~> 1.2)
-      builder (>= 2.1.2)
-      gyoku (~> 1.2)
-      httpi (~> 2.3)
-      nokogiri (>= 1.4.0)
-      nori (~> 2.4)
-      wasabi (~> 3.4)
     searchlight (4.1.0)
     selenium-webdriver (3.9.0)
       childprocess (~> 0.5)
       rubyzip (~> 1.2)
-    sidekiq (5.0.5)
-      concurrent-ruby (~> 1.0)
-      connection_pool (~> 2.2, >= 2.2.0)
-      rack-protection (>= 1.5.0)
-      redis (>= 3.3.4, < 5)
     simplecov (0.15.1)
       docile (~> 1.1.0)
       json (>= 1.8, < 3)
@@ -601,16 +524,8 @@ GEM
     simplecov-html (0.10.2)
     social-share-button (1.1.0)
       coffee-rails
-    socksify (1.7.1)
     spreadsheet (1.1.5)
       ruby-ole (>= 1.0)
-    spring (2.0.2)
-      activesupport (>= 4.2)
-    spring-commands-rspec (1.0.4)
-      spring (>= 0.9.1)
-    spring-watcher-listen (2.0.1)
-      listen (>= 2.7, < 4.0)
-      spring (>= 1.2, < 3.0)
     sprockets (3.7.1)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
@@ -636,7 +551,6 @@ GEM
     uglifier (4.1.6)
       execjs (>= 0.3.0, < 3)
     unicode-display_width (1.3.0)
-    unicode_utils (1.4.0)
     url (0.3.2)
     valid_email2 (2.2.2)
       activemodel (>= 3.2)
@@ -646,18 +560,8 @@ GEM
       coercible (~> 1.0)
       descendants_tracker (~> 0.0, >= 0.0.3)
       equalizer (~> 0.0, >= 0.0.9)
-    virtus-multiparams (0.1.1)
-      virtus (~> 1.0)
     warden (1.2.7)
       rack (>= 1.0)
-    wasabi (3.5.0)
-      httpi (~> 2.0)
-      nokogiri (>= 1.4.2)
-    web-console (3.5.1)
-      actionview (>= 5.0)
-      activemodel (>= 5.0)
-      bindex (>= 0.4.0)
-      railties (>= 5.0)
     webmock (3.3.0)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
@@ -674,35 +578,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  byebug
-  decidim (~> 0.9.3)
-  decidim-age_action_authorization!
-  decidim-census!
-  decidim-dev (~> 0.9.3)
-  decidim-diba_census_api!
+  decidim-dev (= 0.9.3)
   decidim-ldap!
-  dotenv-rails
-  factory_bot_rails
-  faker (~> 1.7.3)
-  letter_opener_web
-  listen (~> 3.1.0)
-  pry-byebug
-  pry-coolline
-  pry-rails
-  puma (~> 3.10)
-  rspec-rails (~> 3.7.0)
-  rubocop
-  sidekiq
-  spring
-  spring-commands-rspec
-  spring-watcher-listen (~> 2.0.0)
-  tzinfo-data
-  uglifier (>= 1.3.0)
-  web-console
-  webmock
-
-RUBY VERSION
-   ruby 2.4.2p198
+  faker
 
 BUNDLED WITH
    1.16.1
