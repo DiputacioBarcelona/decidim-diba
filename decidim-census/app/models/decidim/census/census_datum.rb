@@ -13,15 +13,20 @@ module Decidim
       # Search for a specific document id inside a organization
       def self.search_id_document(organization, id_document)
         CensusDatum.inside(organization)
-                   .where(id_document: normalize_id_document(id_document))
+                   .where(id_document: normalize_and_encode_id_document(id_document))
                    .order(created_at: :desc, id: :desc)
                    .first
       end
 
-      # Normalizes a id document string (remove invalid characters)
-      def self.normalize_id_document(string)
-        return '' unless string
-        string.gsub(/[^A-z0-9]/, '').upcase
+      # Normalizes a id document string (remove invalid characters) and encode it
+      # to conform with Decidim privacy guidelines.
+      def self.normalize_and_encode_id_document(id_document)
+        return '' unless id_document
+        id_document = id_document.gsub(/[^A-z0-9]/, '').upcase
+        return '' if id_document.blank?
+        Digest::MD5.hexdigest(
+          "#{id_document}-#{Rails.application.secrets.secret_key_base}"
+        )
       end
 
       # Convert a date from string to a Date object

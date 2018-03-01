@@ -4,14 +4,35 @@ require 'virtus/multiparams'
 
 # An AuthorizationHandler that uses the DibaCensusApiAuthorizationHandle
 # with a fallback into the CensusAuthorizationHandler if the API fails
-class DibaAuthorizationHandler < DibaCensusApiAuthorizationHandler
+class DibaAuthorizationHandler < Decidim::AuthorizationHandler
 
   include Virtus::Multiparams
 
+  attribute :document_type, Symbol
+  attribute :id_document, String
+  attribute :birthdate, Date
+
+  validates :document_type, inclusion: { in: %i(dni nie passport) }, presence: true
+  validates :id_document, presence: true
+  validates :birthdate, presence: true
+  validate :censed
+
+  delegate :census_document_types, to: :api_handler
+  delegate :metadata, :authorized?, :unique_id, to: :diba_handler
+
   private
 
-  def census_for_user
-    super || csv_handler.census_for_user
+  def censed
+    return if diba_handler.valid?
+    errors.add(:id_document, I18n.t('decidim.census.errors.messages.not_censed'))
+  end
+
+  def diba_handler
+    @diba_handler ||= if api_handler.census_for_user
+                        api_handler
+                      else
+                        csv_handler
+                      end
   end
 
   def csv_handler
@@ -19,6 +40,13 @@ class DibaAuthorizationHandler < DibaCensusApiAuthorizationHandler
                                                     id_document: id_document,
                                                     birthdate: birthdate)
                                                .with_context(context)
+  end
+
+  def api_handler
+    @api_handler ||= DibaCensusApiAuthorizationHandler.new(user: user,
+                                                           id_document: id_document,
+                                                           birthdate: birthdate)
+                                                      .with_context(context)
   end
 
 end

@@ -39,8 +39,10 @@ RSpec.describe Decidim::Census::Admin::CensusesController,
       expect(response).to have_http_status(:redirect)
 
       expect(Decidim::Census::CensusDatum.count).to be 3
-      expect(Decidim::Census::CensusDatum.first.id_document).to eq '1111A'
-      expect(Decidim::Census::CensusDatum.last.id_document).to eq '3333C'
+      expect(Decidim::Census::CensusDatum.first.id_document)
+        .to eq encode_id_document('1111A')
+      expect(Decidim::Census::CensusDatum.last.id_document)
+        .to eq encode_id_document('3333C')
     end
   end
 

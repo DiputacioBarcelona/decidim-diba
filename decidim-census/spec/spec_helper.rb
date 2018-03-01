@@ -6,6 +6,11 @@ require 'decidim/core'
 require 'decidim/verifications'
 require 'decidim/core/test'
 require 'social-share-button'
+require 'helpers'
+
+RSpec.configure do |c|
+  c.include Decidim::Census::Helpers
+end
 
 ENV['ENGINE_NAME'] = File.dirname(__dir__).split('/').last
 

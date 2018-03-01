@@ -6,15 +6,16 @@ RSpec.describe Decidim::Census::CensusDatum, type: :model do
   CensusDatum = Decidim::Census::CensusDatum
 
   describe 'get census for a given identity document' do
+
     it 'returns the last inserted when duplicates' do
-      FactoryBot.create(:census_datum, id_document: 'AAA')
-      last = FactoryBot.create(:census_datum, id_document: 'AAA',
+      FactoryBot.create(:census_datum, id_document: encode_id_document('AAA'))
+      last = FactoryBot.create(:census_datum, id_document: encode_id_document('AAA'),
                                               organization: organization)
       expect(CensusDatum.search_id_document(organization, 'AAA')).to eq(last)
     end
 
     it 'normalizes the document' do
-      census = FactoryBot.create(:census_datum, id_document: 'AAA',
+      census = FactoryBot.create(:census_datum, id_document: encode_id_document('AAA'),
                                                 organization: organization)
       expect(CensusDatum.search_id_document(organization, 'a-a-a')).to eq(census)
     end
@@ -28,11 +29,13 @@ RSpec.describe Decidim::Census::CensusDatum, type: :model do
   end
 
   describe 'normalization methods' do
-    it 'normalizes id document' do
-      expect(CensusDatum.normalize_id_document('1234a')).to eq '1234A'
-      expect(CensusDatum.normalize_id_document('   1234a  ')).to eq '1234A'
-      expect(CensusDatum.normalize_id_document(')($·$')).to eq ''
-      expect(CensusDatum.normalize_id_document(nil)).to eq ''
+    it 'normalizes and encodes the id document' do
+      expect(CensusDatum.normalize_and_encode_id_document('1234a'))
+        .to eq encode_id_document('1234A')
+      expect(CensusDatum.normalize_and_encode_id_document('   1234a  '))
+        .to eq encode_id_document('1234A')
+      expect(CensusDatum.normalize_and_encode_id_document(')($·$')).to eq ''
+      expect(CensusDatum.normalize_and_encode_id_document(nil)).to eq ''
     end
 
     it 'normalizes dates' do
