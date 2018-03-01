@@ -17,7 +17,7 @@ Decidim.configure do |config|
   Decidim::Verifications::WorkflowManifest.prepend(WorkflowManifestExtension)
 
   # Uncomment this lines to set your preferred locales
-  # config.available_locales = %i{en ca es}
+  config.available_locales = %i(ca es en)
 
   # Geocoder configuration
   geocoder_config = Rails.application.secrets.geocoder

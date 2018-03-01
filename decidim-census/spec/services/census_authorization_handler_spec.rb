@@ -45,3 +45,4 @@ RSpec.describe CensusAuthorizationHandler do
     expect(contextless_handler.valid?).to be true
   end
 end
+# rubocop:enable Metrics/BlockLength

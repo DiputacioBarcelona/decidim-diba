@@ -3,11 +3,12 @@ AllCops:
   TargetRubyVersion: 2.3
   DisplayStyleGuide: true
   Exclude:
+      - 'node_modules/**/*'
       - 'bin/**/*'
+      - 'db/migrate/**/*'
       - 'db/schema.rb'
       - 'db/structure.sql'
       - 'db/seeds.rb'
-      - 'db/migrate/*'
       - '.bundle/**/*'
       - 'vendor/**/*'
 
@@ -64,12 +65,6 @@ Style/RegexpLiteral:
 
 Style/SignalException:
   EnforcedStyle: semantic
-
-Style/IfUnlessModifier:
-  MaxLineLength: 60
-
-Style/WhileUntilModifier:
-  MaxLineLength: 60
 
 Style/PercentLiteralDelimiters:
    PreferredDelimiters:

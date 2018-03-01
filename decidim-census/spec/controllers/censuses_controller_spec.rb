@@ -56,3 +56,4 @@ RSpec.describe Decidim::Census::Admin::CensusesController,
     end
   end
 end
+# rubocop:enable Metrics/BlockLength

@@ -36,7 +36,9 @@ module Decidim
         table_name = CensusDatum.table_name
         columns = %w[id_document birthdate decidim_organization_id created_at].join(',')
         now = Time.current
-        values = values.map { |row| "('#{row[0]}', '#{row[1]}', '#{organization.id}', '#{now}')" }
+        values = values.map do |row|
+          "('#{row[0]}', '#{row[1]}', '#{organization.id}', '#{now}')"
+        end
         sql = "INSERT INTO #{table_name} (#{columns}) VALUES #{values.join(',')}"
         ActiveRecord::Base.connection.execute(sql)
       end
