@@ -42,7 +42,7 @@ class DibaCensusApiAuthorizationHandler < Decidim::AuthorizationHandler
 
   def unique_id
     return unless census_for_user
-    Digest::MD5.hexdigest(
+    Digest::SHA256.hexdigest(
       "#{census_for_user.id_document}-#{Rails.application.secrets.secret_key_base}"
     )
   end

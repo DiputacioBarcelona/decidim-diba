@@ -24,7 +24,7 @@ module Decidim
         return '' unless id_document
         id_document = id_document.gsub(/[^A-z0-9]/, '').upcase
         return '' if id_document.blank?
-        Digest::MD5.hexdigest(
+        Digest::SHA256.hexdigest(
           "#{id_document}-#{Rails.application.secrets.secret_key_base}"
         )
       end
