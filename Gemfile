@@ -18,7 +18,7 @@ group :development, :test do
   gem 'decidim-dev', '~> 0.9.3'
   gem 'dotenv-rails'
   gem 'factory_bot_rails'
-  gem 'faker', '~> 1.7.3'
+  gem 'faker'
   gem 'pry-byebug'
   gem 'pry-coolline'
   gem 'pry-rails'
