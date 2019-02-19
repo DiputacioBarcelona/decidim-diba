@@ -2,67 +2,9 @@ es:
   activemodel:
     attributes:
       assembly:
-        area_id: Área
         assembly_type: Tipo de órganos de participación
         assembly_type_other: Tipo de órganos de participación otro
-        banner_image: Imagen de banner
-        closing_date: Fecha de cierre
-        closing_date_reason: Razón de la fecha de cierre
-        composition: Composición
-        copy_categories: Copiar categorías
-        copy_components: Copiar componentes
-        copy_features: Copiar funcionalidades
-        created_by: Creado por
-        created_by_other: Creado por otro
-        creation_date: Fecha de creacion
-        decidim_area_id: Área
-        decidim_scope_id: Ámbito
-        description: Descripción
-        developer_group: Grupo promotor
-        domain: Dominio
-        duration: Duración
-        facebook: Facebook
-        github: GitHub
-        hashtag: Hashtag
-        hero_image: Imagen de portada
-        included_at: Incluido en
-        instagram: Instagram
-        internal_organisation: Organización interna
-        is_transparent: Es transparente
-        local_area: Área de organización
-        meta_scope: 'Metadatos: ámbito'
         parent_id: Órgano de participación padre
-        participatory_processes_ids: Procesos participativos relacionados
-        participatory_scope: Qué se decide
-        participatory_structure: Cómo se decide
-        private_space: Espacio privado
-        promoted: Destacado
-        published_at: Publicado
-        purpose_of_action: Propósito de la acción
-        scope_id: Ámbito
-        scopes_enabled: Ámbitos habilitados
-        short_description: Descripción breve
-        show_statistics: Mostrar estadísticas
-        slug: Texto corto de URL
-        special_features: Características especiales
-        subtitle: Subtítulo
-        target: Quién participa
-        title: Título
-        twitter: Twitter
-        youtube: Youtube
-      assembly_member:
-        birthday: Cumpleaños
-        birthplace: Lugar de nacimiento
-        ceased_date: Fecha de vencimiento
-        designation_date: Fecha de designación
-        designation_mode: Modo de designación
-        full_name: Nombre completo
-        gender: Género
-        position: Posición
-      assembly_user_role:
-        email: Email
-        name: Nombre
-        role: Rol de usuario
   activerecord:
     models:
       decidim/assembly:
@@ -82,17 +24,7 @@ es:
         create:
           error: Se produjo un error al crear una nuevo órgano de participación.
           success: Órgano de participación creado correctamente.
-        edit:
-          update: Actualizar
-        form:
-          title: Información general
-        index:
-          not_published: No publicado
-          private: Privado
-          public: Público
-          published: Publicado
         new:
-          create: Crear
           title: Nuevo órgano de participación
         update:
           error: Se ha producido un error al actualizar este Órgano de participación.
@@ -101,11 +33,6 @@ es:
         create:
           error: Se produjo un error al duplicar este órgano de participación.
           success: Órgano de participación duplicado correctamente.
-      assembly_copies:
-        new:
-          copy: Copiar
-          select: Seleccione los datos que desea duplicar
-          title: Duplicar órgano de participación
       assembly_members:
         create:
           error: Se produjo un error al agregar un miembro para este órgano de participación.
@@ -118,7 +45,6 @@ es:
         index:
           assembly_members_title: Miembros del órgano de participación
         new:
-          create: Crear
           title: Nuevo miembro del órgano de participación.
         update:
           error: Se produjo un error al actualizar el miembro para este órgano de participación.
@@ -151,46 +77,11 @@ es:
         assemblies: Órganos de participación
         assemblies_submenu:
           assembly_admins: Usuarios del órgano de participación
-          assembly_members: Miembros
-          attachment_collections: Carpetas
-          attachment_files: Archivos
-          attachments: Archivos adjuntos
-          categories: Categorías
-          components: Componentes
-          info: Información
-          moderations: Moderaciones
-          private_users: Usuarios privados
       models:
         assembly:
-          fields:
-            created_at: Fecha de creación
-            private: Privada
-            promoted: Destacado
-            published: Publicada
-            title: Título
           name: Órgano de participación
-        assembly_member:
-          fields:
-            ceased_date: Fecha de vencimiento
-            designation_date: Fecha de designación
-            full_name: Nombre
-            position: Posición
-          name: Miembro
-          positions:
-            other: Otro
-            president: Presidente
-            secretary: Secretario
-            vice_president: Vicepresidente
         assembly_user_role:
-          fields:
-            email: Correo electrónico
-            name: Nombre
-            role: Rol
           name: Usuario del órgano de participación
-          roles:
-            admin: Administrador
-            collaborator: Colaborador
-            moderator: Moderador
       titles:
         assemblies: Órganos de participación
     admin_log:
@@ -213,60 +104,17 @@ es:
           form:
             duration_help: Si la duración de este órgano de participación es limitada, selecciona la fecha de finalización. De lo contrario, aparecerá como indefinida.
             included_at_help: Selecciona la fecha en que se agregó este ensamblaje a Decidim. No necesariamente tiene que ser la misma que la fecha de creación.
-            select_a_created_by: Selecciona creada por
-            select_an_area: Seleccione un Área
             select_an_assembly_type: Selecciona tipo de órgano de participación
             select_parent_assembly: Selecciona el órgano de participación principal
             slug_help: 'Los textos cortos de URL se utilizan para generar las URL que apuntan a este órgano de participación. Sólo acepta letras, números y guiones, y debe comenzar con una letra. Ejemplo: %{url}'
-            social_handlers: Social
         assembly_copies:
           form:
             slug_help: 'Los textos cortos de URL se utilizan para generar las URL que apuntan a este órgano de participación. Sólo acepta letras, números y guiones, y debe comenzar con una letra. Ejemplo: %{url}'
-        assembly_members:
-          form:
-            existing_user: Usuario existente
-            non_user: No usuario
-            select_a_position: Selecciona una posición
-            select_user: Selecciona un usuario
-            user_type: Tipo de usuario
-          index:
-            filter:
-              all: Todas
-              ceased: Cesado
-              not_ceased: No cesado
-            filter_by: Filtrado por
-            search: Buscar
-        content_blocks:
-          highlighted_assemblies:
-            max_results: Cantidad máxima de elementos para mostrar
-      assembly_members:
-        index:
-          members: Miembros
-      assembly_types:
-        commission: Comisión
-        consultative_advisory: Consultivo / Asesor
-        executive: Ejecutivo
-        government: Gobierno
-        others: Otros
-        participatory: Participativo
-        working_group: Grupo de trabajo
       content_blocks:
         highlighted_assemblies:
           name: Órganos de participación destacadas
-      created_by:
-        city_council: Ayuntamiento
-        others: Otros
-        public: Público
       filter:
         all: Todo tipo de órganos de participación.
-        commission: Comisión
-        consultative_advisory: Consultivo / Asesoramiento
-        executive: Ejecutivo
-        government: Gobierno
-        help: 'Mostrar:'
-        others: Otros
-        participatory: Participativo
-        working_group: Grupo de trabajo
       index:
         title: Órganos de participación
       last_activity:
@@ -276,57 +124,13 @@ es:
           highlighted_assemblies:
             active_assemblies: Órganos de participación activos
             see_all_assemblies: Ver todas los órganos de participación
-        user_profile:
-          member_of:
-            member_of: Miembro de
       show:
         area: Área
         assembly_type: Tipo de órganos de participación
         children: Órganos de participación
-        closing_date: Fecha de cierre
-        composition: Composición
-        created_by: Creado por
-        creation_date: Fecha de creación
-        developer_group: Grupo promotor
-        duration: Duración
-        included_at: Incluido en
-        indefinite_duration: Indefinido
-        internal_organisation: Organización interna
-        is_transparent:
-          'false': opaco
-          'true': transparente
-        local_area: Área de organización
-        participatory_scope: Qué se decide
-        participatory_structure: Cómo se decide
         private_space: Este es un órgano de participación privada
-        purpose_of_action: Propósito de la acción
-        read_less: Leer menos
-        read_more: Lee más
-        related_participatory_processes: Procesos participativos relacionados
-        scope: Ámbito
-        social_networks: Redes sociales
-        target: Quién participa
       statistics:
-        answers_count: Respuestas
         assemblies_count: Órganos de participación
-        comments_count: Comentarios
-        debates_count: Debates
-        endorsements_count: Adhesiones
-        headline: Actividad
-        meetings_count: Encuentros
-        orders_count: Votos
-        pages_count: Páginas
-        projects_count: Proyectos
-        proposals_count: Propuestas
-        results_count: Resultados
-        surveys_count: Encuestas
-        users_count: Participantes
-        votes_count: Soportes
-    assembly_members:
-      assembly_member:
-        designated_on: Designado en
-      index:
-        title: Miembros
     help:
       participatory_spaces:
         assemblies:
@@ -344,28 +148,14 @@ es:
         description: Número de órganos de participación creadas
         object: órganos de participación
         title: Órganos de participación
-  errors:
-    messages:
-      cannot_be_blank: no puede estar en blanco
   layouts:
     decidim:
       assemblies:
-        assembly:
-          take_part: Participa
         index:
-          organizational_chart: Organigrama
           promoted_assemblies: Órganos de participación destacadas
-          reset_chart: Reiniciar
         order_by_assemblies:
           assemblies:
             one: "%{count} órgano de participación"
             other: "%{count} órganos de participación"
-        promoted_assembly:
-          more_info: Más información
-          take_part: Participa
-      assembly_navigation:
-        assembly_member_menu_item: Miembros
+       assembly_navigation:
         assembly_menu_item: el órgano de participación
-      assembly_widgets:
-        show:
-          take_part: Participa
