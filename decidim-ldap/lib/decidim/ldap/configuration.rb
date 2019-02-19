@@ -4,6 +4,9 @@ module Decidim
 
       attr_writer :ldap_username, :ldap_password
 
+      # Needed to run rails db:seed
+      def self.reset_column_information; end
+
       def ldap_username
         @ldap_username or fail 'You need to provide a ldap_username. See the app README.'
       end
