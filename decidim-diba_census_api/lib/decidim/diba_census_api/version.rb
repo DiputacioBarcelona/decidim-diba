@@ -1,5 +1,5 @@
 module Decidim
   module DibaCensusApi
-    VERSION = '0.15.2'.freeze
+    VERSION = '0.18.0'.freeze
   end
 end

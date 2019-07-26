@@ -22,7 +22,7 @@ ca:
         new_assembly: Nou òrgan de participació
       assemblies:
         create:
-          error: S'ha produït un error en crear una nova òrgan de participació.
+          error: S'ha produït un error en crear un nou òrgan de participació.
           success: Òrgan de participació creada correctament.
         new:
           title: Nou òrgan de participació
@@ -152,6 +152,7 @@ ca:
     decidim:
       assemblies:
         index:
+          children: 'Òrgans de participació: '
           promoted_assemblies: Òrgans de participació destacats
         order_by_assemblies:
           assemblies:

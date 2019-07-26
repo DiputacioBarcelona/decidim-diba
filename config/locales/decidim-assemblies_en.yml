@@ -153,6 +153,7 @@ en:
     decidim:
       assemblies:
         index:
+          children: 'Participatory committees: '
           promoted_assemblies: Highlighted participatory committees
         order_by_assemblies:
           assemblies:

@@ -1,0 +1,3 @@
+decidim_open_data_export:
+  cron: '0 4 * * * Europe/Madrid'
+  class: 'OpenDataExport'

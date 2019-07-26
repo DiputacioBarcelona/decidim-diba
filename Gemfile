@@ -4,7 +4,7 @@ ruby '2.5.1'
 
 gem 'rails', '=5.2.2'
 
-DECIDIM_VERSION = '0.15.2'
+DECIDIM_VERSION = '0.18.0'
 
 gem 'decidim', DECIDIM_VERSION
 gem 'decidim-age_action_authorization', path: 'decidim-age_action_authorization'
@@ -16,6 +16,7 @@ gem 'decidim-ldap', path: 'decidim-ldap'
 gem 'letter_opener_web'
 gem 'puma', '~> 3.10'
 gem 'sidekiq'
+gem 'sidekiq-cron'
 gem 'tzinfo-data', platforms: %i(mingw mswin x64_mingw jruby)
 gem 'uglifier', '>= 1.3.0'
 

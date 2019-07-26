@@ -152,6 +152,7 @@ es:
     decidim:
       assemblies:
         index:
+          children: 'Órganos de participación: '
           promoted_assemblies: Órganos de participación destacadas
         order_by_assemblies:
           assemblies:
