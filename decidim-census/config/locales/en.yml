@@ -23,6 +23,7 @@ en:
     census:
       errors:
         messages:
+          invalid_credentials: Invalid credentials
           not_censed: We could not find your document ID matching with this birthdate in our Census. If the data entered is correct and the problem persists, please, contact an administrator.
           younger_than_minimum_age: You should be older than %{age} years
       admin:
