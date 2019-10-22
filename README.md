@@ -58,6 +58,7 @@ Start the app with the development ldap environment variables:
 ```
 export LDAP_USERNAME=uid=admin,ou=people,dc=example,dc=com
 export LDAP_PASSWORD=password1234
+bin/rails s
 ```
 
 When signing in, the following fields from the `default.ldif` should ve used:
