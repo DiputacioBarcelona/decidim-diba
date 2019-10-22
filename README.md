@@ -54,6 +54,18 @@ To launch a development ldap server, you can use:
 You can find a sample LDAP configuration in: `decidim-ldap/spec/factories.rb` and a list
 of users inside `decidim-ldap/lib/ladle/default.ldif`
 
+Start the app with the development ldap environment variables:
+```
+export LDAP_USERNAME=uid=admin,ou=people,dc=example,dc=com
+export LDAP_PASSWORD=password1234
+```
+
+When signing in, the following fields from the `default.ldif` should ve used:
+
+- uid: for the email, e.g. "Alice".
+- userPassword: for the password, e.g. "password1234".
+
+
 **Specific issues**
 
 * The translations are available only in catalan, spanish and english.
