@@ -17,12 +17,14 @@ Gem::Specification.new do |s|
   s.files = Dir['{app,config,db,lib}/**/*', 'MIT-LICENSE', 'Rakefile', 'README.md']
   s.test_files = Dir['spec/**/*']
 
-  s.add_dependency 'decidim', s.version
-  s.add_dependency 'decidim-admin', s.version
-  s.add_dependency 'decidim-age_action_authorization', s.version
-  s.add_dependency 'decidim-ldap', s.version
+  DECIDIM_VERSION = '>=' + Decidim::Census::VERSION
+
+  s.add_dependency 'decidim', DECIDIM_VERSION
+  s.add_dependency 'decidim-admin', DECIDIM_VERSION
+  s.add_dependency 'decidim-age_action_authorization', DECIDIM_VERSION
+  s.add_dependency 'decidim-ldap', DECIDIM_VERSION
   s.add_dependency 'virtus-multiparams', '~> 0.1.1'
 
-  s.add_development_dependency 'decidim-dev', s.version
+  s.add_development_dependency 'decidim-dev', DECIDIM_VERSION
   s.add_development_dependency 'faker'
 end
