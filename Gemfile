@@ -4,7 +4,7 @@ ruby '2.5.1'
 
 gem 'rails', '=5.2.2'
 
-DECIDIM_VERSION = { git: 'https://github.com/decidim/decidim.git', branch: '0.18-stable' }
+DECIDIM_VERSION = { git: 'https://github.com/decidim/decidim.git', branch: '0.19-stable' }
 
 gem 'decidim', DECIDIM_VERSION
 gem 'decidim-age_action_authorization', path: 'decidim-age_action_authorization'
