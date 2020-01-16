@@ -51,6 +51,7 @@ class DibaCensusApiAuthorizationHandler < Decidim::AuthorizationHandler
 
   def census_for_user
     return @census_for_user if defined? @census_for_user
+    return unless organization
 
     @service = DibaCensusApi.new(api_config)
     @census_for_user = @service.call(
