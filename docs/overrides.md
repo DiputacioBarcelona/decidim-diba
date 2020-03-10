@@ -100,3 +100,8 @@ was the best way to implement this feature.
 
 It is using the Decidim internal API to be able to perform the required authorization. Whenever the project is updated this file needs to be
 checked for incompatibilities.
+
+
+**app/views/decidim/consultations/questions/_vote_modal_confirm.html.erb**
+The default view generates a form_with with data remote equals true. But in this project the data remote is not generated due to an Unobstrusive Javascript driver not found.
+The override forces the data-remote to true of the form and then, the rendered view of the response will be a js.erb that exists in Decidim project.
