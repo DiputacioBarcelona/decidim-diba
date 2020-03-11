@@ -105,3 +105,4 @@ checked for incompatibilities.
 **app/views/decidim/consultations/questions/_vote_modal_confirm.html.erb**
 The default view generates a form_with with data remote equals true. But in this project the data remote is not generated due to an Unobstrusive Javascript driver not found.
 The override forces the data-remote to true of the form and then, the rendered view of the response will be a js.erb that exists in Decidim project.
+This malfunction should be reviewed in more detail so that we find the final problem and can get rid of this abnormal override.
