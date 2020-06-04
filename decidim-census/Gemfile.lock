@@ -2,13 +2,13 @@ PATH
   remote: ../decidim-age_action_authorization
   specs:
     decidim-age_action_authorization (0.18.0)
-      decidim (= 0.18.0)
+      decidim (>= 0.18.0)
 
 PATH
   remote: ../decidim-ldap
   specs:
     decidim-ldap (0.18.0)
-      decidim-core (= 0.18.0)
+      decidim-core (>= 0.18.0)
       ladle
       net-ldap
 
@@ -16,10 +16,10 @@ PATH
   remote: .
   specs:
     decidim-census (0.18.0)
-      decidim (= 0.18.0)
-      decidim-admin (= 0.18.0)
-      decidim-age_action_authorization (= 0.18.0)
-      decidim-ldap (= 0.18.0)
+      decidim (>= 0.18.0)
+      decidim-admin (>= 0.18.0)
+      decidim-age_action_authorization (>= 0.18.0)
+      decidim-ldap (>= 0.18.0)
       virtus-multiparams (~> 0.1.1)
 
 GEM
@@ -479,7 +479,7 @@ GEM
     multi_xml (0.6.0)
     multipart-post (2.1.1)
     mustache (1.1.0)
-    net-ldap (0.16.1)
+    net-ldap (0.16.2)
     netrc (0.11.0)
     nio4r (2.5.2)
     nobspw (0.6.1)
@@ -736,7 +736,7 @@ DEPENDENCIES
   decidim
   decidim-age_action_authorization!
   decidim-census!
-  decidim-dev (= 0.18.0)
+  decidim-dev (>= 0.18.0)
   decidim-ldap!
   faker
   pry-rails

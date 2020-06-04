@@ -39,6 +39,8 @@ class CensusAuthorizationHandler < Decidim::AuthorizationHandler
   end
 
   def census_for_user
+    return unless organization
+
     @census_for_user ||= Decidim::Census::CensusDatum
                          .search_id_document(organization, id_document)
   end

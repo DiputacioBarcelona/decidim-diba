@@ -36,9 +36,11 @@ class DibaCensusApiAuthorizationHandler < Decidim::AuthorizationHandler
 
   # Checks if the id_document belongs to the census
   def censed
-    return if census_for_user&.birthdate == birthdate
-
-    errors.add(:id_document, I18n.t('decidim.census.errors.messages.not_censed'))
+    if census_for_user.nil?
+      errors.add(:id_document, I18n.t('decidim.census.errors.messages.not_censed'))
+    elsif census_for_user.birthdate != birthdate
+      errors.add(:birthdate, I18n.t('decidim.census.errors.messages.invalid_credentials'))
+    end
   end
 
   def unique_id
@@ -51,6 +53,7 @@ class DibaCensusApiAuthorizationHandler < Decidim::AuthorizationHandler
 
   def census_for_user
     return @census_for_user if defined? @census_for_user
+    return unless organization
 
     @service = DibaCensusApi.new(api_config)
     @census_for_user = @service.call(

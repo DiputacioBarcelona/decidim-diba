@@ -1,3 +1,6 @@
 decidim_open_data_export:
   cron: '0 4 * * * Europe/Madrid'
   class: 'OpenDataExport'
+decidim_metrics_all:
+  cron: '0 2 * * * Europe/Madrid'
+  class: 'Metrics'
