@@ -150,6 +150,8 @@ ca:
         title: Òrgans de participació
   layouts:
     decidim:
+      assembly_navigation:
+        assembly_menu_item: L'òrgan de participació
       assemblies:
         index:
           children: 'Òrgans de participació: '

@@ -150,6 +150,8 @@ es:
         title: Órganos de participación
   layouts:
     decidim:
+      assembly_navigation:
+        assembly_menu_item: El Órgano de participación
       assemblies:
         index:
           children: 'Órganos de participación: '
