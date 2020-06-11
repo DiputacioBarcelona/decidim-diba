@@ -27,11 +27,6 @@ class CensusAuthorizationHandler < Decidim::AuthorizationHandler
   attribute :postal_code, String
   attribute :scope_id, Integer
 
-  validates :document_number, format: { with: /\A[A-z0-9]*\z/ }, presence: true
-  validates :date_of_birth, presence: true
-  validates :postal_code, presence: true, format: { with: /\A[0-9]*\z/ }
-  validates :scope_id, presence: true
-
   def metadata
     { birthdate: census_for_user&.birthdate&.strftime('%Y/%m/%d') }
   end
