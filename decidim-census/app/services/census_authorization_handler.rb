@@ -21,11 +21,6 @@ class CensusAuthorizationHandler < Decidim::AuthorizationHandler
   validate :censed
 
   # This is the input (from the Form) to sign initiative
-  # attribute :document_number, String
-  # attribute :date_of_birth, Date
-  # attribute :postal_code, String
-  # attribute :scope_id, Integer
-  #
   # Used when invoked from decidim-initiatives/app/forms/decidim/initiatives/vote_form.rb
   attribute :document_number, String
   attribute :date_of_birth, Date
