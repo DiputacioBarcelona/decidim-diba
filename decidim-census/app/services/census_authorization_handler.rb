@@ -67,10 +67,15 @@ class CensusAuthorizationHandler < Decidim::AuthorizationHandler
     current_organization || user&.organization || scope&.organization
   end
 
+  # As we can get here from authorization validation or initiative signature
+  # handler_for can be called with different same param names as we make use
+  # of decidim-core gem from different repository as current
+  # So, here we check which of the two parameters has value
   def census_id_document
     id_document || document_number
   end
 
+  # Same as census_id_document method
   def census_birthdate
     birthdate || date_of_birth
   end
