@@ -119,6 +119,8 @@ en:
         new_assembly: New participatory committee
       pages:
         home:
+          statistics:
+            assemblies_count: Participatory committees
           highlighted_assemblies:
             active_assemblies: Active Participatory committees
             see_all_assemblies: See all Participatory committees
@@ -151,6 +153,8 @@ en:
         title: Participatory committees
   layouts:
     decidim:
+      assembly_navigation:
+        assembly_menu_item: The participatory committee
       assemblies:
         index:
           children: 'Participatory committees: '
