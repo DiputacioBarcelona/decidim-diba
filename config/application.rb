@@ -15,5 +15,23 @@ module DecidimDiba
     config.time_zone = 'Madrid'
     config.active_record.default_timezone = :local
     config.active_record.time_zone_aware_attributes = false
+
+    initializer("decidim_diba.initiatives.menu", after: "decidim_initiatives.menu") do
+      menu= Decidim::MenuRegistry.find :menu
+      initiatives_menu_configurations= menu.configurations.select do |proc|
+        proc.to_s.include?("initiatives/engine.rb")
+      end
+      if initiatives_menu_configurations.any?
+        # should be only one
+        menu.configurations.delete(initiatives_menu_configurations.first)
+        Decidim.menu :menu do |menu|
+          menu.item I18n.t("menu.initiatives", scope: "decidim"),
+                    decidim_initiatives.initiatives_path,
+                    position: 2.6,
+                    if: ::Decidim::InitiativesType.where(organization: current_organization).any?,
+                    active: :inclusive
+        end
+      end
+    end
   end
 end

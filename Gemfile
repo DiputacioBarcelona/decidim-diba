@@ -4,7 +4,8 @@ ruby '2.5.1'
 
 gem 'rails', '=5.2.2'
 
-DECIDIM_VERSION = { git: 'https://github.com/decidim/decidim.git', branch: '0.19-stable' }
+# Change repository to decidim/decidim, change branch name and remove this comment when updating to 0.20
+DECIDIM_VERSION = { git: 'https://github.com/CodiTramuntana/decidim.git', branch: 'diba_0.19-stable' }
 
 gem 'decidim', DECIDIM_VERSION
 gem 'decidim-age_action_authorization', path: 'decidim-age_action_authorization'
@@ -14,9 +15,11 @@ gem 'decidim-diba_census_api', path: 'decidim-diba_census_api'
 gem 'decidim-initiatives'
 gem 'decidim-ldap', path: 'decidim-ldap'
 
+gem 'decidim-term_customizer', git: 'https://github.com/CodiTramuntana/decidim-module-term_customizer'
+
 # Lock sprockets until decidim supports version 4.
 gem "sprockets", "~> 3.7", "< 4"
-# Compability with decidim initiatives module
+# Compatibility with decidim initiatives module
 gem 'wicked_pdf'
 gem 'letter_opener_web'
 gem 'puma', '>= 3.12.2'
