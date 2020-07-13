@@ -5,6 +5,7 @@ require 'extensions/workflow_manifest_extension'
 Decidim.configure do |config|
   config.application_name = 'Decidim DIBA'
   config.mailer_sender    = 'decidim@diba.cat'
+  config.sms_gateway_service = 'Decidim::Verifications::Sms::SmsGateway'
 
   # Reset default workflows
   Decidim::Verifications.clear_workflows
