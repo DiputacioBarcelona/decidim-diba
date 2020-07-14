@@ -13,7 +13,7 @@ en:
               diba_authorization_handler: 'Municipality Census'
               census_authorization_handler: 'Municipality Census'
               diba_census_api_authorization_handler: 'Municipality Census'
-        sms: "Your code for authenticating as a user in decidim is %{code}"
+        sms: "Your code for authenticating in Decidim is %{code}"
     authorization_handlers:
       diba_authorization_handler:
         name: Municipality Census
