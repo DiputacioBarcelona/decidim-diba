@@ -12,8 +12,7 @@ module Decidim
         end
 
         def deliver_code
-          Rails.logger.debug("Example SMS gateway service, verification code is: #{code}, should have been delivered to #{mobile_phone_number}")
-          SmsMailer.with(code: code).verification_mail.deliver_later
+          SmsMailer.with(mobile_phone_number: mobile_phone_number, code: code).verification_mail.deliver_later
           true
         end
       end
