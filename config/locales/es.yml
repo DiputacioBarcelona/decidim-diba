@@ -13,7 +13,7 @@ es:
               diba_authorization_handler: 'Padrón Municipal'
               census_authorization_handler: 'Padrón Municipal'
               diba_census_api_authorization_handler: 'Padrón Municipal'
-        sms: "Tu código para verificarse como una usuaria de decidim es %{code}"
+        sms: "Tu código para verificarte en Decidim es %{code}"
     authorization_handlers:
       diba_authorization_handler:
         name: Padrón Municipal
