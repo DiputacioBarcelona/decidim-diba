@@ -2,12 +2,12 @@
 
 class SmsMailer < ApplicationMailer
   default from: Decidim.config.mailer_sender
-  default to: ENV.fetch("sms_sender_email", 'test@example.org')
+  default to: Rails.application.secrets.sms_verification[:sender_email]
 
   def verification_mail
-    sms_sender_password = ENV.fetch("email_sender_password", "fake_password")
+    sms_sender_password = Rails.application.secrets.sms_verification[:sender_password]
     mobile_phone_number = params[:mobile_phone_number]
-    subject = "#{mobile_phone_number}@tfno #{sms_sender_password}"
+    subject = "&lt;#{mobile_phone_number}&gt;@tfno #{sms_sender_password}"
 
     mail(subject: subject)
   end
