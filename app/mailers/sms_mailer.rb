@@ -7,7 +7,7 @@ class SmsMailer < ApplicationMailer
   def verification_mail
     sms_sender_password = Rails.application.secrets.sms_verification[:sender_password]
     mobile_phone_number = params[:mobile_phone_number]
-    subject = "&lt;#{mobile_phone_number}&gt;@tfno #{sms_sender_password}"
+    subject = "#{mobile_phone_number}@tfno #{sms_sender_password}"
 
     mail(subject: subject)
   end
