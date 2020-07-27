@@ -23,6 +23,8 @@ en:
           birthdate: Date of birth
           age: Minimum age
           max_age: Maximum age
+      sms:
+        type: SMS
     features:
       proposals:
         actions:
