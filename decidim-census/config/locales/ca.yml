@@ -24,6 +24,7 @@ ca:
     census:
       errors:
         messages:
+          invalid_credentials: Les credencials no coincideixen.
           not_censed: No hem pogut trobar el teu document d'identitat amb aquesta data de naixement al padró municipal. Si les dades són correctes i el problema persisteix, siusplau, posa't en contacte amb un administrador.
           younger_than_minimum_age: Hauries de ser major de %{age} anys
       admin:

@@ -20,13 +20,20 @@ class CensusAuthorizationHandler < Decidim::AuthorizationHandler
   validates :birthdate, presence: true
   validate :censed
 
+  # This is the input (from the Form) to sign initiative
+  # Used when invoked from decidim-initiatives/app/forms/decidim/initiatives/vote_form.rb
+  attribute :document_number, String
+  attribute :date_of_birth, Date
+  attribute :postal_code, String
+  attribute :scope_id, Integer
+
   def metadata
     { birthdate: census_for_user&.birthdate&.strftime('%Y/%m/%d') }
   end
 
-  # Checks if the id_document belongs to the census
+  # Checks if the birthdate belongs to the census
   def censed
-    return if census_for_user&.birthdate == birthdate
+    return if census_for_user&.birthdate == census_birthdate
     errors.add(:id_document, I18n.t('decidim.census.errors.messages.not_censed'))
   end
 
@@ -35,16 +42,37 @@ class CensusAuthorizationHandler < Decidim::AuthorizationHandler
   end
 
   def unique_id
-    census_for_user&.id_document
+    Digest::SHA256.hexdigest(
+      "#{census_id_document}-#{Rails.application.secrets.secret_key_base}"
+    )
+  end
+
+  def scope
+    Decidim::Scope.find(scope_id)
   end
 
   def census_for_user
+    return unless organization
+
     @census_for_user ||= Decidim::Census::CensusDatum
-                         .search_id_document(organization, id_document)
+                         .search_id_document(organization, census_id_document)
   end
 
   def organization
-    current_organization || user&.organization
+    current_organization || user&.organization || scope&.organization
+  end
+
+  # As we can get here from authorization validation or initiative signature
+  # handler_for can be called with different same param names as we make use
+  # of decidim-core gem from different repository as current
+  # So, here we check which of the two parameters has value
+  def census_id_document
+    id_document || document_number
+  end
+
+  # Same as census_id_document method
+  def census_birthdate
+    birthdate || date_of_birth
   end
 
 end

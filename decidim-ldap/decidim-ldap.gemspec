@@ -17,11 +17,13 @@ Gem::Specification.new do |s|
   s.files = Dir['{app,config,db,lib}/**/*', 'MIT-LICENSE', 'Rakefile', 'README.md']
   s.test_files = Dir['spec/**/*']
 
-  s.add_dependency 'decidim-core', Decidim::Ldap::VERSION
+  DECIDIM_VERSION = '>=' + Decidim::Ldap::VERSION
+
+  s.add_dependency 'decidim-core', DECIDIM_VERSION
 
   s.add_dependency 'ladle'
   s.add_dependency 'net-ldap'
 
-  s.add_development_dependency 'decidim-dev', Decidim::Ldap::VERSION
+  s.add_development_dependency 'decidim-dev', DECIDIM_VERSION
   s.add_development_dependency 'faker'
 end
