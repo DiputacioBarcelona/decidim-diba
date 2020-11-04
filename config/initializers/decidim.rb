@@ -25,13 +25,11 @@ Decidim.configure do |config|
   config.available_locales = %i(ca es en)
 
   # Geocoder configuration
-  geocoder_config = Rails.application.secrets.geocoder
-  if geocoder_config[:here_app_id].present? && geocoder_config[:here_app_code].present?
-    config.geocoder = {
-      here_app_id: geocoder_config[:here_app_id],
-      here_app_code: geocoder_config[:here_app_code]
-    }
-  end
+  # geocoder_config = Rails.application.secrets.geocoder
+  # if geocoder_config&.dig(:here_api_key).present?
+  #   config.geocoder = {
+  #   }
+  # end
 end
 
 Decidim::Ldap.configure do |config|
