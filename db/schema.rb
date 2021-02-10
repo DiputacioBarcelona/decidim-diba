@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_10_115829) do
+ActiveRecord::Schema.define(version: 2021_02_10_092836) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "ltree"
@@ -478,7 +478,6 @@ ActiveRecord::Schema.define(version: 2021_02_10_115829) do
     t.integer "min_votes"
     t.jsonb "instructions"
     t.integer "response_groups_count", default: 0, null: false
-    t.integer "comments_count", default: 0, null: false
     t.index ["decidim_consultation_id"], name: "index_consultations_questions_on_consultation_id"
     t.index ["decidim_organization_id", "slug"], name: "index_unique_question_slug_and_organization", unique: true
     t.index ["decidim_scope_id"], name: "index_decidim_consultations_questions_on_decidim_scope_id"
@@ -542,7 +541,6 @@ ActiveRecord::Schema.define(version: 2021_02_10_115829) do
     t.bigint "organization_id", null: false
     t.jsonb "content", null: false
     t.index ["organization_id"], name: "index_decidim_contextual_help_sections_on_organization_id"
-    t.index ["section_id"], name: "index_decidim_contextual_help_sections_on_section_id"
   end
 
   create_table "decidim_debates_debates", id: :serial, force: :cascade do |t|
@@ -631,28 +629,6 @@ ActiveRecord::Schema.define(version: 2021_02_10_115829) do
     t.index ["decidim_user_id"], name: "index_decidim_forms_answers_on_decidim_user_id"
     t.index ["ip_hash"], name: "index_decidim_forms_answers_on_ip_hash"
     t.index ["session_token"], name: "index_decidim_forms_answers_on_session_token"
-  end
-
-  create_table "decidim_forms_display_conditions", force: :cascade do |t|
-    t.bigint "decidim_question_id", null: false
-    t.bigint "decidim_condition_question_id", null: false
-    t.bigint "decidim_answer_option_id"
-    t.integer "condition_type", default: 0, null: false
-    t.jsonb "condition_value"
-    t.boolean "mandatory", default: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["decidim_answer_option_id"], name: "decidim_forms_display_condition_answer_option"
-    t.index ["decidim_condition_question_id"], name: "decidim_forms_display_condition_condition_question"
-    t.index ["decidim_question_id"], name: "decidim_forms_display_condition_question"
-  end
-
-  create_table "decidim_forms_question_matrix_rows", force: :cascade do |t|
-    t.bigint "decidim_question_id"
-    t.integer "position"
-    t.jsonb "body"
-    t.index ["decidim_question_id"], name: "index_decidim_forms_question_matrix_questionnaire_id"
-    t.index ["position"], name: "index_decidim_forms_question_matrix_rows_on_position"
   end
 
   create_table "decidim_forms_questionnaires", id: :serial, force: :cascade do |t|
@@ -796,11 +772,6 @@ ActiveRecord::Schema.define(version: 2021_02_10_115829) do
     t.boolean "undo_online_signatures_enabled", default: true, null: false
     t.boolean "promoting_committee_enabled", default: true, null: false
     t.integer "signature_type", default: 0, null: false
-    t.boolean "custom_signature_end_date_enabled", default: false, null: false
-    t.boolean "attachments_enabled", default: false, null: false
-    t.boolean "area_enabled", default: false, null: false
-    t.boolean "child_scope_threshold_enabled", default: false, null: false
-    t.boolean "only_global_scope_enabled", default: false, null: false
     t.index ["decidim_organization_id"], name: "index_decidim_initiative_types_on_decidim_organization_id"
   end
 
@@ -1558,7 +1529,6 @@ ActiveRecord::Schema.define(version: 2021_02_10_115829) do
     t.integer "failed_attempts", default: 0, null: false
     t.string "unlock_token"
     t.datetime "locked_at"
-    t.datetime "admin_terms_accepted_at"
     t.index ["confirmation_token"], name: "index_decidim_users_on_confirmation_token", unique: true
     t.index ["decidim_organization_id"], name: "index_decidim_users_on_decidim_organization_id"
     t.index ["email", "decidim_organization_id"], name: "index_decidim_users_on_email_and_decidim_organization_id", unique: true, where: "((deleted_at IS NULL) AND (managed = false) AND ((type)::text = 'Decidim::User'::text))"
