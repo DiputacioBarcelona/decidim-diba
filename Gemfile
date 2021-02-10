@@ -2,9 +2,6 @@ source 'https://rubygems.org'
 
 ruby RUBY_VERSION
 
-
-# Change repository to decidim/decidim, change branch name and remove this comment when updating to 0.20
-# DECIDIM_VERSION = { git: 'https://github.com/CodiTramuntana/decidim.git', branch: 'diba_0.19-stable' }
 DECIDIM_VERSION = { git: 'https://github.com/decidim/decidim.git', branch: 'release/0.20-stable' }
 
 gem 'rails', '< 6.0.0'
@@ -37,9 +34,9 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'ladle'
-  # gem 'pry-byebug'
+  gem 'pry-byebug'
   # gem 'pry-coolline'
-  # gem 'pry-rails'
+  gem 'pry-rails'
   gem 'rspec-rails', '~> 3.7.0'
   gem 'rubocop', require: false
   gem 'spring-commands-rspec'
