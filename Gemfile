@@ -6,12 +6,11 @@ DECIDIM_VERSION = { git: 'https://github.com/decidim/decidim.git', branch: 'rele
 
 gem 'rails', '< 6.0.0'
 gem 'decidim', DECIDIM_VERSION
-gem 'rails', '< 6.0.0'
+gem 'decidim-consultations', DECIDIM_VERSION
+gem 'decidim-initiatives', DECIDIM_VERSION
 gem 'decidim-age_action_authorization', path: 'decidim-age_action_authorization'
 gem 'decidim-census', path: 'decidim-census'
-gem 'decidim-consultations', DECIDIM_VERSION
 gem 'decidim-diba_census_api', path: 'decidim-diba_census_api'
-gem 'decidim-initiatives', DECIDIM_VERSION
 gem 'decidim-ldap', path: 'decidim-ldap'
 
 gem 'decidim-term_customizer', git: 'https://github.com/CodiTramuntana/decidim-module-term_customizer'
