@@ -160,5 +160,3 @@ es:
           assemblies:
             one: "%{count} órgano de participación"
             other: "%{count} órganos de participación"
-      assembly_header:
-        assembly_menu_item: el órgano de participación

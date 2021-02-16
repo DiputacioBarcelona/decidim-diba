@@ -160,5 +160,3 @@ ca:
           assemblies:
             one: "%{count} òrgan de participació"
             other: "%{count} òrgans de participació"
-      assembly_header:
-        assembly_menu_item: L'òrgan de participació

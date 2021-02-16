@@ -163,5 +163,3 @@ en:
           assemblies:
             one: "%{count} Participatory committees"
             other: "%{count} Participatory committees"
-      assembly_header:
-        assembly_menu_item: The participatory committee
