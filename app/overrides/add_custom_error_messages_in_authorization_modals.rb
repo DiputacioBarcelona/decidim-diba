@@ -1,4 +1,5 @@
-Deface::Override.new(virtual_path: 'decidim/authorization_modals/_content',
+unless ActiveModel::Type::Boolean.new.cast(ENV['DOCKER'])
+  Deface::Override.new(virtual_path: 'decidim/authorization_modals/_content',
                      name: 'add_custom_error_messages_in_authorization_modals',
                      replace: '<li>',
                      text: '
@@ -11,3 +12,4 @@ Deface::Override.new(virtual_path: 'decidim/authorization_modals/_content',
                           <li><strong><%= t ".#{status.code}.invalid_field", field: t("#{status.handler_name}.fields.#{field}", scope: "decidim.authorization_handlers"), value: value ? "(#{value})" : "" %></strong></li>
                         <% end %>
                      ')
+end
