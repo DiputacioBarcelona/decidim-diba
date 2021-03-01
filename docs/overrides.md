@@ -48,13 +48,13 @@ It includes the same changes found in the previous file (devise/sessions/new.htm
 
 Override with Deface in **app/overrides/remove_signup_link_in_wrapper.rb**
 
-It modifies the lines 76 to 78 to remove the signup link for ldap enabled organizations.
+That override add a new condition in order to remove the signup link for ldap enabled organizations.
 
 **app/views/decidim/authorization_modals/_content.html.erb**
 
 Override with Deface in **app/overrides/add_custom_error_messages_in_authorization_modals.rb**
 
-Starting at line 26, a new behaviour has been included to show custom error messages to the custom action authorizer created for
+The override add a new behaviour, that has been included to show custom error messages to the custom action authorizer created for
 the project.
 
 **app/views/decidim/consultations/questions/\_vote_modal_confirm.html.erb**
