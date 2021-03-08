@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Decidim does not allow to use more than one ActionAuthorization inside an
 # AuthorizationHandler.
 # This code adds an aditional validation to the AgeActionAuthorization to validate

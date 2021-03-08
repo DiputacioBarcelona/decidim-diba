@@ -5,7 +5,6 @@ module Decidim
     # A form object used to create ldap configurations from the system dashboard.
     #
     class LdapConfigurationForm < Form
-
       mimic :ldap_configuration
 
       attribute :organization, Integer
@@ -24,7 +23,6 @@ module Decidim
       def map_model(model)
         self.organization = model.organization_id
       end
-
     end
   end
 end

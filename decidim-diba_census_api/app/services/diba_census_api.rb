@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require 'digest'
-require 'faraday'
-require 'base64'
+require "digest"
+require "faraday"
+require "base64"
 
 #
 # Uses the Diputacio of Barcelona census API to VALIDATE a birth of date of a person
@@ -17,15 +17,14 @@ require 'base64'
 #          id_document: '58958982T',
 #          birthdate: Date.parse('1991-05-05'))
 class DibaCensusApi
-
   CensusApiData = Struct.new(:document_type, :id_document, :birthdate)
-  URL = ENV.fetch('DIBA_CENSUS_API_URL') { 'http://accede-pre.diba.cat/services/Ci' }
+  URL = ENV.fetch("DIBA_CENSUS_API_URL") { "http://accede-pre.diba.cat/services/Ci" }
 
-  def initialize(username: 'Decidim', password: '', ine: '998')
+  def initialize(username: "Decidim", password: "", ine: "998")
     @ine = ine
     @username = username
     @password = Digest::SHA1.base64digest(password)
-    @public_key = ENV.fetch('DIBA_CENSUS_API_PUBLIC_KEY') { 'public_key' }
+    @public_key = ENV.fetch("DIBA_CENSUS_API_PUBLIC_KEY") { "public_key" }
   end
 
   def call(document_type:, id_document:, birthdate:)
@@ -41,8 +40,8 @@ class DibaCensusApi
 
   def send_request(request)
     Faraday.post URL do |http_request|
-      http_request.headers['Content-Type'] = 'text/xml'
-      http_request.headers['SOAPAction'] = 'servicio'
+      http_request.headers["Content-Type"] = "text/xml"
+      http_request.headers["SOAPAction"] = "servicio"
       http_request.body = request_body(request)
     end
   end
@@ -50,15 +49,15 @@ class DibaCensusApi
   def parse_response(response)
     # The *real* response data is encoded as a xml string inside a xml node.
     parsed = Nokogiri::XML(response.body).remove_namespaces!
-    Nokogiri::XML(parsed.xpath('//servicioResponse')[0])
+    Nokogiri::XML(parsed.xpath("//servicioResponse")[0])
   end
 
   def active?(response)
-    Base64.decode64(response.xpath('//situacionHabitante').text) == 'A'
+    Base64.decode64(response.xpath("//situacionHabitante").text) == "A"
   end
 
   def extract_encoded_birth_date(response)
-    response.xpath('//fechaNacimiento').text
+    response.xpath("//fechaNacimiento").text
   end
 
   def request_body(request)
@@ -122,17 +121,17 @@ class DibaCensusApi
 
   # Encode date AND time into an API timestamp format
   def encode_time(time = Time.now.utc)
-    time.strftime('%Y%m%d%H%M%S')
+    time.strftime("%Y%m%d%H%M%S")
   end
 
   # Encode only date into an API timestamp format
   def encode_date(date)
-    "#{date.strftime('%Y%m%d')}000000"
+    "#{date.strftime("%Y%m%d")}000000"
   end
 
   # Decode a date from an API timestamp format
   def decode_date(date)
-    Date.strptime(date, '%Y%m%d%H%M%S')
+    Date.strptime(date, "%Y%m%d%H%M%S")
   end
 
   def big_random
@@ -141,5 +140,4 @@ class DibaCensusApi
     # was close to the limits.
     rand(2**24..2**48 - 1)
   end
-
 end

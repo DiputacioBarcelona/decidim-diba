@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require 'decidim/ldap/engine'
-require 'decidim/ldap/configuration'
+require "decidim/ldap/engine"
+require "decidim/ldap/configuration"
 
 module Decidim
   # Base module for this engine.

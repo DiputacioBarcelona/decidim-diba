@@ -3,7 +3,6 @@
 module Decidim
   module Census
     class CreateSubcensus < Rectify::Command
-
       attr_reader :form
 
       def initialize(organization, form)
@@ -33,7 +32,6 @@ module Decidim
         Decidim::ParticipatoryProcess.where(organization: @organization)
                                      .find(form.participatory_process)
       end
-
     end
   end
 end

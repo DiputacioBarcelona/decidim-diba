@@ -5,7 +5,6 @@ module Decidim
     # A command with all the business logic when creating a new ldap configuration in
     # the system.
     class CreateLdapConfiguration < Rectify::Command
-
       # Public: Initializes the command.
       #
       # form - A form object with the params.
@@ -43,7 +42,6 @@ module Decidim
           name_field: form.name_field
         )
       end
-
     end
   end
 end

@@ -1,9 +1,10 @@
-require 'csv'
+# frozen_string_literal: true
+
+require "csv"
 
 module Decidim
   module Census
     class CsvData
-
       attr_reader :errors, :values
 
       def initialize(file)
@@ -11,7 +12,7 @@ module Decidim
         @errors = []
         @values = []
 
-        CSV.foreach(@file, headers: true, col_sep: ';') do |row|
+        CSV.foreach(@file, headers: true, col_sep: ";") do |row|
           process_row(row)
         end
       end
@@ -24,10 +25,9 @@ module Decidim
         if id_document.present? && !date.nil?
           values << [id_document, date]
         else
-          errors << { line: $., data: row }
+          errors << { line: $INPUT_LINE_NUMBER, data: row }
         end
       end
-
     end
   end
 end

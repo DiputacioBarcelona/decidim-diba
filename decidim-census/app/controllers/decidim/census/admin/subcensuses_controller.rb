@@ -1,12 +1,13 @@
+# frozen_string_literal: true
+
 module Decidim
   module Census
     module Admin
       class SubcensusesController < Decidim::Census::Admin::ApplicationController
-
         include Rectify::ControllerHelpers
 
-        CENSUS_AUTHORIZATIONS = %w[diba_authorization_handler
-                                   census_authorization_handler].freeze
+        CENSUS_AUTHORIZATIONS = %w(diba_authorization_handler
+                                   census_authorization_handler).freeze
 
         before_action :show_instructions,
                       unless: :census_authorization_active_in_organization?
@@ -62,7 +63,7 @@ module Decidim
           enforce_permission_to :create, :census
 
           Subcensus.find(params[:id]).destroy
-          redirect_to decidim_census_admin.subcensuses_path, notice: t('.success')
+          redirect_to decidim_census_admin.subcensuses_path, notice: t(".success")
         end
 
         private
@@ -98,11 +99,10 @@ module Decidim
         def configure_flash_for(imported_data)
           return unless imported_data
 
-          flash[:notice] = t('.success', count: imported_data.values.count,
+          flash[:notice] = t(".success", count: imported_data.values.count,
                                          errors: imported_data.errors.count)
           expose(invalid_rows: imported_data.errors)
         end
-
       end
     end
   end
