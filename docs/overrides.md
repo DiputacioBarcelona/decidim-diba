@@ -86,10 +86,6 @@ files invalid.
 
 Before upgrading the platform those keys need to be checked together with the other language files.
 
-## Permissions
-
-To allow non signed in users to be invited to the promoter committee of an initiative https://github.com/decidim/decidim/pull/6115 has been ported to the current decidim v0.19.1 version as an override. This override can be found at `app/permissions/decidim/initiatives/permissions.rb` and can be removed when in Decidim v0.22.
-
 ## Authorization 
 
 The application has 3 custom AuthorizationHandlers. If the Decidim API for AuthorizationHandlers
