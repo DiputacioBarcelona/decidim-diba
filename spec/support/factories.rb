@@ -1,1 +1,3 @@
-require 'decidim/core/test/factories'
+# frozen_string_literal: true
+
+require "decidim/core/test/factories"

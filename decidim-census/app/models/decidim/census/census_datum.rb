@@ -1,9 +1,10 @@
+# frozen_string_literal: true
+
 module Decidim
   module Census
     class CensusDatum < ApplicationRecord
-
       belongs_to :organization, foreign_key: :decidim_organization_id,
-                                class_name: 'Decidim::Organization'
+                                class_name: "Decidim::Organization"
 
       # An organzation scope
       def self.inside(organization)
@@ -21,9 +22,11 @@ module Decidim
       # Normalizes a id document string (remove invalid characters) and encode it
       # to conform with Decidim privacy guidelines.
       def self.normalize_and_encode_id_document(id_document)
-        return '' unless id_document
-        id_document = id_document.gsub(/[^A-z0-9]/, '').upcase
-        return '' if id_document.blank?
+        return "" unless id_document
+
+        id_document = id_document.gsub(/[^A-z0-9]/, "").upcase
+        return "" if id_document.blank?
+
         Digest::SHA256.hexdigest(
           "#{id_document}-#{Rails.application.secrets.secret_key_base}"
         )
@@ -31,7 +34,7 @@ module Decidim
 
       # Convert a date from string to a Date object
       def self.parse_date(string)
-        Date.strptime((string || '').strip, '%d/%m/%Y')
+        Date.strptime((string || "").strip, "%d/%m/%Y")
       rescue StandardError
         nil
       end
@@ -39,12 +42,12 @@ module Decidim
       # Insert a collectiojn of values
       def self.insert_all(organization, values)
         table_name = CensusDatum.table_name
-        columns = %w[id_document birthdate decidim_organization_id created_at].join(',')
+        columns = %w(id_document birthdate decidim_organization_id created_at).join(",")
         now = Time.current
         values = values.map do |row|
           "('#{row[0]}', '#{row[1]}', '#{organization.id}', '#{now}')"
         end
-        sql = "INSERT INTO #{table_name} (#{columns}) VALUES #{values.join(',')}"
+        sql = "INSERT INTO #{table_name} (#{columns}) VALUES #{values.join(",")}"
         ActiveRecord::Base.connection.execute(sql)
       end
 
@@ -52,7 +55,6 @@ module Decidim
       def self.clear(organization)
         CensusDatum.inside(organization).delete_all
       end
-
     end
   end
 end

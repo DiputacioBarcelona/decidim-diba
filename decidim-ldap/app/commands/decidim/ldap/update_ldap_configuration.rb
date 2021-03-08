@@ -5,7 +5,6 @@ module Decidim
     # A command with all the business logic when updating an ldap configuration in
     # the system.
     class UpdateLdapConfiguration < Rectify::Command
-
       # Public: Initializes the command.
       #
       # form - A form object with the params.
@@ -32,7 +31,7 @@ module Decidim
       attr_reader :form
 
       def update_ldap_configuration
-        @ldap_configuration.update_attributes!(attributes)
+        @ldap_configuration.update!(attributes)
       end
 
       def attributes
@@ -48,7 +47,6 @@ module Decidim
           name_field: form.name_field
         }
       end
-
     end
   end
 end

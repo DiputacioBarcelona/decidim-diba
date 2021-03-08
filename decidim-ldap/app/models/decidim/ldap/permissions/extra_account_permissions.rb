@@ -4,7 +4,6 @@ module Decidim
   module Ldap
     module Permissions
       class ExtraAccountPermissions < Decidim::DefaultPermissions
-
         def permissions
           return permission_action if permission_action.subject != :user
           return permission_action if permission_action.action != :delete
@@ -13,7 +12,6 @@ module Decidim
 
           permission_action
         end
-
       end
     end
   end

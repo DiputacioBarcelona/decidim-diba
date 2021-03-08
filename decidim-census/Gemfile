@@ -1,4 +1,6 @@
-source 'https://rubygems.org'
+# frozen_string_literal: true
+
+source "https://rubygems.org"
 
 # Declare your gem's dependencies in decidim-ldap.gemspec.
 # Bundler will treat runtime dependencies like base dependencies, and
@@ -6,8 +8,8 @@ source 'https://rubygems.org'
 gemspec
 
 group :test do
-  gem 'decidim'
-  gem 'decidim-age_action_authorization', path: '../decidim-age_action_authorization'
-  gem 'pry-rails'
-  gem 'decidim-ldap', path: '../decidim-ldap'
+  gem "decidim"
+  gem "decidim-age_action_authorization", path: "../decidim-age_action_authorization"
+  gem "decidim-ldap", path: "../decidim-ldap"
+  gem "pry-rails"
 end

@@ -1,6 +1,8 @@
-require_relative 'boot'
+# frozen_string_literal: true
 
-require 'rails/all'
+require_relative "boot"
+
+require "rails/all"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -12,18 +14,18 @@ module DecidimDiba
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
 
-    config.time_zone = 'Madrid'
+    config.time_zone = "Madrid"
     config.active_record.default_timezone = :local
     config.active_record.time_zone_aware_attributes = false
 
     initializer("decidim_diba.initiatives.menu", after: "decidim_initiatives.menu") do
-      menu= Decidim::MenuRegistry.find :menu
-      initiatives_menu_configurations= menu.configurations.select do |proc|
+      menu_manifest= Decidim::MenuRegistry.find :menu
+      initiatives_menu_configurations= menu_manifest.configurations.select do |proc|
         proc.to_s.include?("initiatives/engine.rb")
       end
       if initiatives_menu_configurations.any?
         # should be only one
-        menu.configurations.delete(initiatives_menu_configurations.first)
+        menu_manifest.configurations.delete(initiatives_menu_configurations.first)
         Decidim.menu :menu do |menu|
           menu.item I18n.t("menu.initiatives", scope: "decidim"),
                     decidim_initiatives.initiatives_path,

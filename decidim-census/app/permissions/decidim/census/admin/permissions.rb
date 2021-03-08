@@ -4,7 +4,6 @@ module Decidim
   module Census
     module Admin
       class Permissions < Decidim::DefaultPermissions
-
         def permissions
           # The public part needs to be implemented yet
           return permission_action if permission_action.scope != :admin
@@ -14,7 +13,6 @@ module Decidim
 
           permission_action
         end
-
       end
     end
   end

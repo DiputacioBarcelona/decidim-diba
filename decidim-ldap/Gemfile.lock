@@ -2,7 +2,7 @@ PATH
   remote: .
   specs:
     decidim-ldap (0.18.0)
-      decidim-core (= 0.18.0)
+      decidim-core (>= 0.18.0)
       ladle
       net-ldap
 
@@ -462,7 +462,7 @@ GEM
     multi_xml (0.6.0)
     multipart-post (2.1.1)
     mustache (1.1.0)
-    net-ldap (0.16.1)
+    net-ldap (0.17.0)
     netrc (0.11.0)
     nio4r (2.5.2)
     nobspw (0.6.1)
@@ -709,7 +709,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  decidim-dev (= 0.18.0)
+  decidim-dev (>= 0.18.0)
   decidim-ldap!
   faker
 

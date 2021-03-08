@@ -1,18 +1,17 @@
 # frozen_string_literal: true
 
-require 'virtus/multiparams'
+require "virtus/multiparams"
 
 # An AuthorizationHandler that uses the DibaCensusApiAuthorizationHandle
 # with a fallback into the CensusAuthorizationHandler if the API fails
 class DibaAuthorizationHandler < Decidim::AuthorizationHandler
-
   include Virtus::Multiparams
 
   attribute :document_type, Symbol
   attribute :id_document, String
   attribute :birthdate, Date
 
-  validates :document_type, inclusion: { in: %i(dni nie passport) }, presence: true
+  validates :document_type, inclusion: { in: [:dni, :nie, :passport] }, presence: true
   validates :id_document, presence: true
   validates :birthdate, presence: true
   validate :censed
@@ -30,7 +29,7 @@ class DibaAuthorizationHandler < Decidim::AuthorizationHandler
         errors.add(key, msg)
       end
     else
-      errors.add(:id_document, I18n.t('decidim.census.errors.messages.not_censed'))
+      errors.add(:id_document, I18n.t("decidim.census.errors.messages.not_censed"))
     end
   end
 
@@ -56,5 +55,4 @@ class DibaAuthorizationHandler < Decidim::AuthorizationHandler
                                                            birthdate: birthdate)
                                                       .with_context(context)
   end
-
 end
