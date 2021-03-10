@@ -1,4 +1,4 @@
-FROM phusion/passenger-ruby25:0.9.35
+FROM phusion/passenger-ruby27:1.0.12
 MAINTAINER CodiTramuntana "info@coditramuntana.com"
 
 ENV HOME /home/app/decidim-diba

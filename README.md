@@ -14,6 +14,16 @@ There are some customizations that have been done to the platform. During an upg
 all the files that have been overridden need to be checked to ensure compatibility.
 [docs/overrides.md](docs/overrides.md) lists all these modifications.
 
+## Upgrade Ruby
+
+To upgrade the Ruby version, the following files are involved:
+
+- .ruby-version
+- Dockerfile.production: The first line defines the image to be build over `FROM phusion/passenger-ruby27:1.0.12`. Meaning that it is Passenger with Ruby 2.7.
+- `docker/nginx.conf` The Nginx config should be updated to load the correct Ruby version for `assenger_ruby`.
+
+That's all.
+
 ## Development
 
 **Requeriments (MacOS)**
