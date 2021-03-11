@@ -3,7 +3,7 @@
 require "decidim/core/test/factories"
 
 FactoryBot.define do
-  factory :ldap_configuration, class: "Decidim::Ldap::LdapConfiguration" do
+  factory :ldap_configuration, class: "Decidim::LdapConfiguration" do
     association :organization
     host { "127.0.0.1" }
     port { "3897" }

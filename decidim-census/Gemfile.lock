@@ -95,6 +95,8 @@ GEM
       html_tokenizer (~> 0.0.6)
       parser (>= 2.4)
       smart_properties
+    bootsnap (1.7.2)
+      msgpack (~> 1.0)
     builder (3.2.3)
     byebug (10.0.2)
     capybara (3.29.0)
@@ -452,6 +454,9 @@ GEM
     kramdown (1.17.0)
     ladle (1.0.1)
       open4 (~> 1.0)
+    listen (3.4.1)
+      rb-fsevent (~> 0.10, >= 0.10.3)
+      rb-inotify (~> 0.9, >= 0.9.10)
     loofah (2.3.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -475,6 +480,7 @@ GEM
     mixlib-cli (1.7.0)
     mixlib-config (2.2.18)
       tomlrb
+    msgpack (1.4.2)
     multi_json (1.13.1)
     multi_xml (0.6.0)
     multipart-post (2.1.1)
@@ -586,6 +592,9 @@ GEM
       activesupport (>= 5.0)
       i18n
       polyamorous (= 2.3.0)
+    rb-fsevent (0.10.4)
+    rb-inotify (0.10.1)
+      ffi (~> 1.0)
     rectify (0.13.0)
       activemodel (>= 4.1.0)
       activerecord (>= 4.1.0)
@@ -733,12 +742,14 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bootsnap
   decidim
   decidim-age_action_authorization!
   decidim-census!
   decidim-dev (>= 0.18.0)
   decidim-ldap!
   faker
+  listen
   pry-rails
 
 BUNDLED WITH
