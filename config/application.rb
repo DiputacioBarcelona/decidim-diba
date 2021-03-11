@@ -12,10 +12,6 @@ module DecidimDiba
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
 
-    config.time_zone = 'Madrid'
-    config.active_record.default_timezone = :local
-    config.active_record.time_zone_aware_attributes = false
-
     initializer("decidim_diba.initiatives.menu", after: "decidim_initiatives.menu") do
       menu= Decidim::MenuRegistry.find :menu
       initiatives_menu_configurations= menu.configurations.select do |proc|
