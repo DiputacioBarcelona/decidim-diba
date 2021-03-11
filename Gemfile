@@ -29,6 +29,7 @@ gem "uglifier", ">= 1.3.0"
 gem "wicked_pdf"
 
 group :development, :test do
+  gem "bootsnap"
   gem "byebug", platform: :mri
   gem "decidim-dev", DECIDIM_VERSION
   gem "dotenv-rails"

@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.email = ["xavier.redo@marsbased.com"]
   s.summary = "Age Based Action authorizer for the Decidim project"
   s.description = ""
-  s.homepage = "https://github.com/marsbased/"
+  s.homepage = "https://github.com/diputacioBCN/decidim-diba"
   s.license = "AGPLv3"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]

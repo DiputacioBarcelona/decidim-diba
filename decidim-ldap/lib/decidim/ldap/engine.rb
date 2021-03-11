@@ -3,8 +3,9 @@
 require "rails"
 require "active_support/all"
 
-# require 'decidim/ldap/extensions/devise_with_ldap'
+require 'decidim/ldap/extensions/devise_with_ldap'
 require "decidim/ldap/extensions/organization_with_ldap"
+require "decidim/ldap/extensions/controller_with_ldap_permissions"
 
 module Decidim
   module Ldap
@@ -37,21 +38,15 @@ module Decidim
       end
 
       initializer "decidim_ldap.devise_with_ldap" do
-        # TO DO: We put this on environment.rb (both, app and dummy app),the only way i've
-        # to make it work on this version (current_user error)
-
-        # Decidim::Devise::SessionsController
-        #   .include(Decidim::Ldap::Extensions::SessionsControllerWithLdap)
-        # Decidim::Devise::RegistrationsController
-        #   .include(Decidim::Ldap::Extensions::RegistrationsControllerWithLdap)
+        Decidim::Devise::SessionsController
+          .include(Decidim::Ldap::Extensions::SessionsControllerWithLdap)
+        Decidim::Devise::RegistrationsController
+          .include(Decidim::Ldap::Extensions::RegistrationsControllerWithLdap)
       end
 
       initializer "decidim_ldap.controller_additional_permissions" do
-        # TO DO: We put this on environment.rb (both, app and dummy app),the only way i've
-        # to make it work on this version (current_user error)
-
-        # Decidim::ApplicationController
-        #   .prepend(Decidim::Ldap::Extensions::ControllerWithLdapPermissions)
+          Decidim::ApplicationController
+            .prepend(Decidim::Ldap::Extensions::ControllerWithLdapPermissions)
       end
 
       initializer "decidim_ldap.organization_with_ldap" do

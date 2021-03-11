@@ -252,7 +252,7 @@ PATH
   remote: decidim-ldap
   specs:
     decidim-ldap (0.18.0)
-      decidim-core (>= 0.18.0)
+      decidim-core (>= 0.23)
       ladle
       net-ldap
 
@@ -334,6 +334,8 @@ GEM
       parser (>= 2.4)
       smart_properties
     bindex (0.8.1)
+    bootsnap (1.7.2)
+      msgpack (~> 1.0)
     browser (2.7.1)
     builder (3.2.4)
     byebug (11.1.3)
@@ -576,6 +578,7 @@ GEM
       tomlrb
     mixlib-shellout (3.2.5)
       chef-utils
+    msgpack (1.4.2)
     multi_json (1.15.0)
     multi_xml (0.6.0)
     multipart-post (2.1.1)
@@ -709,7 +712,7 @@ GEM
       virtus (~> 1.0.5)
       wisper (>= 1.6.1)
     redcarpet (3.5.1)
-    redis (4.2.5)
+    redis (4.1.4)
     regexp_parser (2.0.3)
     request_store (1.5.0)
       rack (>= 1.4)
@@ -896,6 +899,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bootsnap
   byebug
   decidim!
   decidim-age_action_authorization!
