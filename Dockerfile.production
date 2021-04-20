@@ -46,6 +46,7 @@ RUN bundle install --without development test
 # Add the nginx site and config
 ADD docker/nginx.conf /etc/nginx/sites-enabled/decidim-diba.conf
 ADD docker/rails-env.conf /etc/nginx/main.d/rails-env.conf
+RUN sed -i 's/# server_tokens off;/server_tokens off;/' /etc/nginx/nginx.conf
 
 # Add the Rails app
 ADD . /home/app/decidim-diba
