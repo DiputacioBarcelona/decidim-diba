@@ -11,6 +11,6 @@ group :development, :test do
   gem "bootsnap"
   gem "decidim"
   gem "decidim-ldap", path: "../decidim-ldap"
-  gem "pry-rails"
   gem "listen"
+  gem "pry-rails"
 end

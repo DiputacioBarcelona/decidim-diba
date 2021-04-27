@@ -3,7 +3,7 @@
 require "rails"
 require "active_support/all"
 
-require 'decidim/ldap/extensions/devise_with_ldap'
+require "decidim/ldap/extensions/devise_with_ldap"
 require "decidim/ldap/extensions/organization_with_ldap"
 require "decidim/ldap/extensions/controller_with_ldap_permissions"
 
@@ -45,8 +45,8 @@ module Decidim
       end
 
       initializer "decidim_ldap.controller_additional_permissions" do
-          Decidim::ApplicationController
-            .prepend(Decidim::Ldap::Extensions::ControllerWithLdapPermissions)
+        Decidim::ApplicationController
+          .prepend(Decidim::Ldap::Extensions::ControllerWithLdapPermissions)
       end
 
       initializer "decidim_ldap.organization_with_ldap" do

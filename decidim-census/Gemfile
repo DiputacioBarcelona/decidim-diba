@@ -12,6 +12,6 @@ group :test do
   gem "decidim"
   gem "decidim-age_action_authorization", path: "../decidim-age_action_authorization"
   gem "decidim-ldap", path: "../decidim-ldap"
-  gem "pry-rails"
   gem "listen"
+  gem "pry-rails"
 end
