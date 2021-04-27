@@ -23,9 +23,9 @@ Gem::Specification.new do |s|
 
   s.add_dependency "decidim-core", DECIDIM_VERSION
 
+  s.add_dependency "deface"
   s.add_dependency "ladle"
   s.add_dependency "net-ldap"
-  s.add_dependency "deface"
 
   s.add_development_dependency "decidim-dev", DECIDIM_VERSION
   s.add_development_dependency "faker"
