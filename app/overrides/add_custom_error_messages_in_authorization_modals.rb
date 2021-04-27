@@ -4,7 +4,7 @@ unless ActiveModel::Type::Boolean.new.cast(ENV["DOCKER"])
   # rubocop: disable Metrics/LineLength
   Deface::Override.new(virtual_path: "decidim/authorization_modals/_content",
                        name: "add_custom_error_messages_in_authorization_modals",
-                       replace: "<li>",
+                       replace: "li",
                        text: '
                         <% case field %>
                           <% when :birthdate %>

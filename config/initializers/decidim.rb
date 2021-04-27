@@ -10,6 +10,9 @@ Decidim.configure do |config|
   # Whether SSL should be enabled or not.
   config.force_ssl = false
 
+  # Whether SSL should be enabled or not.
+  config.force_ssl = false
+
   # Reset default workflows
   Decidim::Verifications.clear_workflows
 
