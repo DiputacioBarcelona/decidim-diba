@@ -58,15 +58,17 @@ jobs:
           timeout_minutes: 10
           max_attempts: 3
           retry_on: error
-          command: cd decidim-diba_census_api && bundle install --jobs 4 --retry 3 
+          command: |
+            cd decidim-diba_census_api
+            bundle install --jobs 4 --retry 3
 
       - name: Generate diba_census_api test_app
         run: |
           cd decidim-diba_census_api
-          bundle exec rake test_app
+          bundle exec rake decidim:generate_external_test_app
           cd spec/decidim_dummy_app/
+          bundle exec rails decidim_diba_census_api:install:migrations
           RAILS_ENV=test bundle exec rails db:migrate
-          RAILS_ENV=test bundle exec rake assets:precompile
 
       - name: Run RSpec
         uses: nick-invision/retry@v2
@@ -74,4 +76,6 @@ jobs:
           timeout_minutes: 10
           max_attempts: 3
           retry_on: error
-          command: cd decidim-diba_census_api && CI=1 RAILS_ENV=test bundle exec rspec --backtrace
+          command: |
+            cd decidim-diba_census_api
+            CI=1 RAILS_ENV=test bundle exec rspec --backtrace
