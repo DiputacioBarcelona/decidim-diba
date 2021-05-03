@@ -2,14 +2,23 @@
 
 source "https://rubygems.org"
 
+ruby RUBY_VERSION
+
+DECIDIM_VERSION = { git: "https://github.com/CodiTramuntana/decidim.git", branch: "release/0.23-stable" }.freeze
+
+gem "decidim", DECIDIM_VERSION
+
 # Declare your gem's dependencies in decidim-ldap.gemspec.
 # Bundler will treat runtime dependencies like base dependencies, and
 # development dependencies will be added by default to the :development group.
 gemspec
 
+group :development, :test do
+  gem "decidim-dev", DECIDIM_VERSION
+end
+
 group :test do
   gem "bootsnap"
-  gem "decidim"
   gem "decidim-age_action_authorization", path: "../decidim-age_action_authorization"
   gem "decidim-ldap", path: "../decidim-ldap"
   gem "listen"
