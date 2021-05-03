@@ -58,13 +58,16 @@ jobs:
           timeout_minutes: 10
           max_attempts: 3
           retry_on: error
-          command: cd decidim-census && bundle install --jobs 4 --retry 3 
+          command: |
+            cd decidim-census
+            bundle install --jobs 4 --retry 3
 
       - name: Generate census test_app
         run: |
           cd decidim-census
           bundle exec rake decidim:generate_external_test_app
           cd spec/decidim_dummy_app/
+          bundle exec rails decidim_census:install:migrations
           RAILS_ENV=test bundle exec rails db:migrate
 
       - name: Run RSpec
@@ -73,4 +76,6 @@ jobs:
           timeout_minutes: 10
           max_attempts: 3
           retry_on: error
-          command: cd decidim-census && CI=1 bundle exec rake --backtrace -t
+          command: |
+            cd decidim-census
+            CI=1 RAILS_ENV=test bundle exec rspec --backtrace

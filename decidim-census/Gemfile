@@ -7,11 +7,12 @@ source "https://rubygems.org"
 # development dependencies will be added by default to the :development group.
 gemspec
 
-group :test do
+group :development, :test do
   gem "bootsnap"
   gem "decidim"
   gem "decidim-age_action_authorization", path: "../decidim-age_action_authorization"
   gem "decidim-ldap", path: "../decidim-ldap"
+  gem "letter_opener_web"
   gem "listen"
   gem "pry-rails"
 end
