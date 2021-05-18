@@ -30,3 +30,5 @@ public/uploads
 .DS_Store
 **/*.rspec-failures
 spec/decidim_dummy_app/
+decidim-ldap/spec/decidim_dummy_app/
+
