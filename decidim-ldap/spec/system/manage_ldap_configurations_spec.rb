@@ -72,9 +72,11 @@ describe "Manage Ldap Configurations", type: :system do
     visit decidim_ldap.ldap_configurations_path
 
     within find("tr", text: ldap_configuration.dn) do
-      accept_alert do
-        click_link "Delete"
-      end
+      click_link "Delete"
+    end
+
+    within find(".reveal-overlay") do
+      click_link "OK"
     end
 
     within ".flash" do
