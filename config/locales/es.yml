@@ -5,6 +5,15 @@ es:
         document_type: Tipo de documento
         id_document: Número de documento
         birthdate: Fecha de nacimiento
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              taken: Email inválido
+  errors:
+    messages:
+      not_found: Email inválido
   decidim:
     verifications:
       authorizations:

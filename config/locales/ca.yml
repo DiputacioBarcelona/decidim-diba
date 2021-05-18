@@ -5,6 +5,15 @@ ca:
         document_type: Tipus de document
         id_document: Número de document
         birthdate: Data de naixement
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              taken: Email invàlid
+  errors:
+    messages:
+      not_found: Email invàlid
   decidim:
     verifications:
       authorizations:
