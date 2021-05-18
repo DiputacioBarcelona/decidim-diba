@@ -252,7 +252,7 @@ PATH
   remote: decidim-ldap
   specs:
     decidim-ldap (0.18.0)
-      decidim-core (>= 0.23)
+      decidim-core (~> 0.23.0)
       deface
       ladle
       net-ldap
