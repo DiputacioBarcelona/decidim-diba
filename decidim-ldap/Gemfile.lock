@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    decidim-ldap (0.18.0)
+    decidim-ldap (0.23.0)
       decidim-core (~> 0.23.0)
       deface
       ladle

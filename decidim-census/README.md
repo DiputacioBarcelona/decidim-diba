@@ -29,17 +29,19 @@ bin/rails db:migrate
 
 ## Run tests
 
-Create a dummy app in your application (if not present):
-
 ```bash
-bin/rails decidim:generate_test_app
+cd decidim-census
+bundle exec rake decidim:generate_external_test_app
+cd spec/decidim_dummy_app/
+bundle exec rails decidim_census:install:migrations
+RAILS_ENV=test bundle exec rails db:migrate
+cd ../..
 ```
 
 And run tests:
 
 ```bash
-cd decidim-census
-rspec
+bundle exec rspec
 ```
 
 ## License

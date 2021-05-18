@@ -232,11 +232,11 @@ PATH
 PATH
   remote: decidim-census
   specs:
-    decidim-census (0.18.0)
-      decidim (>= 0.18.0)
-      decidim-admin (>= 0.18.0)
-      decidim-age_action_authorization (>= 0.18.0)
-      decidim-ldap (>= 0.18.0)
+    decidim-census (0.23.0)
+      decidim (~> 0.23.0)
+      decidim-admin (~> 0.23.0)
+      decidim-age_action_authorization (~> 0.23.0)
+      decidim-ldap (~> 0.23.0)
       virtus-multiparams (~> 0.1.1)
 
 PATH
@@ -251,7 +251,7 @@ PATH
 PATH
   remote: decidim-ldap
   specs:
-    decidim-ldap (0.18.0)
+    decidim-ldap (0.23.0)
       decidim-core (~> 0.23.0)
       deface
       ladle

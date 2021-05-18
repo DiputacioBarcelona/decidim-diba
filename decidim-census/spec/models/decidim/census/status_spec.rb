@@ -8,7 +8,7 @@ RSpec.describe Decidim::Census::Status, type: :model do
   it "returns last import date" do
     last = FactoryBot.create :census_datum, organization: organization
     status = Decidim::Census::Status.new(organization)
-    expect(status.last_import_at).to eq(last.created_at)
+    expect(status.last_import_at.to_s).to eq(last.created_at.to_s)
   end
 
   it "retrieve the number of unique documents" do
