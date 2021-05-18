@@ -2,7 +2,7 @@
 
 module Decidim
   module AgeActionAuthorization
-    class Authorizer < Decidim::Verifications::DefaultActionAuthorizer
+    class Authorizer < ::Decidim::Verifications::DefaultActionAuthorizer
       def missing_fields
         @missing_fields ||= (valid_metadata? ? [] : [:birthdate])
       end

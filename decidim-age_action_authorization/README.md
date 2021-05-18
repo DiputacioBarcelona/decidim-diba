@@ -35,3 +35,22 @@ Decidim::Verifications.register_workflow(:authorization_handler) do |workflow|
   workflow.action_authorizer = 'Decidim::AgeActionAuthorization::Authorizer'
 end
 ```
+
+### Run tests
+
+Create a dummy app in your application (not in the module):
+
+```bash
+cd ..
+bin/rails decidim:generate_external_test_app
+cd spec/decidim_dummy_app/
+bundle exec rails decidim_age_action_authorization:install:migrations
+RAILS_ENV=test bundle exec rails db:migrate
+cd ../../decidim-age_action_authorization
+```
+
+And run tests from the module:
+
+```bash
+bundle exec rspec spec
+```
