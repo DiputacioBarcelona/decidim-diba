@@ -31,4 +31,5 @@ public/uploads
 **/*.rspec-failures
 spec/decidim_dummy_app/
 decidim-ldap/spec/decidim_dummy_app/
+decidim-census/spec/decidim_dummy_app/
 
