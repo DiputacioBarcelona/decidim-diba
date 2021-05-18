@@ -16,7 +16,7 @@ Warden::Strategies.add(:ldap_authenticatable) do
 
       return success!(user)
     end
-    raise(:ldap_invalid)
+    fail!(I18n.t("devise.failure.user.ldap_invalid"))
   end
 
   private
