@@ -2,7 +2,7 @@ PATH
   remote: ../decidim-age_action_authorization
   specs:
     decidim-age_action_authorization (0.23.0)
-      decidim (>= 0.23.0)
+      decidim (~> 0.23.0)
 
 PATH
   remote: ../decidim-ldap
