@@ -242,9 +242,9 @@ PATH
 PATH
   remote: decidim-diba_census_api
   specs:
-    decidim-diba_census_api (0.18.0)
-      decidim (>= 0.18.0)
-      decidim-age_action_authorization (>= 0.18.0)
+    decidim-diba_census_api (0.23.0)
+      decidim (~> 0.23.0)
+      decidim-age_action_authorization (~> 0.23.0)
       savon (~> 2.11.2)
       virtus-multiparams (~> 0.1.1)
 

@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
 
   s.files = Dir["{app,config,db,lib,vendor}/**/*", "Rakefile", "README.md"]
 
-  DECIDIM_VERSION = ">=" + Decidim::DibaCensusApi::VERSION
+  DECIDIM_VERSION = "~> " + Decidim::DibaCensusApi::VERSION
 
   s.add_dependency "decidim", DECIDIM_VERSION
   s.add_dependency "decidim-age_action_authorization", DECIDIM_VERSION
