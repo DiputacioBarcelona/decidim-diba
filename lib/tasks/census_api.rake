@@ -11,12 +11,12 @@ namespace :census_api do
     id_document= args.id_document
     birthdate= Time.strptime(args.birthdate, "%Y/%m/%d")
 
-    puts <<EOF
-Performing request with parameters:
-birthdate: #{birthdate}
-document_type: #{document_type_code(document_type)}
-id_document: #{id_document}
-EOF
+    puts <<~EOMSG
+      Performing request with parameters:
+      birthdate: #{birthdate}
+      document_type: #{document_type_code(document_type)}
+      id_document: #{id_document}
+    EOMSG
 
     puts "\nRESPONSE:"
     service= DibaCensusApiRq.new(api_config(organization))
