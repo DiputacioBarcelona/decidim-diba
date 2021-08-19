@@ -33,16 +33,13 @@ group :development, :test do
   gem "bootsnap"
   gem "byebug", platform: :mri
   gem "decidim-dev", DECIDIM_VERSION
+  gem "faker", ">= 1.8.4"
+  gem "rspec-rails"
   gem "dotenv-rails"
-  gem "factory_bot_rails"
-  gem "faker"
   gem "ladle"
   gem "pry-byebug"
   # gem 'pry-coolline'
   gem "pry-rails"
-  gem "rspec-rails", "~> 3.7.0"
-  gem "rubocop", require: false
-  gem "spring-commands-rspec"
   gem "webmock"
 end
 
