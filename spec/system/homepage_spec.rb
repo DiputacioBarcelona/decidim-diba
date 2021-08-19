@@ -9,14 +9,15 @@ RSpec.describe "Homepage", type: :system do
     create(
       :organization,
       name: "Decidim DiBa",
-      default_locale: :ca,
+      default_locale: :en,
       available_locales: [:ca, :en, :es]
     )
   end
-  let!(:hero) { create :content_block, organization: organization, scope_name: :homepage, manifest_name: :hero, settings: { "welcome_text_ca"=>"Benvinguda a Decidim DiBa" } }
+  let!(:hero) { create :content_block, organization: organization, scope_name: :homepage, manifest_name: :hero, settings: { "welcome_text_en"=>"Welcome to Decidim DiBa" } }
   let!(:sub_hero) { create :content_block, organization: organization, scope_name: :homepage, manifest_name: :sub_hero }
 
   before do
+    I18n.locale= :en
     switch_to_host(organization.host)
     visit decidim.root_path
   end
@@ -26,7 +27,7 @@ RSpec.describe "Homepage", type: :system do
 
     expect(page).to have_content("Decidim DiBa")
     within "section.hero .hero__container" do
-      expect(page).to have_content("Benvinguda a Decidim DiBa")
+      expect(page).to have_content("Welcome to Decidim DiBa")
     end
     within "section.subhero" do
       subhero_msg= translated(organization.description).gsub(%r{</p>\s+<p>}, "<br><br>").gsub(%r{<p>(((?!</p>).)*)</p>}mi, "\\1")
