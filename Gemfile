@@ -33,11 +33,11 @@ group :development, :test do
   gem "bootsnap"
   gem "byebug", platform: :mri
   gem "decidim-dev", DECIDIM_VERSION
-  gem "faker", ">= 1.8.4"
-  gem "rspec-rails"
   gem "dotenv-rails"
+  gem "faker", ">= 1.8.4"
   gem "ladle"
   gem "pry-byebug"
+  gem "rspec-rails"
   # gem 'pry-coolline'
   gem "pry-rails"
   gem "webmock"
