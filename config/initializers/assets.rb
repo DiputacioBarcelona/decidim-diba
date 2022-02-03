@@ -9,6 +9,4 @@ Rails.application.config.assets.version = "1.0"
 # Rails.application.config.assets.paths << Emoji.images_path
 
 # Precompile additional assets.
-Rails.application.config.assets.paths << Rails.root.join("vendor",
-                                                         "assets",
-                                                         "node_modules")
+Rails.application.config.assets.paths << Rails.root.join("vendor/assets/node_modules")

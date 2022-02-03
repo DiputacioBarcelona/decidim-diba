@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 redis_url = ENV.fetch("REDIS_URL") { "redis://localhost:6379/1" }
-schedule_file = Rails.root.join("config", "schedule.yml")
+schedule_file = Rails.root.join("config/schedule.yml")
 
 Sidekiq.configure_server do |config|
   config.redis = { url: redis_url }
