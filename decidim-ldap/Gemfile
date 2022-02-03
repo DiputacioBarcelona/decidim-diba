@@ -12,7 +12,7 @@ gem "deface"
 group :development, :test do
   gem "bootsnap"
   gem "byebug", platform: :mri
-  gem "decidim", ">= 0.23"
+  gem "decidim", ">= 0.24"
   gem "dotenv-rails"
   gem "factory_bot_rails"
   gem "faker"
