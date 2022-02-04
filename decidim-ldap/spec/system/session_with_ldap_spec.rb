@@ -48,8 +48,8 @@ describe "LDAP authentication", type: :system do
       click_link "Sign In"
 
       within ".new_user" do
-        fill_in :user_name, with: "Alice"
-        fill_in :user_password, with: "password1234"
+        fill_in :session_user_name, with: "Alice"
+        fill_in :session_user_password, with: "password1234"
 
         find("*[type=submit]").click
       end
@@ -63,8 +63,8 @@ describe "LDAP authentication", type: :system do
       click_link "Sign In"
 
       within ".new_user" do
-        fill_in :user_name, with: "Fail"
-        fill_in :user_password, with: "password1234"
+        fill_in :session_user_name, with: "Fail"
+        fill_in :session_user_password, with: "password1234"
 
         find("*[type=submit]").click
       end
@@ -85,8 +85,8 @@ describe "LDAP authentication", type: :system do
         click_link "Sign In"
 
         within ".new_user" do
-          fill_in :user_name, with: "max@payne.com"
-          fill_in :user_password, with: "password1234"
+          fill_in :session_user_name, with: "max@payne.com"
+          fill_in :session_user_password, with: "password1234"
 
           find("*[type=submit]").click
         end
