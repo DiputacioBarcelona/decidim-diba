@@ -1,6 +1,6 @@
-require 'net/ldap'
+# frozen_string_literal: true
 
-# rubocop:disable Metrics/BlockLength
+require "net/ldap"
 Warden::Strategies.add(:ldap_authenticatable) do
   def authenticate!
     return unless params[:user]
@@ -16,7 +16,7 @@ Warden::Strategies.add(:ldap_authenticatable) do
 
       return success!(user)
     end
-    fail(:ldap_invalid)
+    fail!(I18n.t("devise.failure.user.ldap_invalid"))
   end
 
   private
@@ -55,12 +55,14 @@ Warden::Strategies.add(:ldap_authenticatable) do
   end
 
   def find_user(ldap_entry, ldap_configuration)
+    # rubocop: disable Rails/FindBy
     Decidim::User
       .where(email: ldap_field_value(ldap_entry, ldap_configuration.email_field))
       .or(Decidim::User.where(
             nickname: ldap_field_value(ldap_entry, ldap_configuration.username_field)
           ))
       .where(organization: ldap_configuration.organization).first
+    # rubocop: enable Rails/FindBy
   end
 
   def create_user(ldap_entry, ldap_configuration)
@@ -87,4 +89,3 @@ Warden::Strategies.add(:ldap_authenticatable) do
     Decidim::Organization.find(params[:organization_id]).ldap_configurations
   end
 end
-# rubocop:enable Metrics/BlockLength

@@ -29,3 +29,8 @@ public/uploads
 .vscode/
 .DS_Store
 **/*.rspec-failures
+spec/decidim_dummy_app/
+decidim-census/spec/decidim_dummy_app/
+decidim-diba_census_api/spec/decidim_dummy_app/
+decidim-ldap/spec/decidim_dummy_app/
+

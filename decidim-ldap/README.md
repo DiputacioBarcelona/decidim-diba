@@ -22,6 +22,24 @@ bin/rails decidim_ldap:install:migrations
 bin/rails db:migrate
 ```
 
+### Run tests
+
+Create a dummy app in your application (if not present):
+
+```bash
+bin/rails decidim:generate_external_test_app
+cd spec/decidim_dummy_app/
+bundle exec rails decidim_ldap:install:migrations
+RAILS_ENV=test bundle exec rails db:migrate
+cd ../../decidim-ldap
+```
+
+And run tests:
+
+```bash
+bundle exec rspec spec
+```
+
 ## Configuration
 
 Once installed, you need to configure the LDAP user credentials that will be used

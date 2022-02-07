@@ -1,11 +1,10 @@
 # frozen_string_literal: true
 
-require 'virtus/multiparams'
+require "virtus/multiparams"
 
 # An AuthorizationHandler that uses information uploaded from a CSV file
 # to authorize against the age of the user
 class CensusAuthorizationHandler < Decidim::AuthorizationHandler
-
   # Virtus Multiparams allows the Date and DateTime attributes
   # to be expressed in days, months and years (see documentation)
   include Virtus::Multiparams
@@ -28,13 +27,14 @@ class CensusAuthorizationHandler < Decidim::AuthorizationHandler
   attribute :scope_id, Integer
 
   def metadata
-    { birthdate: census_for_user&.birthdate&.strftime('%Y/%m/%d') }
+    { birthdate: census_for_user&.birthdate&.strftime("%Y/%m/%d") }
   end
 
   # Checks if the birthdate belongs to the census
   def censed
     return if census_for_user&.birthdate == census_birthdate
-    errors.add(:id_document, I18n.t('decidim.census.errors.messages.not_censed'))
+
+    errors.add(:id_document, I18n.t("decidim.census.errors.messages.not_censed"))
   end
 
   def authorized?
@@ -74,5 +74,4 @@ class CensusAuthorizationHandler < Decidim::AuthorizationHandler
   def census_birthdate
     birthdate || date_of_birth
   end
-
 end

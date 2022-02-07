@@ -1,10 +1,9 @@
 # frozen_string_literal: true
 
-require 'virtus/multiparams'
+require "virtus/multiparams"
 
 # An AuthorizationHandler that uses the DibaCensusApiService to create authorizations
 class DibaCensusApiAuthorizationHandler < Decidim::AuthorizationHandler
-
   include Virtus::Multiparams
 
   # This is the input (from the user) to validate against
@@ -14,21 +13,21 @@ class DibaCensusApiAuthorizationHandler < Decidim::AuthorizationHandler
 
   # This is the validation to perform
   # If passed, is authorized
-  validates :document_type, inclusion: { in: %i(dni nie passport) }, presence: true
+  validates :document_type, inclusion: { in: [:dni, :nie, :passport] }, presence: true
   validates :id_document, presence: true
   validates :birthdate, presence: true
   validate :censed
 
   def metadata
-    { birthdate: birthdate.strftime('%Y/%m/%d') }
+    { birthdate: birthdate.strftime("%Y/%m/%d") }
   end
 
   def census_document_types
-    %i(dni nie passport).map do |type|
+    [:dni, :nie, :passport].map do |type|
       [
-        I18n.t(type, scope: %w[decidim authorization_handlers
+        I18n.t(type, scope: %w(decidim authorization_handlers
                                diba_census_api_authorization_handler
-                               document_types]),
+                               document_types)),
         type
       ]
     end
@@ -37,9 +36,9 @@ class DibaCensusApiAuthorizationHandler < Decidim::AuthorizationHandler
   # Checks if the id_document belongs to the census
   def censed
     if census_for_user.nil?
-      errors.add(:id_document, I18n.t('decidim.census.errors.messages.not_censed'))
+      errors.add(:id_document, I18n.t("decidim.census.errors.messages.not_censed"))
     elsif census_for_user.birthdate != birthdate
-      errors.add(:birthdate, I18n.t('decidim.census.errors.messages.invalid_credentials'))
+      errors.add(:birthdate, I18n.t("decidim.census.errors.messages.invalid_credentials"))
     end
   end
 
@@ -68,11 +67,11 @@ class DibaCensusApiAuthorizationHandler < Decidim::AuthorizationHandler
   def document_type_code
     case document_type&.to_sym
     when :dni
-      '01'
+      "01"
     when :passport
-      '02'
+      "02"
     when :nie
-      '03'
+      "03"
     end
   end
 
@@ -85,5 +84,4 @@ class DibaCensusApiAuthorizationHandler < Decidim::AuthorizationHandler
   def organization
     current_organization || user.try(:organization)
   end
-
 end

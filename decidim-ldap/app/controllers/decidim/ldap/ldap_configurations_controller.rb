@@ -5,7 +5,6 @@ module Decidim
     # Controller to manage Organizations LDAP config
     #
     class LdapConfigurationsController < Decidim::System::ApplicationController
-
       def index
         @ldap_configurations = LdapConfiguration.all
       end
@@ -42,8 +41,8 @@ module Decidim
 
       def destroy
         @ldap_configuration = LdapConfiguration.find(params[:id]).destroy!
-        flash[:notice] = I18n.t('ldap_configurations.destroy.success',
-                                scope: 'decidim.ldap')
+        flash[:notice] = I18n.t("ldap_configurations.destroy.success",
+                                scope: "decidim.ldap")
 
         redirect_to ldap_configurations_path
       end
@@ -53,14 +52,14 @@ module Decidim
       def call_create_form
         CreateLdapConfiguration.call(@form) do
           on(:ok) do
-            flash[:notice] = I18n.t('ldap_configurations.create.success',
-                                    scope: 'decidim.ldap')
+            flash[:notice] = I18n.t("ldap_configurations.create.success",
+                                    scope: "decidim.ldap")
             redirect_to ldap_configurations_path
           end
 
           on(:invalid) do
-            flash.now[:alert] = I18n.t('ldap_configurations.create.error',
-                                       scope: 'decidim.ldap')
+            flash.now[:alert] = I18n.t("ldap_configurations.create.error",
+                                       scope: "decidim.ldap")
             render :new
           end
         end
@@ -69,14 +68,14 @@ module Decidim
       def call_update_form
         UpdateLdapConfiguration.call(@ldap_configuration, @form) do
           on(:ok) do
-            flash[:notice] = I18n.t('ldap_configurations.update.success',
-                                    scope: 'decidim.ldap')
+            flash[:notice] = I18n.t("ldap_configurations.update.success",
+                                    scope: "decidim.ldap")
             redirect_to ldap_configurations_path
           end
 
           on(:invalid) do
-            flash.now[:alert] = I18n.t('ldap_configurations.update.error',
-                                       scope: 'decidim.ldap')
+            flash.now[:alert] = I18n.t("ldap_configurations.update.error",
+                                       scope: "decidim.ldap")
             render :edit
           end
         end
@@ -91,7 +90,6 @@ module Decidim
         decidim_system.destroy_admin_session_path
       end
       helper_method :destroy_admin_session_path
-
     end
   end
 end

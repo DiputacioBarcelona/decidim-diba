@@ -3,7 +3,6 @@
 module Decidim
   module Census
     class SubcensusForm < Form
-
       mimic :subcensus
 
       attribute :name, String
@@ -15,7 +14,6 @@ module Decidim
       def map_model(model)
         self.participatory_process = model.decidim_participatory_process_id
       end
-
     end
   end
 end

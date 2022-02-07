@@ -1,8 +1,8 @@
-class SystemStatusesController < ApplicationController
+# frozen_string_literal: true
 
+class SystemStatusesController < ApplicationController
   def show
     Decidim::Organization.count
-    render plain: 'ok'
+    render plain: "ok"
   end
-
 end

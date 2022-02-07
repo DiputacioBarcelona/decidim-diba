@@ -44,6 +44,28 @@ install graphicsmagick`
 More information can be found in the Decidim github repository:
 https://github.com/decidim/decidim
 
+**Utils**
+
+### tasks in `lib/tasks/diba.rake`
+
+```
+# Finds information about the Organization, or Organizations, searching by the :host_term argument
+bin/rake diba:org_by_host_like[vallirana]
+```
+
+Optional :full second parameter. Set it to true to see all the Organization's information.
+
+### tasks in `lib/tasks/census_api`
+
+```
+# Checks the given credentials against the census_api (document_type dni/nie/passport, birthdate yyyy/mm/dd)
+rake census_api:check[org_id,document_type,id_document,birthdate]
+# Is there a Decidim::Authorization for the given document?
+rake census_api:find_authorization_by_doc[document,birthdate]
+# Returns the DibaCensusApiAuthorizationHandler encoded version of the document argument
+rake census_api:to_unique_id[document]
+```
+
 **Run tests**
 
 Use: `bin/rspec` (with spring) or `bundle exec rspec` (without spring)

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Decidim
   module Ldap
     module Extensions
@@ -16,7 +18,7 @@ module Decidim
 
         def sign_in_params
           devise_parameter_sanitizer.permit(:sign_up,
-                                            keys: %i(email name password remember_me))
+                                            keys: [:email, :name, :password, :remember_me])
         end
 
         def authentication_strategy

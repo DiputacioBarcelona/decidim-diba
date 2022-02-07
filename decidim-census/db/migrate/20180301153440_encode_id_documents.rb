@@ -1,5 +1,6 @@
-class EncodeIdDocuments < ActiveRecord::Migration[5.1]
+# frozen_string_literal: true
 
+class EncodeIdDocuments < ActiveRecord::Migration[5.1]
   def up
     Decidim::Census::CensusDatum.find_each do |census_datum|
       encoded_id_document = Digest::SHA256.hexdigest(
@@ -8,5 +9,4 @@ class EncodeIdDocuments < ActiveRecord::Migration[5.1]
       census_datum.update(id_document: encoded_id_document)
     end
   end
-
 end

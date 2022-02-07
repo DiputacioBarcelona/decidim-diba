@@ -1,11 +1,14 @@
 # frozen_string_literal: true
 
-require 'extensions/workflow_manifest_extension'
+require "extensions/workflow_manifest_extension"
 
 Decidim.configure do |config|
-  config.application_name = 'Decidim DIBA'
-  config.mailer_sender    = 'decidim@diba.cat'
-  config.sms_gateway_service = 'Decidim::Verifications::Sms::SmsGateway'
+  config.application_name = "Decidim DIBA"
+  config.mailer_sender = "decidim@diba.cat"
+  config.sms_gateway_service = "Decidim::Verifications::Sms::SmsGateway"
+
+  # Whether SSL should be enabled or not.
+  config.force_ssl = false
 
   # Whether SSL should be enabled or not.
   config.force_ssl = false
@@ -14,8 +17,8 @@ Decidim.configure do |config|
   Decidim::Verifications.clear_workflows
 
   Decidim::Verifications.register_workflow(:diba_authorization_handler) do |auth|
-    auth.form = 'DibaAuthorizationHandler'
-    auth.action_authorizer = 'Decidim::AgeActionAuthorization::Authorizer'
+    auth.form = "DibaAuthorizationHandler"
+    auth.action_authorizer = "Decidim::AgeActionAuthorization::Authorizer"
     auth.options do |options|
       options.attribute :age, type: :string, required: false
       options.attribute :max_age, type: :string, required: false
@@ -25,7 +28,7 @@ Decidim.configure do |config|
   Decidim::Verifications::WorkflowManifest.prepend(WorkflowManifestExtension)
 
   # Uncomment this lines to set your preferred locales
-  config.available_locales = %i(ca es en)
+  config.available_locales = [:ca, :es, :en]
 
   # Geocoder configuration
   # geocoder_config = Rails.application.secrets.geocoder

@@ -11,7 +11,6 @@ module Decidim
       # class ApplicationController < Decidim::Admin::Components::BaseController
 
       class ApplicationController < Decidim::Admin::ApplicationController
-
         private
 
         def permission_class_chain
@@ -20,7 +19,6 @@ module Decidim
             Decidim::Admin::Permissions
           ]
         end
-
       end
     end
   end

@@ -1,5 +1,6 @@
-class CreateDecidimLdapLdapConfigurations < ActiveRecord::Migration[5.1]
+# frozen_string_literal: true
 
+class CreateDecidimLdapLdapConfigurations < ActiveRecord::Migration[5.1]
   def change
     create_table :decidim_ldap_configurations do |t|
       t.references :organization
@@ -15,5 +16,4 @@ class CreateDecidimLdapLdapConfigurations < ActiveRecord::Migration[5.1]
       t.timestamps
     end
   end
-
 end

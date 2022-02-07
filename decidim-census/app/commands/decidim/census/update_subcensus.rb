@@ -3,7 +3,6 @@
 module Decidim
   module Census
     class UpdateSubcensus < Rectify::Command
-
       attr_reader :form
 
       def initialize(subcensus, organization, form)
@@ -15,7 +14,7 @@ module Decidim
       def call
         return broadcast(:invalid) if form.invalid?
 
-        @subcensus.update_attributes!(attributes)
+        @subcensus.update!(attributes)
 
         events = ImportSubcensusDocuments.call(@subcensus, form.subcensus_file)
         broadcast(:ok, events[:ok])
@@ -34,7 +33,6 @@ module Decidim
         Decidim::ParticipatoryProcess.where(organization: @organization)
                                      .find(form.participatory_process)
       end
-
     end
   end
 end
