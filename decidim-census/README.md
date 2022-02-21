@@ -35,13 +35,13 @@ bundle exec rake decidim:generate_external_test_app
 cd spec/decidim_dummy_app/
 bundle exec rails decidim_census:install:migrations
 RAILS_ENV=test bundle exec rails db:migrate
-cd ../..
+cd ../../decidim-census
 ```
 
 And run tests:
 
 ```bash
-bundle exec rspec
+bundle exec rspec spec
 ```
 
 ## License

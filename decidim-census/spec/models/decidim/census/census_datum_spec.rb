@@ -21,12 +21,14 @@ RSpec.describe Decidim::Census::CensusDatum, type: :model do
     end
   end
 
+  # rubocop:disable Rails/SkipsModelValidations
   it "inserts a collection of values" do
     CensusDatum.insert_all(organization, [["1111A", "1990/12/1"], ["2222B", "1990/12/2"]])
     expect(CensusDatum.count).to be 2
     CensusDatum.insert_all(organization, [["1111A", "2001/12/1"], ["3333C", "1990/12/3"]])
     expect(CensusDatum.count).to be 4
   end
+  # rubocop:enable Rails/SkipsModelValidations
 
   describe "normalization methods" do
     it "normalizes and encodes the id document" do

@@ -1,4 +1,4 @@
-FROM phusion/passenger-ruby27:1.0.12
+FROM phusion/passenger-ruby27:2.1.0
 MAINTAINER CodiTramuntana "info@coditramuntana.com"
 
 ENV HOME /home/app/decidim-diba
@@ -41,7 +41,9 @@ ADD decidim-census decidim-census
 ADD decidim-diba_census_api decidim-diba_census_api
 ADD decidim-age_action_authorization decidim-age_action_authorization
 ADD decidim-ldap decidim-ldap
-RUN bundle install --without development test
+RUN bundle config set without 'development test'
+RUN bundle config set deployment 'true'
+RUN bundle install --jobs=4
 
 # Add the nginx site and config
 ADD docker/nginx.conf /etc/nginx/sites-enabled/decidim-diba.conf

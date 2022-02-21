@@ -18,6 +18,7 @@ module Decidim
         def create
           enforce_permission_to :create, :census
 
+          # rubocop:disable Rails/SkipsModelValidations
           if params[:file]
             data = CsvData.new(params[:file].path)
             CensusDatum.insert_all(current_organization, data.values)
@@ -27,6 +28,7 @@ module Decidim
                                            errors: data.errors.count)
           end
           render :show
+          # rubocop:enable Rails/SkipsModelValidations
         end
 
         def destroy

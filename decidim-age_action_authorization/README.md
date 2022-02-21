@@ -44,8 +44,6 @@ Create a dummy app in your application (not in the module):
 cd ..
 bin/rails decidim:generate_external_test_app
 cd spec/decidim_dummy_app/
-bundle exec rails decidim_age_action_authorization:install:migrations
-RAILS_ENV=test bundle exec rails db:migrate
 cd ../../decidim-age_action_authorization
 ```
 

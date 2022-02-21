@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 require "spec_helper"
+
+# rubocop:disable RSpec/MultipleMemoizedHelpers
 RSpec.describe CensusAuthorizationHandler do
   let(:organization) { FactoryBot.create(:organization) }
   let(:user) { FactoryBot.create(:user, organization: organization, nickname: "nickname") }
@@ -46,3 +48,4 @@ RSpec.describe CensusAuthorizationHandler do
     expect(contextless_handler.valid?).to be true
   end
 end
+# rubocop:enable RSpec/MultipleMemoizedHelpers
