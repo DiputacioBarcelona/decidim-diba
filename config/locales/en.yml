@@ -15,14 +15,6 @@ en:
     messages:
       not_found: Invalid email
   decidim:
-    verifications:
-      authorizations:
-        first_login:
-            actions:
-              diba_authorization_handler: 'Municipality Census'
-              census_authorization_handler: 'Municipality Census'
-              diba_census_api_authorization_handler: 'Municipality Census'
-        sms: "Your code for authenticating in Decidim is %{code}"
     authorization_handlers:
       diba_authorization_handler:
         name: Municipality Census
@@ -34,6 +26,14 @@ en:
           max_age: Maximum age
       sms:
         type: SMS
+    verifications:
+      authorizations:
+        first_login:
+            actions:
+              diba_authorization_handler: 'Municipality Census'
+              census_authorization_handler: 'Municipality Census'
+              diba_census_api_authorization_handler: 'Municipality Census'
+        sms: "Your code for authenticating in Decidim is %{code}"
     features:
       proposals:
         actions:
