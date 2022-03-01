@@ -977,7 +977,7 @@ DEPENDENCIES
   decidim-age_action_authorization!
   decidim-census!
   decidim-consultations!
-  decidim-decidim_awesome
+  decidim-decidim_awesome (~> 0.7.2)
   decidim-dev!
   decidim-diba_census_api!
   decidim-initiatives!
