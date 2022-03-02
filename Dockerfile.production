@@ -35,6 +35,7 @@ RUN mkdir -p $HOME
 WORKDIR $HOME
 
 # Install bundle of gems
+RUN gem install bundler:2.3.6
 ADD Gemfile Gemfile
 ADD Gemfile.lock Gemfile.lock
 ADD decidim-census decidim-census
