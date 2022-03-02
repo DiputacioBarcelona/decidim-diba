@@ -104,3 +104,14 @@ When signing in, the following fields from the `default.ldif` should ve used:
 * The translations are available only in catalan, spanish and english.
 * You can configure the minimum age of a feature using the following json:
   `{"edad": 20 }`. By default the minimum age is 18 years old.
+
+## Docker Hub
+To publish to docker hub:
+
+```
+DIBA_DOCKER_TAG=diputaciobcn/decidim-diba:v11.0.2-decidim_0.24.3
+docker build -f Dockerfile.production -t $DIBA_DOCKER_TAG .
+docker tag $DIBA_DOCKER_TAG diputaciobcn/decidim-diba:latest
+docker push $DIBA_DOCKER_TAG
+docker push diputaciobcn/decidim-diba:latest
+```
