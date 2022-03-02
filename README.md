@@ -20,7 +20,7 @@ To upgrade the Ruby version, the following files are involved:
 
 - .ruby-version
 - Dockerfile.production: The first line defines the image to be build over `FROM phusion/passenger-ruby27:1.0.12`. Meaning that it is Passenger with Ruby 2.7.
-- `docker/nginx.conf` The Nginx config should be updated to load the correct Ruby version for `assenger_ruby`.
+- `docker/nginx.conf` The Nginx config should be updated to load the correct Ruby version for `passenger_ruby`.
 
 That's all.
 
