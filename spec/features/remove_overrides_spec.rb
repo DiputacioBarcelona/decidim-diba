@@ -10,6 +10,7 @@ RSpec.describe "Overrides" do
     #   and can be removed from diba:
     #     - decidim.events.users.user_officialized.*
     #     - decidim.events.verifications.verify_with_managed_user.*
+    # - Run decidim_decidim_awesome:webpacker:install when upgrade Decidim to v0.25
     expect(Decidim.version).to be < "0.25"
   end
 end
