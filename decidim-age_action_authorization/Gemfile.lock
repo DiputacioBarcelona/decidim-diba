@@ -11,7 +11,7 @@ PATH
   remote: .
   specs:
     decidim-age_action_authorization (0.24.0)
-      decidim (~> 0.24.0)
+      decidim (>= 0.24.0)
 
 GEM
   remote: https://rubygems.org/
@@ -846,10 +846,10 @@ DEPENDENCIES
   bootsnap
   decidim
   decidim-age_action_authorization!
-  decidim-dev (~> 0.24.0)
+  decidim-dev (>= 0.24.0)
   decidim-ldap!
   listen
   pry-rails
 
 BUNDLED WITH
-   2.2.30
+   2.3.4

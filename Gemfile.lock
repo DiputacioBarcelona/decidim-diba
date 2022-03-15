@@ -233,7 +233,7 @@ PATH
   remote: decidim-age_action_authorization
   specs:
     decidim-age_action_authorization (0.24.0)
-      decidim (~> 0.24.0)
+      decidim (>= 0.24.0)
 
 PATH
   remote: decidim-census
