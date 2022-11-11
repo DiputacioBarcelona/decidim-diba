@@ -17,8 +17,6 @@ gem "decidim-ldap", path: "decidim-ldap"
 
 gem "decidim-term_customizer", git: "https://github.com/mainio/decidim-module-term_customizer", branch: "release/0.25-stable"
 
-# Lock sprockets until decidim supports version 4.
-gem "sprockets", "~> 3.7", "< 4"
 # Compatibility with decidim initiatives module
 gem "deface"
 gem "letter_opener_web"

@@ -8,9 +8,6 @@ Rails.application.configure do
 
   config.public_file_server.enabled = false
 
-  config.assets.js_compressor = Uglifier.new(harmony: true)
-  config.assets.compile = false
-
   config.action_dispatch.x_sendfile_header = "X-Accel-Redirect"
 
   config.log_level = :info
