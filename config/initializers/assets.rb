@@ -10,3 +10,6 @@ Rails.application.config.assets.version = "1.0"
 
 # Precompile additional assets.
 Rails.application.config.assets.paths << Rails.root.join("vendor/assets/node_modules")
+
+# Add node_modules folder to the asset load path.
+Rails.application.config.assets.paths << Rails.root.join("node_modules")

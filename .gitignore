@@ -34,3 +34,10 @@ decidim-census/spec/decidim_dummy_app/
 decidim-diba_census_api/spec/decidim_dummy_app/
 decidim-ldap/spec/decidim_dummy_app/
 
+
+/public/packs
+/public/packs-test
+/node_modules
+/yarn-error.log
+yarn-debug.log*
+.yarn-integrity
