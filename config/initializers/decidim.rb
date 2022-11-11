@@ -45,3 +45,6 @@ Decidim::Ldap.configure do |config|
   config.ldap_username = Rails.application.secrets.ldap[:username]
   config.ldap_password = Rails.application.secrets.ldap[:password]
 end
+
+# Inform Decidim about the assets folder
+Decidim.register_assets_path File.expand_path("app/packs", Rails.application.root)
