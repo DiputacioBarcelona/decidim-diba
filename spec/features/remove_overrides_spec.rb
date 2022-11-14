@@ -19,6 +19,3 @@ RSpec.describe "Overrides" do
     expect(Decidim.version).to be < "0.28"
   end
 end
-
-
-
