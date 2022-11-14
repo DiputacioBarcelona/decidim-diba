@@ -18,9 +18,18 @@ module DecidimDiba
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
 
+    config.load_defaults 5.0
+
     config.time_zone = "Madrid"
     config.active_record.default_timezone = :local
     config.active_record.time_zone_aware_attributes = false
+
+    # Make decorators available
+    config.to_prepare do
+      # activate Decidim LayoutHelper for the overriden views
+      ::Decidim::Admin::ApplicationController.helper ::Decidim::LayoutHelper
+      ::Decidim::ApplicationController.helper ::Decidim::LayoutHelper
+    end
 
     initializer("decidim_diba.initiatives.menu", after: "decidim_initiatives.menu") do
       menu_manifest= Decidim::MenuRegistry.find :menu

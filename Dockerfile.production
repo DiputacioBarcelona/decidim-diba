@@ -55,6 +55,7 @@ RUN sed -i 's/gzip on;/gzip off;/' /etc/nginx/nginx.conf
 # Add the Rails app
 ADD . /home/app/decidim-diba
 
+RUN npm install
 RUN RAILS_ENV=production SECRET_KEY_BASE=NOT-IMPORTANT DOCKER=1 bin/rake assets:precompile
 
 # Add a tmp folder for pids

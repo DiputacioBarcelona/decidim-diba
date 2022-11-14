@@ -36,8 +36,10 @@ decidim-ldap/spec/decidim_dummy_app/
 
 
 /public/packs
+/public/decidim-packs
 /public/packs-test
 /node_modules
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
+/storage/
