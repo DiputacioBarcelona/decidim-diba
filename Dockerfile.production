@@ -17,6 +17,28 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 RUN apt-get update
 RUN apt-get install -y imagemagick gettext-base tzdata
 
+##############################
+# Install NodeJs & Yarn
+##############################
+RUN yes | apt remove nodejs
+ENV NVM_DIR /usr/local/nvm
+RUN mkdir -p /usr/local/nvm
+# Replace shell with bash so we can source files
+#RUN rm /bin/sh && ln -s /bin/bash /bin/sh
+# Set debconf to run non-interactively
+#RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
+
+ENV NODE_VERSION 16.9.1
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash \
+    && . $NVM_DIR/nvm.sh \
+    && nvm install $NODE_VERSION \
+    && nvm alias default $NODE_VERSION \
+    && nvm use default
+ENV NODE_PATH $NVM_DIR/v$NODE_VERSION/lib/node_modules
+ENV PATH      $NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH
+RUN npm -v
+RUN npm install -g yarn
+
 # Use baseimage-docker's init system.
 CMD ["/sbin/my_init"]
 
@@ -55,6 +77,8 @@ RUN sed -i 's/gzip on;/gzip off;/' /etc/nginx/nginx.conf
 # Add the Rails app
 ADD . /home/app/decidim-diba
 
+RUN npm cache clean --force
+RUN npm i graphql-docs@https://github.com/decidim/graphql-docs/raw/master/graphql-docs-0.2.1.tgz
 RUN npm install
 RUN RAILS_ENV=production SECRET_KEY_BASE=NOT-IMPORTANT DOCKER=1 bin/rake assets:precompile
 

@@ -25,9 +25,9 @@ gem "sidekiq", "~> 5.2.7"
 gem "sidekiq-cron"
 gem "uglifier", ">= 1.3.0"
 gem "wicked_pdf"
+gem "bootsnap"
 
 group :development, :test do
-  gem "bootsnap"
   gem "byebug", platform: :mri
   gem "decidim-dev", DECIDIM_VERSION
   gem "dotenv-rails"
