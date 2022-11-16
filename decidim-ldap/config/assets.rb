@@ -14,10 +14,6 @@ base_path = File.expand_path("..", __dir__)
 # as follows.
 Decidim::Webpacker.register_path("#{base_path}/app/packs")
 
-# Decidim::Webpacker.register_entrypoints(
-#   decidim_ldap: "#{base_path}/app/packs/entrypoints/decidim_ldap.js",
-# )
-
 # If you want to import some extra SCSS files in the Decidim main SCSS file
 # without adding any extra stylesheet inclusion tags, you can use the following
 # method to register the stylesheet import for the main application. This would
