@@ -9,7 +9,7 @@ gemspec
 
 group :development, :test do
   gem "bootsnap"
-  gem "decidim"
+  gem "decidim", ">= 0.24", { git: "https://github.com/CodiTramuntana/decidim.git", branch: "release/0.25-stable" }.freeze
   gem "decidim-age_action_authorization", path: "../decidim-age_action_authorization"
   gem "decidim-ldap", path: "../decidim-ldap"
   gem "letter_opener_web"

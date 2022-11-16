@@ -18,6 +18,13 @@ module Decidim
         end
       end
 
+      # Make decorators available
+      config.to_prepare do
+        # activate Decidim LayoutHelper for the overriden views
+        ::Decidim::Admin::ApplicationController.helper ::Decidim::LayoutHelper
+        ::Decidim::ApplicationController.helper ::Decidim::LayoutHelper
+      end
+
       initializer "decidim_ldap.mount_routes" do
         Decidim::Core::Engine.routes do
           mount Decidim::Ldap::Engine => "/system"
