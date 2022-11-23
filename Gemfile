@@ -18,6 +18,7 @@ gem "decidim-ldap", path: "decidim-ldap"
 gem "decidim-term_customizer", git: "https://github.com/mainio/decidim-module-term_customizer", branch: "release/0.25-stable"
 
 # Compatibility with decidim initiatives module
+gem "bootsnap"
 gem "deface"
 gem "letter_opener_web"
 gem "puma", ">= 3.12.2"
@@ -25,7 +26,6 @@ gem "sidekiq", "~> 5.2.7"
 gem "sidekiq-cron"
 gem "uglifier", ">= 1.3.0"
 gem "wicked_pdf"
-gem "bootsnap"
 
 group :development, :test do
   gem "byebug", platform: :mri
