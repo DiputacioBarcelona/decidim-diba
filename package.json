@@ -4,10 +4,10 @@
   "dependencies": {
     "@babel/core": "^7.18.13",
     "@babel/preset-env": "^7.18.10",
-    "@decidim/browserslist-config": "~0.25.2",
-    "@decidim/core": "~0.25.2",
-    "@decidim/elections": "~0.25.2",
-    "@decidim/webpacker": "~0.25.2",
+    "@decidim/browserslist-config": "file:packages/browserslist-config",
+    "@decidim/core": "file:packages/core",
+    "@decidim/elections": "file:packages/elections",
+    "@decidim/webpacker": "file:packages/webpacker",
     "@rails/webpacker": "^5.4.3",
     "codemirror": "^5.65.9",
     "europa": "^4.0.0",
@@ -36,9 +36,9 @@
     "extends @decidim/browserslist-config"
   ],
   "devDependencies": {
-    "@decidim/dev": "~0.25.2",
-    "@decidim/eslint-config": "~0.25.2",
-    "@decidim/stylelint-config": "~0.25.2",
+    "@decidim/dev": "file:packages/dev",
+    "@decidim/eslint-config": "file:packages/eslint-config",
+    "@decidim/stylelint-config": "file:packages/stylelint-config",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-config-standard": "^11.0.0",
