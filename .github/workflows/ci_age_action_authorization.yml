@@ -64,6 +64,8 @@ jobs:
             cd ..
             bundle install --jobs 4 --retry 3
 
+      - name: Manual install timeout gem
+        run: gem install timeout:0.3.0
 
       - name: Generate age_action_authorization test_app
         run: |
