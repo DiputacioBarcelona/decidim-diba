@@ -44,10 +44,10 @@ module Decidim
         end
       end
 
-      initializer "decidim_ldap.devise_with_ldap" do
-        Decidim::Devise::SessionsController
+      config.after_initialize do
+        ::Decidim::Devise::SessionsController
           .include(Decidim::Ldap::Extensions::SessionsControllerWithLdap)
-        Decidim::Devise::RegistrationsController
+        ::Decidim::Devise::RegistrationsController
           .include(Decidim::Ldap::Extensions::RegistrationsControllerWithLdap)
       end
 
