@@ -25,7 +25,7 @@ describe "LDAP authentication", type: :system do
     end
     let!(:ldap_server) do
       Decidim::Ldap.configuration.ldap_username = "uid=admin,ou=people,dc=example,dc=com"
-      Decidim::Ldap.configuration.ldap_password = "password1234"
+      Decidim::Ldap.configuration.ldap_password = "password123456"
 
       Ladle::Server.new(quiet: true,
                         ldif: "lib/ladle/default.ldif",
@@ -49,7 +49,7 @@ describe "LDAP authentication", type: :system do
 
       within ".new_user" do
         fill_in :session_user_name, with: "Alice"
-        fill_in :session_user_password, with: "password1234"
+        fill_in :session_user_password, with: "password123456"
 
         find("*[type=submit]").click
       end
@@ -64,7 +64,7 @@ describe "LDAP authentication", type: :system do
 
       within ".new_user" do
         fill_in :session_user_name, with: "Fail"
-        fill_in :session_user_password, with: "password1234"
+        fill_in :session_user_password, with: "password123456"
 
         find("*[type=submit]").click
       end
@@ -86,7 +86,7 @@ describe "LDAP authentication", type: :system do
 
         within ".new_user" do
           fill_in :session_user_name, with: "max@payne.com"
-          fill_in :session_user_password, with: "password1234"
+          fill_in :session_user_password, with: "password123456"
 
           find("*[type=submit]").click
         end

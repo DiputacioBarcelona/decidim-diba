@@ -89,14 +89,14 @@ of users inside `decidim-ldap/lib/ladle/default.ldif`
 Start the app with the development ldap environment variables:
 ```
 export LDAP_USERNAME=uid=admin,ou=people,dc=example,dc=com
-export LDAP_PASSWORD=password1234
+export LDAP_PASSWORD=password123456
 bin/rails s
 ```
 
 When signing in, the following fields from the `default.ldif` should ve used:
 
 - uid: for the email, e.g. "Alice".
-- userPassword: for the password, e.g. "password1234".
+- userPassword: for the password, e.g. "password123456".
 
 
 **Specific issues**
@@ -109,7 +109,7 @@ When signing in, the following fields from the `default.ldif` should ve used:
 To publish to docker hub:
 
 ```
-DIBA_DOCKER_TAG=diputaciobcn/decidim-diba:v13.0.1-decidim_0.26.3
+DIBA_DOCKER_TAG=diputaciobcn/decidim-diba:v12.0.0-decidim_0.25.2
 docker build -f Dockerfile.production -t $DIBA_DOCKER_TAG .
 docker tag $DIBA_DOCKER_TAG diputaciobcn/decidim-diba:latest
 docker push $DIBA_DOCKER_TAG
