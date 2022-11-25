@@ -10,7 +10,7 @@ objectClass: top
 objectClass: person
 objectClass: organizationalPerson
 objectClass: inetOrgPerson
-userPassword: password1234
+userPassword: password123456
 cn: Alice Aardvark
 sn: Aardvark
 givenName: Alice
@@ -22,7 +22,7 @@ objectClass: top
 objectClass: person
 objectClass: organizationalPerson
 objectClass: inetOrgPerson
-userPassword: password1234
+userPassword: password123456
 cn: Max Payne
 sn: Payne
 givenName: Max
@@ -34,7 +34,7 @@ objectClass: top
 objectClass: person
 objectClass: organizationalPerson
 objectClass: inetOrgPerson
-userPassword: password1234
+userPassword: password123456
 cn: Admin
 sn: Admin
 uid: admin
