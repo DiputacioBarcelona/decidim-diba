@@ -99,5 +99,8 @@ RUN chmod +x /etc/my_init.d/*.sh
 
 RUN chown -R app:app $HOME
 
+# cheat activestorage as it is still trying to create variants at storage/ even configuring public/uploads/storage as the local root path
+RUN ln -s public/uploads/storage storage
+
 # Clean up APT and bundler when done.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*.
