@@ -11,7 +11,7 @@ describe "When user try delete account", type: :system do
   let!(:ldap_server) do |_variable|
     add_controller_ldap_permissions
     Decidim::Ldap.configuration.ldap_username = "uid=admin,ou=people,dc=example,dc=com"
-    Decidim::Ldap.configuration.ldap_password = "password1234"
+    Decidim::Ldap.configuration.ldap_password = "password123456"
 
     Ladle::Server.new(quiet: true,
                       ldif: "lib/ladle/default.ldif",

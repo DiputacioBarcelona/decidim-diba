@@ -61,12 +61,10 @@ jobs:
           command: |
             cd decidim-age_action_authorization
             bundle install --jobs 4 --retry 3
-            cd ..
-            bundle install --jobs 4 --retry 3
-
 
       - name: Generate age_action_authorization test_app
         run: |
+          cd decidim-age_action_authorization
           bundle exec rake decidim:generate_external_test_app
           cd spec/decidim_dummy_app/
           RAILS_ENV=test bundle exec rails db:migrate

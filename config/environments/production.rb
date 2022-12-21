@@ -8,9 +8,6 @@ Rails.application.configure do
 
   config.public_file_server.enabled = false
 
-  config.assets.js_compressor = Uglifier.new(harmony: true)
-  config.assets.compile = false
-
   config.action_dispatch.x_sendfile_header = "X-Accel-Redirect"
 
   config.log_level = :info
@@ -18,6 +15,7 @@ Rails.application.configure do
 
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
+  config.action_controller.perform_caching = false
 
   config.active_job.queue_adapter = :sidekiq
   config.action_mailer.perform_caching = false
@@ -60,4 +58,7 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  # store uploaded files to local storage
+  config.active_storage.service= :local
 end

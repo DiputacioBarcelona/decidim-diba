@@ -31,7 +31,6 @@ bin/rails decidim:generate_external_test_app
 cd spec/decidim_dummy_app/
 bundle exec rails decidim_ldap:install:migrations
 RAILS_ENV=test bundle exec rails db:migrate
-cd ../../decidim-ldap
 ```
 
 And run tests:

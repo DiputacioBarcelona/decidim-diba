@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.application.config.action_mailer.delivery_method == :letter_opener_web
 
-  mount Sidekiq::Web => "/sidekiq" if Rails.env.development?
+  mount Sidekiq::Web => "/sidekiq"
 
   resource :system_status, only: :show
 end

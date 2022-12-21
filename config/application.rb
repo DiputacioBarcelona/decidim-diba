@@ -2,7 +2,11 @@
 
 require_relative "boot"
 
-require "rails/all"
+require "decidim/rails"
+# Add the frameworks used by your app that are not loaded by Decidim.
+# require "action_cable/engine"
+# require "action_mailbox/engine"
+# require "action_text/engine"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -14,9 +18,18 @@ module DecidimDiba
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
 
+    config.load_defaults 6.0
+
     config.time_zone = "Madrid"
     config.active_record.default_timezone = :local
     config.active_record.time_zone_aware_attributes = false
+
+    # Make decorators available
+    config.to_prepare do
+      # activate Decidim LayoutHelper for the overriden views
+      ::Decidim::Admin::ApplicationController.helper ::Decidim::LayoutHelper
+      ::Decidim::ApplicationController.helper ::Decidim::LayoutHelper
+    end
 
     initializer("decidim_diba.initiatives.menu", after: "decidim_initiatives.menu") do
       menu_manifest= Decidim::MenuRegistry.find :menu

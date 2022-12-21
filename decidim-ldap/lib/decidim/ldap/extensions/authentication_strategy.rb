@@ -69,7 +69,7 @@ Warden::Strategies.add(:ldap_authenticatable) do
     user = Decidim::User.new
     user.email = ldap_field_value(ldap_entry, ldap_configuration.email_field)
     user.nickname = ldap_field_value(ldap_entry, ldap_configuration.username_field)
-    user.password = Devise.friendly_token.first(8)
+    user.password = Devise.friendly_token.first(10)
     user.organization = ldap_configuration.organization
     user.accepted_tos_version = ldap_configuration.organization.tos_version
     user.name = ldap_field_value(ldap_entry, ldap_configuration.name_field)

@@ -13,4 +13,14 @@ RSpec.describe "Overrides" do
     # - Run decidim_decidim_awesome:webpacker:install when upgrade Decidim to v0.25
     expect(Decidim.version).to be < "0.25"
   end
+
+  it "remove config/initializers/doorkeeper.rb after Decidim v0.28" do
+    # After Decidim v0.28 as it is already initialized in that version:
+    # - remove config/initializers/doorkeeper.rb
+    # - remove decidim-ldap/config/initializers/doorkeeper.rb
+    # - remove decidim-diba_census_api/config/initializers/doorkeeper.rb
+    # - remove decidim-census/config/initializers/doorkeeper.rb
+    # - remove decidim-age_action_authorization/config/initializers/doorkeeper.rb
+    expect(Decidim.version).to be < "0.28"
+  end
 end
