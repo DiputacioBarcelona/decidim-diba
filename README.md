@@ -111,7 +111,7 @@ To publish to docker hub:
 ```
 DIBA_TAG=v13.0.6-decidim_0.26.4
 DIBA_DOCKER_TAG=diputaciobcn/decidim-diba:$DIBA_TAG
-docker build -f --network=host Dockerfile.production -t $DIBA_DOCKER_TAG .
+docker build --network=host -f Dockerfile.production -t $DIBA_DOCKER_TAG .
 docker tag $DIBA_DOCKER_TAG diputaciobcn/decidim-diba:latest
 docker push $DIBA_DOCKER_TAG
 docker push diputaciobcn/decidim-diba:latest
