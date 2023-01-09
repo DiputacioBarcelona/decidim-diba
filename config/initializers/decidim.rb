@@ -10,9 +10,6 @@ Decidim.configure do |config|
   # Whether SSL should be enabled or not.
   config.force_ssl = false
 
-  # Whether SSL should be enabled or not.
-  config.force_ssl = false
-
   # Reset default workflows
   Decidim::Verifications.clear_workflows
 
@@ -39,6 +36,12 @@ Decidim.configure do |config|
   #     here_app_code: geocoder_config[:here_app_code]
   #   }
   # end
+
+  # Max requests in a time period to prevent DoS attacks. Only applied on production.
+  config.throttling_max_requests = Rails.application.secrets.decidim[:throttling_max_requests].to_i
+
+  # Time window in which the throttling is applied.
+  config.throttling_period = Rails.application.secrets.decidim[:throttling_period].to_i.minutes
 end
 
 Decidim::Ldap.configure do |config|
