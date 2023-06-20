@@ -46,14 +46,20 @@ It includes the same changes found in the previous file (devise/sessions/new.htm
 
 **decidim-ldap/app/views/layouts/decidim/_wrapper.html.erb**
 
-It modifies the lines 76 to 78 to remove the signup link for ldap enabled organizations.
+Override with Deface in **app/overrides/remove_signup_link_in_wrapper.rb**
+
+That override add a new condition in order to remove the signup link for ldap enabled organizations.
 
 **app/views/decidim/authorization_modals/_content.html.erb**
 
-Starting at line 26, a new behaviour has been included to show custom error messages to the custom action authorizer created for
+Override with Deface in **app/overrides/add_custom_error_messages_in_authorization_modals.rb**
+
+The override add a new behaviour, that has been included to show custom error messages to the custom action authorizer created for
 the project.
 
 **app/views/decidim/consultations/questions/\_vote_modal_confirm.html.erb**
+
+Override with Deface in **app/overrides/add_remote_in_vote_modal_confirm.rb**
 
 The default view generates a form_with with data remote equals true. But in this project the data remote is not generated due to an Unobstrusive Javascript driver not found.
 The override forces the data-remote to true of the form and then, the rendered view of the response will be a js.erb that exists in Decidim project.
@@ -79,10 +85,6 @@ Decidim changes the name of the partials from time to time, making some of the k
 files invalid.
 
 Before upgrading the platform those keys need to be checked together with the other language files.
-
-## Permissions
-
-To allow non signed in users to be invited to the promoter committee of an initiative https://github.com/decidim/decidim/pull/6115 has been ported to the current decidim v0.19.1 version as an override. This override can be found at `app/permissions/decidim/initiatives/permissions.rb` and can be removed when in Decidim v0.22.
 
 ## Authorization 
 

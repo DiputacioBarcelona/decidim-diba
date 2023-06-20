@@ -1,51 +1,48 @@
-source 'https://rubygems.org'
+# frozen_string_literal: true
 
-ruby '2.5.1'
+source "https://rubygems.org"
 
-gem 'rails', '=5.2.2'
+ruby RUBY_VERSION
 
-# Change repository to decidim/decidim, change branch name and remove this comment when updating to 0.20
-DECIDIM_VERSION = { git: 'https://github.com/CodiTramuntana/decidim.git', branch: 'diba_0.19-stable' }
+DECIDIM_VERSION = { git: "https://github.com/CodiTramuntana/decidim.git", branch: "release/0.26-stable" }.freeze
 
-gem 'decidim', DECIDIM_VERSION
-gem 'decidim-age_action_authorization', path: 'decidim-age_action_authorization'
-gem 'decidim-census', path: 'decidim-census'
-gem 'decidim-consultations'
-gem 'decidim-diba_census_api', path: 'decidim-diba_census_api'
-gem 'decidim-initiatives'
-gem 'decidim-ldap', path: 'decidim-ldap'
+gem "decidim", DECIDIM_VERSION
+gem "decidim-age_action_authorization", path: "decidim-age_action_authorization"
+gem "decidim-census", path: "decidim-census"
+gem "decidim-consultations", DECIDIM_VERSION
+gem "decidim-decidim_awesome", "~> 0.8.1"
+gem "decidim-diba_census_api", path: "decidim-diba_census_api"
+gem "decidim-initiatives", DECIDIM_VERSION
+gem "decidim-ldap", path: "decidim-ldap"
 
-gem 'decidim-term_customizer', git: 'https://github.com/CodiTramuntana/decidim-module-term_customizer'
+gem "decidim-term_customizer", git: "https://github.com/mainio/decidim-module-term_customizer", branch: "release/0.26-stable"
 
-# Lock sprockets until decidim supports version 4.
-gem "sprockets", "~> 3.7", "< 4"
 # Compatibility with decidim initiatives module
-gem 'wicked_pdf'
-gem 'letter_opener_web'
-gem 'puma', '>= 3.12.2'
-gem 'sidekiq', '~> 5.2.7'
-gem 'sidekiq-cron'
-gem 'uglifier', '>= 1.3.0'
+gem "bootsnap"
+gem "deface"
+gem "letter_opener_web"
+gem "puma", ">= 3.12.2"
+gem "sidekiq", "~> 5.2.7"
+gem "sidekiq-cron"
+gem "uglifier", ">= 1.3.0"
+gem "wicked_pdf"
 
 group :development, :test do
-  gem 'byebug', platform: :mri
-  gem 'decidim-dev', DECIDIM_VERSION
-  gem 'dotenv-rails'
-  gem 'factory_bot_rails'
-  gem 'faker'
-  gem 'ladle'
-  gem 'pry-byebug'
-  gem 'pry-coolline'
-  gem 'pry-rails'
-  gem 'rspec-rails', '~> 3.7.0'
-  gem 'rubocop', require: false
-  gem 'spring-commands-rspec'
-  gem 'webmock'
+  gem "byebug", platform: :mri
+  gem "decidim-dev", DECIDIM_VERSION
+  gem "dotenv-rails"
+  gem "faker", ">= 1.8.4"
+  gem "ladle"
+  gem "pry-byebug"
+  gem "rspec-rails"
+  # gem 'pry-coolline'
+  gem "pry-rails"
+  gem "webmock"
 end
 
 group :development do
-  gem 'listen', '~> 3.1.0'
-  gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'web-console'
+  gem "listen", "~> 3.1.0"
+  gem "spring"
+  gem "spring-watcher-listen", "~> 2.0.0"
+  gem "web-console"
 end

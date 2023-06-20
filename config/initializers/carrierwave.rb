@@ -7,5 +7,5 @@ CarrierWave.configure do |config|
   config.directory_permissions = 0o777
   config.storage = :file
   config.enable_processing = !Rails.env.test?
-  config.asset_host = ENV['APP_HOST']
+  config.asset_host = ENV["APP_HOST"]
 end

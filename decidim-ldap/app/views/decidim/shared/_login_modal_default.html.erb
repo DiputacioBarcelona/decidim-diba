@@ -1,33 +1,57 @@
 <div class="reveal" id="loginModal" data-reveal>
   <div class="reveal__header">
-    <h3 class="reveal__title"><%= t("decidim.shared.login_modal.please_sign_in") %></h3>
-    <button class="close-button" data-close aria-label="Close modal"
+    <h2 class="reveal__title"><%= t("decidim.shared.login_modal.please_sign_in") %></h2>
+    <button class="close-button" data-close aria-label="<%= t("decidim.shared.login_modal.close_modal") %>"
       type="button">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
-  <div class="row">
-    <div class="columns medium-8 medium-centered">
-      <%= decidim_form_for(Decidim::User.new, as: :user, url: session_path(:user), html: { class: "register-form new_user" }) do |f| %>
-        <div>
-          <div class="field">
-            <%= f.email_field :email, autofocus: true %>
-          </div>
-          <div class="field">
-            <%= f.password_field :password, autocomplete: "off" %>
-          </div>
-        </div>
-        <div class="actions">
-          <%= f.submit t("devise.sessions.new.sign_in"), class: "button expanded" %>
-        </div>
-      <% end %>
-      <p class="text-center">
-        <%= link_to t("decidim.shared.login_modal.sign_up"), decidim.new_user_registration_path, class: "sign-up-link" %>
-      </p>
-      <p class="text-center">
-        <%= link_to t("devise.shared.links.forgot_your_password"), new_password_path(:user) %>
-      </p>
+  <% if current_organization.sign_in_enabled? %>
+    <div class="row">
+      <div class="columns medium-8 medium-centered">
+          <%
+            path = if content_for(:redirect_after_login)
+                     session_path(:user, redirect_url: content_for(:redirect_after_login))
+                   else
+                     session_path(:user)
+                   end
+          %>
+          <%= decidim_form_for(Decidim::User.new, namespace: "login", as: :user, url: path, html: { class: "register-form new_user" }) do |f| %>
+            <div>
+              <div class="field">
+                <%= f.email_field :email %>
+              </div>
+              <div class="field">
+                <%= f.password_field :password, autocomplete: "off" %>
+              </div>
+            </div>
+            <div class="actions">
+              <%= f.submit t("devise.sessions.new.sign_in"), class: "button expanded" %>
+            </div>
+          <% end %>
+          <% if current_organization.sign_up_enabled? %>
+            <p class="text-center">
+              <%= link_to t("decidim.shared.login_modal.sign_up"), decidim.new_user_registration_path, class: "sign-up-link" %>
+            </p>
+          <% end %>
+          <p class="text-center">
+            <%= link_to t("devise.shared.links.forgot_your_password"), new_password_path(:user) %>
+          </p>
+      </div>
     </div>
-    <%= render "decidim/devise/shared/omniauth_buttons_mini" %>
-  </div>
+    <% cache current_organization do %>
+      <%= render "decidim/devise/shared/omniauth_buttons_mini" %>
+    <% end %>
+  <% else %>
+    <div class="row">
+      <div class="columns medium-8 medium-centered">
+        <p>
+          <%= t("sign_in_disabled", scope: "decidim.devise.sessions.new") %>
+        </p>
+      </div>
+    </div>
+    <% cache current_organization do %>
+      <%= render "decidim/devise/shared/omniauth_buttons" %>
+    <% end %>
+  <% end %>
 </div>

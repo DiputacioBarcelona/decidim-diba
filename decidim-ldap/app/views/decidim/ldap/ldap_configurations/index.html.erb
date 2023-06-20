@@ -3,7 +3,7 @@
 <% end %>
 
 <div class="actions title">
-  <%= link_to t('actions.new', scope: 'decidim.system', name: t('models.ldap_configuration.name', scope: 'decidim.ldap')), ['new', 'ldap_configuration'], class: 'new' %>
+  <%= link_to t('actions.new', scope: 'decidim.system', name: t('models.ldap_configuration.name', scope: 'decidim.ldap')), [:new, :ldap_configuration], class: 'new' %>
 </div>
 
 <table class="stack">
@@ -25,7 +25,7 @@
           <%= l ldap_configuration.created_at, format: :short %>
         </td>
         <td class="actions">
-          <%= link_to t('actions.edit', scope: 'decidim.system'), ['edit', ldap_configuration] %>
+          <%= link_to t('actions.edit', scope: 'decidim.system'), [:edit, ldap_configuration] %>
           <%= link_to t('actions.destroy', scope: 'decidim.system'), ldap_configuration, method: :delete, class: 'small alert button', data: { confirm: t('actions.confirm_destroy', scope: 'decidim.system') } %>
         </td>
       </tr>

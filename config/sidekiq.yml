@@ -1,7 +1,13 @@
 :concurrency: 5
 :queues:
+  - active_storage_analysis
+  - active_storage_purge
+  - block_user
+  - decidim_events
   - default
-  - mailers
-  - newsletter
   - events
+  - exports
+  - mailers
   - metrics
+  - newsletter
+  - user_report

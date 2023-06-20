@@ -1,8 +1,8 @@
+# frozen_string_literal: true
 
 module Decidim
   module Census
     class RemoveDuplicatesJob < ApplicationJob
-
       queue_as :default
 
       def perform(organization)
@@ -21,9 +21,8 @@ module Decidim
         CensusDatum.inside(organization)
                    .select(:id_document)
                    .group(:id_document)
-                   .having('count(id_document)>1')
+                   .having("count(id_document)>1")
       end
-
     end
   end
 end

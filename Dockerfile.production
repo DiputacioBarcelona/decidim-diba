@@ -1,4 +1,4 @@
-FROM phusion/passenger-ruby25:0.9.35
+FROM phusion/passenger-ruby27:2.1.0
 MAINTAINER CodiTramuntana "info@coditramuntana.com"
 
 ENV HOME /home/app/decidim-diba
@@ -16,6 +16,28 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 # Install software dependencies
 RUN apt-get update
 RUN apt-get install -y imagemagick gettext-base tzdata
+
+##############################
+# Install NodeJs & Yarn
+##############################
+RUN yes | apt remove nodejs
+ENV NVM_DIR /usr/local/nvm
+RUN mkdir -p /usr/local/nvm
+# Replace shell with bash so we can source files
+#RUN rm /bin/sh && ln -s /bin/bash /bin/sh
+# Set debconf to run non-interactively
+#RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
+
+ENV NODE_VERSION 16.9.1
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash \
+    && . $NVM_DIR/nvm.sh \
+    && nvm install $NODE_VERSION \
+    && nvm alias default $NODE_VERSION \
+    && nvm use default
+ENV NODE_PATH $NVM_DIR/v$NODE_VERSION/lib/node_modules
+ENV PATH      $NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH
+RUN npm -v
+RUN npm install -g yarn
 
 # Use baseimage-docker's init system.
 CMD ["/sbin/my_init"]
@@ -35,22 +57,30 @@ RUN mkdir -p $HOME
 WORKDIR $HOME
 
 # Install bundle of gems
+RUN gem install bundler:2.3.6
 ADD Gemfile Gemfile
 ADD Gemfile.lock Gemfile.lock
 ADD decidim-census decidim-census
 ADD decidim-diba_census_api decidim-diba_census_api
 ADD decidim-age_action_authorization decidim-age_action_authorization
 ADD decidim-ldap decidim-ldap
-RUN bundle install --without development test
+RUN bundle config set without 'development test'
+RUN bundle config set deployment 'true'
+RUN bundle install --jobs=4
 
 # Add the nginx site and config
 ADD docker/nginx.conf /etc/nginx/sites-enabled/decidim-diba.conf
 ADD docker/rails-env.conf /etc/nginx/main.d/rails-env.conf
+RUN sed -i 's/# server_tokens off;/server_tokens off;/' /etc/nginx/nginx.conf
+RUN sed -i 's/gzip on;/gzip off;/' /etc/nginx/nginx.conf
 
 # Add the Rails app
 ADD . /home/app/decidim-diba
 
-RUN RAILS_ENV=production SECRET_KEY_BASE=NOT-IMPORTANT bin/rake assets:precompile
+RUN npm cache clean --force
+RUN npm i graphql-docs@https://github.com/decidim/graphql-docs/raw/master/graphql-docs-0.2.1.tgz
+RUN npm install
+RUN RAILS_ENV=production SECRET_KEY_BASE=NOT-IMPORTANT DOCKER=1 bin/rake assets:precompile
 
 # Add a tmp folder for pids
 RUN mkdir -p tmp/pids
@@ -68,6 +98,9 @@ ADD docker/sidekiq.sh /etc/my_init.d/sidekiq.sh
 RUN chmod +x /etc/my_init.d/*.sh
 
 RUN chown -R app:app $HOME
+
+# cheat activestorage as it is still trying to create variants at storage/ even configuring public/uploads/storage as the local root path
+RUN ln -s public/uploads/storage storage
 
 # Clean up APT and bundler when done.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*.

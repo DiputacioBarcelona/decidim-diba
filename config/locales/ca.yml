@@ -5,15 +5,16 @@ ca:
         document_type: Tipus de document
         id_document: Número de document
         birthdate: Data de naixement
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              taken: Email invàlid
+  errors:
+    messages:
+      not_found: Email invàlid
   decidim:
-    verifications:
-      authorizations:
-        first_login:
-            actions:
-              diba_authorization_handler: 'Padró municipal'
-              census_authorization_handler: 'Padró municipal'
-              diba_census_api_authorization_handler: 'Padró municipal'
-        sms: "El seu codi per verificar-se a Decidim és %{code}"
     authorization_handlers:
       diba_authorization_handler:
         name: 'Padró municipal'
@@ -25,6 +26,27 @@ ca:
           max_age: 'Edat màxima'
       sms:
         type: SMS
+    events:
+      verifications:
+        verify_with_managed_user:
+          email_intro: La participant <a href="%{resource_path}">%{resource_title}</a> s'ha intentat verificar utilitzant les dades de la participant gestionada <a href="%{managed_user_path}">%{managed_user_name}</a>.
+          email_outro: Comprova la llista de <a href="/admin/conflicts">conflictes de verificació</a> i contacta la participant per solucionar el problema.
+          email_subject: Intent de verificació fallit per conflicte amb usuari impersonat
+          notification_title: La participant <a href="%{resource_path}">%{resource_title}</a> s'ha intentat verificar utilitzant les dades de la participant gestionada <a href="%{managed_user_path}">%{managed_user_name}</a>.
+      users:
+        user_officialized:
+          email_intro: La participant %{name} (%{nickname}) ha sigut officializada.
+          email_outro: has rebut aquesta notificació perquè ets administradora de l'organització.
+          email_subject: "%{name} ha sigut officializada"
+          notification_title: La participant %{name} (%{nickname}) ha sigut officializada.
+    verifications:
+      authorizations:
+        first_login:
+            actions:
+              diba_authorization_handler: 'Padró municipal'
+              census_authorization_handler: 'Padró municipal'
+              diba_census_api_authorization_handler: 'Padró municipal'
+        sms: "El seu codi per verificar-se a Decidim és %{code}"
     features:
       proposals:
         actions:
