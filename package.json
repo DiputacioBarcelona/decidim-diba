@@ -21,7 +21,8 @@
     "jquery-ui": "^1.13.2",
     "jsrender": "^1.0.11",
     "leaflet.featuregroup.subgroup": "^1.0.2",
-    "select2": "^4.1.0-rc.0"
+    "select2": "^4.1.0-rc.0",
+    "yarn": "^1.22.19"
   },
   "version": "0.1.0",
   "engines": {
