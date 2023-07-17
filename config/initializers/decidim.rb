@@ -4,7 +4,7 @@ require "extensions/workflow_manifest_extension"
 
 Decidim.configure do |config|
   config.application_name = "Decidim DIBA"
-  config.mailer_sender = "decidim@diba.cat"
+  config.mailer_sender = "suportparticipa311@diba.cat"
   config.sms_gateway_service = "Decidim::Verifications::Sms::SmsGateway"
 
   # Whether SSL should be enabled or not.
