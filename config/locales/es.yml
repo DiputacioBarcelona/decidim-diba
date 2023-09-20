@@ -36,10 +36,12 @@ es:
     newsletter_templates:
       basic_only_text_settings_form:
         header_background_color: Color de la cabecera
+        header_logo: Logo en la cabecera
         body_background_color: Color del cuerpo
         body_font_color: Color de la fuente del cuerpo
       image_text_cta_settings_form:
         header_background_color: Color de la cabecera
+        header_logo: Logo en la cabecera
         body_background_color: Color del cuerpo
         body_font_color: Color de la fuente del cuerpo
     verifications:

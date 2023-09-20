@@ -4,9 +4,12 @@
   <%# START DIBA CUSTOMIZATION %>
   <div class="newsletter-colors-selector">
     <%= settings_fields.text_field :header_background_color, label: t(".header_background_color"), type: "color", value: "#1a181d" %>
-    <%= settings_fields.text_field :body_background_color, label: t(".body_background_color"), type: "color", value: "#ffffff" %>
+    <%= settings_fields.text_field :body_background_color, label: t(".body_background_color"), type: "color", value: "#fefefe" %>
     <%= settings_fields.text_field :body_font_color, label: t(".body_font_color"), type: "color" %>
   </div>
+  <% form.fields_for :images, form.object.images do |images_fields| %>
+    <%= images_fields.upload :header_logo, label: t(".header_logo") %>
+  <% end %>
   <%# END DIBA CUSTOMIZATION %>
 <% end %>
 

@@ -11,7 +11,7 @@ checksums = [
       "/app/cells/decidim/newsletter_templates/basic_only_text/show.erb" => "6f85f6b733a6db3b11f9cabb19ae4126",
       "/app/cells/decidim/newsletter_templates/basic_only_text_settings_form/show.erb" => "8266085960926e21d0a7e7572eb83c7b",
       "/app/cells/decidim/newsletter_templates/image_text_cta/show.erb" => "606f899f03d5e4e6d3c1691132eeb2ac",
-      "/app/cells/decidim/newsletter_templates/image_text_cta_settings_form/show.erb" => "2d3acf3d142dd85d150583bce65fbb1c",
+      "/app/cells/decidim/newsletter_templates/image_text_cta_settings_form/show.erb" => "2d3acf3d142dd85d150583bce65fbb1c"
     }
   }
 ]

@@ -42,10 +42,12 @@ ca:
     newsletter_templates:
       basic_only_text_settings_form:
         header_background_color: Color de la capçalera
+        header_logo: Logotip a la capçalera
         body_background_color: Color del cos
         body_font_color: Color de la font del cos
       image_text_cta_settings_form:
         header_background_color: Color de la capçalera
+        header_logo: Logotip a la capçalera
         body_background_color: Color del cos
         body_font_color: Color de la font del cos
     verifications:
