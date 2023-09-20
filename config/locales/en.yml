@@ -26,6 +26,15 @@ en:
           max_age: Maximum age
       sms:
         type: SMS
+    newsletter_templates:
+      basic_only_text_settings_form:
+        header_background_color: Header background color
+        body_background_color: Body background color
+        body_font_color: Body font color
+      image_text_cta_settings_form:
+        header_background_color: Header background color
+        body_background_color: Body background color
+        body_font_color: Body font color
     verifications:
       authorizations:
         first_login:

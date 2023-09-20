@@ -1,0 +1,25 @@
+<% form.fields_for :settings, form.object.settings do |settings_fields| %>
+  <%= settings_fields.translated :editor, :introduction, label: t(".introduction") %>
+
+  <%= settings_fields.translated :text_field, :cta_text, label: t(".cta_text") %>
+
+  <%= settings_fields.translated :text_field, :cta_url, label: t(".cta_url") %>
+
+  <%= settings_fields.translated :editor, :body, label: t(".body") %>
+
+  <%# START DIBA CUSTOMIZATION %>
+  <div class="newsletter-colors-selector">
+    <%= settings_fields.text_field :header_background_color, label: t(".header_background_color"), type: "color", value: "#1a181d" %>
+    <%= settings_fields.text_field :body_background_color, label: t(".body_background_color"), type: "color", value: "#fefefe" %>
+    <%= settings_fields.text_field :body_font_color, label: t(".body_font_color"), type: "color" %>
+  </div>
+  <%# END DIBA CUSTOMIZATION %>
+<% end %>
+
+<% form.fields_for :images, form.object.images do |images_fields| %>
+  <%= images_fields.upload :main_image, label: t(".main_image") %>
+<% end %>
+
+<div class="row column">
+  <%= t(".interpolations_hint") %>
+</div>

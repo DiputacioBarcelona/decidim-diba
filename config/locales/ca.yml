@@ -39,6 +39,15 @@ ca:
           email_outro: has rebut aquesta notificació perquè ets administradora de l'organització.
           email_subject: "%{name} ha sigut officializada"
           notification_title: La participant %{name} (%{nickname}) ha sigut officializada.
+    newsletter_templates:
+      basic_only_text_settings_form:
+        header_background_color: Color de la capçalera
+        body_background_color: Color del cos
+        body_font_color: Color de la font del cos
+      image_text_cta_settings_form:
+        header_background_color: Color de la capçalera
+        body_background_color: Color del cos
+        body_font_color: Color de la font del cos
     verifications:
       authorizations:
         first_login:

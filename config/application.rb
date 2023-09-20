@@ -48,5 +48,12 @@ module DecidimDiba
         end
       end
     end
+
+    # Make decorators available
+    config.to_prepare do
+      Dir.glob(Rails.root.join("app/decorators/**/*_decorator*.rb")).each do |c|
+        require_dependency(c)
+      end
+    end
   end
 end
