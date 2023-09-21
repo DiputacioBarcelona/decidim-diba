@@ -13,6 +13,7 @@ Decidim::NewsletterTemplates::BaseCell.class_eval do
     model.settings.body_font_color.presence || "#00000"
   end
 
+  # For header_logo setting
   def has_image?(attribute)
     return true unless model&.id
 

@@ -124,3 +124,6 @@ app/cells/decidim/newsletter_templates/image_text_cta_settings_form/show.erb
 
 ### Decorators
 app/decorators/cells/decidim/newsletter_templates/base_cell_decorator.rb
+
+### Other files
+app/cells/_mailer_logo.erb
