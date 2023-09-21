@@ -110,3 +110,7 @@ was the best way to implement this feature.
 
 It is using the Decidim internal API to be able to perform the required authorization. Whenever the project is updated this file needs to be
 checked for incompatibilities.
+
+## Override Quill editor
+We must override Decidim Awesome editor.
+- app/packs/src/decidim/decidim_awesome/editors/editor.js
