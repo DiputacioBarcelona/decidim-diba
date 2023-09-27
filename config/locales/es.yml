@@ -26,13 +26,17 @@ es:
           max_age: Edad máxima
       sms:
         type: SMS
-    events:
-      verifications:
-        verify_with_managed_user:
-          email_intro: La participante <a href="%{resource_path}">%{resource_title}</a> se ha intentado verificar utilizando los datos de la participante gestionada <a href="%{managed_user_path}">%{managed_user_name}</a>.
-          email_outro: Comprueba la lista de <a href="/admin/conflicts">conflictos de verificación</a> y contacta la participante para solucionar el problema.
-          email_subject: Intento de verificación fallado por conflicto con usuario impersonado
-          notification_title: La participante <a href="%{resource_path}">%{resource_title}</a> se ha intentado verificar utilizando los datos de la participante gestionada <a href="%{managed_user_path}">%{managed_user_name}</a>.
+    newsletter_templates:
+      basic_only_text_settings_form:
+        header_background_color: Color de la cabecera
+        header_logo: Logo en la cabecera
+        body_background_color: Color del cuerpo
+        body_font_color: Color de la fuente del cuerpo
+      image_text_cta_settings_form:
+        header_background_color: Color de la cabecera
+        header_logo: Logo en la cabecera
+        body_background_color: Color del cuerpo
+        body_font_color: Color de la fuente del cuerpo
     verifications:
       authorizations:
         first_login:
