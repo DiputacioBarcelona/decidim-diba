@@ -127,3 +127,7 @@ app/decorators/cells/decidim/newsletter_templates/base_cell_decorator.rb
 
 ### Other files
 app/cells/_mailer_logo.erb
+
+## Override Quill editor
+We must override Decidim Awesome editor.
+- app/packs/src/decidim/decidim_awesome/editors/editor.js
