@@ -13,4 +13,5 @@ Rails.application.routes.draw do
   mount Sidekiq::Web => "/sidekiq"
 
   resource :system_status, only: :show
+  resource :newsletter_settings, only: :show
 end
