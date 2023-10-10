@@ -111,7 +111,7 @@ was the best way to implement this feature.
 It is using the Decidim internal API to be able to perform the required authorization. Whenever the project is updated this file needs to be
 checked for incompatibilities.
 
-## Newsletter
+## Newsletter styles customization
 
 Now newsletters are customizable.
 You can change the header background color, body background color, body font color and the header logo.
@@ -131,3 +131,16 @@ app/cells/_mailer_logo.erb
 ## Override Quill editor
 We must override Decidim Awesome editor.
 - app/packs/src/decidim/decidim_awesome/editors/editor.js
+
+## Newsletter selected users segmentation
+Now is possible to select the users to send the newsletter.
+
+### Decoratos
+app/decorators/forms/decidim/admin/selective_newsletter_form_decorator.rb
+app/decorators/helpers/decidim/admin/newsletters_helper_decorator.rb
+app/decorators/jobs/decidim/admin/newsletter_job_decorator.rb
+app/decorators/models/decidim/newsletter_decorator.rb
+app/decorators/queries/admin/newsletter_recipients_decorator.rb
+
+### Overrides
+app/overrides/decidim/admins/newsletter/select_recipients_to_deliver.rb
