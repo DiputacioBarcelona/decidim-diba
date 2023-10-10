@@ -15,6 +15,10 @@ en:
     messages:
       not_found: Invalid email
   decidim:
+    admin:
+      newsletters:
+        index:
+          selected_users: Selected users
     authorization_handlers:
       diba_authorization_handler:
         name: Municipality Census

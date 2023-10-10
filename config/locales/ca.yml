@@ -17,6 +17,8 @@ ca:
   decidim:
     admin:
       newsletters:
+        index:
+          selected_users: Usuaris seleccionats
         select_single_users:
           send_to_selected_users: Enviar a los usuarios seleccionados
           select_users:
