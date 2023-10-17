@@ -2,7 +2,6 @@
 
 require "spec_helper"
 
-# rubocop:disable RSpec/MultipleMemoizedHelpers
 RSpec.describe CensusAuthorizationHandler do
   subject { handler.unique_id }
 
@@ -20,4 +19,3 @@ RSpec.describe CensusAuthorizationHandler do
     it { is_expected.to eq encoded_dni }
   end
 end
-# rubocop:enable RSpec/MultipleMemoizedHelpers

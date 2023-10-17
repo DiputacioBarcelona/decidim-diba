@@ -2,7 +2,6 @@
 
 require "spec_helper"
 
-# rubocop:disable RSpec/MultipleMemoizedHelpers
 describe "Newsletter settings", type: :system do
   let(:organization_logo) { Decidim::Dev.test_file("avatar.jpg", "image/jpeg") }
   let(:footer_logo) { Decidim::Dev.test_file("avatar.jpg", "image/jpeg") }
@@ -49,4 +48,3 @@ describe "Newsletter settings", type: :system do
     end
   end
 end
-# rubocop:enable RSpec/MultipleMemoizedHelpers

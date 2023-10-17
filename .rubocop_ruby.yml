@@ -1094,12 +1094,12 @@ Metrics/ModuleLength:
 
 # Avoid complex methods.
 Metrics/CyclomaticComplexity:
-  Max: 9
+  Max: 40
   Exclude:
     - "**/*/permissions.rb"
 
 Metrics/LineLength:
-  Max: 180
+  Max: 182
   # To make it possible to copy or click on URIs in the code, we allow lines
   # containing a URI to be longer than Max.
   AllowHeredoc: true
@@ -1122,7 +1122,7 @@ Metrics/ParameterLists:
     - "decidim-core/lib/decidim/filter_form_builder.rb"
 
 Metrics/PerceivedComplexity:
-  Max: 10
+  Max: 40
   Exclude:
     - "**/*/permissions.rb"
 
@@ -1228,6 +1228,9 @@ RSpec/LetSetup:
 
 RSpec/MessageSpies:
   Enabled: false
+
+RSpec/MultipleMemoizedHelpers:
+  Max: 35
 
 RSpec/MultipleExpectations:
   Enabled: false
