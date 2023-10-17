@@ -26,7 +26,7 @@ module Decidim::Admin::SelectiveNewsletterFormDecorator
       # Set new validations with the new attribute
       validates :send_to_followers, presence: true, if: ->(form) { form.send_to_all_users.blank? && form.send_to_participants.blank? && form.send_to_selected_users.blank? }
       validates :send_to_participants, presence: true, if: ->(form) { form.send_to_all_users.blank? && form.send_to_followers.blank? && form.send_to_selected_users.blank? }
-      validates :send_to_selected_users, presence: true, unless: ->(form) { form.send_to_all_users.blank? && form.send_to_participants.blank? && form.send_to_followers.blank? }
+      validates :send_to_selected_users, presence: true, if: ->(form) { form.send_to_all_users.blank? && form.send_to_participants.blank? && form.send_to_followers.blank? }
 
       private
 
