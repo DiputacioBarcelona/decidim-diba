@@ -19,6 +19,11 @@ en:
       newsletters:
         index:
           selected_users: Selected users
+        select_single_users:
+          send_to_selected_users: Send to selected users 
+          select_users:
+            help: Send the newsletter to all confirmed users. 
+            title: Select users
     authorization_handlers:
       diba_authorization_handler:
         name: Municipality Census
@@ -64,3 +69,6 @@ en:
               max_age: "This action is restricted to the inhabitants of the municipal census under the age of %{max_age}."
           subcensus:
             invalid_field: "This action is restricted to a group of inhabitants of the municipal census which you are not part of. Contact us if you think you should belong to this group and you are interested in being able to perform this action."
+  newsletter_settings:
+    show:
+      user_without_newsletter_settings: The selected user does not have newsletter reception enabled.
