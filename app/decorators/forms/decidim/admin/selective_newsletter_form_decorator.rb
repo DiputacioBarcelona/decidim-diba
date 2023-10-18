@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 module Decidim::Admin::SelectiveNewsletterFormDecorator
+  # rubocop:disable Metrics/CyclomaticComplexity
+  # rubocop:disable Metrics/PerceivedComplexity
   def self.decorate
     Decidim::Admin::SelectiveNewsletterForm.class_eval do
       # Remove original validators
@@ -37,6 +39,8 @@ module Decidim::Admin::SelectiveNewsletterFormDecorator
       end
     end
   end
+  # rubocop:enable Metrics/CyclomaticComplexity
+  # rubocop:enable Metrics/PerceivedComplexity
 end
 
 ::Decidim::Admin::SelectiveNewsletterFormDecorator.decorate

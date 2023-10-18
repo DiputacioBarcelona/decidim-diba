@@ -7,7 +7,7 @@
           <p class="help-text"><%= t(".select_users.help") %></p>
           <%= f.select(
               :selected_users_ids,
-              Decidim::User.all.map{ |user| ["#{user.name} (#{user.email})", user.id] },
+              Decidim::User.where(organization: current_organization).map{ |user| ["#{user.name} (#{user.email})", user.id] },
               { label: false },
               { multiple: true, class: "newsletter_select-users" }) %>
         </div>

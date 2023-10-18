@@ -23,7 +23,7 @@ module Decidim::Admin::NewsletterRecipientsDecorator
       private
 
       def selected_users
-        Decidim::User.where(id: @form.selected_users_ids)
+        Decidim::User.where(id: @form.selected_users_ids, organization: @form.current_organization)
       end
     end
   end

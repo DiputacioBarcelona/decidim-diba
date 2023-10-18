@@ -20,7 +20,7 @@ ca:
         index:
           selected_users: Usuaris seleccionats
         select_single_users:
-          send_to_selected_users: Enviar als usuaris seleccionats
+          send_to_selected_users: Envia als usuaris seleccionats
           select_users:
             help: Envia el butlletí a tots els usuaris confirmats.
             title: Selecciona els usuaris

@@ -1094,7 +1094,7 @@ Metrics/ModuleLength:
 
 # Avoid complex methods.
 Metrics/CyclomaticComplexity:
-  Max: 40
+  Max: 9
   Exclude:
     - "**/*/permissions.rb"
 
@@ -1122,7 +1122,7 @@ Metrics/ParameterLists:
     - "decidim-core/lib/decidim/filter_form_builder.rb"
 
 Metrics/PerceivedComplexity:
-  Max: 40
+  Max: 10
   Exclude:
     - "**/*/permissions.rb"
 
@@ -1230,7 +1230,7 @@ RSpec/MessageSpies:
   Enabled: false
 
 RSpec/MultipleMemoizedHelpers:
-  Max: 35
+  Enabled: false
 
 RSpec/MultipleExpectations:
   Enabled: false
