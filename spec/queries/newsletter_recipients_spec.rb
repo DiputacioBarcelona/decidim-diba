@@ -2,6 +2,7 @@
 
 require "rails_helper"
 
+# rubocop:disable RSpec/MultipleMemoizedHelpers
 module Decidim::Admin
   describe NewsletterRecipients do
     subject { described_class.new(form) }
@@ -218,3 +219,4 @@ module Decidim::Admin
     end
   end
 end
+# rubocop:enable RSpec/MultipleMemoizedHelpers

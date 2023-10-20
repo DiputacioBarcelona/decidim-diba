@@ -2,6 +2,7 @@
 
 require "spec_helper"
 
+# rubocop:disable RSpec/MultipleMemoizedHelpers
 RSpec.describe DibaCensusApi do
   let(:subject) do
     api = DibaCensusApi.new(username: "Decidim", password: "123412341234", ine: "998")
@@ -204,3 +205,4 @@ RSpec.describe DibaCensusApi do
     EODATA
   end
 end
+# rubocop:enable RSpec/MultipleMemoizedHelpers

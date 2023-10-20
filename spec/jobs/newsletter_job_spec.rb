@@ -2,6 +2,7 @@
 
 require "rails_helper"
 
+# rubocop:disable RSpec/MultipleMemoizedHelpers
 module Decidim
   module Admin
     describe NewsletterJob do
@@ -72,3 +73,4 @@ module Decidim
     end
   end
 end
+# rubocop:enable RSpec/MultipleMemoizedHelpers
