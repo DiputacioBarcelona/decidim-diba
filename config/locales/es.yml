@@ -15,6 +15,15 @@ es:
     messages:
       not_found: Email inválido
   decidim:
+    admin:
+      newsletters:
+        index:
+          selected_users: Usuarios seleccionados
+        select_single_users:
+          send_to_selected_users: Enviar a los usuarios seleccionados
+          select_users:
+            help: Envia el boletín a todos los usuarios confirmados.
+            title: Selecciona los usuarios
     authorization_handlers:
       diba_authorization_handler:
         name: Padrón Municipal
@@ -60,3 +69,6 @@ es:
               max_age: "Esta acción está restringida a los habitantes del padrón municipal menores de %{max_age} años"
           subcensus:
             invalid_field: "Esta acción está restringida a un conjunto de habitantes del padrón municipal del cual no formas parte. Contacta con nosotros si crees que tendrías que formar parte de este grupo y esta acción es de tu interés."
+  newsletter_settings:
+    show:
+      user_without_newsletter_settings: El usuario seleccionado no tiene habilitada la recepción de boletines.

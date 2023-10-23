@@ -15,6 +15,15 @@ ca:
     messages:
       not_found: Email invàlid
   decidim:
+    admin:
+      newsletters:
+        index:
+          selected_users: Usuaris seleccionats
+        select_single_users:
+          send_to_selected_users: Envia als usuaris seleccionats
+          select_users:
+            help: Envia el butlletí a tots els usuaris confirmats.
+            title: Selecciona els usuaris
     authorization_handlers:
       diba_authorization_handler:
         name: 'Padró municipal'
@@ -74,3 +83,6 @@ ca:
               max_age: "Aquesta acció està restringida als habitants del padró municipal menors de %{max_age} anys"
           subcensus:
             invalid_field: "Aquesta acció està restringida a un conjunt d'habitants del padró municipal del qual no en formes part. Contacta amb nosaltres si creus que n'hauries de formar part i aquesta acció és de teu interés."
+  newsletter_settings:
+    show:
+      user_without_newsletter_settings: L'usuari seleccionat no té habilitada la recepció de butlletins.

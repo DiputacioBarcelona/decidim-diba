@@ -11,3 +11,17 @@
     }
   }
 }
+
+.newsletter_deliver {
+  #send_newsletter_to_select_users {
+    padding-left: 0 !important;
+
+    .title-text {
+      font-weight: bold;
+    }
+
+    .select2-container {
+      display: none;
+    }
+  }
+}

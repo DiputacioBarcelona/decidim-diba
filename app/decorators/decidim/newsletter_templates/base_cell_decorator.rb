@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Cells::Decidim::NewsletterTemplates::BaseCellDecorator
+module Decidim::NewsletterTemplates::BaseCellDecorator
   def self.decorate
     Decidim::NewsletterTemplates::BaseCell.class_eval do
       def header_background_color
@@ -37,4 +37,4 @@ module Cells::Decidim::NewsletterTemplates::BaseCellDecorator
   end
 end
 
-::Cells::Decidim::NewsletterTemplates::BaseCellDecorator.decorate
+Decidim::NewsletterTemplates::BaseCellDecorator.decorate
