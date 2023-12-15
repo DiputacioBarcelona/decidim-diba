@@ -42,8 +42,10 @@ class CensusAuthorizationHandler < Decidim::AuthorizationHandler
   end
 
   def unique_id
+    return unless organization
+
     Digest::SHA256.hexdigest(
-      "#{census_id_document}-#{Rails.application.secrets.secret_key_base}"
+      "#{census_id_document}-#{organization.id}-#{Rails.application.secrets.secret_key_base}"
     )
   end
 
