@@ -9,15 +9,18 @@ RSpec.describe CensusAuthorizationHandler do
   let(:organization) { FactoryBot.create(:organization) }
   let(:user) { FactoryBot.create(:user, organization: organization) }
   let(:dni) { "12345678A" }
-  let(:encoded_dni) { Decidim::Census::CensusDatum.normalize_and_encode_id_document(dni) }
+  let!(:scope) { FactoryBot.create(:scope, organization: organization) }
+  let!(:unique_id) do
+    Digest::SHA256.hexdigest("#{handler.census_id_document}-#{organization.id}-#{Rails.application.secrets.secret_key_base}")
+  end
   let(:date) { Date.strptime("1990/11/21", "%Y/%m/%d") }
 
   let(:handler) do
-    CensusAuthorizationHandler.new(document_number: dni)
+    CensusAuthorizationHandler.new(document_number: dni, scope_id: scope.id)
   end
 
   context "when creating a new impersonation" do
-    it { is_expected.to eq encoded_dni }
+    it { is_expected.to eq unique_id }
   end
 end
 # rubocop:enable RSpec/MultipleMemoizedHelpers
