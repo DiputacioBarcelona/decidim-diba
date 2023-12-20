@@ -109,7 +109,7 @@ When signing in, the following fields from the `default.ldif` should ve used:
 To publish to docker hub:
 
 ```
-DIBA_TAG=v13.1.5-decidim_0.26.8
+DIBA_TAG=v13.1.6-decidim_0.26.8
 DIBA_DOCKER_TAG=diputaciobcn/decidim-diba:$DIBA_TAG
 docker build --network=host -f Dockerfile.production -t $DIBA_DOCKER_TAG .
 docker tag $DIBA_DOCKER_TAG diputaciobcn/decidim-diba:latest
