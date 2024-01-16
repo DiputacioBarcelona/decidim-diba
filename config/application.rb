@@ -24,8 +24,6 @@ module DecidimDiba
     config.active_record.default_timezone = :local
     config.active_record.time_zone_aware_attributes = false
 
-    config.active_storage[:variable_content_types] << "image/webp"
-
     # Make decorators available
     config.to_prepare do
       # activate Decidim LayoutHelper for the overriden views
