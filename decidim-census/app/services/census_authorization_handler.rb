@@ -50,7 +50,7 @@ class CensusAuthorizationHandler < Decidim::AuthorizationHandler
   end
 
   def scope
-    Decidim::Scope.find(scope_id)
+    Decidim::Scope.find_by(id: scope_id)
   end
 
   def census_for_user
