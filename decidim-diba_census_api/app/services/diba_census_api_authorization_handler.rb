@@ -1,11 +1,7 @@
 # frozen_string_literal: true
 
-require "virtus/multiparams"
-
 # An AuthorizationHandler that uses the DibaCensusApiService to create authorizations
 class DibaCensusApiAuthorizationHandler < Decidim::AuthorizationHandler
-  include Virtus::Multiparams
-
   # This is the input (from the user) to validate against
   attribute :document_type, Symbol
   attribute :id_document, String

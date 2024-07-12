@@ -163,7 +163,6 @@ PATH
       decidim (~> 0.27.0)
       decidim-age_action_authorization (~> 0.27.0)
       savon (~> 2.11.2)
-      virtus-multiparams (~> 0.1.1)
 
 GEM
   remote: https://rubygems.org/
@@ -818,8 +817,6 @@ GEM
       coercible (~> 1.0)
       descendants_tracker (~> 0.0, >= 0.0.3)
       equalizer (~> 0.0, >= 0.0.9)
-    virtus-multiparams (0.1.1)
-      virtus (~> 1.0)
     w3c_rspec_validators (0.3.0)
       rails
       rspec
