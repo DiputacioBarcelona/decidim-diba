@@ -22,7 +22,8 @@
     "jsrender": "^1.0.14",
     "leaflet.featuregroup.subgroup": "^1.0.2",
     "marked": "^5.1.2",
-    "select2": "^4.1.0-rc.0"
+    "select2": "^4.1.0-rc.0",
+    "webpack-dev-server": "^4.11.1"
   },
   "version": "0.1.0",
   "engines": {
