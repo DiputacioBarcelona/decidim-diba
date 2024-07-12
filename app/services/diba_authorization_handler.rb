@@ -1,12 +1,8 @@
 # frozen_string_literal: true
 
-require "virtus/multiparams"
-
 # An AuthorizationHandler that uses the DibaCensusApiAuthorizationHandle
 # with a fallback into the CensusAuthorizationHandler if the API fails
 class DibaAuthorizationHandler < Decidim::AuthorizationHandler
-  include Virtus::Multiparams
-
   attribute :document_type, Symbol
   attribute :id_document, String
   attribute :birthdate, Date

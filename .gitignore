@@ -44,3 +44,6 @@ decidim-ldap/spec/decidim_dummy_app/
 yarn-debug.log*
 .yarn-integrity
 /storage/
+
+# Static files
+app/views/static/

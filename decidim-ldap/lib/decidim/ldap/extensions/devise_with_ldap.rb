@@ -17,8 +17,7 @@ module Decidim
         private
 
         def sign_in_params
-          devise_parameter_sanitizer.permit(:sign_up,
-                                            keys: [:email, :name, :password, :remember_me])
+          devise_parameter_sanitizer.sanitize(:sign_in)
         end
 
         def authentication_strategy

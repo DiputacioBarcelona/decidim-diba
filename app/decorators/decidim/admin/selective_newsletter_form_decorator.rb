@@ -21,7 +21,7 @@ module Decidim::Admin::SelectiveNewsletterFormDecorator
       end
 
       attribute :selected_users_ids, Array
-      attribute :send_to_selected_users, Virtus::Attribute::Boolean
+      attribute :send_to_selected_users, ::Decidim::AttributeObject::Form::Boolean
 
       validates :send_to_all_users, presence: true, unless: ->(form) { form.send_to_participants.present? || form.send_to_followers.present? || form.send_to_selected_users.present? }
 

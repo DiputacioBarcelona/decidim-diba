@@ -2,7 +2,7 @@
 
 module Decidim
   module Census
-    class CreateSubcensus < Rectify::Command
+    class CreateSubcensus < Decidim::Command
       attr_reader :form
 
       def initialize(organization, form)
