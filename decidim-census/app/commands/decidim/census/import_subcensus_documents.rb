@@ -2,7 +2,7 @@
 
 module Decidim
   module Census
-    class ImportSubcensusDocuments < Rectify::Command
+    class ImportSubcensusDocuments < Decidim::Command
       def initialize(subcensus, documents_file)
         @subcensus = subcensus
         @documents_file = documents_file

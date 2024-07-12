@@ -4,7 +4,7 @@ module Decidim
   module Ldap
     # A command with all the business logic when creating a new ldap configuration in
     # the system.
-    class CreateLdapConfiguration < Rectify::Command
+    class CreateLdapConfiguration < Decidim::Command
       # Public: Initializes the command.
       #
       # form - A form object with the params.
