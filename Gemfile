@@ -14,7 +14,7 @@ gem "decidim-decidim_awesome"
 gem "decidim-diba_census_api", path: "decidim-diba_census_api"
 gem "decidim-initiatives", DECIDIM_VERSION
 gem "decidim-ldap", path: "decidim-ldap"
-gem "decidim-templates"
+gem "decidim-templates", DECIDIM_VERSION
 
 gem "decidim-term_customizer", git: "https://github.com/mainio/decidim-module-term_customizer", branch: "release/0.27-stable"
 
