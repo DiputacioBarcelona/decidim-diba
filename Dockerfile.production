@@ -56,6 +56,9 @@ RUN rm /etc/nginx/sites-enabled/default
 RUN mkdir -p $HOME
 WORKDIR $HOME
 
+RUN bash -lc 'rvm install ruby-3.0.6'
+RUN bash -lc 'rvm --default use ruby-3.0.6'
+
 # Install bundle of gems
 RUN gem install bundler:2.3.6
 ADD Gemfile Gemfile
