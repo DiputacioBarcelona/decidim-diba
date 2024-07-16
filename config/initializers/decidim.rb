@@ -516,3 +516,21 @@ end
 
 # Inform Decidim about the assets folder
 Decidim.register_assets_path File.expand_path("app/packs", Rails.application.root)
+
+# Override Decidim::I18nBackend to use the available locales from the translations hash
+module Decidim
+  module TermCustomizer
+    class I18nBackend
+      (class << self; self; end).class_eval { public :include }
+      module Implementation
+        include I18n::Backend::Base
+        include I18n::Backend::Pluralization
+
+        # Get available locales from the translations hash
+        def available_locales
+          Rails.application.config.i18n.available_locales
+        end
+      end
+    end
+  end
+end
