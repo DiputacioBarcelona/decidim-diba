@@ -1,5 +1,5 @@
-FROM phusion/passenger-ruby27:2.1.0
-MAINTAINER CodiTramuntana "info@coditramuntana.com"
+FROM phusion/passenger-full:2.1.0
+MAINTAINER Populate "fernando@populate.tools"
 
 ENV HOME /home/app/decidim-diba
 
@@ -80,9 +80,10 @@ RUN sed -i 's/gzip on;/gzip off;/' /etc/nginx/nginx.conf
 # Add the Rails app
 ADD . /home/app/decidim-diba
 
-RUN npm cache clean --force
-RUN npm i graphql-docs@https://github.com/decidim/graphql-docs/raw/master/graphql-docs-0.2.1.tgz
-RUN npm install
+
+RUN bash -lc 'npm install'
+RUN bash -lc 'npm install --global yarn'
+
 RUN RAILS_ENV=production SECRET_KEY_BASE=NOT-IMPORTANT DOCKER=1 bin/rake assets:precompile
 
 # Add a tmp folder for pids
