@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
   s.test_files = Dir["spec/**/*"]
 
-  s.required_ruby_version = ">= 2.7.5"
+  s.required_ruby_version = ">= 3.0.2"
 
   DECIDIM_VERSION = "~> #{Decidim::Ldap::VERSION}"
 
