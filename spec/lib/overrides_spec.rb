@@ -8,9 +8,9 @@ checksums = [
   {
     package: "decidim-core",
     files: {
-      "/app/cells/decidim/newsletter_templates/basic_only_text/show.erb" => "6f85f6b733a6db3b11f9cabb19ae4126",
+      "/app/cells/decidim/newsletter_templates/basic_only_text/show.erb" => "2f3a17e4caa733ca971344b96c3eca42",
       "/app/cells/decidim/newsletter_templates/basic_only_text_settings_form/show.erb" => "cc8e26ddc53c0b65eddf472ed4c5614e",
-      "/app/cells/decidim/newsletter_templates/image_text_cta/show.erb" => "606f899f03d5e4e6d3c1691132eeb2ac"
+      "/app/cells/decidim/newsletter_templates/image_text_cta/show.erb" => "0f12966970ffe4212086e2386a668b63"
     }
   }
 ]
