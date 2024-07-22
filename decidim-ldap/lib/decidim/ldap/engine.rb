@@ -14,7 +14,7 @@ module Decidim
 
       routes do
         authenticate(:admin) do
-          resources :ldap_configurations
+          resources :ldap_configurations, except: [:show]
         end
       end
 
