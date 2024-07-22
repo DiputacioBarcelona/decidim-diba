@@ -21,13 +21,13 @@ Gem::Specification.new do |s|
 
   s.required_ruby_version = ">= 3.1.2"
 
-  DECIDIM_VERSION = "~>" + Decidim::Census::VERSION
+  CENSUS_DECIDIM_VERSION = "~>" + Decidim::Census::VERSION
 
-  s.add_dependency "decidim", DECIDIM_VERSION
-  s.add_dependency "decidim-admin", DECIDIM_VERSION
-  s.add_dependency "decidim-age_action_authorization", DECIDIM_VERSION
-  s.add_dependency "decidim-ldap", DECIDIM_VERSION
+  s.add_dependency "decidim", CENSUS_DECIDIM_VERSION
+  s.add_dependency "decidim-admin", CENSUS_DECIDIM_VERSION
+  s.add_dependency "decidim-age_action_authorization", CENSUS_DECIDIM_VERSION
+  s.add_dependency "decidim-ldap", CENSUS_DECIDIM_VERSION
 
-  s.add_development_dependency "decidim-dev", DECIDIM_VERSION
+  s.add_development_dependency "decidim-dev", CENSUS_DECIDIM_VERSION
   s.add_development_dependency "faker"
 end
