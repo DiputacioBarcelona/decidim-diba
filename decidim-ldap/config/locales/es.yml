@@ -28,6 +28,7 @@ es:
             created_at: 'Fecha de creación'
             name: 'Organización y DN'
           name: 'Configuración LDAP'
+      new: Nuevo
       ldap_configurations:
         index:
           title: 'LDAP'

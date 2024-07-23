@@ -28,6 +28,7 @@ ca:
             created_at: 'Data de creació'
             name: 'Organització i DN'
           name: 'Configuració LDAP'
+      new: Nou
       ldap_configurations:
         index:
           title: 'LDAP'

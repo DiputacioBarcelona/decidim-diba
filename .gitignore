@@ -47,3 +47,16 @@ yarn-debug.log*
 
 # Static files
 app/views/static/
+
+# Tailwind
+tailwind.config.js
+
+/public/packs
+/public/packs-test
+/public/decidim-packs
+/node_modules
+/packages/webpacker/node_modules
+/packages/core/node_modules
+/yarn-error.log
+yarn-debug.log*
+.yarn-integrity

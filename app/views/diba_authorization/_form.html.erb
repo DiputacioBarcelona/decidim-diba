@@ -1,12 +1,6 @@
-<div class="field">
+<div class="form__wrapper">
   <%= form.select :document_type, handler.census_document_types, prompt: true %>
-</div>
-
-<div class="field">
   <%= form.text_field :id_document %>
-</div>
-
-<div class="field date">
   <%= form.date_select :birthdate, start_year: 1900,
                                    end_year: Date.today.year,
                                    default: 35.years.ago, prompt: {
@@ -16,3 +10,5 @@
 </div>
 
 <%= form.hidden_field :handler_name %>
+
+<%= append_javascript_pack_tag "newsletter" %>

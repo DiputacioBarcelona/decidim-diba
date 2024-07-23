@@ -1,12 +1,10 @@
 <% provide :title do %>
-  <h2><%= t('.title') %></h2>
+  <h1 class="h1"><%= t('.title') %></h1>
 <% end %>
 
-<div class="actions title">
-  <%= link_to t('actions.new', scope: 'decidim.system', name: t('models.ldap_configuration.name', scope: 'decidim.ldap')), [:new, :ldap_configuration], class: 'new' %>
-</div>
+<%= link_to t('new', scope: 'decidim.ldap', name: t('models.ldap_configuration.name', scope: 'decidim.ldap')), [:new, :ldap_configuration], class: "button button__sm md:button__lg button__primary" %>
 
-<table class="stack">
+<table>
   <thead>
     <tr>
       <th><%= t('models.ldap_configuration.fields.name', scope: 'decidim.ldap') %></th>
@@ -18,7 +16,7 @@
     <% @ldap_configurations.each do |ldap_configuration| %>
       <tr>
         <td>
-          <%= link_to ldap_configuration.organization.name, ldap_configuration %><br />
+          <%= link_to ldap_configuration.organization.name, [:edit, ldap_configuration] %><br />
           <%= ldap_configuration.dn %>
         </td>
         <td>
