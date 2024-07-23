@@ -19,7 +19,7 @@ namespace :census_api do
     EOMSG
 
     puts "\nRESPONSE:"
-    service= DibaCensusApiRq.new(api_config(organization))
+    service= DibaCensusApiRq.new(**api_config(organization))
     rs= service.send_rq(
       birthdate: birthdate,
       document_type: document_type_code(document_type),
