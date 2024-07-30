@@ -27,6 +27,7 @@ gem "sidekiq", "~> 5.2.7"
 gem "sidekiq-cron"
 gem "uglifier", ">= 1.3.0"
 gem "wicked_pdf"
+gem "base64", "0.1.1"
 
 group :development, :test do
   gem "byebug", platform: :mri
