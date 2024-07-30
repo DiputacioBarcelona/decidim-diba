@@ -1,4 +1,4 @@
-FROM phusion/passenger-full:3.0.6
+FROM phusion/passenger-full:2.1.0
 MAINTAINER Populate "fernando@populate.tools"
 
 ENV HOME /home/app/decidim-diba
@@ -14,8 +14,10 @@ ENV TZ=Europe/Madrid
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 # Install software dependencies
+RUN apt install -y ca-certificates
+RUN apt-get --allow-releaseinfo-change update
 RUN apt-get update
-RUN apt-get install -y imagemagick gettext-base tzdata openssl
+RUN apt-get install -y imagemagick gettext-base tzdata
 
 ##############################
 # Install NodeJs & Yarn
