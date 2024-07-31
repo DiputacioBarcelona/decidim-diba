@@ -28,6 +28,11 @@ gem "sidekiq-cron"
 gem "uglifier", ">= 1.3.0"
 gem "wicked_pdf"
 
+# Forced by production environment
+gem "base64", "0.1.1"
+gem "strscan", "3.0.1"
+gem "stringio", "3.0.1"
+
 group :development, :test do
   gem "byebug", platform: :mri
   gem "decidim-dev", DECIDIM_VERSION
