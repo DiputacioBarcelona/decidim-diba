@@ -19,6 +19,10 @@ RUN apt-get --allow-releaseinfo-change update
 RUN apt-get update
 RUN apt-get install -y imagemagick gettext-base tzdata
 
+RUN apt-get install -y --no-install-recommends libjemalloc2
+ENV LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libjemalloc.so.2
+ENV MALLOC_CONF='dirty_decay_ms:1000,narenas:2,background_thread:true'
+
 ##############################
 # Install NodeJs & Yarn
 ##############################
