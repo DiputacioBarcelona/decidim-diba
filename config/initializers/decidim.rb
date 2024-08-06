@@ -404,7 +404,7 @@ Decidim.configure do |config|
     "default-src" => %w('self' 'unsafe-inline'),
     "script-src" => %w('self' 'unsafe-inline' 'unsafe-eval' ajax.cloudflare.com),
     "style-src" => %w('self' 'unsafe-inline' fonts.googleapis.com maxcdn.bootstrapcdn.com),
-    "img-src" => %w('self' *.hereapi.com data: *.amazonaws.com),
+    "img-src" => %w('self' *.hereapi.com data: *.amazonaws.com *.diba.cat),
     "font-src" => %w('self' fonts.gstatic.com maxcdn.bootstrapcdn.com),
     "connect-src" => %w('self' *.hereapi.com *.jsdelivr.net *.amazonaws.com fonts.googleapis.com maxcdn.bootstrapcdn.com),
     "frame-src" => %w('self' *.youtube.com www.youtube-nocookie.com),
