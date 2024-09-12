@@ -15,7 +15,7 @@ namespace :consultations do
     Decidim::ResourceLink.where("to_type ILIKE ?", expression).destroy_all
     Decidim::ResourceLink.where("from_type ILIKE ?", expression).destroy_all
     Decidim::ResourcePermission.where("resource_type ILIKE ?", expression).destroy_all
-    Decidim::Follow.where("decidim_followable_type ILIKE ?", expression).destroy_all
+    Decidim::Follow.where("decidim_followable_type ILIKE ?", expression).each(&:delete)
     Decidim::Attachment.where("attached_to_type ILIKE ?", expression).destroy_all
     Decidim::AttachmentCollection.where("collection_for_type ILIKE ?", expression).destroy_all
     action_log_sql_deletion_by_resource_type = "delete from decidim_action_logs where resource_type ILIKE '#{expression}'"
