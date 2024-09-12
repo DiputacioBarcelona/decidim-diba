@@ -22,5 +22,6 @@ namespace :consultations do
     action_log_sql_deletion_by_space_type = "delete from decidim_action_logs where participatory_space_type ILIKE '#{expression}'"
     ActiveRecord::Base.connection.execute(action_log_sql_deletion_by_resource_type)
     ActiveRecord::Base.connection.execute(action_log_sql_deletion_by_space_type)
+    Decidim::Component.where("participatory_space_type ILIKE ?", expression).destroy_all
   end
 end
