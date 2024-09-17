@@ -9,7 +9,6 @@ require "decidim/admin"
 require "decidim/core"
 require "decidim/verifications"
 require "decidim/core/test"
-require "social-share-button"
 require "helpers"
 require "json"
 

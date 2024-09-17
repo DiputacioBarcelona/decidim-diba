@@ -361,6 +361,9 @@ Decidim.configure do |config|
   #
   config.machine_translation_service = 'Decidim::Dev::DummyTranslator'
 
+  # Defines the social networking services used for social sharing
+  config.social_share_services = Rails.application.secrets.decidim[:social_share_services]
+
   # Defines the name of the cookie used to check if the user allows Decidim to
   # set cookies.
   config.consent_cookie_name = Rails.application.secrets.decidim[:consent_cookie_name] if Rails.application.secrets.decidim[:consent_cookie_name].present?
@@ -395,6 +398,19 @@ Decidim.configure do |config|
   #   }
   # ]
 
+  # Defines additional content security policies following the structure
+  # Read more: https://docs.decidim.org/en/develop/configure/initializer#_content_security_policy
+  config.content_security_policies_extra = {
+    "default-src" => %w('self' 'unsafe-inline'),
+    "script-src" => %w('self' 'unsafe-inline' 'unsafe-eval' ajax.cloudflare.com),
+    "style-src" => %w('self' 'unsafe-inline' fonts.googleapis.com maxcdn.bootstrapcdn.com),
+    "img-src" => %w('self' *.hereapi.com data: *.amazonaws.com *.diba.cat),
+    "font-src" => %w('self' fonts.gstatic.com maxcdn.bootstrapcdn.com),
+    "connect-src" => %w('self' *.hereapi.com *.jsdelivr.net *.amazonaws.com fonts.googleapis.com maxcdn.bootstrapcdn.com),
+    "frame-src" => %w('self' *.youtube.com www.youtube-nocookie.com),
+    "media-src" => %w('self')
+  }
+
   # Admin admin password configurations
   Rails.application.secrets.dig(:decidim, :admin_password, :strong).tap do |strong_pw|
     # When the strong password is not configured, default to true
@@ -413,7 +429,8 @@ Decidim.configure do |config|
   end
   config.follow_http_x_forwarded_host = Rails.application.secrets.decidim[:follow_http_x_forwarded_host].present?
   config.maximum_conversation_message_length = Rails.application.secrets.decidim[:maximum_conversation_message_length].to_i
-  config.password_blacklist = Rails.application.secrets.decidim[:password_blacklist] if Rails.application.secrets.decidim[:password_blacklist].present?
+  config.password_similarity_length = Rails.application.secrets.decidim[:password_similarity_length] if Rails.application.secrets.decidim[:password_similarity_length].present?
+  config.denied_passwords = Rails.application.secrets.decidim[:denied_passwords] if Rails.application.secrets.decidim[:denied_passwords].present?
   config.allow_open_redirects = Rails.application.secrets.decidim[:allow_open_redirects] if Rails.application.secrets.decidim[:allow_open_redirects].present?
 end
 
@@ -459,12 +476,6 @@ if Decidim.module_installed? :accountability
     unless Rails.application.secrets.dig(:decidim, :accountability, :enable_proposal_linking) == "auto"
       config.enable_proposal_linking = Rails.application.secrets.dig(:decidim, :accountability, :enable_proposal_linking).present?
     end
-  end
-end
-
-if Decidim.module_installed? :consultations
-  Decidim::Consultations.configure do |config|
-    config.stats_cache_expiration_time = Rails.application.secrets.dig(:decidim, :consultations, :stats_cache_expiration_time).to_i.minutes
   end
 end
 

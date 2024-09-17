@@ -1,7 +1,7 @@
 <% provide :title do %>
-  <h2>
+  <h1>
     <%= link_to @ldap_configuration.organization.name, @ldap_configuration %>
-  </h2>
+  </h1>
   <h3 class="subheader"><%= @ldap_configuration.dn %></h3>
 <% end %>
 
@@ -63,6 +63,6 @@
 
 <div class="actions">
   <hr />
-  <%= link_to t('actions.edit', scope: 'decidim.system'), ['edit', @ldap_configuration] %>
+  <%= link_to t('actions.edit', scope: 'decidim.system'), [:edit, @ldap_configuration] %>
   <%= link_to t('actions.destroy', scope: 'decidim.system'), @ldap_configuration, method: :delete, class: 'small alert button', data: { confirm: t('actions.confirm_destroy', scope: 'decidim.system') } %>
 </div>

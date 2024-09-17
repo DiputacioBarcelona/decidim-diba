@@ -19,16 +19,16 @@ Gem::Specification.new do |s|
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
   s.test_files = Dir["spec/**/*"]
 
-  s.required_ruby_version = ">= 3.0.2"
+  s.required_ruby_version = ">= 3.1.1"
 
-  DECIDIM_VERSION = "~> #{Decidim::Ldap::VERSION}"
+  LDAP_DECIDIM_VERSION = "~> #{Decidim::Ldap::VERSION}"
 
-  s.add_dependency "decidim-core", DECIDIM_VERSION
+  s.add_dependency "decidim-core", LDAP_DECIDIM_VERSION
 
   s.add_dependency "deface"
   s.add_dependency "ladle"
   s.add_dependency "net-ldap"
 
-  s.add_development_dependency "decidim-dev", DECIDIM_VERSION
+  s.add_development_dependency "decidim-dev", LDAP_DECIDIM_VERSION
   s.add_development_dependency "faker"
 end

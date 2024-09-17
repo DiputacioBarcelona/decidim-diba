@@ -1,4 +1,4 @@
-FROM phusion/passenger-full:3.0.6
+FROM phusion/passenger-full:2.1.0
 MAINTAINER Populate "fernando@populate.tools"
 
 ENV HOME /home/app/decidim-diba
@@ -14,8 +14,14 @@ ENV TZ=Europe/Madrid
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 # Install software dependencies
+RUN apt install -y ca-certificates
+RUN apt-get --allow-releaseinfo-change update
 RUN apt-get update
 RUN apt-get install -y imagemagick gettext-base tzdata
+
+RUN apt-get install -y --no-install-recommends libjemalloc2
+ENV LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libjemalloc.so.2
+ENV MALLOC_CONF='dirty_decay_ms:1000,narenas:2,background_thread:true'
 
 ##############################
 # Install NodeJs & Yarn
@@ -28,7 +34,7 @@ RUN mkdir -p /usr/local/nvm
 # Set debconf to run non-interactively
 #RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
 
-ENV NODE_VERSION 16.9.1
+ENV NODE_VERSION 18.17.1
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash \
     && . $NVM_DIR/nvm.sh \
     && nvm install $NODE_VERSION \
@@ -56,11 +62,11 @@ RUN rm /etc/nginx/sites-enabled/default
 RUN mkdir -p $HOME
 WORKDIR $HOME
 
-RUN bash -lc 'rvm install ruby-3.0.6'
-RUN bash -lc 'rvm --default use ruby-3.0.6'
+RUN bash -lc 'rvm install ruby-3.1.2'
+RUN bash -lc 'rvm --default use ruby-3.1.2'
 
 # Install bundle of gems
-RUN gem install bundler:2.3.6
+RUN gem install bundler:2.5.6
 RUN gem install rake:13.2.1
 ADD Gemfile Gemfile
 ADD Gemfile.lock Gemfile.lock

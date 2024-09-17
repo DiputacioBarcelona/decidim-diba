@@ -12,7 +12,7 @@ describe "Manage Ldap Configurations", type: :system do
     organization = FactoryBot.create(:organization)
 
     visit decidim_ldap.ldap_configurations_path
-    find(".actions .new").click
+    click_link "New"
 
     within ".new_ldap_configuration" do
       select organization.name, from: "ldap_configuration_organization"
@@ -72,11 +72,7 @@ describe "Manage Ldap Configurations", type: :system do
     visit decidim_ldap.ldap_configurations_path
 
     within find("tr", text: ldap_configuration.dn) do
-      click_link "Delete"
-    end
-
-    within find(".reveal-overlay") do
-      click_link "OK"
+      accept_confirm { click_link "Delete" }
     end
 
     within ".flash" do

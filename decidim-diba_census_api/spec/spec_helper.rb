@@ -7,7 +7,6 @@ require "decidim/admin"
 require "decidim/core"
 require "decidim/verifications"
 require "decidim/core/test"
-require "social-share-button"
 
 ENV["ENGINE_NAME"] = File.dirname(__dir__).split("/").last
 
