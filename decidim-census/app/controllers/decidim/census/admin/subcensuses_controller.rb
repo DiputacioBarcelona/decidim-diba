@@ -4,7 +4,7 @@ module Decidim
   module Census
     module Admin
       class SubcensusesController < Decidim::Census::Admin::ApplicationController
-        include Rectify::ControllerHelpers
+        include Decidim::ControllerHelpers
 
         CENSUS_AUTHORIZATIONS = %w(diba_authorization_handler
                                    census_authorization_handler).freeze

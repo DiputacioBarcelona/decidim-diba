@@ -4,7 +4,7 @@ source "https://rubygems.org"
 
 ruby RUBY_VERSION
 
-DECIDIM_VERSION = { git: "https://github.com/CodiTramuntana/decidim.git", branch: "release/0.26-stable" }.freeze
+DECIDIM_VERSION = { git: "https://github.com/CodiTramuntana/decidim.git", branch: "release/0.27-stable" }.freeze
 
 gem "decidim", DECIDIM_VERSION
 gem "decidim-age_action_authorization", path: "decidim-age_action_authorization"
@@ -14,9 +14,9 @@ gem "decidim-decidim_awesome"
 gem "decidim-diba_census_api", path: "decidim-diba_census_api"
 gem "decidim-initiatives", DECIDIM_VERSION
 gem "decidim-ldap", path: "decidim-ldap"
-gem "decidim-templates"
+gem "decidim-templates", DECIDIM_VERSION
 
-gem "decidim-term_customizer", git: "https://github.com/mainio/decidim-module-term_customizer", branch: "release/0.26-stable"
+gem "decidim-term_customizer", git: "https://github.com/mainio/decidim-module-term_customizer", branch: "release/0.27-stable"
 
 # Compatibility with decidim initiatives module
 gem "bootsnap"
@@ -42,7 +42,7 @@ group :development, :test do
 end
 
 group :development do
-  gem "listen", "~> 3.1.0"
+  gem "listen", "~> 3.7.0"
   gem "spring"
   gem "spring-watcher-listen", "~> 2.0.0"
   gem "web-console"

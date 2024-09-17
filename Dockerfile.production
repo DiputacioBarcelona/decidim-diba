@@ -1,5 +1,5 @@
-FROM phusion/passenger-ruby27:2.1.0
-MAINTAINER CodiTramuntana "info@coditramuntana.com"
+FROM phusion/passenger-full:3.0.6
+MAINTAINER Populate "fernando@populate.tools"
 
 ENV HOME /home/app/decidim-diba
 
@@ -56,8 +56,12 @@ RUN rm /etc/nginx/sites-enabled/default
 RUN mkdir -p $HOME
 WORKDIR $HOME
 
+RUN bash -lc 'rvm install ruby-3.0.6'
+RUN bash -lc 'rvm --default use ruby-3.0.6'
+
 # Install bundle of gems
 RUN gem install bundler:2.3.6
+RUN gem install rake:13.2.1
 ADD Gemfile Gemfile
 ADD Gemfile.lock Gemfile.lock
 ADD decidim-census decidim-census
@@ -80,6 +84,7 @@ ADD . /home/app/decidim-diba
 RUN npm cache clean --force
 RUN npm i graphql-docs@https://github.com/decidim/graphql-docs/raw/master/graphql-docs-0.2.1.tgz
 RUN npm install
+
 RUN RAILS_ENV=production SECRET_KEY_BASE=NOT-IMPORTANT DOCKER=1 bin/rake assets:precompile
 
 # Add a tmp folder for pids

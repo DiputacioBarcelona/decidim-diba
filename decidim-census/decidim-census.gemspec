@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
   s.test_files = Dir["spec/**/*"]
 
-  s.required_ruby_version = ">= 2.7.5"
+  s.required_ruby_version = ">= 3.0.2"
 
   DECIDIM_VERSION = "~>" + Decidim::Census::VERSION
 
@@ -27,7 +27,6 @@ Gem::Specification.new do |s|
   s.add_dependency "decidim-admin", DECIDIM_VERSION
   s.add_dependency "decidim-age_action_authorization", DECIDIM_VERSION
   s.add_dependency "decidim-ldap", DECIDIM_VERSION
-  s.add_dependency "virtus-multiparams", "~> 0.1.1"
 
   s.add_development_dependency "decidim-dev", DECIDIM_VERSION
   s.add_development_dependency "faker"
