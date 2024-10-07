@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/PopulateTools/decidim-module_homepage_proposals.git
-  revision: aa7039ad6297d9b395f491b87dbda66cde2389dc
+  revision: 8d5ca5ad359c77d2fa3103220deb96e70754363c
   branch: release/0.28-stable
   specs:
     decidim-homepage_proposals (3.0.0)
