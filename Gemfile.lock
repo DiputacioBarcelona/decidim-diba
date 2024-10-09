@@ -1,4 +1,14 @@
 GIT
+  remote: https://github.com/PopulateTools/decidim-module_homepage_proposals.git
+  revision: 8bbb3e8a252823bdae4d0308ac13e808d8c007a7
+  branch: release/0.28-stable
+  specs:
+    decidim-homepage_proposals (3.0.0)
+      decidim-admin (~> 0.28)
+      decidim-core (~> 0.28)
+      deface (>= 1.5)
+
+GIT
   remote: https://github.com/decidim-ice/decidim-module-decidim_awesome.git
   revision: b2800256f5e147452438686029b3990c89fb21be
   branch: develop
@@ -929,6 +939,7 @@ DEPENDENCIES
   decidim-decidim_awesome!
   decidim-dev!
   decidim-diba_census_api!
+  decidim-homepage_proposals!
   decidim-initiatives!
   decidim-ldap!
   decidim-templates!
