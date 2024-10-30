@@ -1,12 +1,12 @@
-<div class="card">
-  <div class="card-divider">
-    <h2 class="card-title">
-      <%= t('admin.new.errors.title', scope: 'decidim.census') %>
-    </h2>
-  </div>
-  <div class="card-section">
+<div class="card-divider">
+  <h2 class="card-title">
+    <%= t('admin.new.errors.title', scope: 'decidim.census') %>
+  </h2>
+</div>
+<div class="card-section">
+  <div class="row column">
     <div class="table-scroll">
-      <table class="table-list table-list--lastleft table-census-errors">
+      <table class="table-list">
         <thead>
           <tr>
             <th>
@@ -19,14 +19,14 @@
         </thead>
         <tbody>
           <% @invalid_rows.each do |row| %>
-          <tr>
-            <td>
-              <%= row[:line] %>
-            </td>
-            <td>
-              <%= row[:data].fields.join(';') %>
-            </td>
-          </tr>
+            <tr>
+              <td>
+                <%= row[:line] %>
+              </td>
+              <td>
+                <%= row[:data].fields.join(';') %>
+              </td>
+            </tr>
           <% end %>
         </tbody>
       </table>
