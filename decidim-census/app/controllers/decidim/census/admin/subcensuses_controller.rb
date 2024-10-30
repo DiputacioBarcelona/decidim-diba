@@ -68,6 +68,10 @@ module Decidim
 
         private
 
+        def show_instructions
+          render "decidim/census/admin/censuses/instructions"
+        end
+
         def subcensuses
           @subcensuses ||= query.result(distinct: true)
         end
