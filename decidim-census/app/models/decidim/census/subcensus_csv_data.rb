@@ -12,8 +12,10 @@ module Decidim
         @errors = []
         @values = []
 
-        CSV.foreach(@file, headers: true, col_sep: ";") do |row|
-          process_row(row)
+        @file.open do |content|
+          CSV.foreach(content, headers: true, col_sep: ";") do |row|
+            process_row(row)
+          end
         end
       end
 
