@@ -7,7 +7,7 @@ module Decidim
 
       attribute :name, String
       attribute :participatory_process, Integer
-      attribute :subcensus_file
+      attribute :subcensus_file, Decidim::Attributes::Blob
 
       validates :name, :participatory_process, presence: true
 
