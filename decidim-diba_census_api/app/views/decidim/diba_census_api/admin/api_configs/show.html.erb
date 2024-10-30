@@ -1,21 +1,27 @@
-
-<div class="card">
-  <div class="card-divider">
-    <h2 class="card-title">
-      <%= t('.title', name: @organization.name) %>
-    </h2>
-  </div>
-  <div class="card-section">
-    <p>
-      <strong><%= t('diba_census_api_ine', scope: 'activerecord.attributes.decidim/organization') %>:</strong>
-      <%= @organization.diba_census_api_ine %>&nbsp;
-      <br/>
-      <strong><%= t('diba_census_api_username', scope: 'activerecord.attributes.decidim/organization') %>:</strong>
-      <%= @organization.diba_census_api_username %>&nbsp;
-      <br/>
-      <strong><%= t('diba_census_api_password', scope: 'activerecord.attributes.decidim/organization') %>:</strong>
-      <%= @organization.diba_census_api_password.presence && '*****'  %>&nbsp;
-    </p>
-    <%= link_to t('.edit'), edit_api_config_path, class: 'button' %>
+<% add_decidim_page_title(t('.title', name: @organization.name)) %>
+<div class="item_show__header">
+  <h1 class="item_show__header-title">
+    <%= t('.title', name: @organization.name) %>
+    <%= link_to t('.edit'), edit_api_config_path, class: 'button button__sm button__secondary' %>
+  </h1>
+</div>
+<div class="item__edit item__edit-1col">
+  <div class="item__edit-form">
+    <div class="form__wrapper">
+      <div class="card">
+        <div class="card-section">
+          <p>
+            <strong><%= t('diba_census_api_ine', scope: 'activerecord.attributes.decidim/organization') %>:</strong>
+            <%= @organization.diba_census_api_ine %>&nbsp;
+            <div class="card-divider"></div>
+            <strong><%= t('diba_census_api_username', scope: 'activerecord.attributes.decidim/organization') %>:</strong>
+            <%= @organization.diba_census_api_username %>&nbsp;
+            <div class="card-divider"></div>
+            <strong><%= t('diba_census_api_password', scope: 'activerecord.attributes.decidim/organization') %>:</strong>
+            <%= @organization.diba_census_api_password.presence && '*****'  %>&nbsp;
+          </p>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
