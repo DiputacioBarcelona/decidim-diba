@@ -1,16 +1,33 @@
-<div class="card">
-  <div class="card-divider">
-    <h2 class="card-title">
-      <%= t('.title') %>
-    </h2>
-  </div>
-  <div class="card-section">
-  <%= form_for @organization, url: api_config_path, html: { class: 'form' } do |f| %>
-    <%= f.text_field :diba_census_api_ine %>
-    <%= f.text_field :diba_census_api_username %>
-    <%= f.password_field :diba_census_api_password, value: '' %>
-    <%= f.submit t('.submit') %>
-    <%= link_to t('.cancel'), api_config_path, class: 'button secondary' %>
-  <% end %>
+<% add_decidim_page_title(t(".title")) %>
+<div class="item_show__header">
+  <h1 class="item_show__header-title">
+    <%= t('.title') %>
+  </h1>
+</div>
+
+<div class="item__edit item__edit-1col">
+  <div class="item__edit-form">
+    <%= form_for @organization, url: api_config_path, html: { class: 'form form-defaults' } do |f| %>
+      <div class="form__wrapper">
+        <div class="card pt-4">
+          <div class="card-section">
+            <div class="row column">
+              <%= f.text_field :diba_census_api_ine %>
+            </div>
+            <div class="row column">
+              <%= f.text_field :diba_census_api_username %>
+            </div>
+            <div class="row column">
+              <%= f.password_field :diba_census_api_password, value: '' %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="item__edit-sticky">
+        <div class="item__edit-sticky-container">
+          <%= f.submit t('.submit'), class: "button button__sm button__secondary" %>
+        </div>
+      </div>
+    <% end %>
   </div>
 </div>
