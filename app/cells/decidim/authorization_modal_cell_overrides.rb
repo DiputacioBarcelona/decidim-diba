@@ -5,6 +5,8 @@ module Decidim
     extend ActiveSupport::Concern
 
     included do
+      include ::ApplicationHelper
+
       private
 
       def status_fields(status)

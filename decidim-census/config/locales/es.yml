@@ -49,6 +49,10 @@ es:
           data: Hay un total de %{count} registros cargados. La última carga fue el día %{due_date}
           empty: No hay datos censales. Usa el formulario a continuación para importar usando un fichero CSV.
         new:
+          example: |
+            "Documento";"Fecha de nacimiento"
+            "0123456789X";"01/11/1990"
+            "1111111111Y";"15/01/1995"
           info: 'Debe ser un fichero generado por excel y exportado en formato CSV con dos columnas: documento de identidad y fecha de nacimiento'
           title: Subir un nuevo censo
           file: Archivo excel .csv con los datos del censo

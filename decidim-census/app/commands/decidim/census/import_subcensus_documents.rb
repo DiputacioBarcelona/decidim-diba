@@ -11,7 +11,7 @@ module Decidim
       def call
         return if @documents_file.blank?
 
-        data = SubcensusCsvData.new(@documents_file.path)
+        data = SubcensusCsvData.new(@documents_file)
         @subcensus.documents.destroy_all
         SubcensusDocument.insert_documents(@subcensus, data.values)
         broadcast(:ok, data)
