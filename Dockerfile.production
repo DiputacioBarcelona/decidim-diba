@@ -17,7 +17,8 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 RUN apt install -y ca-certificates
 RUN apt-get --allow-releaseinfo-change update
 RUN apt-get update
-RUN apt-get install -y imagemagick gettext-base tzdata p7zip
+RUN apt-get install -y imagemagick gettext-base tzdata
+RUN apt-get install -y p7zip
 
 RUN apt-get install -y --no-install-recommends libjemalloc2
 ENV LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libjemalloc.so.2
