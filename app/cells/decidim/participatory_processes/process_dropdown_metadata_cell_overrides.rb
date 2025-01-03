@@ -15,7 +15,7 @@ module Decidim
           hash << "decidim/process_dropdown_metadata"
           hash << id
           hash << process.cache_key_with_version
-          hash << process.active_step&.cache_key_with_version
+          hash << process.active_step&.cache_key_with_version.to_s
           hash << current_user.try(:id).to_s
           hash << components_collection.cache_key_with_version
           hash << I18n.locale.to_s
