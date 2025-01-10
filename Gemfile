@@ -10,7 +10,7 @@ gem "decidim", DECIDIM_VERSION
 gem "decidim-age_action_authorization", path: "decidim-age_action_authorization"
 gem "decidim-census", path: "decidim-census"
 # gem "decidim-consultations", DECIDIM_VERSION
-gem "decidim-decidim_awesome", git: "https://github.com/decidim-ice/decidim-module-decidim_awesome.git", branch: "develop"
+gem "decidim-decidim_awesome", git: "https://github.com/decidim-ice/decidim-module-decidim_awesome.git", branch: "main"
 gem "decidim-diba_census_api", path: "decidim-diba_census_api"
 gem "decidim-initiatives", DECIDIM_VERSION
 gem "decidim-ldap", path: "decidim-ldap"
