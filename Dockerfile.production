@@ -18,6 +18,11 @@ RUN apt install -y ca-certificates
 RUN apt-get --allow-releaseinfo-change update
 RUN apt-get update
 RUN apt-get install -y imagemagick gettext-base tzdata
+RUN apt-get install -y p7zip
+RUN apt-get install -y xfonts-base
+RUN apt-get install -y xfonts-75dpi
+RUN curl "https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6-1/wkhtmltox_0.12.6-1.bionic_amd64.deb" -L -o "wkhtmltox_0.12.6-1.bionic_amd64.deb"
+RUN dpkg -i wkhtmltox_0.12.6-1.bionic_amd64.deb
 
 RUN apt-get install -y --no-install-recommends libjemalloc2
 ENV LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libjemalloc.so.2
