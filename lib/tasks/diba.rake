@@ -19,4 +19,47 @@ namespace :diba do
       end
     end
   end
+
+  desc "add an extension or content type to all organizations in file_upload_settings"
+  task :update_file_upload_settings, [:configuration_hash] => [:environment] do |_t, args|
+    raise "Please, provide a configuration hash in JSON format" if args[:configuration_hash].blank?
+    # Provide argument in JSON format. Don't forget to escape commas with \, . Example:
+    # rails diba:update_file_upload_settings['{"allowed_content_types": {"admin": ["text/plain"]\, "default": ["text/plain"]}\, "allowed_file_extensions": {"admin": ["csv"]\, "default": ["csv"]\}}']
+
+    configuration_hash = JSON.parse(args[:configuration_hash])
+
+    configuration_hash = configuration_hash.slice("allowed_content_types", "allowed_file_extensions").transform_values do |conf|
+      conf.slice("admin", "default")
+    end
+
+    raise "Invalid format, provide an array for each final value" unless configuration_hash.values.all? { |v| v.values.all? { |u| u.is_a?(Array) } }
+
+    Decidim::Organization.all.each do |organization|
+      puts "\n\nReviewing rganization with host #{organization.host}..."
+
+      organization_settings = organization.file_upload_settings
+
+      if organization_settings.blank?
+        puts "Organization settings blank. Skipping..."
+        next
+      end
+
+      new_settings = configuration_hash.each_with_object({}) do |(k1,v1), hsh1|
+        hsh1[k1] = v1.each_with_object({}) do |(k2, v2), hsh2|
+          hsh2[k2] = ((organization_settings.dig(k1, k2) || []) + v2).uniq
+        end
+      end
+
+      new_organization_settings = organization_settings.deep_merge(new_settings)
+
+      differences = Hashdiff.diff(organization_settings, new_organization_settings)
+
+      if differences.present? && differences.map(&:first).all? { |x| x == "+" }
+        organization.update_attribute(:file_upload_settings, new_organization_settings)
+        puts "Organization with host #{organization.host} updated. Differences: #{differences.inspect}"
+      else
+        puts "Organization with host #{organization.host} not updated. Differences: #{differences.inspect}"
+      end
+    end
+  end
 end
