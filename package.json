@@ -4,7 +4,6 @@
   "dependencies": {
     "@decidim/browserslist-config": "file:packages/browserslist-config",
     "@decidim/core": "file:packages/core",
-    "@decidim/elections": "file:packages/elections",
     "@decidim/webpacker": "file:packages/webpacker",
     "@glidejs/glide": "^3.6.2",
     "@rails/actioncable": "^6.1.710",
@@ -20,12 +19,6 @@
   },
   "version": "0.1.0",
   "devDependencies": {
-    "@babel/eslint-parser": "^7.27.0",
-    "@babel/plugin-transform-classes": "^7.25.9",
-    "@babel/plugin-transform-regenerator": "^7.27.0",
-    "@babel/plugin-transform-runtime": "^7.26.10",
-    "@babel/preset-env": "^7.26.9",
-    "@babel/preset-react": "^7.26.3",
     "@decidim/dev": "^0.29.3",
     "@decidim/eslint-config": "^0.29.3",
     "@decidim/prettier-config": "^0.29.3",
