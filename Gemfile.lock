@@ -1,4 +1,13 @@
 GIT
+  remote: https://github.com/Platoniq/decidim-module-term_customizer
+  revision: 3da4973f52649534fa9cc2acaaa4d89176a19351
+  branch: master
+  specs:
+    decidim-term_customizer (0.29.0)
+      decidim-admin (~> 0.29.0)
+      decidim-core (~> 0.29.0)
+
+GIT
   remote: https://github.com/decidim-ice/decidim-module-decidim_awesome.git
   revision: ccb89b5eda6dba04658a70f34a38a97f1ecddf02
   branch: main
@@ -924,6 +933,7 @@ DEPENDENCIES
   decidim-initiatives!
   decidim-ldap!
   decidim-templates!
+  decidim-term_customizer!
   deface
   dotenv-rails
   faker (>= 1.8.4)
