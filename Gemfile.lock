@@ -639,9 +639,6 @@ GEM
     pry (0.15.2)
       coderay (~> 1.1)
       method_source (~> 1.0)
-    pry-byebug (3.8.0)
-      byebug (~> 11.0)
-      pry (~> 0.10)
     pry-rails (0.3.11)
       pry (>= 0.13.0)
     psych (4.0.6)
@@ -919,7 +916,6 @@ DEPENDENCIES
   ladle
   letter_opener_web
   listen (~> 3.7.0)
-  pry-byebug
   pry-rails
   puma (>= 3.12.2)
   rspec-rails

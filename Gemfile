@@ -40,7 +40,6 @@ group :development, :test do
   gem "dotenv-rails"
   gem "faker", ">= 1.8.4"
   gem "ladle"
-  gem "pry-byebug"
   gem "rspec-rails"
   # gem 'pry-coolline'
   gem "pry-rails"
