@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.email = ["daniel.gomez@marsbased.com"]
   s.license = "AGPL-3.0"
   s.homepage = "https://github.com/diputacioBCN/decidim-diba"
-  s.required_ruby_version = ">= 3.1.2"
+  s.required_ruby_version = ">= 3.2.6"
 
   s.name = "decidim-diba_census_api"
   s.summary = "AuthorizationHandler provider against the Diputació of Barcelona Census API"
