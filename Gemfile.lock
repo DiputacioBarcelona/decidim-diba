@@ -1,4 +1,15 @@
 GIT
+  remote: https://github.com/decidim-ice/decidim-module-decidim_awesome.git
+  revision: ccb89b5eda6dba04658a70f34a38a97f1ecddf02
+  branch: main
+  specs:
+    decidim-decidim_awesome (0.12.1)
+      decidim-admin (>= 0.29.1, < 0.30)
+      decidim-core (>= 0.29.1, < 0.30)
+      deface (>= 1.5)
+      sassc (~> 2.3)
+
+GIT
   remote: https://github.com/decidim/decidim.git
   revision: d9e8a878baec210c8cf128576b25e12821ac6318
   branch: release/0.29-stable
@@ -790,6 +801,8 @@ GEM
       nokogiri (>= 1.10.8)
       rubyzip (>= 1.3.0)
     rubyzip (2.3.2)
+    sassc (2.4.0)
+      ffi (~> 1.9)
     savon (2.11.2)
       akami (~> 1.2)
       builder (>= 2.1.2)
@@ -905,6 +918,7 @@ DEPENDENCIES
   decidim!
   decidim-age_action_authorization!
   decidim-census!
+  decidim-decidim_awesome!
   decidim-dev!
   decidim-diba_census_api!
   decidim-initiatives!
