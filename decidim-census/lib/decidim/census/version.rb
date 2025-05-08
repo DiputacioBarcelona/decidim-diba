@@ -3,6 +3,6 @@
 module Decidim
   module Census
     # Uses the latest matching Decidim version
-    VERSION = "0.28.0"
+    VERSION = "0.29.0"
   end
 end
