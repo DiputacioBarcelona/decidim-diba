@@ -15,4 +15,5 @@ group :development, :test do
   gem "letter_opener_web"
   gem "listen"
   gem "pry-rails"
+  gem "spring", "~> 4.2.1"
 end
