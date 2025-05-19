@@ -40,6 +40,7 @@ group :development, :test do
   gem "dotenv-rails"
   gem "faker", ">= 1.8.4"
   gem "ladle"
+  gem "spring", "~> 4.2.1"
   gem "rspec-rails"
   gem "mini_magick", "~> 4.9"
   # gem 'pry-coolline'

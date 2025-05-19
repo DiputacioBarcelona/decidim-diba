@@ -862,7 +862,7 @@ GEM
       hashie
       version_gem (~> 1.1, >= 1.1.1)
     socksify (1.7.1)
-    spring (4.3.0)
+    spring (4.2.1)
     spring-watcher-listen (2.1.0)
       listen (>= 2.7, < 4.0)
       spring (>= 4)
@@ -957,6 +957,7 @@ DEPENDENCIES
   rspec-rails
   sidekiq (~> 5.2.7)
   sidekiq-cron
+  spring (~> 4.2.1)
   stringio (= 3.0.1)
   strscan (= 3.0.1)
   uglifier (>= 1.3.0)
