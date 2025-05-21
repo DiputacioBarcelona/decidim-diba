@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "spec_helper"
+require "rails_helper"
 
 # We check the checksum of the file overriden.
 # If the test fails, that the overriden file should be updated.

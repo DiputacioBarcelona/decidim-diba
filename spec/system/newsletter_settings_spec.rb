@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require "spec_helper"
+require "rails_helper"
 
 # rubocop:disable RSpec/MultipleMemoizedHelpers
 describe "Newsletter settings", type: :system do
