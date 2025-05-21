@@ -1,6 +1,11 @@
 <div class="form__wrapper">
-  <%= form.collection_select :organization, @organizations, :id, :name, prompt: true,
-      label: t('.organization') %>
+  <%= form.collection_select(
+        :organization, @organizations,
+        :id,
+        ->(organization) { organization_name(organization) },
+        prompt: true,
+        label: t('.organization')
+      ) %>
   <%= form.text_field :host, label: t('.host') %>
   <%= form.text_field :port, label: t('.port') %>
   <%= form.text_field :dn, label: t('.dn') %>
