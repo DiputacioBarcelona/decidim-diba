@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/decidim/decidim.git
-  revision: d9e8a878baec210c8cf128576b25e12821ac6318
+  revision: ab82fa84dc15db684ac82e3005acc04e0a027a28
   branch: release/0.29-stable
   specs:
     decidim (0.29.3)
@@ -355,7 +355,7 @@ GEM
     devise_invitable (2.0.10)
       actionmailer (>= 5.0)
       devise (>= 4.6)
-    diff-lcs (1.6.1)
+    diff-lcs (1.6.2)
     diffy (3.4.3)
     doc2text (0.4.8)
       nokogiri (>= 1.18.2)
@@ -428,7 +428,7 @@ GEM
     gyoku (1.4.0)
       builder (>= 2.1.2)
       rexml (~> 3.0)
-    hashdiff (1.1.2)
+    hashdiff (1.2.0)
     hashie (5.0.0)
     highline (3.1.2)
       reline
@@ -464,7 +464,7 @@ GEM
     invisible_captcha (0.13.0)
       rails (>= 3.2.0)
     io-console (0.8.0)
-    json (2.11.3)
+    json (2.12.0)
     jwt (2.10.1)
       base64
     kaminari (1.2.2)
@@ -481,7 +481,7 @@ GEM
     kaminari-core (1.2.2)
     ladle (1.0.1)
       open4 (~> 1.0)
-    language_server-protocol (3.17.0.4)
+    language_server-protocol (3.17.0.5)
     launchy (3.1.1)
       addressable (~> 2.8)
       childprocess (~> 5.0)
@@ -511,7 +511,7 @@ GEM
     mime-types (3.7.0)
       logger
       mime-types-data (~> 3.2025, >= 3.2025.0507)
-    mime-types-data (3.2025.0507)
+    mime-types-data (3.2025.0520)
     mini_magick (4.13.2)
     mini_mime (1.1.5)
     minitest (5.25.5)
@@ -541,13 +541,14 @@ GEM
       version_gem (~> 1.1)
     oauth-tty (1.0.5)
       version_gem (~> 1.1, >= 1.1.1)
-    oauth2 (2.0.9)
-      faraday (>= 0.17.3, < 3.0)
-      jwt (>= 1.0, < 3.0)
+    oauth2 (2.0.10)
+      faraday (>= 0.17.3, < 4.0)
+      jwt (>= 1.0, < 4.0)
+      logger (~> 1.2)
       multi_xml (~> 0.5)
       rack (>= 1.2, < 4)
       snaky_hash (~> 2.0)
-      version_gem (~> 1.1)
+      version_gem (>= 1.1.8, < 3)
     omniauth (2.1.3)
       hashie (>= 3.4.6)
       rack (>= 2.2.3)
