@@ -41,7 +41,7 @@ describe "Manage Ldap Configurations", type: :system do
   it "updates an LDAP Configuration" do
     organization = FactoryBot.create(:organization)
     ldap_configuration =
-      FactoryBot.create(:ldap_configuration, organization: organization)
+      FactoryBot.create(:ldap_configuration, organization:)
 
     visit decidim_ldap.ldap_configurations_path
 
@@ -67,7 +67,7 @@ describe "Manage Ldap Configurations", type: :system do
   it "deletes an LDAP Configuration" do
     organization = FactoryBot.create(:organization)
     ldap_configuration =
-      FactoryBot.create(:ldap_configuration, organization: organization)
+      FactoryBot.create(:ldap_configuration, organization:)
 
     visit decidim_ldap.ldap_configurations_path
 
