@@ -35,7 +35,7 @@ Warden::Strategies.add(:ldap_authenticatable) do
     ldap.bind_as(
       base: ldap_configuration.dn,
       filter: ldap_configuration.authentication_query_for_username(username),
-      password: password
+      password:
     )
   end
 
@@ -55,20 +55,18 @@ Warden::Strategies.add(:ldap_authenticatable) do
   end
 
   def find_user(ldap_entry, ldap_configuration)
-    # rubocop: disable Rails/FindBy
     Decidim::User
       .where(email: ldap_field_value(ldap_entry, ldap_configuration.email_field))
       .or(Decidim::User.where(
-            nickname: ldap_field_value(ldap_entry, ldap_configuration.username_field)
+            nickname: username_field_nicknamizations(ldap_entry, ldap_configuration)[:parameterized_username]
           ))
       .where(organization: ldap_configuration.organization).first
-    # rubocop: enable Rails/FindBy
   end
 
   def create_user(ldap_entry, ldap_configuration)
     user = Decidim::User.new
     user.email = ldap_field_value(ldap_entry, ldap_configuration.email_field)
-    user.nickname = ldap_field_value(ldap_entry, ldap_configuration.username_field)
+    user.nickname = username_field_nicknamizations(ldap_entry, ldap_configuration)[:nicknamized_username]
     user.password = Devise.friendly_token.first(10)
     user.organization = ldap_configuration.organization
     user.accepted_tos_version = ldap_configuration.organization.tos_version
@@ -79,6 +77,15 @@ Warden::Strategies.add(:ldap_authenticatable) do
     user.save
 
     user
+  end
+
+  def username_field_nicknamizations(ldap_entry, ldap_configuration)
+    username = ldap_field_value(ldap_entry, ldap_configuration.username_field)
+
+    {
+      parameterized_username: username.parameterize(separator: "_")[(0..Decidim::User.nickname_max_length)],
+      nicknamized_username: Decidim::User.nicknamize(username, ldap_configuration.organization.id)
+    }
   end
 
   def ldap_field_value(ldap_entry, key)
