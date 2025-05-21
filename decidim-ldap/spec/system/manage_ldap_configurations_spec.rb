@@ -15,7 +15,7 @@ describe "Manage Ldap Configurations", type: :system do
     click_link "New"
 
     within ".new_ldap_configuration" do
-      select organization.name, from: "ldap_configuration_organization"
+      select translated_attribute(organization.name), from: "ldap_configuration_organization"
       fill_in :ldap_configuration_host, with: "127.0.0.1"
       fill_in :ldap_configuration_port, with: "389"
       fill_in :ldap_configuration_dn, with: "ou=people,dc=example,dc=com"
