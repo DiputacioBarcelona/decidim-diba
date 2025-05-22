@@ -15,6 +15,8 @@ def migrate_spaces(spaces_list, scope_name, space_attachment_attributes)
   space_attachment_attributes = [space_attachment_attributes] unless space_attachment_attributes.is_a?(Array)
   spaces_list.each do |space|
     hero_content_block = Decidim::ContentBlock.find_by(scope_name:, scoped_resource_id: space.id, manifest_name: "hero")
+    next if hero_content_block.blank?
+
     hero_attachment = hero_content_block.attachments.find_by(name: "background_image")
     next if hero_attachment.blank?
     next if hero_attachment.file.attached?
