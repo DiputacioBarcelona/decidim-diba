@@ -13,10 +13,10 @@ module Decidim::Admin::SelectiveNewsletterFormDecorator
       end
 
       _validate_callbacks.each do |callback|
-        next unless callback.raw_filter.respond_to? :attributes
+        next unless callback.filter.respond_to? :attributes
 
         attributes.each do |attribute|
-          callback.raw_filter.attributes.delete attribute
+          callback.filter.attributes.delete attribute
         end
       end
 

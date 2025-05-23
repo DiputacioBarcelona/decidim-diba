@@ -15,7 +15,7 @@ describe "Manage Ldap Configurations", type: :system do
     click_link "New"
 
     within ".new_ldap_configuration" do
-      select organization.name, from: "ldap_configuration_organization"
+      select translated_attribute(organization.name), from: "ldap_configuration_organization"
       fill_in :ldap_configuration_host, with: "127.0.0.1"
       fill_in :ldap_configuration_port, with: "389"
       fill_in :ldap_configuration_dn, with: "ou=people,dc=example,dc=com"
@@ -41,7 +41,7 @@ describe "Manage Ldap Configurations", type: :system do
   it "updates an LDAP Configuration" do
     organization = FactoryBot.create(:organization)
     ldap_configuration =
-      FactoryBot.create(:ldap_configuration, organization: organization)
+      FactoryBot.create(:ldap_configuration, organization:)
 
     visit decidim_ldap.ldap_configurations_path
 
@@ -67,7 +67,7 @@ describe "Manage Ldap Configurations", type: :system do
   it "deletes an LDAP Configuration" do
     organization = FactoryBot.create(:organization)
     ldap_configuration =
-      FactoryBot.create(:ldap_configuration, organization: organization)
+      FactoryBot.create(:ldap_configuration, organization:)
 
     visit decidim_ldap.ldap_configurations_path
 
