@@ -1,13 +1,4 @@
 GIT
-  remote: https://github.com/Platoniq/decidim-module-term_customizer
-  revision: 3da4973f52649534fa9cc2acaaa4d89176a19351
-  branch: master
-  specs:
-    decidim-term_customizer (0.29.0)
-      decidim-admin (~> 0.29.0)
-      decidim-core (~> 0.29.0)
-
-GIT
   remote: https://github.com/PopulateTools/decidim-module-decidim_awesome.git
   revision: 8802642bf992a42f3a47c44ea3d2ceb2a4eabd15
   branch: autoblock_with_attachments_029
@@ -17,6 +8,15 @@ GIT
       decidim-core (>= 0.29.1, < 0.30)
       deface (>= 1.5)
       sassc (~> 2.3)
+
+GIT
+  remote: https://github.com/PopulateTools/decidim-module-term_customizer
+  revision: 24cce84b50d6e450cd9a73d1b26696cc730893ec
+  branch: upgrade_0.29
+  specs:
+    decidim-term_customizer (0.29.0)
+      decidim-admin (~> 0.29.0)
+      decidim-core (~> 0.29.0)
 
 GIT
   remote: https://github.com/PopulateTools/decidim-module_homepage_proposals.git

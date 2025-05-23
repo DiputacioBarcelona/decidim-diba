@@ -16,7 +16,7 @@ gem "decidim-initiatives", DECIDIM_VERSION
 gem "decidim-ldap", path: "decidim-ldap"
 gem "decidim-templates", DECIDIM_VERSION
 
-gem "decidim-term_customizer", git: "https://github.com/Platoniq/decidim-module-term_customizer", branch: "master"
+gem "decidim-term_customizer", git: "https://github.com/PopulateTools/decidim-module-term_customizer", branch: "upgrade_0.29"
 gem "decidim-homepage_proposals", git: "https://github.com/PopulateTools/decidim-module_homepage_proposals.git", branch: "release/0.29-stable"
 
 # Compatibility with decidim initiatives module
