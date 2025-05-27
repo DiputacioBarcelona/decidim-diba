@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/PopulateTools/decidim-module-decidim_awesome.git
-  revision: 4f5c2f0aececae86960e6035abcd85b9691a96df
+  revision: 0e01abc7993b6c88f95f4b7ddf01e381b0b78c40
   branch: autoblock_with_attachments_029
   specs:
     decidim-decidim_awesome (0.12.2)
