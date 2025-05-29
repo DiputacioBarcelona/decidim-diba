@@ -2,6 +2,6 @@
 
 module Decidim
   module AgeActionAuthorization
-    VERSION = "0.28.0"
+    VERSION = "0.29.0"
   end
 end
