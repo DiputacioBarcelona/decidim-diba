@@ -21,15 +21,17 @@ module Decidim
 
       # Normalizes a id document string (remove invalid characters) and encode it
       # to conform with Decidim privacy guidelines.
-      def self.normalize_and_encode_id_document(id_document)
+      def self.normalize_and_encode_id_document(id_document, organization = nil)
         return "" unless id_document
 
         id_document = id_document.gsub(/[^A-z0-9]/, "").upcase
         return "" if id_document.blank?
 
-        Digest::SHA256.hexdigest(
-          "#{id_document}-#{Rails.application.secrets.secret_key_base}"
-        )
+        elements = [id_document]
+        elements << organization.id if organization.present?
+        elements << Rails.application.secrets.secret_key_base
+
+        Digest::SHA256.hexdigest(elements.join("-"))
       end
 
       # Convert a date from string to a Date object

@@ -5,7 +5,7 @@ module ApplicationHelper
     options = status.instance_variable_get(:@authorization_handler)
                     .instance_variable_get(:@action_authorizer)
                     .instance_variable_get(:@options)
-    scope = "diba.decidim.authorization_modals.content.birthdate.invalid_field"
+    scope = "diba.decidim.authorization_modal.content.birthdate.invalid_field"
     min_age = options["age"]
     max_age = options["max_age"]
 
