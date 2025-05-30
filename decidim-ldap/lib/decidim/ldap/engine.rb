@@ -52,8 +52,10 @@ module Decidim
       end
 
       initializer "decidim_ldap.controller_additional_permissions" do
-        Decidim::ApplicationController
-          .prepend(Decidim::Ldap::Extensions::ControllerWithLdapPermissions)
+        config.to_prepare do
+          Decidim::ApplicationController
+            .prepend(Decidim::Ldap::Extensions::ControllerWithLdapPermissions)
+        end
       end
 
       initializer "decidim_ldap.organization_with_ldap" do
