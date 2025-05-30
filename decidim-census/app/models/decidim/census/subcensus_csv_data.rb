@@ -7,10 +7,11 @@ module Decidim
     class SubcensusCsvData
       attr_reader :errors, :values
 
-      def initialize(file)
+      def initialize(file, organization = nil)
         @file = file
         @errors = []
         @values = []
+        @organization = organization
 
         @file.open do |content|
           CSV.foreach(content, headers: true, col_sep: ";") do |row|
@@ -22,7 +23,7 @@ module Decidim
       private
 
       def process_row(row)
-        id_document = CensusDatum.normalize_and_encode_id_document(row[0])
+        id_document = CensusDatum.normalize_and_encode_id_document(row[0], @organization)
         if id_document.present?
           values << [id_document]
         else
