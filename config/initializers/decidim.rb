@@ -517,9 +517,6 @@ if Decidim.module_installed? :elections
   end
 end
 
-Rails.application.config.i18n.available_locales = Decidim.available_locales
-Rails.application.config.i18n.default_locale = Decidim.default_locale
-
 Decidim::Ldap.configure do |config|
   config.ldap_username = Rails.application.secrets.ldap[:username]
   config.ldap_password = Rails.application.secrets.ldap[:password]
