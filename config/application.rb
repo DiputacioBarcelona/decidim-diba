@@ -25,6 +25,9 @@ module DecidimDiba
     config.active_record.default_timezone = :local
     config.active_record.time_zone_aware_attributes = false
 
+    config.i18n.available_locales = Decidim.available_locales
+    config.i18n.default_locale = Decidim.default_locale
+
     # Make decorators available
     config.to_prepare do
       # activate Decidim LayoutHelper for the overriden views

@@ -20,7 +20,7 @@ Rails.application.configure do
   config.active_job.queue_adapter = :sidekiq
   config.action_mailer.perform_caching = false
 
-  config.i18n.fallbacks = true
+  config.i18n.fallbacks = [:en]
 
   config.active_support.deprecation = :notify
 
