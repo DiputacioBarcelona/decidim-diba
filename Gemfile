@@ -42,6 +42,7 @@ group :development, :test do
   gem "ladle"
   gem "pry-byebug"
   gem "rspec-rails"
+  gem "mini_magick", "~> 4.9"
   # gem 'pry-coolline'
   gem "pry-rails"
   gem "webmock"

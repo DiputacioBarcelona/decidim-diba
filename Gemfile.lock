@@ -959,6 +959,7 @@ DEPENDENCIES
   ladle
   letter_opener_web
   listen (~> 3.7.0)
+  mini_magick (~> 4.9)
   pry-byebug
   pry-rails
   puma (>= 3.12.2)
