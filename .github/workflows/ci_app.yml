@@ -33,7 +33,7 @@ jobs:
       DATABASE_HOST: localhost
 
     steps:
-      - uses: actions/checkout@v2.0.0
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 1
 
@@ -42,7 +42,7 @@ jobs:
           ruby-version: ${{ env.RUBY_VERSION }}
 
       - name: Recover Ruby dependency cache
-        uses: actions/cache@v1
+        uses: actions/cache@v4
         with:
           path: ./vendor/bundle
           key: ${{ runner.OS }}-app-rubydeps-${{ hashFiles('Gemfile.lock') }}
@@ -54,14 +54,14 @@ jobs:
         run: bundle config set --local path 'vendor/bundle'
 
       - name: Install Ruby deps
-        uses: nick-invision/retry@v2
+        uses: nick-invision/retry@v3
         with:
           timeout_minutes: 10
           max_attempts: 3
           retry_on: error
           command: bundle install --jobs 4 --retry 3
 
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
           cache: 'npm'
@@ -69,7 +69,7 @@ jobs:
       - run: bundle exec rake db:test:prepare
         name: Setup database
       - name: Run RSpec
-        uses: nick-invision/retry@v2
+        uses: nick-invision/retry@v3
         with:
           timeout_minutes: 10
           max_attempts: 3
