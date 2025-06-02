@@ -74,7 +74,7 @@ ca:
         not_found_in_database: Correu electrònic o contrasenya no vàlids.
   diba:
     decidim:
-      authorization_modals:
+      authorization_modal:
         content:
           birthdate:
             invalid_field:

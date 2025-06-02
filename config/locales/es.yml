@@ -60,7 +60,7 @@ es:
           withdraw: Retirar
   diba:
     decidim:
-      authorization_modals:
+      authorization_modal:
         content:
           birthdate:
             invalid_field:

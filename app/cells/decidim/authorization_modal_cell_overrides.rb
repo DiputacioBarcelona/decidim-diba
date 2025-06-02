@@ -17,7 +17,7 @@ module Decidim
                        when :birthdate
                          text_invalid_age_authorizer(status)
                        when :subcensus
-                         t(".subcensus.invalid_field", scope: "diba")
+                         t(".content.subcensus.invalid_field", scope: "diba")
                        else
                          t("#{status.handler_name}.fields.#{field}", scope: "decidim.authorization_handlers")
                        end

@@ -15,7 +15,7 @@ module Decidim
 
         subcensus = Subcensus.create!(attributes)
 
-        events = ImportSubcensusDocuments.call(subcensus, form.subcensus_file)
+        events = ImportSubcensusDocuments.call(subcensus, form.subcensus_file, @organization)
         broadcast(:ok, subcensus, events[:ok])
       end
 
