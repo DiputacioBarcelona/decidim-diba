@@ -10,6 +10,7 @@ gemspec
 group :development, :test do
   gem "bootsnap"
   gem "decidim", ">= 0.29", { git: "https://github.com/decidim/decidim.git", branch: "release/0.29-stable" }.freeze
+  gem "letter_opener_web"
   gem "decidim-ldap", path: "../decidim-ldap"
   gem "spring", "~> 4.2.1"
   gem "listen"
