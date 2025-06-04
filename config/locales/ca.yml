@@ -41,6 +41,11 @@ ca:
           email_outro: has rebut aquesta notificació perquè ets administradora de l'organització.
           email_subject: "%{name} ha sigut officializada"
           notification_title: La participant %{name} (%{nickname}) ha sigut officializada.
+    authorization_modals:
+      content:
+        unauthorized:
+          explanation: Ho sentim, no pots dur a terme aquesta acció perquè les teves
+            dades no compleixen els criteris de validació.
     newsletter_templates:
       basic_only_text_settings_form:
         header_background_color: Color de la capçalera

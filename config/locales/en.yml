@@ -35,6 +35,11 @@ en:
           max_age: Maximum age
       sms:
         type: SMS
+    authorization_modals:
+      content:
+        unauthorized:
+          explanation: Sorry, you cannot perform this action because your data does
+            not meet the validation criteria.
     newsletter_templates:
       basic_only_text_settings_form:
         header_background_color: Header background color
