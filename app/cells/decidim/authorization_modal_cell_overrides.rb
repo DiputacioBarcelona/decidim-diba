@@ -13,22 +13,22 @@ module Decidim
         return [] if status.data[:fields].blank?
 
         status.data[:fields].map do |field, value|
-          field_text = case field
-                       when :birthdate
-                         text_invalid_age_authorizer(status)
-                       when :subcensus
-                         t(".content.subcensus.invalid_field", scope: "diba")
-                       else
-                         t("#{status.handler_name}.fields.#{field}", scope: "decidim.authorization_handlers")
-                       end
-          value_text = [:birthdate, :subcensus].exclude?(field) && value ? "(#{value})" : ""
+          overridden_message(field) ||
+            t(
+              "#{status.code}.invalid_field",
+              field: t("#{status.handler_name}.fields.#{field}", scope: "decidim.authorization_handlers"),
+              value: value ? "(#{value})" : "",
+              scope:
+            )
+        end
+      end
 
-          t(
-            "#{status.code}.invalid_field",
-            field: field_text,
-            value: value_text,
-            scope:
-          )
+      def overridden_message(field)
+        case field
+        when :birthdate
+          text_invalid_age_authorizer(status)
+        when :subcensus
+          t(".content.subcensus.invalid_field", scope: "diba")
         end
       end
     end
