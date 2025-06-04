@@ -12,7 +12,7 @@ GIT
 
 GIT
   remote: https://github.com/PopulateTools/decidim-module-term_customizer
-  revision: 03d5ff72f13402bf46bbf47af37f89316dd4d97f
+  revision: b0b6d191db21134a1c3634a72ff33441fbfddd01
   branch: upgrade_0.29
   specs:
     decidim-term_customizer (0.29.0)
