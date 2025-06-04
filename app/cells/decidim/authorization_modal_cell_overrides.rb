@@ -13,7 +13,7 @@ module Decidim
         return [] if status.data[:fields].blank?
 
         status.data[:fields].map do |field, value|
-          overridden_message(field) ||
+          overridden_message(field, status) ||
             t(
               "#{status.code}.invalid_field",
               field: t("#{status.handler_name}.fields.#{field}", scope: "decidim.authorization_handlers"),
@@ -23,7 +23,7 @@ module Decidim
         end
       end
 
-      def overridden_message(field)
+      def overridden_message(field, status)
         case field
         when :birthdate
           text_invalid_age_authorizer(status)
