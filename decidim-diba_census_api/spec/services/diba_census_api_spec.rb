@@ -3,7 +3,7 @@
 require "spec_helper"
 
 RSpec.describe DibaCensusApi do
-  let(:subject) do
+  subject do
     api = DibaCensusApi.new(username: "Decidim", password: "123412341234", ine: "998")
     rs = api.call(document_type: 1,
                   id_document:,
