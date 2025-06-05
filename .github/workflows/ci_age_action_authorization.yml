@@ -9,7 +9,7 @@ on:
   pull_request:
 
 env:
-  RUBY_VERSION: 3.1.2
+  RUBY_VERSION: 3.2.6
 
 jobs:
   test-report:
@@ -65,7 +65,7 @@ jobs:
       - name: Generate age_action_authorization test_app
         run: |
           cd decidim-age_action_authorization
-          bundle exec rake decidim:generate_external_test_app
+          bundle exec rake test_app
           cd spec/decidim_dummy_app/
           RAILS_ENV=test bundle exec rails db:migrate
 

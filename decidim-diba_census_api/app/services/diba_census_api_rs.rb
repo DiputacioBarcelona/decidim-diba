@@ -8,18 +8,18 @@ require "base64"
 class DibaCensusApiRs
   # raw_response: The response as a String
   def initialize(raw_response)
-    @raw= raw_response
+    @raw = raw_response
   end
 
   def rs_inside_soap
-    @rs_inside_soap||= parse_response(@raw)
+    @rs_inside_soap ||= parse_response(@raw)
   end
 
   # Returns the decoded birth date returned if the request was successful.
   # Otherwise returns nil.
   def birth_date
     @birth_date ||= begin
-      extracted= extract_encoded_birth_date
+      extracted = extract_encoded_birth_date
       decode_date(extracted) if extracted.present?
     end
   end

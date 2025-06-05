@@ -25,9 +25,9 @@ Rails.application.configure do
   config.active_support.deprecation = :notify
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
-  config.log_formatter = ::Logger::Formatter.new
+  config.log_formatter = Logger::Formatter.new
 
-  config.action_mailer.asset_host = ENV["APP_HOST"]
+  config.action_mailer.asset_host = ENV.fetch("APP_HOST", nil)
 
   config.action_mailer.delivery_method = if ENV["DISABLE_EMAILS"] == "true"
                                            :letter_opener_web
@@ -51,7 +51,7 @@ Rails.application.configure do
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')
 
   if ENV["RAILS_LOG_TO_STDOUT"].present?
-    logger = ActiveSupport::Logger.new(STDOUT)
+    logger = ActiveSupport::Logger.new($stdout)
     logger.formatter = config.log_formatter
     config.logger = ActiveSupport::TaggedLogging.new(logger)
   end
@@ -60,5 +60,5 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   # store uploaded files to local storage
-  config.active_storage.service= :local
+  config.active_storage.service = :local
 end

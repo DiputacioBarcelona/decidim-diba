@@ -52,9 +52,9 @@ class DibaCensusApiAuthorizationHandler < Decidim::AuthorizationHandler
 
     @service = DibaCensusApi.new(**api_config)
     @census_for_user = @service.call(
-      birthdate: birthdate,
+      birthdate:,
       document_type: document_type_code,
-      id_document: id_document
+      id_document:
     )
   end
 
