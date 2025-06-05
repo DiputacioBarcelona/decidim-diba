@@ -64,6 +64,7 @@ jobs:
 
       - name: Generate ldap test_app
         run: |
+          sudo apt update && sudo apt install imagemagick
           cd decidim-ldap
           bundle exec rake decidim:generate_external_test_app
           cd spec/decidim_dummy_app/
