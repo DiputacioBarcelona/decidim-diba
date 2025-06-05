@@ -65,7 +65,7 @@ jobs:
       - name: Generate diba_census_api test_app
         run: |
           cd decidim-diba_census_api
-          bundle exec rake decidim:generate_external_test_app
+          bundle exec rake test_app
           cd spec/decidim_dummy_app/
           bundle exec rails decidim_diba_census_api:install:migrations
           RAILS_ENV=test bundle exec rails db:migrate

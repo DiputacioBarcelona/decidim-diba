@@ -65,7 +65,7 @@ jobs:
       - name: Generate census test_app
         run: |
           cd decidim-census
-          bundle exec rake decidim:generate_external_test_app
+          bundle exec rake test_app
           cd spec/decidim_dummy_app/
           bundle exec rails decidim_census:install:migrations
           RAILS_ENV=test bundle exec rails db:migrate

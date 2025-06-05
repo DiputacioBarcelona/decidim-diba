@@ -1,3 +1,19 @@
 # frozen_string_literal: true
 
 require "decidim/dev/common_rake"
+
+def replace_cache_classes
+  path = "spec/decidim_dummy_app/config/environments/test.rb"
+  flag = /config\.cache_classes = true$/
+  replacement = "config.cache_classes = false"
+
+  content = File.binread(path)
+  content.gsub!(flag, replacement)
+  File.open(path, "wb") { |file| file.write(content) }
+end
+
+desc "Generates a dummy app for testing"
+task test_app: "decidim:generate_external_test_app" do
+  ENV["RAILS_ENV"] = "test"
+  replace_cache_classes
+end
