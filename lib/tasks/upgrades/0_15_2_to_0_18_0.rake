@@ -2,7 +2,10 @@
 
 namespace :upgrade do
   desc "Starts a new ldap server with Ladle"
+  # rubocop:disable Naming/VariableNumber
   task from_0_15_2_to_0_18_0: :environment do
+    # rubocop:enable Naming/VariableNumber
+
     puts "\n\n **** START MIGRATION FROM 0.15.2 to 0.18.0 🚀 ****"
 
     puts " \n == 0.16.0 required tasks 🤖 =="
