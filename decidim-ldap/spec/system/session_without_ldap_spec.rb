@@ -12,7 +12,7 @@ describe "Session without LDAP" do
   end
 
   it "visible signup link" do
-    click_link "Log in", match: :first
+    click_on "Log in", match: :first
 
     expect(page).to have_css("main .login__info", text: "Create an account")
   end

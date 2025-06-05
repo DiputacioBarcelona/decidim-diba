@@ -15,7 +15,7 @@ describe "LDAP authentication" do
 
     it "hides signup link" do
       visit decidim.root_path
-      click_link "Log in", match: :first
+      click_on "Log in", match: :first
 
       expect(page).to have_no_css("main .login__info", text: "Create an account")
     end
@@ -48,7 +48,7 @@ describe "LDAP authentication" do
     end
 
     it "creates a session when correct credentials are provided" do
-      click_link "Log in", match: :first
+      click_on "Log in", match: :first
 
       within ".new_user" do
         fill_in :session_user_name, with: "Alice"
@@ -63,7 +63,7 @@ describe "LDAP authentication" do
     end
 
     it "fails to create a session with incorrect credentials" do
-      click_link "Log in", match: :first
+      click_on "Log in", match: :first
 
       within ".new_user" do
         fill_in :session_user_name, with: "Fail"
@@ -85,7 +85,7 @@ describe "LDAP authentication" do
       end
 
       it "creates a session using the correct LDAP configuration" do
-        click_link "Log in", match: :first
+        click_on "Log in", match: :first
 
         within ".new_user" do
           fill_in :session_user_name, with: "max@payne.com"

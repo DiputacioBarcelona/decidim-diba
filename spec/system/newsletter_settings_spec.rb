@@ -33,7 +33,7 @@ describe "Newsletter settings" do
   describe "new newsletter" do
     before do
       visit decidim_admin.root_path
-      click_link "Butlletins"
+      click_on "Butlletins"
       page.all(:link, "Nou butlletí").first.click
       page.all(:link, href: "/admin/newsletter_templates/basic_only_text/newsletters/new").last.click
     end

@@ -12,7 +12,7 @@ describe "Manage Ldap Configurations" do
     organization = create(:organization)
 
     visit decidim_ldap.ldap_configurations_path
-    click_link "New"
+    click_on "New"
 
     within ".new_ldap_configuration" do
       select translated_attribute(organization.name), from: "ldap_configuration_organization"
@@ -46,7 +46,7 @@ describe "Manage Ldap Configurations" do
     visit decidim_ldap.ldap_configurations_path
 
     within "tr", text: ldap_configuration.dn do
-      click_link "Edit"
+      click_on "Edit"
     end
 
     within ".edit_ldap_configuration" do
@@ -72,7 +72,7 @@ describe "Manage Ldap Configurations" do
     visit decidim_ldap.ldap_configurations_path
 
     within "tr", text: ldap_configuration.dn do
-      accept_confirm { click_link "Delete" }
+      accept_confirm { click_on "Delete" }
     end
 
     within ".flash" do
