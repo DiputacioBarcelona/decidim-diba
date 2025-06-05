@@ -13,7 +13,7 @@ RSpec.describe Decidim::DibaCensusApi::Admin::ApiConfigsController,
   end
 
   let(:user) do
-    FactoryBot.create :user, :confirmed, :admin_terms_accepted, organization: organization, admin: true, nickname: "nickname"
+    FactoryBot.create :user, :confirmed, :admin_terms_accepted, organization:, admin: true, nickname: "nickname"
   end
 
   before do

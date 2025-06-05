@@ -28,7 +28,7 @@ namespace :upgrade do
       # rubocop: disable Rails/SkipsModelValidations
       entity.update_columns(
         followers_count: follower_count,
-        following_count: following_count
+        following_count:
       )
       # rubocop: enable Rails/SkipsModelValidations
     end
@@ -40,7 +40,7 @@ namespace :upgrade do
       days.each do |day|
         new_metrics = Decidim::Metrics::ParticipantsMetricManage.new(day.to_s, org)
         ActiveRecord::Base.transaction do
-          old_metrics.where(day: day).delete_all
+          old_metrics.where(day:).delete_all
           new_metrics.save
         end
       end

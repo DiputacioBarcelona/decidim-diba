@@ -12,7 +12,7 @@ module Decidim
         end
 
         def deliver_code
-          SmsMailer.with(mobile_phone_number: mobile_phone_number, code: code).verification_mail.deliver_later
+          SmsMailer.with(mobile_phone_number:, code:).verification_mail.deliver_later
           true
         end
       end

@@ -14,4 +14,4 @@ module Decidim::Admin::NewsletterJobDecorator
   end
 end
 
-::Decidim::Admin::NewsletterJobDecorator.decorate
+Decidim::Admin::NewsletterJobDecorator.decorate

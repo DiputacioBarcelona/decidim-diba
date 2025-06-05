@@ -45,7 +45,7 @@ describe "Manage Ldap Configurations", type: :system do
 
     visit decidim_ldap.ldap_configurations_path
 
-    within find("tr", text: ldap_configuration.dn) do
+    within "tr", text: ldap_configuration.dn do
       click_link "Edit"
     end
 
@@ -71,7 +71,7 @@ describe "Manage Ldap Configurations", type: :system do
 
     visit decidim_ldap.ldap_configurations_path
 
-    within find("tr", text: ldap_configuration.dn) do
+    within "tr", text: ldap_configuration.dn do
       accept_confirm { click_link "Delete" }
     end
 
@@ -80,7 +80,7 @@ describe "Manage Ldap Configurations", type: :system do
     end
 
     within "table" do
-      expect(page).not_to have_content(ldap_configuration.dn)
+      expect(page).to have_no_content(ldap_configuration.dn)
     end
   end
 end

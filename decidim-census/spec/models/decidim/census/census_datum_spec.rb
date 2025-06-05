@@ -10,13 +10,13 @@ RSpec.describe Decidim::Census::CensusDatum, type: :model do
     it "returns the last inserted when duplicates" do
       FactoryBot.create(:census_datum, id_document: encode_id_document("AAA"))
       last = FactoryBot.create(:census_datum, id_document: encode_id_document("AAA"),
-                                              organization: organization)
+                                              organization:)
       expect(CensusDatum.search_id_document(organization, "AAA")).to eq(last)
     end
 
     it "normalizes the document" do
       census = FactoryBot.create(:census_datum, id_document: encode_id_document("AAA"),
-                                                organization: organization)
+                                                organization:)
       expect(CensusDatum.search_id_document(organization, "a-a-a")).to eq(census)
     end
   end
@@ -43,8 +43,8 @@ RSpec.describe Decidim::Census::CensusDatum, type: :model do
     it "normalizes dates" do
       expect(CensusDatum.parse_date("20/3/1992"))
         .to eq Date.strptime("1992/03/20", "%Y/%m/%d")
-      expect(CensusDatum.parse_date("1/20/1992")).to be nil
-      expect(CensusDatum.parse_date("n/3/1992")).to be nil
+      expect(CensusDatum.parse_date("1/20/1992")).to be_nil
+      expect(CensusDatum.parse_date("n/3/1992")).to be_nil
     end
   end
 end

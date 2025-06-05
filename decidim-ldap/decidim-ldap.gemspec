@@ -17,7 +17,6 @@ Gem::Specification.new do |s|
   s.license = "AGPLv3"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
-  s.test_files = Dir["spec/**/*"]
 
   s.required_ruby_version = ">= 3.1.1"
 

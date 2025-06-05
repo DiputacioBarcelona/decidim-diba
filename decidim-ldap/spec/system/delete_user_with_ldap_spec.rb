@@ -6,7 +6,7 @@ describe "When user try delete account", type: :system do
   let(:user) { create(:user, :confirmed, nickname: "nickname") }
   let(:organization) { FactoryBot.create(:organization) }
   let(:ldap_configuration) do
-    FactoryBot.create(:ldap_configuration, organization: organization)
+    FactoryBot.create(:ldap_configuration, organization:)
   end
   let!(:ldap_server) do |_variable|
     add_controller_ldap_permissions

@@ -44,17 +44,17 @@ class DibaAuthorizationHandler < Decidim::AuthorizationHandler
   end
 
   def csv_handler
-    @csv_handler ||= CensusAuthorizationHandler.new(user: user,
-                                                    id_document: id_document,
-                                                    birthdate: birthdate)
+    @csv_handler ||= CensusAuthorizationHandler.new(user:,
+                                                    id_document:,
+                                                    birthdate:)
                                                .with_context(context)
   end
 
   def api_handler
-    @api_handler ||= DibaCensusApiAuthorizationHandler.new(user: user,
-                                                           id_document: id_document,
-                                                           document_type: document_type,
-                                                           birthdate: birthdate)
+    @api_handler ||= DibaCensusApiAuthorizationHandler.new(user:,
+                                                           id_document:,
+                                                           document_type:,
+                                                           birthdate:)
                                                       .with_context(context)
   end
 end

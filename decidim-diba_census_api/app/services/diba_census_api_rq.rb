@@ -116,6 +116,6 @@ class DibaCensusApiRq
     # https://stackoverflow.com/questions/16546038/a-long-bigger-than-long-max-value
     # In fact is between [-2**63..2**63] but I experienced some errors when random number
     # was close to the limits.
-    rand(2**24..2**48 - 1)
+    rand(2**24..(2**48) - 1)
   end
 end

@@ -359,7 +359,7 @@ Decidim.configure do |config|
   #   end
   # end
   #
-  config.machine_translation_service = 'Decidim::Dev::DummyTranslator'
+  config.machine_translation_service = "Decidim::Dev::DummyTranslator"
 
   # Defines the social networking services used for social sharing
   config.social_share_services = Rails.application.secrets.decidim[:social_share_services]

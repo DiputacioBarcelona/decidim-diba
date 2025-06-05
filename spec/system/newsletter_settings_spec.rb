@@ -2,20 +2,19 @@
 
 require "rails_helper"
 
-# rubocop:disable RSpec/MultipleMemoizedHelpers
 describe "Newsletter settings", type: :system do
   let(:organization_logo) { Decidim::Dev.test_file("avatar.jpg", "image/jpeg") }
   let(:footer_logo) { Decidim::Dev.test_file("avatar.jpg", "image/jpeg") }
   let(:organization) { create(:organization, logo: organization_logo, official_img_footer: footer_logo, twitter_handler: "twitter", facebook_handler: "") }
-  let!(:admin) { create(:user, :admin, :confirmed, organization: organization) }
+  let!(:admin) { create(:user, :admin, :confirmed, organization:) }
   let!(:newsletter) { create :newsletter, :sent, total_recipients: 1 }
   let!(:content_block) do
     create :content_block,
-           organization: organization,
+           organization:,
            manifest_name: :basic_only_text,
            scope_name: :newsletter_template,
            scoped_resource_id: newsletter.id,
-           settings: settings
+           settings:
   end
   let(:settings) do
     {
@@ -49,4 +48,3 @@ describe "Newsletter settings", type: :system do
     end
   end
 end
-# rubocop:enable RSpec/MultipleMemoizedHelpers

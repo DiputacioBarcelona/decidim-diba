@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-unless ActiveModel::Type::Boolean.new.cast(ENV["DOCKER"])
+unless ActiveModel::Type::Boolean.new.cast(ENV.fetch("DOCKER", nil))
   Deface::Override.new(virtual_path: "decidim/admin/newsletters/select_recipients_to_deliver",
                        name: "add_new_user_segmentation",
                        insert_after: ".grid-padding-x:last-child",
