@@ -22,7 +22,7 @@ class DibaCensusApi
 
   def call(document_type:, id_document:, birthdate:)
     request = build_request
-    raw_response= request.send_rq(document_type: document_type, id_document: id_document, birthdate: birthdate)
+    raw_response = request.send_rq(document_type:, id_document:, birthdate:)
     response = DibaCensusApiRs.new(raw_response)
     return unless response.birth_date.present? && response.active?
 

@@ -11,7 +11,7 @@ def replace_cache_classes
 
   content = File.binread(path)
   content.gsub!(flag, replacement)
-  File.open(path, "wb") { |file| file.write(content) }
+  File.binwrite(path, content)
 end
 
 RSpec::Core::RakeTask.new(:spec)

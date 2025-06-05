@@ -1,18 +1,18 @@
 # frozen_string_literal: true
 
 require "spec_helper"
-describe "Manage Ldap Configurations", type: :system do
-  let(:admin) { FactoryBot.create(:admin) }
+describe "Manage Ldap Configurations" do
+  let(:admin) { create(:admin) }
 
   before do
     login_as admin, scope: :admin
   end
 
   it "creates a new LDAP Configuration" do
-    organization = FactoryBot.create(:organization)
+    organization = create(:organization)
 
     visit decidim_ldap.ldap_configurations_path
-    click_link "New"
+    click_on "New"
 
     within ".new_ldap_configuration" do
       select translated_attribute(organization.name), from: "ldap_configuration_organization"
@@ -39,14 +39,14 @@ describe "Manage Ldap Configurations", type: :system do
   end
 
   it "updates an LDAP Configuration" do
-    organization = FactoryBot.create(:organization)
+    organization = create(:organization)
     ldap_configuration =
-      FactoryBot.create(:ldap_configuration, organization:)
+      create(:ldap_configuration, organization:)
 
     visit decidim_ldap.ldap_configurations_path
 
-    within find("tr", text: ldap_configuration.dn) do
-      click_link "Edit"
+    within "tr", text: ldap_configuration.dn do
+      click_on "Edit"
     end
 
     within ".edit_ldap_configuration" do
@@ -65,14 +65,14 @@ describe "Manage Ldap Configurations", type: :system do
   end
 
   it "deletes an LDAP Configuration" do
-    organization = FactoryBot.create(:organization)
+    organization = create(:organization)
     ldap_configuration =
-      FactoryBot.create(:ldap_configuration, organization:)
+      create(:ldap_configuration, organization:)
 
     visit decidim_ldap.ldap_configurations_path
 
-    within find("tr", text: ldap_configuration.dn) do
-      accept_confirm { click_link "Delete" }
+    within "tr", text: ldap_configuration.dn do
+      accept_confirm { click_on "Delete" }
     end
 
     within ".flash" do
@@ -80,7 +80,7 @@ describe "Manage Ldap Configurations", type: :system do
     end
 
     within "table" do
-      expect(page).not_to have_content(ldap_configuration.dn)
+      expect(page).to have_no_content(ldap_configuration.dn)
     end
   end
 end

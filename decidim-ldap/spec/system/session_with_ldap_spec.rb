@@ -2,9 +2,9 @@
 
 require "spec_helper"
 require "ladle"
-describe "LDAP authentication", type: :system do
+describe "LDAP authentication" do
   let(:users_registration_mode) { :enabled }
-  let(:organization) { create(:organization, users_registration_mode: users_registration_mode) }
+  let(:organization) { create(:organization, users_registration_mode:) }
 
   before do
     switch_to_host(organization.host)
@@ -15,7 +15,7 @@ describe "LDAP authentication", type: :system do
 
     it "hides signup link" do
       visit decidim.root_path
-      click_link "Log in", match: :first
+      click_on "Log in", match: :first
 
       expect(page).to have_no_css("main .login__info", text: "Create an account")
     end
@@ -23,7 +23,7 @@ describe "LDAP authentication", type: :system do
 
   context "when enabled" do
     let!(:ldap_configuration) do
-      FactoryBot.create(:ldap_configuration, organization: organization)
+      create(:ldap_configuration, organization:)
     end
     let(:password) { "password123456" }
     let!(:ldap_server) do
@@ -48,7 +48,7 @@ describe "LDAP authentication", type: :system do
     end
 
     it "creates a session when correct credentials are provided" do
-      click_link "Log in", match: :first
+      click_on "Log in", match: :first
 
       within ".new_user" do
         fill_in :session_user_name, with: "Alice"
@@ -63,7 +63,7 @@ describe "LDAP authentication", type: :system do
     end
 
     it "fails to create a session with incorrect credentials" do
-      click_link "Log in", match: :first
+      click_on "Log in", match: :first
 
       within ".new_user" do
         fill_in :session_user_name, with: "Fail"
@@ -79,13 +79,13 @@ describe "LDAP authentication", type: :system do
 
     describe "and there is more than one LDAP configuration" do
       let!(:second_ldap_configuration) do
-        FactoryBot.create(:ldap_configuration,
-                          organization: organization,
-                          authentication_query: "mail=@screen_name@")
+        create(:ldap_configuration,
+               organization:,
+               authentication_query: "mail=@screen_name@")
       end
 
       it "creates a session using the correct LDAP configuration" do
-        click_link "Log in", match: :first
+        click_on "Log in", match: :first
 
         within ".new_user" do
           fill_in :session_user_name, with: "max@payne.com"

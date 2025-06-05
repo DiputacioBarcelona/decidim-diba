@@ -3,8 +3,8 @@
 require "spec_helper"
 require "ladle"
 
-describe "Session without LDAP", type: :system do
-  let(:organization) { FactoryBot.create(:organization) }
+describe "Session without LDAP" do
+  let(:organization) { create(:organization) }
 
   before do
     switch_to_host(organization.host)
@@ -12,7 +12,7 @@ describe "Session without LDAP", type: :system do
   end
 
   it "visible signup link" do
-    click_link "Log in", match: :first
+    click_on "Log in", match: :first
 
     expect(page).to have_css("main .login__info", text: "Create an account")
   end

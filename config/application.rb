@@ -35,8 +35,8 @@ module DecidimDiba
     end
 
     initializer("decidim_diba.initiatives.menu", after: "decidim_initiatives.menu") do
-      menu_manifest= Decidim::MenuRegistry.find :menu
-      initiatives_menu_configurations= menu_manifest.configurations.select do |proc|
+      menu_manifest = Decidim::MenuRegistry.find :menu
+      initiatives_menu_configurations = menu_manifest.configurations.select do |proc|
         proc.to_s.include?("initiatives/engine.rb")
       end
       if initiatives_menu_configurations.any?
@@ -54,7 +54,7 @@ module DecidimDiba
 
     # Make decorators available
     config.to_prepare do
-      Dir.glob(Rails.root.join("app/decorators/**/*_decorator*.rb")).each do |c|
+      Rails.root.glob("app/decorators/**/*_decorator*.rb").each do |c|
         require_dependency(c)
       end
     end

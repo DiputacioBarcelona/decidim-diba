@@ -1,19 +1,18 @@
 # frozen_string_literal: true
 
 require "spec_helper"
-RSpec.describe Decidim::Census::Admin::CensusesController,
-               type: :controller do
+RSpec.describe Decidim::Census::Admin::CensusesController do
   include Warden::Test::Helpers
 
   routes { Decidim::Census::AdminEngine.routes }
 
   let(:organization) do
-    FactoryBot.create :organization,
-                      available_authorizations: ["census_authorization_handler"]
+    create :organization,
+           available_authorizations: ["census_authorization_handler"]
   end
 
   let(:user) do
-    FactoryBot.create :user, :confirmed, :admin_terms_accepted, organization: organization, admin: true, nickname: "nickname"
+    create :user, :confirmed, :admin_terms_accepted, organization:, admin: true, nickname: "nickname"
   end
 
   before do
@@ -34,7 +33,7 @@ RSpec.describe Decidim::Census::Admin::CensusesController,
 
       # Don't know why don't prepend with `spec/fixtures` automatically
       file = fixture_file_upload("spec/fixtures/files/data1.csv")
-      post :create, params: { file: file }
+      post :create, params: { file: }
       expect(response).to render_template(:show)
 
       expect(Decidim::Census::CensusDatum.count).to be 3
@@ -48,7 +47,7 @@ RSpec.describe Decidim::Census::Admin::CensusesController,
       sign_in user
 
       file = fixture_file_upload("spec/fixtures/files/with-errors.csv")
-      post :create, params: { file: file }
+      post :create, params: { file: }
 
       expect(response).to render_template(:show)
       expect(assigns(:invalid_rows).count).to be 3
@@ -59,7 +58,7 @@ RSpec.describe Decidim::Census::Admin::CensusesController,
     it "clear all census data" do
       sign_in user
 
-      FactoryBot.create_list :census_datum, 5, organization: organization
+      create_list(:census_datum, 5, organization:)
       delete :destroy
       expect(response).to have_http_status(:redirect)
 
