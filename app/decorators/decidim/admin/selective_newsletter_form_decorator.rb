@@ -23,7 +23,9 @@ module Decidim::Admin::SelectiveNewsletterFormDecorator
       attribute :selected_users_ids, Array
       attribute :send_to_selected_users, ::Decidim::AttributeObject::Form::Boolean
 
-      validates :send_to_all_users, presence: true, unless: ->(form) { form.send_to_participants.present? || form.send_to_followers.present? || form.send_to_selected_users.present? }
+      validates :send_to_all_users, presence: true, unless: lambda { |form|
+                                                              form.send_to_participants.present? || form.send_to_followers.present? || form.send_to_selected_users.present?
+                                                            }
 
       # Set new validations with the new attribute
       validates :send_to_followers, presence: true, if: ->(form) { form.send_to_all_users.blank? && form.send_to_participants.blank? && form.send_to_selected_users.blank? }
@@ -33,7 +35,7 @@ module Decidim::Admin::SelectiveNewsletterFormDecorator
       private
 
       def at_least_one_participatory_space_selected
-        return if send_to_all_users && current_user.admin? || send_to_selected_users
+        return if (send_to_all_users && current_user.admin?) || send_to_selected_users
 
         errors.add(:base, :at_least_one_space) if spaces_selected.blank?
       end
@@ -43,4 +45,4 @@ module Decidim::Admin::SelectiveNewsletterFormDecorator
   # rubocop:enable Metrics/PerceivedComplexity
 end
 
-::Decidim::Admin::SelectiveNewsletterFormDecorator.decorate
+Decidim::Admin::SelectiveNewsletterFormDecorator.decorate

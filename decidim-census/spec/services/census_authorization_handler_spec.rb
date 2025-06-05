@@ -2,22 +2,21 @@
 
 require "spec_helper"
 
-# rubocop:disable RSpec/MultipleMemoizedHelpers
 RSpec.describe CensusAuthorizationHandler do
-  let(:organization) { FactoryBot.create(:organization) }
-  let(:user) { FactoryBot.create(:user, organization: organization, nickname: "nickname") }
+  let(:organization) { create(:organization) }
+  let(:user) { create(:user, organization:, nickname: "nickname") }
   let(:dni) { "1234A" }
   let(:encoded_dni) { encode_id_document(dni) }
   let(:date) { Date.strptime("1990/11/21", "%Y/%m/%d") }
   let(:handler) do
-    CensusAuthorizationHandler.new(user: user, id_document: dni, birthdate: date)
+    CensusAuthorizationHandler.new(user:, id_document: dni, birthdate: date)
                               .with_context(current_organization: organization)
   end
 
   let(:census_datum) do
-    FactoryBot.create(:census_datum, id_document: encoded_dni,
-                                     birthdate: date,
-                                     organization: organization)
+    create(:census_datum, id_document: encoded_dni,
+                          birthdate: date,
+                          organization:)
   end
 
   it "validates against database" do
@@ -29,7 +28,7 @@ RSpec.describe CensusAuthorizationHandler do
   it "normalizes the id document" do
     census_datum
     normalizer =
-      CensusAuthorizationHandler.new(user: user, id_document: "12-34-a", birthdate: date, nickname: "nickname")
+      CensusAuthorizationHandler.new(user:, id_document: "12-34-a", birthdate: date, nickname: "nickname")
                                 .with_context(current_organization: organization)
     expect(normalizer.valid?).to be true
   end
@@ -42,10 +41,9 @@ RSpec.describe CensusAuthorizationHandler do
 
   it "works when no current_organization context is provided (but the user is)" do
     census_datum
-    contextless_handler = CensusAuthorizationHandler.new(user: user,
+    contextless_handler = CensusAuthorizationHandler.new(user:,
                                                          id_document: dni,
                                                          birthdate: date)
     expect(contextless_handler.valid?).to be true
   end
 end
-# rubocop:enable RSpec/MultipleMemoizedHelpers

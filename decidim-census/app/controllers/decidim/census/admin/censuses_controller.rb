@@ -49,7 +49,7 @@ module Decidim
         end
 
         def census_authorization_active_in_organization?
-          (current_organization.available_authorizations & CENSUS_AUTHORIZATIONS).any?
+          current_organization.available_authorizations.intersect?(CENSUS_AUTHORIZATIONS)
         end
       end
     end

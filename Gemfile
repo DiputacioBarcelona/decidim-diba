@@ -16,8 +16,8 @@ gem "decidim-initiatives", DECIDIM_VERSION
 gem "decidim-ldap", path: "decidim-ldap"
 gem "decidim-templates", DECIDIM_VERSION
 
-gem "decidim-term_customizer", git: "https://github.com/PopulateTools/decidim-module-term_customizer", branch: "upgrade_0.29"
 gem "decidim-homepage_proposals", git: "https://github.com/PopulateTools/decidim-module_homepage_proposals.git", branch: "release/0.29-stable"
+gem "decidim-term_customizer", git: "https://github.com/PopulateTools/decidim-module-term_customizer", branch: "upgrade_0.29"
 
 # Compatibility with decidim initiatives module
 gem "bootsnap"
@@ -31,8 +31,8 @@ gem "wicked_pdf"
 
 # Forced by production environment
 gem "base64", "0.1.1"
-gem "strscan", "3.0.1"
 gem "stringio", "3.0.1"
+gem "strscan", "3.0.1"
 
 group :development, :test do
   gem "byebug", platform: :mri
@@ -40,8 +40,9 @@ group :development, :test do
   gem "dotenv-rails"
   gem "faker", ">= 1.8.4"
   gem "ladle"
-  gem "spring", "~> 4.2.1"
+  gem "mini_magick", "~> 4.9"
   gem "rspec-rails"
+  gem "spring", "~> 4.2.1"
   # gem 'pry-coolline'
   gem "pry-rails"
   gem "webmock"

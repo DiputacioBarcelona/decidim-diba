@@ -64,8 +64,9 @@ jobs:
 
       - name: Generate ldap test_app
         run: |
+          sudo apt update && sudo apt install imagemagick
           cd decidim-ldap
-          bundle exec rake decidim:generate_external_test_app
+          bundle exec rake test_app
           cd spec/decidim_dummy_app/
           bundle exec rails decidim_ldap:install:migrations
           RAILS_ENV=test bundle exec rails db:migrate

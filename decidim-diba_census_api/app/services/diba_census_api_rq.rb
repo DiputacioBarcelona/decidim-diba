@@ -18,13 +18,13 @@ require "base64"
 #          id_document: '58958982T',
 #          birthdate: Date.parse('1991-05-05'))
 class DibaCensusApiRq
-  URL = ENV.fetch("DIBA_CENSUS_API_URL") { "http://accede-pre.diba.cat/services/Ci" }
+  URL = ENV.fetch("DIBA_CENSUS_API_URL", "http://accede-pre.diba.cat/services/Ci")
 
   def initialize(username: "Decidim", password: "", ine: "998")
     @ine = ine
     @username = username
     @encoded_password = Digest::SHA1.base64digest(password)
-    @public_key = ENV.fetch("DIBA_CENSUS_API_PUBLIC_KEY") { "public_key" }
+    @public_key = ENV.fetch("DIBA_CENSUS_API_PUBLIC_KEY", "public_key")
   end
 
   def send_rq(document_type:, id_document:, birthdate:)
@@ -116,6 +116,6 @@ class DibaCensusApiRq
     # https://stackoverflow.com/questions/16546038/a-long-bigger-than-long-max-value
     # In fact is between [-2**63..2**63] but I experienced some errors when random number
     # was close to the limits.
-    rand(2**24..2**48 - 1)
+    rand((2**24)..(2**48) - 1)
   end
 end
