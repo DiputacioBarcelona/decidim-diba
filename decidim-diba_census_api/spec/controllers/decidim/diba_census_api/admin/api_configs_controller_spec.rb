@@ -1,19 +1,18 @@
 # frozen_string_literal: true
 
 require "spec_helper"
-RSpec.describe Decidim::DibaCensusApi::Admin::ApiConfigsController,
-               type: :controller do
+RSpec.describe Decidim::DibaCensusApi::Admin::ApiConfigsController do
   include Warden::Test::Helpers
 
   routes { Decidim::DibaCensusApi::AdminEngine.routes }
 
   let(:organization) do
-    FactoryBot.create :organization,
-                      available_authorizations: ["diba_census_api_authorization_handler"]
+    create :organization,
+           available_authorizations: ["diba_census_api_authorization_handler"]
   end
 
   let(:user) do
-    FactoryBot.create :user, :confirmed, :admin_terms_accepted, organization:, admin: true, nickname: "nickname"
+    create :user, :confirmed, :admin_terms_accepted, organization:, admin: true, nickname: "nickname"
   end
 
   before do

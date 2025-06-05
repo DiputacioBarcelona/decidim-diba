@@ -12,7 +12,7 @@ namespace :ldap do
 
     server.start
     puts "Press q to exit"
-    option = STDIN.gets until (option || "").chomp == "q"
+    option = $stdin.gets until (option || "").chomp == "q"
     server.stop
   end
 end

@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
 
   s.required_ruby_version = ">= 3.1.1"
 
-  LDAP_DECIDIM_VERSION = "~> #{Decidim::Ldap::VERSION}"
+  LDAP_DECIDIM_VERSION = "~> #{Decidim::Ldap::VERSION}".freeze
 
   s.add_dependency "decidim-core", LDAP_DECIDIM_VERSION
 

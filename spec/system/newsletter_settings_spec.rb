@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe "Newsletter settings", type: :system do
+describe "Newsletter settings" do
   let(:organization_logo) { Decidim::Dev.test_file("avatar.jpg", "image/jpeg") }
   let(:footer_logo) { Decidim::Dev.test_file("avatar.jpg", "image/jpeg") }
   let(:organization) { create(:organization, logo: organization_logo, official_img_footer: footer_logo, twitter_handler: "twitter", facebook_handler: "") }

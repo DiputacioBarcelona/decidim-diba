@@ -2,7 +2,7 @@
 
 require "spec_helper"
 require "ladle"
-describe "LDAP authentication", type: :system do
+describe "LDAP authentication" do
   let(:users_registration_mode) { :enabled }
   let(:organization) { create(:organization, users_registration_mode:) }
 
@@ -23,7 +23,7 @@ describe "LDAP authentication", type: :system do
 
   context "when enabled" do
     let!(:ldap_configuration) do
-      FactoryBot.create(:ldap_configuration, organization:)
+      create(:ldap_configuration, organization:)
     end
     let(:password) { "password123456" }
     let!(:ldap_server) do
@@ -79,9 +79,9 @@ describe "LDAP authentication", type: :system do
 
     describe "and there is more than one LDAP configuration" do
       let!(:second_ldap_configuration) do
-        FactoryBot.create(:ldap_configuration,
-                          organization:,
-                          authentication_query: "mail=@screen_name@")
+        create(:ldap_configuration,
+               organization:,
+               authentication_query: "mail=@screen_name@")
       end
 
       it "creates a session using the correct LDAP configuration" do

@@ -1,22 +1,22 @@
 # frozen_string_literal: true
 
 require "spec_helper"
-RSpec.describe Decidim::Census::CensusDatum, type: :model do
-  let(:organization) { FactoryBot.create :organization }
+RSpec.describe Decidim::Census::CensusDatum do
+  let(:organization) { create :organization }
 
   CensusDatum = Decidim::Census::CensusDatum
 
   describe "get census for a given identity document" do
     it "returns the last inserted when duplicates" do
-      FactoryBot.create(:census_datum, id_document: encode_id_document("AAA"))
-      last = FactoryBot.create(:census_datum, id_document: encode_id_document("AAA"),
-                                              organization:)
+      create(:census_datum, id_document: encode_id_document("AAA"))
+      last = create(:census_datum, id_document: encode_id_document("AAA"),
+                                   organization:)
       expect(CensusDatum.search_id_document(organization, "AAA")).to eq(last)
     end
 
     it "normalizes the document" do
-      census = FactoryBot.create(:census_datum, id_document: encode_id_document("AAA"),
-                                                organization:)
+      census = create(:census_datum, id_document: encode_id_document("AAA"),
+                                     organization:)
       expect(CensusDatum.search_id_document(organization, "a-a-a")).to eq(census)
     end
   end

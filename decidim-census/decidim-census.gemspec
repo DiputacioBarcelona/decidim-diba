@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
 
   s.required_ruby_version = ">= 3.2.6"
 
-  CENSUS_DECIDIM_VERSION = "~>" + Decidim::Census::VERSION
+  CENSUS_DECIDIM_VERSION = "~>#{Decidim::Census::VERSION}".freeze
 
   s.add_dependency "decidim", CENSUS_DECIDIM_VERSION
   s.add_dependency "decidim-admin", CENSUS_DECIDIM_VERSION

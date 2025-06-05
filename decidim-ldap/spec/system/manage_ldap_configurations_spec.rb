@@ -1,15 +1,15 @@
 # frozen_string_literal: true
 
 require "spec_helper"
-describe "Manage Ldap Configurations", type: :system do
-  let(:admin) { FactoryBot.create(:admin) }
+describe "Manage Ldap Configurations" do
+  let(:admin) { create(:admin) }
 
   before do
     login_as admin, scope: :admin
   end
 
   it "creates a new LDAP Configuration" do
-    organization = FactoryBot.create(:organization)
+    organization = create(:organization)
 
     visit decidim_ldap.ldap_configurations_path
     click_link "New"
@@ -39,9 +39,9 @@ describe "Manage Ldap Configurations", type: :system do
   end
 
   it "updates an LDAP Configuration" do
-    organization = FactoryBot.create(:organization)
+    organization = create(:organization)
     ldap_configuration =
-      FactoryBot.create(:ldap_configuration, organization:)
+      create(:ldap_configuration, organization:)
 
     visit decidim_ldap.ldap_configurations_path
 
@@ -65,9 +65,9 @@ describe "Manage Ldap Configurations", type: :system do
   end
 
   it "deletes an LDAP Configuration" do
-    organization = FactoryBot.create(:organization)
+    organization = create(:organization)
     ldap_configuration =
-      FactoryBot.create(:ldap_configuration, organization:)
+      create(:ldap_configuration, organization:)
 
     visit decidim_ldap.ldap_configurations_path
 

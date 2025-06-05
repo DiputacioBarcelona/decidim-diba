@@ -2,11 +2,11 @@
 
 require "spec_helper"
 require "ladle"
-describe "When user try delete account", type: :system do
+describe "When user try delete account" do
   let(:user) { create(:user, :confirmed, nickname: "nickname") }
-  let(:organization) { FactoryBot.create(:organization) }
+  let(:organization) { create(:organization) }
   let(:ldap_configuration) do
-    FactoryBot.create(:ldap_configuration, organization:)
+    create(:ldap_configuration, organization:)
   end
   let!(:ldap_server) do |_variable|
     add_controller_ldap_permissions

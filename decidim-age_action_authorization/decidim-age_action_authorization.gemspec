@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
 
-  AGE_ACTION_AUTHORIZATION_DECIDIM_VERSION = ">=" + Decidim::AgeActionAuthorization::VERSION
+  AGE_ACTION_AUTHORIZATION_DECIDIM_VERSION = ">=#{Decidim::AgeActionAuthorization::VERSION}".freeze
 
   s.add_dependency "decidim", AGE_ACTION_AUTHORIZATION_DECIDIM_VERSION
 

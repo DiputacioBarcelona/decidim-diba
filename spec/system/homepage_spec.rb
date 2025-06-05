@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe "Homepage", type: :system do
+describe "Homepage" do
   let!(:organization) do
     create(
       :organization,

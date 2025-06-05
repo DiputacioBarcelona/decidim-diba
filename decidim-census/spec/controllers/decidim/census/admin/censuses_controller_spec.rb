@@ -1,19 +1,18 @@
 # frozen_string_literal: true
 
 require "spec_helper"
-RSpec.describe Decidim::Census::Admin::CensusesController,
-               type: :controller do
+RSpec.describe Decidim::Census::Admin::CensusesController do
   include Warden::Test::Helpers
 
   routes { Decidim::Census::AdminEngine.routes }
 
   let(:organization) do
-    FactoryBot.create :organization,
-                      available_authorizations: ["census_authorization_handler"]
+    create :organization,
+           available_authorizations: ["census_authorization_handler"]
   end
 
   let(:user) do
-    FactoryBot.create :user, :confirmed, :admin_terms_accepted, organization:, admin: true, nickname: "nickname"
+    create :user, :confirmed, :admin_terms_accepted, organization:, admin: true, nickname: "nickname"
   end
 
   before do
@@ -59,7 +58,7 @@ RSpec.describe Decidim::Census::Admin::CensusesController,
     it "clear all census data" do
       sign_in user
 
-      FactoryBot.create_list(:census_datum, 5, organization:)
+      create_list(:census_datum, 5, organization:)
       delete :destroy
       expect(response).to have_http_status(:redirect)
 
