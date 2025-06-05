@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe "system status page" do
+describe SystemStatusesController do
   it 'returns "OK" when everything is correct' do
     create(:organization)
     get "/system_status"
