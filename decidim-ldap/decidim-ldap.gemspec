@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
 
-  s.required_ruby_version = ">= 3.1.1"
+  s.required_ruby_version = ">= 3.2.6"
 
   LDAP_DECIDIM_VERSION = "~> #{Decidim::Ldap::VERSION}".freeze
 
