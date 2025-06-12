@@ -10,4 +10,4 @@ module Decidim::NewsletterDecorator
   end
 end
 
-::Decidim::NewsletterDecorator.decorate
+Decidim::NewsletterDecorator.decorate

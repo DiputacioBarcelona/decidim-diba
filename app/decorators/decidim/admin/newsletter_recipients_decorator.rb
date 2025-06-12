@@ -29,4 +29,4 @@ module Decidim::Admin::NewsletterRecipientsDecorator
   end
 end
 
-::Decidim::Admin::NewsletterRecipientsDecorator.decorate
+Decidim::Admin::NewsletterRecipientsDecorator.decorate

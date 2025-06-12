@@ -9,6 +9,6 @@ class SmsMailer < ApplicationMailer
     mobile_phone_number = params[:mobile_phone_number]
     subject = "#{mobile_phone_number}@tfno #{sms_sender_password}"
 
-    mail(subject: subject)
+    mail(subject:)
   end
 end

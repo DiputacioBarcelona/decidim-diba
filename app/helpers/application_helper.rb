@@ -10,11 +10,11 @@ module ApplicationHelper
     max_age = options["max_age"]
 
     if min_age.present? && max_age.present?
-      t("both", scope: scope, max_age: max_age, min_age: min_age)
+      t("both", scope:, max_age:, min_age:)
     elsif min_age.present? && max_age.blank?
-      t("min_age", scope: scope, min_age: min_age)
+      t("min_age", scope:, min_age:)
     elsif min_age.blank? && max_age.present?
-      t("max_age", scope: scope, max_age: max_age)
+      t("max_age", scope:, max_age:)
     end
   end
 end

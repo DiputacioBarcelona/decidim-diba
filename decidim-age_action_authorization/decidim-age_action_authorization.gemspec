@@ -14,12 +14,11 @@ Gem::Specification.new do |s|
   s.homepage = "https://github.com/diputacioBCN/decidim-diba"
   s.license = "AGPLv3"
 
-  s.required_ruby_version = ">= 3.1.2"
+  s.required_ruby_version = ">= 3.2.6"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
-  s.test_files = Dir["spec/**/*"]
 
-  AGE_ACTION_AUTHORIZATION_DECIDIM_VERSION = ">=" + Decidim::AgeActionAuthorization::VERSION
+  AGE_ACTION_AUTHORIZATION_DECIDIM_VERSION = ">=#{Decidim::AgeActionAuthorization::VERSION}".freeze
 
   s.add_dependency "decidim", AGE_ACTION_AUTHORIZATION_DECIDIM_VERSION
 
