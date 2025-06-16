@@ -5,6 +5,8 @@ en:
         document_type: Document type
         id_document: Identity document
         birthdate: Date of birth
+      newsletter:
+        send_to_selected_users: Send to selected users
     errors:
       models:
         user:
@@ -20,7 +22,7 @@ en:
         index:
           selected_users: Selected users
         select_single_users:
-          send_to_selected_users: Send to selected users 
+          send_to_selected_users: Send to selected users
           select_users:
             help: Send the newsletter to all confirmed users. 
             title: Select users

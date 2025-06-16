@@ -5,6 +5,8 @@ ca:
         document_type: Tipus de document
         id_document: Número de document
         birthdate: Data de naixement
+      newsletter:
+        send_to_selected_users: Envia als usuaris seleccionats
     errors:
       models:
         user:
