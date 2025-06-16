@@ -1,6 +1,6 @@
 <% provide :title do %>
   <h1>
-    <%= link_to @ldap_configuration.organization.name, @ldap_configuration %>
+    <%= link_to organization_name(@ldap_configuration.organization), @ldap_configuration %>
   </h1>
   <h3 class="subheader"><%= @ldap_configuration.dn %></h3>
 <% end %>

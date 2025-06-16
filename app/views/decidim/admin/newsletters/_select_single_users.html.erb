@@ -1,18 +1,11 @@
-<div class="card-section send-newsletter-to-select-users">
-  <div class="row column">
-    <div class="grid-x grid-padding-x">
-      <div class="cell small-12" id="send_newsletter_to_select_users">
-        <div class="row column">
-          <%= f.check_box :send_to_selected_users, help_text: t(".select_users.help") %>
-          <%= f.select(
-              :selected_users_ids,
-              Decidim::User.where(organization: current_organization).map{ |user| ["#{user.name} (#{user.email})", user.id] },
-              { label: false },
-              { multiple: true, class: "newsletter_select-users" }) %>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="cell small-12 medium-6" id="send_newsletter_to_select_users">
+  <%= f.check_box :send_to_selected_users, help_text: t(".select_users.help") %>
+  <%= f.select(
+      :selected_users_ids,
+      Decidim::User.not_deleted.confirmed.where(organization: current_organization).where.not(newsletter_notifications_at: nil).map { |user| ["#{user.name} (#{user.email})", user.id] },
+      { label: false },
+      { multiple: true, class: "newsletter_select-users" }) %>
 </div>
 
 <%= append_javascript_pack_tag "newsletter" %>
+<%= append_stylesheet_pack_tag "newsletter" %>
