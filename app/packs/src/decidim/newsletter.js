@@ -1,43 +1,42 @@
-$(document).ready(function() {
-  $('.newsletter_select-users').select2();
-  
-  $('.newsletter_select-users').on('select2:select', function (e) {
-    let data = e.params.data;
-    let userId = data.id;
-    let selectedValues = $(this).val();
+import "stylesheets/newsletter.scss"
 
-    $.ajax({
-      type: "get",
-      url: `/newsletter_settings?user_id=${userId}`,
-      success: (response) => {
-        if (response.status === 403) {
-          alert(response.message);
-          let newValues = selectedValues.filter(v => v !== data.id);
+import TomSelect from "tom-select/dist/cjs/tom-select.popular";
 
-          $(this).val(newValues).trigger("change");
-        }
-      },
-    });
-  });
-
+$(() => {
   const $form = $(".form.newsletter_deliver");
 
   if ($form.length > 0) {
+    const config = {
+      plugins: ["remove_button", "dropdown_input"],
+      allowEmptyOption: false
+    };
+    const multiselectFieldsContainers = document.querySelectorAll(
+      ".newsletter_select-users"
+    );
+
+    multiselectFieldsContainers.forEach((container) => new TomSelect(container, config));
+
     const $sendNewsletterToFollowers = $form.find("#send_newsletter_to_followers");
     const $participatorySpacesForSelect = $form.find("#participatory_spaces_for_select");
     const $sendNewsletterToAllUsers = $form.find("#send_newsletter_to_all_users");
     const $sendNewsletterToParticipants = $form.find("#send_newsletter_to_participants");
     const $sendNewsletterToSelectUsers = $form.find("#newsletter_send_to_selected_users");
-    const $usersSelect = $form.find(".select2-container");
+    const $usersSelect = $form.find(".newsletter_select-users");
+
+    if ($sendNewsletterToSelectUsers.prop("checked")) {
+      $usersSelect.css("display", "block");
+    } else {
+      $usersSelect.css("display", "none");
+    }
 
     $sendNewsletterToAllUsers.on("change", (event) => {
       const checked = event.target.checked;
       $sendNewsletterToSelectUsers.prop("checked", !checked);
 
       if (checked) {
-        $usersSelect.css("display", "none"); 
+        $usersSelect.css("display", "none");
       } else {
-        $usersSelect.css("display", "block"); 
+        $usersSelect.css("display", "block");
       }
     });
 
@@ -61,10 +60,10 @@ $(document).ready(function() {
 
       if (checked) {
         $sendNewsletterToAllUsers.find("input[type='checkbox']").prop("checked", !checked);
-        $usersSelect.css("display", "block"); 
+        $usersSelect.css("display", "block");
       } else if (selectiveNewsletterParticipants || selectiveNewsletterFollowers) {
         $sendNewsletterToAllUsers.find("input[type='checkbox']").prop("checked", false);
-        $usersSelect.css("display", "none"); 
+        $usersSelect.css("display", "none");
       }
     })
   }
