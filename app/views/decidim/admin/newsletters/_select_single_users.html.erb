@@ -2,7 +2,7 @@
   <%= f.check_box :send_to_selected_users, help_text: t(".select_users.help") %>
   <%= f.select(
       :selected_users_ids,
-      Decidim::User.where(organization: current_organization).map { |user| ["#{user.name} (#{user.email})", user.id] },
+      Decidim::User.not_deleted.confirmed.where(organization: current_organization).where.not(newsletter_notifications_at: nil).map { |user| ["#{user.name} (#{user.email})", user.id] },
       { label: false },
       { multiple: true, class: "newsletter_select-users" }) %>
 </div>
