@@ -22,6 +22,8 @@ en:
         index:
           selected_users: Selected users
         select_single_users:
+          copy_recipients_from_newsletter: Copy recipients from already sent newsletter
+          select_newsletter: Select newsletter
           send_to_selected_users: Send to selected users
           select_users:
             help: Send the newsletter to all confirmed users. 
