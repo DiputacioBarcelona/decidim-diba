@@ -359,7 +359,7 @@ Decidim.configure do |config|
   #   end
   # end
   #
-  config.machine_translation_service = 'Decidim::Dev::DummyTranslator'
+  config.machine_translation_service = "Decidim::Dev::DummyTranslator"
 
   # Defines the social networking services used for social sharing
   config.social_share_services = Rails.application.secrets.decidim[:social_share_services]
@@ -401,14 +401,14 @@ Decidim.configure do |config|
   # Defines additional content security policies following the structure
   # Read more: https://docs.decidim.org/en/develop/configure/initializer#_content_security_policy
   config.content_security_policies_extra = {
-    "default-src" => %w('self' 'unsafe-inline'),
-    "script-src" => %w('self' 'unsafe-inline' 'unsafe-eval' ajax.cloudflare.com),
-    "style-src" => %w('self' 'unsafe-inline' fonts.googleapis.com maxcdn.bootstrapcdn.com),
-    "img-src" => %w('self' *.hereapi.com data: *.amazonaws.com *.diba.cat),
-    "font-src" => %w('self' fonts.gstatic.com maxcdn.bootstrapcdn.com),
-    "connect-src" => %w('self' *.hereapi.com *.jsdelivr.net *.amazonaws.com fonts.googleapis.com maxcdn.bootstrapcdn.com),
-    "frame-src" => %w('self' *.youtube.com www.youtube-nocookie.com),
-    "media-src" => %w('self')
+    "default-src" => %w(self unsafe-inline),
+    "script-src" => %w(self unsafe-inline unsafe-eval ajax.cloudflare.com),
+    "style-src" => %w(self unsafe-inline fonts.googleapis.com maxcdn.bootstrapcdn.com),
+    "img-src" => %w(self *.hereapi.com data: *.amazonaws.com *.diba.cat),
+    "font-src" => %w(self fonts.gstatic.com maxcdn.bootstrapcdn.com),
+    "connect-src" => %w(self *.hereapi.com *.jsdelivr.net *.amazonaws.com fonts.googleapis.com maxcdn.bootstrapcdn.com),
+    "frame-src" => %w(self *.youtube.com www.youtube-nocookie.com),
+    "media-src" => %w(self)
   }
 
   # Admin admin password configurations

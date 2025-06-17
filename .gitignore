@@ -60,3 +60,5 @@ tailwind.config.js
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
+
+.rubocop-http*

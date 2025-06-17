@@ -3,15 +3,13 @@
 require "spec_helper"
 
 RSpec.describe Decidim::Census::RemoveDuplicatesJob do
-  let(:org1) { FactoryBot.create :organization }
-  let(:org2) { FactoryBot.create :organization }
+  let(:org1) { create :organization }
+  let(:org2) { create :organization }
 
   it "remove duplicates in the database" do
     %w(AAA BBB AAA AAA).each do |doc|
-      FactoryBot.create(:census_datum, id_document: doc, organization: org1)
-    end
-    %w(AAA BBB AAA AAA).each do |doc|
-      FactoryBot.create(:census_datum, id_document: doc, organization: org2)
+      create(:census_datum, id_document: doc, organization: org1)
+      create(:census_datum, id_document: doc, organization: org2)
     end
 
     expect(Decidim::Census::CensusDatum.count).to eq 8
