@@ -22,6 +22,8 @@ ca:
         index:
           selected_users: Usuaris seleccionats
         select_single_users:
+          copy_recipients_from_newsletter: Copia els destinataris del butlletí ja enviat
+          select_newsletter: Selecciona butlletí
           send_to_selected_users: Envia als usuaris seleccionats
           select_users:
             help: Envia el butlletí a tots els usuaris confirmats.

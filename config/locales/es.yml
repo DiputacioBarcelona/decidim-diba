@@ -22,6 +22,8 @@ es:
         index:
           selected_users: Usuarios seleccionados
         select_single_users:
+          copy_recipients_from_newsletter: Copiar los destinatarios de un boletín ya enviado
+          select_newsletter: Seleccionar boletín
           send_to_selected_users: Enviar a los usuarios seleccionados
           select_users:
             help: Envia el boletín a todos los usuarios confirmados.

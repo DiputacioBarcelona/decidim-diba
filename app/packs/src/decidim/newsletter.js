@@ -22,22 +22,26 @@ $(() => {
     const $sendNewsletterToParticipants = $form.find("#send_newsletter_to_participants");
     const $sendNewsletterToSelectUsers = $form.find("#newsletter_send_to_selected_users");
     const $usersSelect = $form.find(".newsletter_select-users");
+    const $copySelectedUsers = $form.find(".newsletter_copy-selected-users");
+    const switchVisibility = (visible, selectors) => {
+      if (visible) {
+        selectors.forEach((selector) => {
+          selector.css("display", "block");
+        });
 
-    if ($sendNewsletterToSelectUsers.prop("checked")) {
-      $usersSelect.css("display", "block");
-    } else {
-      $usersSelect.css("display", "none");
+      } else {
+        selectors.forEach((selector) => {
+          selector.css("display", "none");
+        });
+      }
     }
+
+    switchVisibility($sendNewsletterToSelectUsers.prop("checked"), [$usersSelect, $copySelectedUsers])
 
     $sendNewsletterToAllUsers.on("change", (event) => {
       const checked = event.target.checked;
       $sendNewsletterToSelectUsers.prop("checked", !checked);
-
-      if (checked) {
-        $usersSelect.css("display", "none");
-      } else {
-        $usersSelect.css("display", "block");
-      }
+      switchVisibility(checked, [$usersSelect, $copySelectedUsers])
     });
 
     $sendNewsletterToFollowers.on("change", (event) => {
@@ -58,13 +62,27 @@ $(() => {
       const selectiveNewsletterParticipants = $sendNewsletterToParticipants.find("input[type='checkbox']").prop("checked");
       const selectiveNewsletterFollowers = $sendNewsletterToFollowers.find("input[type='checkbox']").prop("checked");
 
+      switchVisibility(checked, [$usersSelect, $copySelectedUsers])
+
       if (checked) {
         $sendNewsletterToAllUsers.find("input[type='checkbox']").prop("checked", !checked);
-        $usersSelect.css("display", "block");
       } else if (selectiveNewsletterParticipants || selectiveNewsletterFollowers) {
         $sendNewsletterToAllUsers.find("input[type='checkbox']").prop("checked", false);
-        $usersSelect.css("display", "none");
       }
+    })
+
+    $copySelectedUsers.find("select").on("change", (event) => {
+      const newsletterId = event.target.value;
+
+      $.ajax({
+        type: "get",
+        url: `/newsletter_settings?newsletter_id=${newsletterId}`,
+        success: (response) => {
+          const tomselect = document.getElementById("newsletter_selected_users_ids").tomselect;
+          $usersSelect.val(response.message);
+          tomselect.sync();
+        }
+      });
     })
   }
 });
