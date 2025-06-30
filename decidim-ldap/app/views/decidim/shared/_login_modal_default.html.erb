@@ -10,10 +10,14 @@
 
   <%= decidim_form_for(Decidim::User.new, namespace: "login", as: :user, url: path, html: { class: nil }) do |f| %>
     <div data-dialog-container>
-      <%= icon "login-box-line", class: "w-6 h-6 text-gray fill-current" %>
+      <%= icon "user-line", class: "w-6 h-6 text-gray fill-current" %>
       <h3 id="dialog-title-loginModal" class="h3"><%= t("decidim.shared.login_modal.please_log_in") %></h3>
       <div>
         <% if current_organization.sign_in_enabled? %>
+          <% cache current_organization do %>
+            <%= render partial: "decidim/devise/shared/omniauth_buttons", locals: { is_horizontal: true } %>
+          <% end %>
+
           <div class="form__wrapper">
             <%= f.email_field :email, autocomplete: "email", placeholder: t("placeholder_email", scope: "decidim.devise.shared") %>
 
@@ -26,6 +30,10 @@
           </div>
         <% else %>
           <%= cell("decidim/announcement", t("sign_in_disabled", scope: "decidim.devise.sessions.new"), callout_class: "warning" ) %>
+
+          <% cache current_organization do %>
+            <%= render partial: "decidim/devise/shared/omniauth_buttons", locals: { is_horizontal: true } %>
+          <% end %>
         <% end %>
       </div>
     </div>

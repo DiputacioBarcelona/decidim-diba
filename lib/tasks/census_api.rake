@@ -6,10 +6,10 @@
 namespace :census_api do
   desc "Checks the given credentials against the census_api (document_type dni/nie/passport, birthdate yyyy/mm/dd)"
   task :check, [:org_id, :document_type, :id_document, :birthdate] => :environment do |_task, args|
-    organization= Decidim::Organization.find(args.org_id)
-    document_type= args.document_type
-    id_document= args.id_document
-    birthdate= Time.strptime(args.birthdate, "%Y/%m/%d")
+    organization = Decidim::Organization.find(args.org_id)
+    document_type = args.document_type
+    id_document = args.id_document
+    birthdate = Time.strptime(args.birthdate, "%Y/%m/%d")
 
     puts <<~EOMSG
       Performing request with parameters:
@@ -19,11 +19,11 @@ namespace :census_api do
     EOMSG
 
     puts "\nRESPONSE:"
-    service= DibaCensusApiRq.new(**api_config(organization))
-    rs= service.send_rq(
-      birthdate: birthdate,
+    service = DibaCensusApiRq.new(**api_config(organization))
+    rs = service.send_rq(
+      birthdate:,
       document_type: document_type_code(document_type),
-      id_document: id_document
+      id_document:
     )
     puts "RS: #{rs.body}"
     puts "Extracted RS: #{parse_response(rs)}"
@@ -59,7 +59,7 @@ namespace :census_api do
 
   desc "Is there a Decidim::Authorization for the given document"
   task :find_authorization_by_doc, [:document, :birthdate] => :environment do |_task, args|
-    authorization= Decidim::Authorization.find_by(unique_id: to_unique_id(args.document))
+    authorization = Decidim::Authorization.find_by(unique_id: to_unique_id(args.document))
     puts authorization
   end
 

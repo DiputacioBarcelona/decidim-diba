@@ -4,6 +4,22 @@ require "bundler/gem_tasks"
 require "decidim/dev/common_rake"
 require "rspec/core/rake_task"
 
+def replace_cache_classes
+  path = "spec/decidim_dummy_app/config/environments/test.rb"
+  flag = /config\.cache_classes = true$/
+  replacement = "config.cache_classes = false"
+
+  content = File.binread(path)
+  content.gsub!(flag, replacement)
+  File.binwrite(path, content)
+end
+
 RSpec::Core::RakeTask.new(:spec)
 
 task default: :spec
+
+desc "Generates a dummy app for testing"
+task test_app: "decidim:generate_external_test_app" do
+  ENV["RAILS_ENV"] = "test"
+  replace_cache_classes
+end

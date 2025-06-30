@@ -41,7 +41,9 @@ def get_blob(space, attachment_attributes)
     next unless space.send(attachment_attribute).is_a?(ActiveStorage::Attached)
     next unless space.send(attachment_attribute).attached?
 
-    space.send(attachment_attribute).blob.open { |_| }
+    space.send(attachment_attribute).blob.open do |_|
+      # Force exception
+    end
 
     blob = space.send(attachment_attribute).blob
   end

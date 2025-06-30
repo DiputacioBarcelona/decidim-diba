@@ -42,7 +42,7 @@ module Decidim
         end
 
         def diba_api_authorization_active_in_organization?
-          (current_organization.available_authorizations & API_AUTHORIZATIONS).any?
+          current_organization.available_authorizations.intersect?(API_AUTHORIZATIONS)
         end
       end
     end
