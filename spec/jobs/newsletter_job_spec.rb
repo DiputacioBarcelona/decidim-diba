@@ -19,6 +19,7 @@ module Decidim
       let(:send_to_selected_users) { false }
       let(:participatory_space_types) { [] }
       let(:scope_ids) { [] }
+      let(:selected_users_ids) { [] }
 
       let(:form_params) do
         {
@@ -27,7 +28,8 @@ module Decidim
           send_to_participants:,
           participatory_space_types:,
           send_to_selected_users:,
-          scope_ids:
+          scope_ids:,
+          selected_users_ids:
         }
       end
 
@@ -58,16 +60,32 @@ module Decidim
         expect(newsletter.reload.total_deliveries).to eq(0)
       end
 
-      it "updates the extended data" do
+      it "updates the extended data excluding the send_to_selected_users attribute" do
         NewsletterJob.perform_now(newsletter, form.as_json, recipients_ids)
         expect(newsletter.reload.extended_data).to eq(
           "send_to_all_users" => true,
           "send_to_followers" => false,
           "send_to_participants" => false,
-          "send_to_selected_users" => false,
           "participatory_space_types" => [],
           "scope_ids" => []
         )
+      end
+
+      context "when send_to_selected_users is enabled" do
+        let(:send_to_selected_users) { true }
+
+        it "updates the extended data including the selected_users attributes" do
+          NewsletterJob.perform_now(newsletter, form.as_json, recipients_ids)
+          expect(newsletter.reload.extended_data).to eq(
+            "send_to_all_users" => true,
+            "send_to_followers" => false,
+            "send_to_participants" => false,
+            "send_to_selected_users" => true,
+            "participatory_space_types" => [],
+            "scope_ids" => [],
+            "selected_users_ids" => []
+          )
+        end
       end
     end
   end
