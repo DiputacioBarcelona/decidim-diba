@@ -16,7 +16,7 @@
     <% @ldap_configurations.each do |ldap_configuration| %>
       <tr>
         <td>
-          <%= link_to ldap_configuration.organization.name, [:edit, ldap_configuration] %><br />
+          <%= link_to organization_name(ldap_configuration.organization), [:edit, ldap_configuration] %><br />
           <%= ldap_configuration.dn %>
         </td>
         <td>

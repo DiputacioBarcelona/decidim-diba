@@ -4,7 +4,7 @@ module Decidim
   class LdapConfiguration < ApplicationRecord
     belongs_to :organization
 
-    validates :organization, :host, :port, :dn, :authentication_query, :username_field,
+    validates :host, :port, :dn, :authentication_query, :username_field,
               :email_field, :password_field, :name_field, presence: true
 
     def authentication_query_for_username(username)

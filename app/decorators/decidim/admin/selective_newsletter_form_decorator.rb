@@ -5,6 +5,8 @@ module Decidim::Admin::SelectiveNewsletterFormDecorator
   # rubocop:disable Metrics/PerceivedComplexity
   def self.decorate
     Decidim::Admin::SelectiveNewsletterForm.class_eval do
+      include Decidim::TranslatableAttributes
+
       # Remove original validators
       attributes = [:send_to_all_users, :send_to_followers, :send_to_participants]
 
@@ -13,27 +15,39 @@ module Decidim::Admin::SelectiveNewsletterFormDecorator
       end
 
       _validate_callbacks.each do |callback|
-        next unless callback.raw_filter.respond_to? :attributes
+        next unless callback.filter.respond_to? :attributes
 
         attributes.each do |attribute|
-          callback.raw_filter.attributes.delete attribute
+          callback.filter.attributes.delete attribute
         end
       end
 
       attribute :selected_users_ids, Array
       attribute :send_to_selected_users, ::Decidim::AttributeObject::Form::Boolean
 
-      validates :send_to_all_users, presence: true, unless: ->(form) { form.send_to_participants.present? || form.send_to_followers.present? || form.send_to_selected_users.present? }
+      validates :send_to_all_users, presence: true, unless: lambda { |form|
+                                                              form.send_to_participants.present? || form.send_to_followers.present? || form.send_to_selected_users.present?
+                                                            }
 
       # Set new validations with the new attribute
       validates :send_to_followers, presence: true, if: ->(form) { form.send_to_all_users.blank? && form.send_to_participants.blank? && form.send_to_selected_users.blank? }
       validates :send_to_participants, presence: true, if: ->(form) { form.send_to_all_users.blank? && form.send_to_followers.blank? && form.send_to_selected_users.blank? }
       validates :send_to_selected_users, presence: true, if: ->(form) { form.send_to_all_users.blank? && form.send_to_participants.blank? && form.send_to_followers.blank? }
 
+      def newsletters_with_selected_recipients_options
+        Decidim::Newsletter
+          .where(organization: current_organization)
+          .where.not(sent_at: nil)
+          .where("extended_data @> ?", Arel.sql({ send_to_selected_users: true }.to_json))
+          .filter_map do |newsletter|
+            [translated_attribute(newsletter.subject), newsletter.id] if newsletter.extended_data["selected_users_ids"]&.compact_blank.present?
+          end
+      end
+
       private
 
       def at_least_one_participatory_space_selected
-        return if send_to_all_users && current_user.admin? || send_to_selected_users
+        return if (send_to_all_users && current_user.admin?) || send_to_selected_users
 
         errors.add(:base, :at_least_one_space) if spaces_selected.blank?
       end
@@ -43,4 +57,4 @@ module Decidim::Admin::SelectiveNewsletterFormDecorator
   # rubocop:enable Metrics/PerceivedComplexity
 end
 
-::Decidim::Admin::SelectiveNewsletterFormDecorator.decorate
+Decidim::Admin::SelectiveNewsletterFormDecorator.decorate

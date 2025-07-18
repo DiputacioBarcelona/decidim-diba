@@ -23,7 +23,7 @@ module Decidim::NewsletterTemplates::BaseCellDecorator
       end
 
       def header_logo_url(attribute, options = { resize_to_fill: [1200, 675] })
-        return organization.attached_uploader(:logo).variant_url(:medium, host: organization.host) || organization.name unless model&.id
+        return organization.attached_uploader(:logo).variant_url(:medium, host: organization.host) || organization_name(organization) unless model&.id
 
         representation_url(newsletter.template.images_container.send(attribute).variant(options))
       end

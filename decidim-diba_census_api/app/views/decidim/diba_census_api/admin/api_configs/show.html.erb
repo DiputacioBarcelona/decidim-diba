@@ -1,7 +1,7 @@
-<% add_decidim_page_title(t('.title', name: @organization.name)) %>
+<% add_decidim_page_title(t('.title', name: organization_name(@organization))) %>
 <div class="item_show__header">
   <h1 class="item_show__header-title">
-    <%= t('.title', name: @organization.name) %>
+    <%= t('.title', name: organization_name(@organization)) %>
     <%= link_to t('.edit'), edit_api_config_path, class: 'button button__sm button__secondary' %>
   </h1>
 </div>
