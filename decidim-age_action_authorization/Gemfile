@@ -9,8 +9,10 @@ gemspec
 
 group :development, :test do
   gem "bootsnap"
-  gem "decidim", ">= 0.28", { git: "https://github.com/decidim/decidim.git", branch: "release/0.28-stable" }.freeze
+  gem "decidim", ">= 0.29", { git: "https://github.com/decidim/decidim.git", branch: "release/0.29-stable" }.freeze
   gem "decidim-ldap", path: "../decidim-ldap"
+  gem "letter_opener_web"
   gem "listen"
   gem "pry-rails"
+  gem "spring", "~> 4.2.1"
 end

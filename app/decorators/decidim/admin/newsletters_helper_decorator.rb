@@ -19,4 +19,4 @@ module Decidim::Admin::NewslettersHelperDecorator
   end
 end
 
-::Decidim::Admin::NewslettersHelperDecorator.decorate
+Decidim::Admin::NewslettersHelperDecorator.decorate

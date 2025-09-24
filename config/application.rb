@@ -3,7 +3,6 @@
 require_relative "boot"
 
 require "decidim/rails"
-require "sprockets/railtie"
 # Add the frameworks used by your app that are not loaded by Decidim.
 # require "action_cable/engine"
 # require "action_mailbox/engine"
@@ -19,7 +18,7 @@ module DecidimDiba
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
 
-    config.load_defaults 6.0
+    config.load_defaults 7.0
 
     config.time_zone = "Madrid"
     config.active_record.default_timezone = :local
@@ -36,8 +35,8 @@ module DecidimDiba
     end
 
     initializer("decidim_diba.initiatives.menu", after: "decidim_initiatives.menu") do
-      menu_manifest= Decidim::MenuRegistry.find :menu
-      initiatives_menu_configurations= menu_manifest.configurations.select do |proc|
+      menu_manifest = Decidim::MenuRegistry.find :menu
+      initiatives_menu_configurations = menu_manifest.configurations.select do |proc|
         proc.to_s.include?("initiatives/engine.rb")
       end
       if initiatives_menu_configurations.any?
@@ -55,7 +54,7 @@ module DecidimDiba
 
     # Make decorators available
     config.to_prepare do
-      Dir.glob(Rails.root.join("app/decorators/**/*_decorator*.rb")).each do |c|
+      Rails.root.glob("app/decorators/**/*_decorator*.rb").each do |c|
         require_dependency(c)
       end
     end

@@ -15,7 +15,7 @@ require "rspec/rails"
 require "decidim/dev"
 Decidim::Dev.dummy_app_path = File.expand_path(File.join(__dir__, ".."))
 require "decidim/dev/test/base_spec_helper"
-Dir[Rails.root.join("spec/support/**/*.rb")].sort.each { |f| require f }
+Rails.root.glob("spec/support/**/*.rb").each { |f| require f }
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are

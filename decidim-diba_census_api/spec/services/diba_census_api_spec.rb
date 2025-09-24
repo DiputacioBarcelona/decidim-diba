@@ -2,13 +2,12 @@
 
 require "spec_helper"
 
-# rubocop:disable RSpec/MultipleMemoizedHelpers
 RSpec.describe DibaCensusApi do
-  let(:subject) do
+  subject do
     api = DibaCensusApi.new(username: "Decidim", password: "123412341234", ine: "998")
-    rs= api.call(document_type: 1,
-                 id_document: id_document,
-                 birthdate: date)
+    rs = api.call(document_type: 1,
+                  id_document:,
+                  birthdate: date)
     rs
   end
 
@@ -44,7 +43,7 @@ RSpec.describe DibaCensusApi do
       let(:situacion_habitante) { "" }
 
       it "performs request and parses response" do
-        expect(subject).to be nil
+        expect(subject).to be_nil
       end
     end
 
@@ -52,14 +51,14 @@ RSpec.describe DibaCensusApi do
       let(:rs_birthdate) { "" }
 
       it "performs request and parses response" do
-        expect(subject).to be nil
+        expect(subject).to be_nil
       end
     end
   end
 
   def request_body
     <<~EOBODY
-      <?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<env:Envelope\n    xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"\n    xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n    xmlns:impl=\"http://accede-pre.diba.cat/services/Ci\"\n    xmlns:env=\"http://schemas.xmlsoap.org/soap/envelope/\"\n    xmlns:ins0=\"http://gestion.util.aytos\">\n    <env:Body>\n        <impl:servicio>\n          <e><![CDATA[<e>\n  <ope>\n    <apl>PAD</apl>\n    <tobj>HAB</tobj>\n    <cmd>CONSULTAINDIVIDUAL</cmd>\n    <ver>2.0</ver>\n  </ope>\n  <sec>\n    <cli>AOC</cli>\n    <org>0</org>\n    <ent>998</ent>\n    <usu>Decidim</usu>\n    <pwd>Wni6u7FiUxs6FsVTEKTnIo1o8uk=</pwd>\n    <fecha>20210521095605</fecha>\n    <nonce>239976722797680</nonce>\n    <token>VPxRFBMYyl8M1jasfKpvY8SitAvYhqJr5M10X2HUV29Vp26sEROxALfhUGJWMJ6g/o0/lhW5MIJSClCz7fJnaw==</token>\n  </sec>\n  <par>\n    <codigoTipoDocumento>1</codigoTipoDocumento>\n    <documento>NTg5NTg5ODJU\n</documento>\n    <nombre></nombre>\n    <particula1></particula1>\n    <apellido1></apellido1>\n    <particula2></particula2>\n    <apellido2></apellido2>\n    <fechaNacimiento>20000101000000</fechaNacimiento>\n    <busquedaExacta>1</busquedaExacta>\n  </par>\n</e>\n]]></e>\n        </impl:servicio>\n    </env:Body>\n</env:Envelope>\n
+      <?xml version="1.0" encoding="UTF-8"?>\n<env:Envelope\n    xmlns:xsd="http://www.w3.org/2001/XMLSchema"\n    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"\n    xmlns:impl="http://accede-pre.diba.cat/services/Ci"\n    xmlns:env="http://schemas.xmlsoap.org/soap/envelope/"\n    xmlns:ins0="http://gestion.util.aytos">\n    <env:Body>\n        <impl:servicio>\n          <e><![CDATA[<e>\n  <ope>\n    <apl>PAD</apl>\n    <tobj>HAB</tobj>\n    <cmd>CONSULTAINDIVIDUAL</cmd>\n    <ver>2.0</ver>\n  </ope>\n  <sec>\n    <cli>AOC</cli>\n    <org>0</org>\n    <ent>998</ent>\n    <usu>Decidim</usu>\n    <pwd>Wni6u7FiUxs6FsVTEKTnIo1o8uk=</pwd>\n    <fecha>20210521095605</fecha>\n    <nonce>239976722797680</nonce>\n    <token>VPxRFBMYyl8M1jasfKpvY8SitAvYhqJr5M10X2HUV29Vp26sEROxALfhUGJWMJ6g/o0/lhW5MIJSClCz7fJnaw==</token>\n  </sec>\n  <par>\n    <codigoTipoDocumento>1</codigoTipoDocumento>\n    <documento>NTg5NTg5ODJU\n</documento>\n    <nombre></nombre>\n    <particula1></particula1>\n    <apellido1></apellido1>\n    <particula2></particula2>\n    <apellido2></apellido2>\n    <fechaNacimiento>20000101000000</fechaNacimiento>\n    <busquedaExacta>1</busquedaExacta>\n  </par>\n</e>\n]]></e>\n        </impl:servicio>\n    </env:Body>\n</env:Envelope>\n
     EOBODY
   end
 
@@ -205,4 +204,3 @@ RSpec.describe DibaCensusApi do
     EODATA
   end
 end
-# rubocop:enable RSpec/MultipleMemoizedHelpers

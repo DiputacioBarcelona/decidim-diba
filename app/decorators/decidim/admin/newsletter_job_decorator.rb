@@ -6,12 +6,15 @@ module Decidim::Admin::NewsletterJobDecorator
       alias_method :original_extended_data, :extended_data
 
       def extended_data
+        return original_extended_data unless @form["send_to_selected_users"]
+
         original_extended_data.merge(
-          { send_to_selected_users: @form["send_to_selected_users"] }
+          send_to_selected_users: true,
+          selected_users_ids: @form["selected_users_ids"].compact_blank
         )
       end
     end
   end
 end
 
-::Decidim::Admin::NewsletterJobDecorator.decorate
+Decidim::Admin::NewsletterJobDecorator.decorate
