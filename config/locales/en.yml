@@ -75,6 +75,9 @@ en:
             invalid_field:
               both: Action restricted to the inhabitants of the municipal census between
                 %{min_age} and %{max_age} years old.
+              corrupted_metadata: The data required to verify your age could not be
+                retrieved. Please obtain authorization of the municipal census again
+                to verify your data.
               max_age: Action restricted to the inhabitants of the municipal census
                 under the age of %{max_age}.
               min_age: Action restricted to the inhabitants of the municipal census

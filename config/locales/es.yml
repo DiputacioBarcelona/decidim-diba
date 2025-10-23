@@ -75,6 +75,9 @@ es:
             invalid_field:
               both: Acción restringida a los habitantes del padrón municipal entre
                 %{min_age} y %{max_age} años
+              corrupted_metadata: No se han podido recuperar los datos necesarios
+                para verificar tu edad. Vuelve a obtener la autorización del padrón
+                municipal para poder verificar tus datos.
               max_age: Acción restringida a los habitantes del padrón municipal menores
                 de %{max_age} años
               min_age: Acción restringida a los habitantes del padrón municipal mayores
