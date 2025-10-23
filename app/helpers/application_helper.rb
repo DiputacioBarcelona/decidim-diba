@@ -9,6 +9,8 @@ module ApplicationHelper
     min_age = options["age"]
     max_age = options["max_age"]
 
+    return t("corrupted_metadata", scope:) if status.instance_variable_get(:@authorization_handler).instance_variable_get(:@action_authorizer).missing_fields.present?
+
     if min_age.present? && max_age.present?
       t("both", scope:, max_age:, min_age:)
     elsif min_age.present? && max_age.blank?

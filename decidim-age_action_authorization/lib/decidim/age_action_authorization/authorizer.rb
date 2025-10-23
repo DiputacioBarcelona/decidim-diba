@@ -21,11 +21,14 @@ module Decidim
 
       def valid_metadata?
         return unless authorization
+        return true if authorization.metadata["birthdate"].blank?
 
-        !authorization.metadata["birthdate"].nil?
+        birthdate.present?
       end
 
       def valid_age?
+        return false if birthdate.blank?
+
         min_date = birthdate + minimum_age.years
         max_date = options["max_age"].present? &&
                    (birthdate + options["max_age"].to_i.years)
@@ -38,7 +41,7 @@ module Decidim
       end
 
       def birthdate
-        @birthdate ||= Date.strptime(authorization.metadata["birthdate"], "%Y/%m/%d")
+        @birthdate ||= Date._strptime(authorization.metadata["birthdate"], "%Y/%m/%d").present? ? Date.strptime(authorization.metadata["birthdate"], "%Y/%m/%d") : nil
       end
 
       def minimum_age
