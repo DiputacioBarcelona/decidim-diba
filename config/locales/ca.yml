@@ -92,6 +92,9 @@ ca:
             invalid_field:
               both: Acció restringida als habitants del padró municipal entre %{min_age}
                 i %{max_age} anys
+              corrupted_metadata: No s'han pogut recuperar les dades necessàries per
+                verificar-ne l'edat. Torneu a obtenir l'autorització del padró municipal
+                per poder verificar les vostres dades.
               max_age: Acció restringida als habitants del padró municipal menors
                 de %{max_age} anys
               min_age: Acció restringida als habitants del padró municipal majors
