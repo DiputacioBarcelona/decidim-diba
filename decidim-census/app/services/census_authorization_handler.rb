@@ -19,6 +19,7 @@ class CensusAuthorizationHandler < Decidim::AuthorizationHandler
   attribute :date_of_birth, Date
   attribute :postal_code, String
   attribute :scope_id, Integer
+  attribute :organization_id, Integer
 
   def metadata
     { birthdate: census_for_user&.birthdate&.strftime("%Y/%m/%d") }
@@ -55,7 +56,7 @@ class CensusAuthorizationHandler < Decidim::AuthorizationHandler
   end
 
   def organization
-    current_organization || user&.organization || scope&.organization
+    current_organization || user&.organization || scope&.organization || Decidim::Organization.find_by(id: organization_id)
   end
 
   # As we can get here from authorization validation or initiative signature
