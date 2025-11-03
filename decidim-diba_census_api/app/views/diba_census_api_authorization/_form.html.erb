@@ -3,4 +3,5 @@
   <%= form.text_field :id_document %>
   <%= form.date_field :birthdate, min: 120.years.ago.to_date, max: Date.current, value: 35.years.ago.to_date %>
   <%= form.hidden_field :handler_name %>
+  <%= form.hidden_field :organization_id, value: current_organization.id %>
 </div>
