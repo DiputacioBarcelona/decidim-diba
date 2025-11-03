@@ -6,6 +6,7 @@ class DibaAuthorizationHandler < Decidim::AuthorizationHandler
   attribute :document_type, Symbol
   attribute :id_document, String
   attribute :birthdate, Date
+  attribute :organization_id, Integer
 
   validates :document_type, inclusion: { in: [:dni, :nie, :passport] }, presence: true
   validates :id_document, presence: true
@@ -46,7 +47,8 @@ class DibaAuthorizationHandler < Decidim::AuthorizationHandler
   def csv_handler
     @csv_handler ||= CensusAuthorizationHandler.new(user:,
                                                     id_document:,
-                                                    birthdate:)
+                                                    birthdate:,
+                                                    organization_id:)
                                                .with_context(context)
   end
 
@@ -54,7 +56,8 @@ class DibaAuthorizationHandler < Decidim::AuthorizationHandler
     @api_handler ||= DibaCensusApiAuthorizationHandler.new(user:,
                                                            id_document:,
                                                            document_type:,
-                                                           birthdate:)
+                                                           birthdate:,
+                                                           organization_id:)
                                                       .with_context(context)
   end
 end
