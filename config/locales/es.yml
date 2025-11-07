@@ -13,6 +13,10 @@ es:
           attributes:
             email:
               taken: Email inválido
+  editor:
+    extensions:
+      image:
+        linkLabel: URL del link (opcional)
   errors:
     messages:
       not_found: Email inválido

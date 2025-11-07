@@ -4,7 +4,7 @@ source "https://rubygems.org"
 
 ruby RUBY_VERSION
 
-DECIDIM_VERSION = { git: "https://github.com/decidim/decidim.git", branch: "release/0.29-stable" }.freeze
+DECIDIM_VERSION = { git: "https://github.com/PopulateTools/decidim.git", branch: "tiptap-image-links_0.29" }.freeze
 
 gem "decidim", DECIDIM_VERSION
 gem "decidim-age_action_authorization", path: "decidim-age_action_authorization"

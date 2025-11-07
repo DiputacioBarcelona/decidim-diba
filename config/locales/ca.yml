@@ -13,6 +13,10 @@ ca:
           attributes:
             email:
               taken: Email invàlid
+  editor:
+    extensions:
+      image:
+        linkLabel: URL del link (opcional)
   errors:
     messages:
       not_found: Email invàlid
