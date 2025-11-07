@@ -6,6 +6,7 @@ class DibaCensusApiAuthorizationHandler < Decidim::AuthorizationHandler
   attribute :document_type, Symbol
   attribute :id_document, String
   attribute :birthdate, Date
+  attribute :organization_id, Integer
 
   # This is the validation to perform
   # If passed, is authorized
@@ -78,6 +79,6 @@ class DibaCensusApiAuthorizationHandler < Decidim::AuthorizationHandler
   end
 
   def organization
-    current_organization || user.try(:organization)
+    current_organization || user.try(:organization) || Decidim::Organization.find_by(id: organization_id)
   end
 end

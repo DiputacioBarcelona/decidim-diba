@@ -11,6 +11,14 @@ GIT
       sassc (~> 2.3)
 
 GIT
+  remote: https://github.com/PopulateTools/decidim-module-removable_authorizations.git
+  revision: ad1d2440f5140240409d600da1e0d571e92c95e8
+  branch: main
+  specs:
+    decidim-removable_authorizations (0.29.0)
+      decidim-core (~> 0.29.0)
+
+GIT
   remote: https://github.com/PopulateTools/decidim-module-term_customizer
   revision: b0b6d191db21134a1c3634a72ff33441fbfddd01
   branch: upgrade_0.29
@@ -947,6 +955,7 @@ DEPENDENCIES
   decidim-homepage_proposals!
   decidim-initiatives!
   decidim-ldap!
+  decidim-removable_authorizations!
   decidim-templates!
   decidim-term_customizer!
   deface
