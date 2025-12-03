@@ -32,10 +32,12 @@ describe "Newsletter settings" do
 
   describe "new newsletter" do
     before do
-      visit decidim_admin.root_path
+      visit decidim_admin.root_path(locale: :ca)
       click_on "Butlletins"
       page.all(:link, "Nou butlletí").first.click
-      page.all(:link, href: "/admin/newsletter_templates/basic_only_text/newsletters/new").last.click
+      within("div.card-section div.card", match: :first) do
+        click_on "Utilitzar aquesta plantilla"
+      end
     end
 
     context "and show settings" do
