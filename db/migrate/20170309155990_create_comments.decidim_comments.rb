@@ -1,4 +1,7 @@
+# frozen_string_literal: true
+
 # This migration comes from decidim_comments (originally 20161130143508)
+# This file has been modified by `decidim upgrade:migrations` task on 2026-02-05 12:06:52 UTC
 class CreateComments < ActiveRecord::Migration[5.0]
   def change
     create_table :decidim_comments_comments do |t|
