@@ -1,5 +1,5 @@
 GIT
-  remote: git@github.com:Platoniq/decidim-module-term_customizer.git
+  remote: https://github.com/Platoniq/decidim-module-term_customizer
   revision: 3a792afb1edd78421b63964f3d1eea6e091f759f
   branch: main
   specs:
