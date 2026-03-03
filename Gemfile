@@ -4,22 +4,23 @@ source "https://rubygems.org"
 
 ruby RUBY_VERSION
 
-DECIDIM_VERSION = { git: "https://github.com/PopulateTools/decidim.git", branch: "tiptap-image-links_0.29" }.freeze
+DECIDIM_VERSION = { git: "https://github.com/decidim/decidim.git", branch: "release/0.30-stable" }.freeze
 
 gem "decidim", DECIDIM_VERSION
 gem "decidim-age_action_authorization", path: "decidim-age_action_authorization"
 gem "decidim-census", path: "decidim-census"
 # gem "decidim-consultations", DECIDIM_VERSION
-gem "decidim-decidim_awesome", git: "https://github.com/PopulateTools/decidim-module-decidim_awesome.git", branch: "autoblock_with_attachments_029"
+gem "decidim-decidim_awesome", git: "https://github.com/decidim-ice/decidim-module-decidim_awesome.git", branch: "release/0.30-stable"
 gem "decidim-diba_census_api", path: "decidim-diba_census_api"
 gem "decidim-initiatives", DECIDIM_VERSION
 gem "decidim-ldap", path: "decidim-ldap"
 gem "decidim-templates", DECIDIM_VERSION
 
-gem "decidim-homepage_proposals", git: "https://github.com/PopulateTools/decidim-module_homepage_proposals.git", branch: "release/0.29-stable"
-gem "decidim-term_customizer", git: "https://github.com/PopulateTools/decidim-module-term_customizer", branch: "upgrade_0.29"
+gem "decidim-homepage_proposals", git: "https://github.com/PopulateTools/decidim-module_homepage_proposals.git", branch: "release/0.30-stable"
+gem "decidim-term_customizer", git: "git@github.com:Platoniq/decidim-module-term_customizer.git", branch: "main"
 
 gem "decidim-removable_authorizations", git: "https://github.com/PopulateTools/decidim-module-removable_authorizations.git", branch: "main"
+
 # Compatibility with decidim initiatives module
 gem "bootsnap"
 gem "deface"
@@ -32,8 +33,8 @@ gem "wicked_pdf"
 
 # Forced by production environment
 gem "base64", "0.1.1"
-gem "stringio", "3.0.1"
-gem "strscan", "3.0.1"
+gem "stringio"
+gem "strscan", "3.1.2"
 
 group :development, :test do
   gem "byebug", platform: :mri
