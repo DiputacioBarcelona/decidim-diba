@@ -32,7 +32,7 @@ gem "uglifier", ">= 1.3.0"
 gem "wicked_pdf"
 
 # Forced by production environment
-gem "base64", "0.1.1"
+gem "base64", "0.2.0"
 gem "stringio"
 gem "strscan", "3.1.2"
 
