@@ -70,7 +70,9 @@ RUN gem update --system \
  && gem install bundler:4.0.7 \
  && gem uninstall bundler --version 2.5.11 --force --ignore-dependencies \
  && gem install strscan:3.1.2 \
- && gem uninstall strscan --version 3.0.9 --force --ignore-dependencies
+ && gem uninstall strscan --version 3.0.9 --force --ignore-dependencies \
+ && gem install stringio:3.2.0 \
+ && gem uninstall stringio --version 3.1.1 --force --ignore-dependencies
 RUN gem install rake:13.2.1
 ADD Gemfile Gemfile
 ADD Gemfile.lock Gemfile.lock

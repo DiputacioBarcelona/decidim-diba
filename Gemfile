@@ -33,7 +33,7 @@ gem "wicked_pdf"
 
 # Forced by production environment
 gem "base64", "0.2.0"
-gem "stringio"
+gem "stringio", "3.2.0"
 gem "strscan", "3.1.2"
 
 group :development, :test do
