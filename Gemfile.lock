@@ -8,6 +8,18 @@ GIT
       decidim-core (~> 0.30.0)
 
 GIT
+  remote: https://github.com/PopulateTools/decidim-module-decidim_awesome.git
+  revision: 6413d030a7de01189cccb9cd96931d183c173769
+  branch: autoblock_with_attachments_030
+  specs:
+    decidim-decidim_awesome (0.13.2)
+      active_hashcash (~> 0.4.0)
+      decidim-admin (>= 0.30.0, < 0.31)
+      decidim-core (>= 0.30.0, < 0.31)
+      deface (>= 1.5)
+      sassc (~> 2.3)
+
+GIT
   remote: https://github.com/PopulateTools/decidim-module-removable_authorizations.git
   revision: d367dfc85102a492d6f8d04b58b2e50c65410c7a
   branch: main
@@ -24,18 +36,6 @@ GIT
       decidim-admin (~> 0.30)
       decidim-core (~> 0.30)
       deface (>= 1.5)
-
-GIT
-  remote: https://github.com/decidim-ice/decidim-module-decidim_awesome.git
-  revision: b076c3060a50e4f68c1af18baea342157411afc4
-  branch: release/0.30-stable
-  specs:
-    decidim-decidim_awesome (0.13.2)
-      active_hashcash (~> 0.4.0)
-      decidim-admin (>= 0.30.0, < 0.31)
-      decidim-core (>= 0.30.0, < 0.31)
-      deface (>= 1.5)
-      sassc (~> 2.3)
 
 GIT
   remote: https://github.com/PopulateTools/decidim.git
