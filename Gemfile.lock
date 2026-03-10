@@ -38,9 +38,9 @@ GIT
       sassc (~> 2.3)
 
 GIT
-  remote: https://github.com/decidim/decidim.git
-  revision: 7bc68f42341592bf00bdc41b7002fbea8ea86212
-  branch: release/0.30-stable
+  remote: https://github.com/PopulateTools/decidim.git
+  revision: 2cb4171b32f89fff2f1db0b9a75c1b63aa426d6e
+  branch: tiptap-image-links_0.30
   specs:
     decidim (0.30.6)
       decidim-accountability (= 0.30.6)
