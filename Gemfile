@@ -4,13 +4,13 @@ source "https://rubygems.org"
 
 ruby RUBY_VERSION
 
-DECIDIM_VERSION = { git: "https://github.com/decidim/decidim.git", branch: "release/0.30-stable" }.freeze
+DECIDIM_VERSION = { git: "https://github.com/PopulateTools/decidim.git", branch: "tiptap-image-links_0.30" }.freeze
 
 gem "decidim", DECIDIM_VERSION
 gem "decidim-age_action_authorization", path: "decidim-age_action_authorization"
 gem "decidim-census", path: "decidim-census"
 # gem "decidim-consultations", DECIDIM_VERSION
-gem "decidim-decidim_awesome", git: "https://github.com/decidim-ice/decidim-module-decidim_awesome.git", branch: "release/0.30-stable"
+gem "decidim-decidim_awesome", git: "https://github.com/PopulateTools/decidim-module-decidim_awesome.git", branch: "autoblock_with_attachments_030"
 gem "decidim-diba_census_api", path: "decidim-diba_census_api"
 gem "decidim-initiatives", DECIDIM_VERSION
 gem "decidim-ldap", path: "decidim-ldap"
@@ -32,8 +32,8 @@ gem "uglifier", ">= 1.3.0"
 gem "wicked_pdf"
 
 # Forced by production environment
-gem "base64", "0.1.1"
-gem "stringio"
+gem "base64", "0.2.0"
+gem "stringio", "3.2.0"
 gem "strscan", "3.1.2"
 
 group :development, :test do

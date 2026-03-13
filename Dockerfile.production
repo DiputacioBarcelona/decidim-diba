@@ -1,4 +1,4 @@
-FROM phusion/passenger-full:2.1.0
+FROM phusion/passenger-full:3.1.6
 MAINTAINER Populate "fernando@populate.tools"
 
 ENV HOME /home/app/decidim-diba
@@ -17,12 +17,11 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 RUN apt install -y ca-certificates
 RUN apt-get --allow-releaseinfo-change update
 RUN apt-get update
+RUN apt-get install -y clang build-essential
 RUN apt-get install -y imagemagick gettext-base tzdata
 RUN apt-get install -y p7zip
 RUN apt-get install -y xfonts-base
 RUN apt-get install -y xfonts-75dpi
-RUN curl "https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6-1/wkhtmltox_0.12.6-1.bionic_amd64.deb" -L -o "wkhtmltox_0.12.6-1.bionic_amd64.deb"
-RUN dpkg -i wkhtmltox_0.12.6-1.bionic_amd64.deb
 
 RUN apt-get install -y --no-install-recommends libjemalloc2
 ENV LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libjemalloc.so.2
@@ -71,7 +70,13 @@ RUN bash -lc 'rvm install ruby-3.3.4'
 RUN bash -lc 'rvm --default use ruby-3.3.4'
 
 # Install bundle of gems
-RUN gem install bundler:2.5.6
+RUN gem update --system \
+ && gem install bundler:4.0.7 \
+ && gem uninstall bundler --version 2.5.11 --force --ignore-dependencies \
+ && gem install strscan:3.1.2 \
+ && gem uninstall strscan --version 3.0.9 --force --ignore-dependencies \
+ && gem install stringio:3.2.0 \
+ && gem uninstall stringio --version 3.1.1 --force --ignore-dependencies
 RUN gem install rake:13.2.1
 ADD Gemfile Gemfile
 ADD Gemfile.lock Gemfile.lock
