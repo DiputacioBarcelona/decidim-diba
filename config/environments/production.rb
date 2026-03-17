@@ -35,16 +35,23 @@ Rails.application.configure do
                                            :smtp
                                          end
 
+  smtp_auth = Rails.application.secrets.smtp_authentication.to_s.downcase
   config.action_mailer.smtp_settings = {
     address: Rails.application.secrets.smtp_address,
     port: Rails.application.secrets.smtp_port,
-    authentication: Rails.application.secrets.smtp_authentication,
-    user_name: Rails.application.secrets.smtp_username,
-    password: Rails.application.secrets.smtp_password,
     domain: Rails.application.secrets.smtp_domain,
     enable_starttls_auto: Rails.application.secrets.smtp_starttls_auto,
     openssl_verify_mode: "none"
-  }
+  }.tap do |settings|
+    # Net::SMTP only accepts :plain, :login, :cram_md5. Omit auth when "none" or blank.
+    if smtp_auth.blank? || smtp_auth == "none"
+      settings[:authentication] = nil
+    else
+      settings[:authentication] = smtp_auth.to_sym
+      settings[:user_name] = Rails.application.secrets.smtp_username
+      settings[:password] = Rails.application.secrets.smtp_password
+    end
+  end
 
   # Use a different logger for distributed setups.
   # require 'syslog/logger'
