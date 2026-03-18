@@ -29,7 +29,7 @@ GIT
 
 GIT
   remote: https://github.com/PopulateTools/decidim-module_homepage_proposals.git
-  revision: 8f55f70d2637cb34ec8b6916853fe0f62760287d
+  revision: 0d4f01c489cf12ed1f4ca2dbed1b94bced13c82c
   branch: release/0.30-stable
   specs:
     decidim-homepage_proposals (3.2.0)
@@ -39,7 +39,7 @@ GIT
 
 GIT
   remote: https://github.com/PopulateTools/decidim.git
-  revision: 2cb4171b32f89fff2f1db0b9a75c1b63aa426d6e
+  revision: bad699cc11b094a7efb9971318cac5811a0e51c6
   branch: tiptap-image-links_0.30
   specs:
     decidim (0.30.6)
