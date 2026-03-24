@@ -8,9 +8,6 @@ on:
       - "*-stable"
   pull_request:
 
-env:
-  RUBY_VERSION: 3.2.6
-
 jobs:
   lint:
     runs-on: ubuntu-latest
@@ -20,29 +17,10 @@ jobs:
         with:
           fetch-depth: 1
 
-      - uses: ruby/setup-ruby@master
+      - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: ${{ env.RUBY_VERSION }}
-
-      - name: Recover Ruby dependency cache
-        uses: actions/cache@v4
-        with:
-          path: ./vendor/bundle
-          key: ${{ runner.OS }}-rubydeps-${{ hashFiles('Gemfile.lock') }}
-          restore-keys: |
-            ${{ runner.OS }}-rubydeps-${{ env.cache-name }}-
-            ${{ runner.OS }}-rubydeps-
-            ${{ runner.OS }}-
-
-      - name: Set bundle local config vendor/bundle path
-        run: bundle config set --local path 'vendor/bundle'
-
-      - name: Install Ruby deps
-        uses: nick-invision/retry@v3
-        with:
-          timeout_minutes: 10
-          max_attempts: 3
-          command: bundle install --jobs 4 --retry 3
+          ruby-version-file: .ruby-version
+          bundler-cache: true
 
       - name: Rubocop
         run: bundle exec rubocop -P
