@@ -8,8 +8,8 @@ checksums = [
   {
     package: "decidim-core",
     files: {
-      "/app/views/decidim/devise/sessions/new.html.erb" => "a8fe60cd10c1636822c252d5488a979d",
-      "/app/views/decidim/shared/_login_modal.html.erb" => "0d615603bb45f7b209032578dda9fc72"
+      "/app/views/decidim/devise/sessions/new.html.erb" => "da0d18178c8dcead2774956e989527c5",
+      "/app/views/decidim/shared/_login_modal.html.erb" => "98bd2832be207d7abcd48d2a0ba40bd0"
     }
   }
 ]
