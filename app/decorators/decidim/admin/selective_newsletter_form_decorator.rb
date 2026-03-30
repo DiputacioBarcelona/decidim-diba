@@ -1,38 +1,69 @@
 # frozen_string_literal: true
 
 module Decidim::Admin::SelectiveNewsletterFormDecorator
-  # rubocop:disable Metrics/CyclomaticComplexity
-  # rubocop:disable Metrics/PerceivedComplexity
   def self.decorate
     Decidim::Admin::SelectiveNewsletterForm.class_eval do
       include Decidim::TranslatableAttributes
 
-      # Remove original validators
-      attributes = [:send_to_all_users, :send_to_followers, :send_to_participants]
-
-      attributes.each do |attribute|
-        _validators.delete(attribute)
-      end
-
-      _validate_callbacks.each do |callback|
-        next unless callback.filter.respond_to? :attributes
-
-        attributes.each do |attribute|
-          callback.filter.attributes.delete attribute
-        end
-      end
-
       attribute :selected_users_ids, Array
       attribute :send_to_selected_users, ::Decidim::AttributeObject::Form::Boolean
+      validates :send_to_selected_users, presence: true, if: :only_selected_users_selected?
 
-      validates :send_to_all_users, presence: true, unless: lambda { |form|
-                                                              form.send_to_participants.present? || form.send_to_followers.present? || form.send_to_selected_users.present?
-                                                            }
+      private
 
-      # Set new validations with the new attribute
-      validates :send_to_followers, presence: true, if: ->(form) { form.send_to_all_users.blank? && form.send_to_participants.blank? && form.send_to_selected_users.blank? }
-      validates :send_to_participants, presence: true, if: ->(form) { form.send_to_all_users.blank? && form.send_to_followers.blank? && form.send_to_selected_users.blank? }
-      validates :send_to_selected_users, presence: true, if: ->(form) { form.send_to_all_users.blank? && form.send_to_participants.blank? && form.send_to_followers.blank? }
+      def at_least_one_participatory_space_selected
+        return if (send_to_all_users || send_to_verified_users || send_to_selected_users) && current_user.admin?
+
+        errors.add(:base, :at_least_one_space) if spaces_selected.blank?
+      end
+
+      def other_groups_selected_for_all_users?
+        send_to_verified_users.present? ||
+          send_to_participants.present? ||
+          send_to_followers.present? ||
+          send_to_private_members.present? ||
+          send_to_selected_users.present?
+      end
+
+      def other_groups_selected_for_verified_users?
+        send_to_all_users.present? ||
+          send_to_participants.present? ||
+          send_to_followers.present? ||
+          send_to_private_members.present? ||
+          send_to_selected_users.present?
+      end
+
+      def only_followers_selected?
+        send_to_all_users.blank? &&
+          send_to_participants.blank? &&
+          send_to_private_members.blank? &&
+          send_to_verified_users.blank? &&
+          send_to_selected_users.blank?
+      end
+
+      def only_participants_selected?
+        send_to_all_users.blank? &&
+          send_to_followers.blank? &&
+          send_to_private_members.blank? &&
+          send_to_verified_users.blank? &&
+          send_to_selected_users.blank?
+      end
+
+      def only_private_members_selected?
+        send_to_all_users.blank? &&
+          send_to_followers.blank? &&
+          send_to_participants.blank? &&
+          send_to_verified_users.blank? &&
+          send_to_selected_users.blank?
+      end
+
+      def only_selected_users_selected?
+        send_to_all_users.blank? &&
+          send_to_followers.blank? &&
+          send_to_private_members.blank? &&
+          send_to_participants.blank? &&
+          send_to_verified_users.blank?
+      end
 
       def newsletters_with_selected_recipients_options
         Decidim::Newsletter
@@ -43,18 +74,8 @@ module Decidim::Admin::SelectiveNewsletterFormDecorator
             [translated_attribute(newsletter.subject), newsletter.id] if newsletter.extended_data["selected_users_ids"]&.compact_blank.present?
           end
       end
-
-      private
-
-      def at_least_one_participatory_space_selected
-        return if (send_to_all_users && current_user.admin?) || send_to_selected_users
-
-        errors.add(:base, :at_least_one_space) if spaces_selected.blank?
-      end
     end
   end
-  # rubocop:enable Metrics/CyclomaticComplexity
-  # rubocop:enable Metrics/PerceivedComplexity
 end
 
 Decidim::Admin::SelectiveNewsletterFormDecorator.decorate

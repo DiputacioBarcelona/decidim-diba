@@ -13,28 +13,29 @@ module Decidim
       end
 
       let(:organization) { create(:organization) }
-      let!(:user) { create :user, :confirmed, :admin, organization: }
-      let(:scopes) do
-        create_list(:scope, 5, organization:)
-      end
+      let!(:user) { create(:user, :confirmed, :admin, organization:) }
       let(:participatory_processes) { create_list(:participatory_process, rand(1..9), organization:) }
       let(:selected_participatory_processes) { [participatory_processes.first.id.to_s] }
       let(:send_to_all_users) { user.admin? }
+      let(:send_to_verified_users) { false }
+      let(:send_to_private_members) { false }
       let(:send_to_participants) { false }
       let(:send_to_followers) { false }
       let(:send_to_selected_users) { false }
       let(:participatory_space_types) { [] }
-      let(:scope_ids) { [] }
+      let(:verification_types) { [] }
 
       let(:attributes) do
         {
           "newsletter" => {
             "send_to_all_users" => send_to_all_users,
+            "send_to_verified_users" => send_to_verified_users,
+            "send_to_private_members" => send_to_private_members,
             "send_to_participants" => send_to_participants,
             "send_to_followers" => send_to_followers,
             "send_to_selected_users" => send_to_selected_users,
-            "participatory_space_types" => participatory_space_types,
-            "scope_ids" => scope_ids
+            "verification_types" => verification_types,
+            "participatory_space_types" => participatory_space_types
           }
         }
       end
@@ -59,9 +60,6 @@ module Decidim
                 "ids" => [] },
               { "id" => nil,
                 "manifest_name" => "conferences",
-                "ids" => [] },
-              { "id" => nil,
-                "manifest_name" => "consultations",
                 "ids" => [] },
               { "id" => nil,
                 "manifest_name" => "initiatives",
@@ -95,6 +93,25 @@ module Decidim
 
           it { is_expected.to be_valid }
         end
+
+        context "when send_to_verified_users is true" do
+          let(:send_to_verified_users) { true }
+          let(:verification_types) { ["example"] }
+
+          it { is_expected.to be_valid }
+        end
+
+        context "when verification_types is empty" do
+          let(:verification_types) { [] }
+
+          it { is_expected.to be_invalid }
+        end
+
+        context "when send_to_private_members is true" do
+          let(:send_to_private_members) { true }
+
+          it_behaves_like "selective newsletter form"
+        end
       end
 
       context "when the user is a space admin" do
@@ -117,19 +134,6 @@ module Decidim
           let(:send_to_all_users) { true }
 
           it { is_expected.to be_invalid }
-        end
-      end
-
-      describe "#scope_ids" do
-        context "when the scope IDs contain an empty value" do
-          # When the scope is selected from a dropdown and no value is selected
-          # this is what will be sent by the form
-          # (<option value="">...</option>).
-          let(:scope_ids) { [""] }
-
-          it "returns an empty array" do
-            expect(subject.scope_ids.empty?).to be(true)
-          end
         end
       end
     end
