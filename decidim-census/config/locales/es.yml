@@ -21,6 +21,15 @@ es:
           age: 'Edad mínima'
           max_age: 'Edad máxima'
           subcensus: 'Subcenso'
+      ephemeral_census_authorization_handler:
+        explanation: Autoriza tu sesión contra el Padrón Municipal
+        fields:
+          age: Edad mínima
+          birthdate: Fecha de nacimiento
+          max_age: Edad máxima
+          subcensus: Subcenso
+        name: Padrón Municipal para acceso temporal
+        type: Excel
     census:
       errors:
         messages:

@@ -21,6 +21,15 @@ en:
           age: 'Minimum age'
           age: 'Maximum age'
           subcensus: 'Subcensus'
+      ephemeral_census_authorization_handler:
+        explanation: Authorize your session against the Municipality Census
+        fields:
+          age: Minimum age
+          birthdate: Birthdate
+          max_age: Maximum age
+          subcensus: Subcensus
+        name: Municipality Census for temporary access
+        type: Excel
     census:
       errors:
         messages:
