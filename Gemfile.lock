@@ -21,11 +21,11 @@ GIT
 
 GIT
   remote: https://github.com/PopulateTools/decidim-module-removable_authorizations.git
-  revision: d367dfc85102a492d6f8d04b58b2e50c65410c7a
-  branch: main
+  revision: 53ee544f4597635ddc629f5efe89d84c99e6d353
+  branch: release/0.30-stable
   specs:
     decidim-removable_authorizations (0.30.0)
-      decidim-core (>= 0.29, < 0.31)
+      decidim-core (~> 0.30.0)
 
 GIT
   remote: https://github.com/PopulateTools/decidim-module_homepage_proposals.git
