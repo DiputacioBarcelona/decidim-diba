@@ -25,6 +25,18 @@ en:
           dni: DNI
           nie: NIE
           passport: Passport
+      ephemeral_diba_census_api_authorization_handler:
+        explanation: Authorize your session against the Municipality Census
+        document_types:
+          dni: DNI
+          nie: NIE
+          passport: Passport
+        fields:
+          age: Minimum age
+          birthdate: Birth date
+          max_age: Maximum age
+        name: Municipality Census for temporary access
+        type: API
     diba_census_api:
       admin:
         menu: Census API config
