@@ -41,6 +41,14 @@ es:
           birthdate: Fecha de nacimiento
           age: Edad mínima
           max_age: Edad máxima
+      ephemeral_diba_authorization_handler:
+        explanation: Autoriza tu sesión contra el Padrón Municipal
+        fields:
+          age: Edad mínima
+          birthdate: Fecha de nacimiento
+          max_age: Edad máxima
+        name: Padrón Municipal para acceso temporal
+        type: Combinado
       sms:
         type: SMS
     authorization_modals:

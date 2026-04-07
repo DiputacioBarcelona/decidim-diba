@@ -19,7 +19,7 @@ gem "decidim-templates", DECIDIM_VERSION
 gem "decidim-homepage_proposals", git: "https://github.com/PopulateTools/decidim-module_homepage_proposals.git", branch: "release/0.30-stable"
 gem "decidim-term_customizer", git: "https://github.com/Platoniq/decidim-module-term_customizer", branch: "main"
 
-gem "decidim-removable_authorizations", git: "https://github.com/PopulateTools/decidim-module-removable_authorizations.git", branch: "main"
+gem "decidim-removable_authorizations", git: "https://github.com/PopulateTools/decidim-module-removable_authorizations.git", branch: "release/0.30-stable"
 
 # Compatibility with decidim initiatives module
 gem "bootsnap"
