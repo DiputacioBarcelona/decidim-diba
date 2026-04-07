@@ -7,7 +7,7 @@ module Decidim
 
       included do
         def can_participate?(_user)
-          false
+          true
         end
       end
     end
