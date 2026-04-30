@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ca">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Manteniment – Plataforma Participa311</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet" />
+    <style>
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+      :root {
+        --black:   #1a1a2e;
+        --red:     #c0392b;
+        --red-mid: #e74c3c;
+        --white:   #ffffff;
+        --off:     #f5f4f0;
+        --grey:    #6b7280;
+        --border:  #d1d5db;
+      }
+
+      html, body {
+        height: 100%;
+        background: var(--off);
+        font-family: 'Source Sans 3', sans-serif;
+        color: var(--black);
+      }
+
+      /* ── HEADER ── */
+      header {
+        background: var(--black);
+        padding: 0 2rem;
+        height: 64px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .header-brand {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        text-decoration: none;
+      }
+
+      .brand-pill {
+        background: var(--red);
+        color: var(--white);
+        font-family: 'Source Sans 3', sans-serif;
+        font-weight: 600;
+        font-size: 1.15rem;
+        letter-spacing: 0.04em;
+        padding: 0.25rem 0.65rem 0.28rem;
+        border-radius: 3px;
+      }
+
+      .brand-name {
+        color: var(--white);
+        font-family: 'Source Sans 3', sans-serif;
+        font-weight: 300;
+        font-size: 1.05rem;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      .header-diba {
+        color: rgba(255,255,255,0.45);
+        font-size: 0.72rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      /* ── RED ACCENT BAR ── */
+      .accent-bar {
+        height: 4px;
+        background: var(--red);
+      }
+
+      /* ── MAIN ── */
+      main {
+        min-height: calc(100vh - 64px - 4px - 80px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 4rem 1.5rem;
+      }
+
+      .card {
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-top: 4px solid var(--red);
+        max-width: 560px;
+        width: 100%;
+        padding: 3rem 3.5rem;
+        box-shadow: 0 4px 32px rgba(26,26,46,0.07);
+        animation: rise 0.55s cubic-bezier(.22,.68,0,1.2) both;
+      }
+
+      @keyframes rise {
+        from { opacity: 0; transform: translateY(18px); }
+        to   { opacity: 1; transform: translateY(0); }
+      }
+
+      .icon-wrap {
+        width: 52px;
+        height: 52px;
+        background: #fff0ef;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1.75rem;
+      }
+
+      .icon-wrap svg {
+        width: 26px;
+        height: 26px;
+        stroke: var(--red);
+      }
+
+      .label {
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--red);
+        margin-bottom: 0.6rem;
+      }
+
+      h1 {
+        font-family: 'Source Serif 4', Georgia, serif;
+        font-weight: 600;
+        font-size: 1.65rem;
+        line-height: 1.25;
+        color: var(--black);
+        margin-bottom: 1.25rem;
+      }
+
+      .divider {
+        width: 36px;
+        height: 2px;
+        background: var(--red);
+        margin-bottom: 1.25rem;
+      }
+
+      p {
+        font-size: 1rem;
+        line-height: 1.7;
+        color: #374151;
+        font-weight: 300;
+      }
+
+      .time-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        margin-top: 1.75rem;
+        background: var(--off);
+        border: 1px solid var(--border);
+        border-radius: 2px;
+        padding: 0.45rem 0.85rem;
+        font-size: 0.82rem;
+        color: var(--grey);
+        font-weight: 400;
+      }
+
+      .time-badge svg {
+        width: 14px;
+        height: 14px;
+        stroke: var(--grey);
+        flex-shrink: 0;
+      }
+
+      /* ── FOOTER ── */
+      footer {
+        height: 80px;
+        background: var(--black);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1.5rem;
+      }
+
+      .footer-dot {
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.2);
+      }
+
+      footer span {
+        color: rgba(255,255,255,0.38);
+        font-size: 0.72rem;
+        letter-spacing: 0.06em;
+      }
+
+      @media (max-width: 480px) {
+        .card { padding: 2rem 1.5rem; }
+        h1    { font-size: 1.35rem; }
+      }
+    </style>
+  </head>
+  <body>
+
+    <header>
+      <div class="header-brand">
+      </div>
+    </header>
+    <div class="accent-bar"></div>
+
+    <main>
+      <div class="card">
+
+        <div class="icon-wrap">
+          <!-- wrench / settings icon -->
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+          </svg>
+        </div>
+
+        <p class="label">Manteniment del sistema</p>
+
+        <h1>Plataforma Participa311<br>en manteniment</h1>
+
+        <div class="divider"></div>
+
+        <p>Estem actualitzant el programari de la Plataforma Participa311 per millorar-la. La pàgina estarà fora de servei dues hores aproximadament. Perdoneu les molèsties.</p>
+
+        <div class="time-badge">
+          <!-- clock icon -->
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <polyline points="12 6 12 12 16 14"/>
+          </svg>
+          Durada aproximada: 2 hores
+        </div>
+
+      </div>
+    </main>
+
+    <footer>
+    </footer>
+  </body>
+</html>

@@ -201,6 +201,16 @@ Decidim.configure do |config|
     end
   end
 
+  Decidim::Verifications.register_workflow(:ephemeral_diba_authorization_handler) do |auth|
+    auth.ephemeral = true
+    auth.form = "EphemeralDibaAuthorizationHandler"
+    auth.action_authorizer = "Decidim::AgeActionAuthorization::Authorizer"
+    auth.options do |options|
+      options.attribute :age, type: :string, required: false
+      options.attribute :max_age, type: :string, required: false
+    end
+  end
+
   Decidim::Verifications::WorkflowManifest.prepend(WorkflowManifestExtension)
 
   # Geocoder configuration

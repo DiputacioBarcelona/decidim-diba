@@ -8,12 +8,20 @@
     ) %>
   </label>
 
-  <%= f.select(
-      :selected_users_ids,
-      Decidim::User.not_deleted.confirmed.where(organization: current_organization).where.not(newsletter_notifications_at: nil).map { |user| ["#{user.name} (#{user.email})", user.id] },
-      { label: false },
-      { multiple: true, class: "newsletter_select-users" }) %>
+  <%= cell(
+        "decidim/admin/multi_select_picker",
+        nil,
+        context: {
+          view_context: self,
+          current_user:,
+          select_id: "users-ids-select",
+          field_name: "newsletter[selected_users_ids][]",
+          options_for_select: Decidim::User.not_deleted.confirmed.where(organization: current_organization).where.not(newsletter_notifications_at: nil).map { |user| ["#{user.name} (#{user.email})", user.id] },
+          selected_values: selected_options(:selected_users_ids).values.flatten,
+          placeholder: t(".select_users.title"),
+          class: "mt-2 js-verification-multiselect"
+        }
+      ) %>
 </div>
 
-<%= append_javascript_pack_tag "newsletter" %>
 <%= append_stylesheet_pack_tag "newsletter" %>

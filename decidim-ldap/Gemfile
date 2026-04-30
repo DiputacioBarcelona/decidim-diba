@@ -12,7 +12,7 @@ gem "deface"
 group :development, :test do
   gem "bootsnap"
   gem "byebug", platform: :mri
-  gem "decidim", ">= 0.29", { git: "https://github.com/decidim/decidim.git", branch: "release/0.29-stable" }.freeze
+  gem "decidim", ">= 0.30", { git: "https://github.com/PopulateTools/decidim.git", branch: "tiptap-image-links_0.30" }.freeze
   gem "dotenv-rails"
   gem "factory_bot_rails"
   gem "ladle"

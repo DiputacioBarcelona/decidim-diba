@@ -37,6 +37,14 @@ en:
           birthdate: Date of birth
           age: Minimum age
           max_age: Maximum age
+      ephemeral_diba_authorization_handler:
+        explanation: Authorize your session against the Municipality Census
+        fields:
+          age: Minimum age
+          birthdate: Date of birth
+          max_age: Maximum age
+        name: Municipality Census for temporary access
+        type: Combined
       sms:
         type: SMS
     authorization_modals:

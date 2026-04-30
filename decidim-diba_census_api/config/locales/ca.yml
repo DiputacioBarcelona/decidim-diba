@@ -25,6 +25,18 @@ ca:
           dni: 'DNI'
           nie: 'NIE'
           passport: 'Passaport'
+      ephemeral_diba_census_api_authorization_handler:
+        explanation: Autoritza la teva sessió contra el Padró Municipal
+        document_types:
+          dni: DNI
+          nie: NIE
+          passport: Passaport
+        fields:
+          age: Edat mínima
+          birthdate: Data de naixement
+          max_age: Edat màxima
+        name: Padró municipal per a accés temporal
+        type: API
     diba_census_api:
       admin:
         menu: 'Cens via API'

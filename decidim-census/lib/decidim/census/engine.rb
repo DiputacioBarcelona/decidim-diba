@@ -22,6 +22,16 @@ module Decidim
             options.attribute :max_age, type: :string, required: false
           end
         end
+
+        Decidim::Verifications.register_workflow(:ephemeral_census_authorization_handler) do |auth|
+          auth.ephemeral = true
+          auth.form = "EphemeralCensusAuthorizationHandler"
+          auth.action_authorizer = "Decidim::AgeActionAuthorization::Authorizer"
+          auth.options do |options|
+            options.attribute :age, type: :string, required: false
+            options.attribute :max_age, type: :string, required: false
+          end
+        end
       end
     end
   end

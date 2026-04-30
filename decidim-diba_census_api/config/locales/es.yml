@@ -25,6 +25,18 @@ es:
           dni: DNI
           nie: NIE
           passport: Pasaporte
+      ephemeral_diba_census_api_authorization_handler:
+        explanation: Autoriza tu sesión contra el Padrón Municipal
+        document_types:
+          dni: DNI
+          nie: NIE
+          passport: Pasaporte
+        fields:
+          age: Edad mínima
+          birthdate: Fecha de nacimiento
+          max_age: Edad máxima
+        name: Padrón Municipal para acceso temporal
+        type: API
     diba_census_api:
       admin:
         menu: Configurar API censo
