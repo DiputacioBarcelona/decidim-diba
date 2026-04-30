@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
 
-  s.required_ruby_version = ">= 3.2.6"
+  s.required_ruby_version = ">= 3.3.4"
 
   CENSUS_DECIDIM_VERSION = "~>#{Decidim::Census::VERSION}".freeze
 
