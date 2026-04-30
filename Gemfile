@@ -36,6 +36,11 @@ gem "base64", "0.2.0"
 gem "stringio", "3.2.0"
 gem "strscan", "3.1.2"
 
+# Pinned to < 4.0 because openssl 4.0.x's Buffering::Buffer undef's `<<`,
+# which clashes with prism's `String#append_as_bytes` polyfill and breaks
+# rubocop's remote-config HTTPS fetch.
+gem "openssl", "< 4.0"
+
 group :development, :test do
   gem "byebug", platform: :mri
   gem "decidim-dev", DECIDIM_VERSION
