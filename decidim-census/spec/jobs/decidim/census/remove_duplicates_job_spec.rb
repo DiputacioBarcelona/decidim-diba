@@ -3,8 +3,8 @@
 require "spec_helper"
 
 RSpec.describe Decidim::Census::RemoveDuplicatesJob do
-  let(:org1) { create :organization }
-  let(:org2) { create :organization }
+  let(:org1) { create(:organization) }
+  let(:org2) { create(:organization) }
 
   it "remove duplicates in the database" do
     %w(AAA BBB AAA AAA).each do |doc|

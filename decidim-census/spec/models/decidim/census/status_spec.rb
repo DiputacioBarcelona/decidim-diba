@@ -3,7 +3,7 @@
 require "spec_helper"
 
 RSpec.describe Decidim::Census::Status do
-  let(:organization) { create :organization }
+  let(:organization) { create(:organization) }
 
   it "returns last import date" do
     last = create(:census_datum, organization:)

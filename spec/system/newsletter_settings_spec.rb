@@ -7,14 +7,14 @@ describe "Newsletter settings" do
   let(:footer_logo) { Decidim::Dev.test_file("avatar.jpg", "image/jpeg") }
   let(:organization) { create(:organization, logo: organization_logo, official_img_footer: footer_logo, twitter_handler: "twitter", facebook_handler: "") }
   let!(:admin) { create(:user, :admin, :confirmed, organization:) }
-  let!(:newsletter) { create :newsletter, :sent, total_recipients: 1 }
+  let!(:newsletter) { create(:newsletter, :sent, total_recipients: 1) }
   let!(:content_block) do
-    create :content_block,
+    create(:content_block,
            organization:,
            manifest_name: :basic_only_text,
            scope_name: :newsletter_template,
            scoped_resource_id: newsletter.id,
-           settings:
+           settings:)
   end
   let(:settings) do
     {
