@@ -4,5 +4,5 @@
 class EphemeralDibaCensusApiAuthorizationHandler < DibaCensusApiAuthorizationHandler
   def to_partial_path
     "diba_census_api_authorization/form"
-end
+  end
 end
