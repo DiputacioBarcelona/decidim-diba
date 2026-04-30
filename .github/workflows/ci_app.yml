@@ -18,7 +18,7 @@ jobs:
 
     services:
       postgres:
-        image: postgres:11
+        image: postgres:14
         ports: ["5432:5432"]
         options: >-
           --health-cmd pg_isready
@@ -68,12 +68,6 @@ jobs:
       - run: npm install
       - run: |
           sudo apt update && sudo apt install imagemagick
-      - name: Enable pgcrypto extension
-        env:
-          POSTGRES_PASSWORD: postgres
-          PGPASSWORD: postgres
-        run: |
-          psql -h localhost -U postgres -d postgres -c 'CREATE EXTENSION IF NOT EXISTS "pgcrypto";'
       - run: bundle exec rake db:test:prepare
         name: Setup database
       - name: Run RSpec
