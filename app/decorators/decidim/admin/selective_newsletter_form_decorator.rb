@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module Decidim::Admin::SelectiveNewsletterFormDecorator
+  # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
   def self.decorate
     Decidim::Admin::SelectiveNewsletterForm.class_eval do
       include Decidim::TranslatableAttributes
@@ -76,6 +77,7 @@ module Decidim::Admin::SelectiveNewsletterFormDecorator
       end
     end
   end
+  # rubocop:enable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
 end
 
 Decidim::Admin::SelectiveNewsletterFormDecorator.decorate
