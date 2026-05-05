@@ -2,7 +2,7 @@
 
 require "spec_helper"
 RSpec.describe Decidim::Census::CensusDatum do
-  let(:organization) { create :organization }
+  let(:organization) { create(:organization) }
 
   CensusDatum = Decidim::Census::CensusDatum
 

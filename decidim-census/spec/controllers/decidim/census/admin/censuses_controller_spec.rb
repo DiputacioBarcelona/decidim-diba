@@ -7,12 +7,12 @@ RSpec.describe Decidim::Census::Admin::CensusesController do
   routes { Decidim::Census::AdminEngine.routes }
 
   let(:organization) do
-    create :organization,
-           available_authorizations: ["census_authorization_handler"]
+    create(:organization,
+           available_authorizations: ["census_authorization_handler"])
   end
 
   let(:user) do
-    create :user, :confirmed, :admin_terms_accepted, organization:, admin: true, nickname: "nickname"
+    create(:user, :confirmed, :admin_terms_accepted, organization:, admin: true, nickname: "nickname")
   end
 
   before do
