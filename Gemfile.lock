@@ -39,7 +39,7 @@ GIT
 
 GIT
   remote: https://github.com/PopulateTools/decidim.git
-  revision: d412f3e84c1e9b8adc3fa68e05ccb8ead77e30b2
+  revision: 1d1d6882d47e4bee270e21a00fb9a81d30c0c051
   branch: tiptap-image-links_0.30
   specs:
     decidim (0.30.7)
