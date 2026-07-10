@@ -14,8 +14,11 @@ Right now it exposes a single global setting:
   bundle exec rails decidim_process_settings:set_active_step_by_date
   ```
 
-  The task selects only the participatory processes that have a
-  `process_settings` component with this setting enabled.
+  The task enqueues `Decidim::ProcessSettings::SetActiveStepByDateJob`, which
+  selects only the published participatory processes that have a
+  `process_settings` component with this setting enabled, and activates the
+  single step whose date range contains the current time (it does nothing for a
+  process when none or more than one step matches). See [Scheduling](#scheduling).
 
 ## Usage
 
@@ -27,8 +30,28 @@ Right now it exposes a single global setting:
 
 2. Run `bundle install`.
 
-3. In the admin panel, open a participatory process, add the **Process settings**
-   component, and open its **Configure** screen to toggle the settings.
+3. Add the component to the existing participatory processes (published or not),
+   placed first with the setting disabled by default:
+
+   ```
+   bundle exec rails decidim_process_settings:install
+   ```
+
+   The task is idempotent — processes that already have the component are
+   skipped. New participatory processes get the component automatically on
+   creation (see below).
+
+4. In the admin panel, open a participatory process and use the component's
+   **Configure** screen to toggle the settings.
+
+## Automatic creation on new participatory processes
+
+The component is added automatically right after a participatory process is
+created, via a decorator prepended to
+`Decidim::ParticipatoryProcesses::Admin::CreateParticipatoryProcess`
+(`run_after_hooks`). Both this hook and the install task above delegate to
+`Decidim::ProcessSettings::ComponentCreator`, which places the component first
+and leaves `automatic_step_change` disabled.
 
 The settings are edited through Decidim's generic component *Configure* form.
 The component has **no public engine** (no public view and no entry in the
@@ -44,6 +67,24 @@ The admin "Manage" action redirects to the *Configure* form (see
 `Decidim::ProcessSettings::Admin::SettingsController`).
 
 Note: publishing this component is out of scope; keep it unpublished.
+
+## Scheduling
+
+Decidim ships no scheduler: recurring tasks are run from the operating system's
+crontab (see Decidim's *Install > Scheduled tasks* guide). To move active steps
+automatically, schedule the rake task like Decidim's own
+`decidim_participatory_processes:change_active_step`. For example, with
+`crontab -e`, running it every 15 minutes:
+
+```cron
+# Move participatory process active steps based on the current date
+*/15 * * * * cd /home/user/decidim_application && RAILS_ENV=production bundle exec rake decidim_process_settings:set_active_step_by_date
+```
+
+The task only enqueues `Decidim::ProcessSettings::SetActiveStepByDateJob`, so the
+actual work runs in the background (ActiveJob / Sidekiq); the cron invocation
+returns immediately. Alternatively you can use the `whenever` gem or your
+hosting provider's scheduled jobs.
 
 ## Reading the settings
 
