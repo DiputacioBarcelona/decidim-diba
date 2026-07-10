@@ -10,7 +10,10 @@ checksums = [
     files: {
       "/app/cells/decidim/newsletter_templates/basic_only_text/show.erb" => "7d9d4f2ab8897143fe66e8ac8db2cedb",
       "/app/cells/decidim/newsletter_templates/basic_only_text_settings_form/show.erb" => "cc8e26ddc53c0b65eddf472ed4c5614e",
-      "/app/cells/decidim/newsletter_templates/image_text_cta/show.erb" => "08881fe2df7d87db0497376b08821594"
+      "/app/cells/decidim/newsletter_templates/image_text_cta/show.erb" => "08881fe2df7d87db0497376b08821594",
+      # Overridden by Decidim::Exporters::CsvOverrides (config/initializers/lib_overrides.rb)
+      # to prepend the UTF-8 BOM. If this checksum changes, review the override.
+      "/lib/decidim/exporters/csv.rb" => "26eeaecb13dbb4dbce28e39e8dc7a3fd"
     }
   }
 ]
