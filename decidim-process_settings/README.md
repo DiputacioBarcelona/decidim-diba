@@ -34,6 +34,12 @@ The settings are edited through Decidim's generic component *Configure* form.
 The component has **no public engine** (no public view and no entry in the
 public participatory space navigation).
 
+To keep Decidim's admin components list working for a component without a public
+engine, this module ships a [Deface](https://github.com/spree/deface) override
+(`app/overrides/decidim/admin/components/_actions/`) that renders only the
+*Configure* action for engine-less components while leaving other components
+untouched. Deface is declared as a dependency in the gemspec.
+
 The admin "Manage" action redirects to the *Configure* form (see
 `Decidim::ProcessSettings::Admin::SettingsController`).
 
