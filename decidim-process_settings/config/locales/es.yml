@@ -1,0 +1,9 @@
+---
+es:
+  decidim:
+    components:
+      process_settings:
+        name: Configuraciones extra del proceso
+        settings:
+          global:
+            automatic_step_change: Cambiar la fase activa automáticamente en función de la fecha actual

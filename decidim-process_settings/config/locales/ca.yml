@@ -1,0 +1,9 @@
+---
+ca:
+  decidim:
+    components:
+      process_settings:
+        name: Configuracions extra del procés
+        settings:
+          global:
+            automatic_step_change: Canvia la fase activa automàticament en funció de la data actual
