@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.email = ["eduardo@gobierto.es"]
   s.license = "AGPL-3.0-or-later"
   s.homepage = "https://decidim.org"
-  s.required_ruby_version = "~> 3.3.0"
+  s.required_ruby_version = "~> 3.3.4"
 
   s.name = "decidim-process_settings"
   s.summary = "Decidim process settings module"
