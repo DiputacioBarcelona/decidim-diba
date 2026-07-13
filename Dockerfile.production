@@ -84,6 +84,7 @@ ADD decidim-census decidim-census
 ADD decidim-diba_census_api decidim-diba_census_api
 ADD decidim-age_action_authorization decidim-age_action_authorization
 ADD decidim-ldap decidim-ldap
+ADD decidim-process_settings decidim-process_settings
 RUN bundle config set without 'development test'
 RUN bundle config set deployment 'true'
 RUN bundle install --jobs=4
