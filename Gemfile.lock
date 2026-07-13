@@ -260,6 +260,14 @@ PATH
       ladle
       net-ldap
 
+PATH
+  remote: decidim-process_settings
+  specs:
+    decidim-process_settings (0.30.9)
+      decidim-core (= 0.30.9)
+      decidim-participatory_processes (= 0.30.9)
+      deface
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -1054,6 +1062,7 @@ DEPENDENCIES
   decidim-homepage_proposals!
   decidim-initiatives!
   decidim-ldap!
+  decidim-process_settings!
   decidim-removable_authorizations!
   decidim-templates!
   decidim-term_customizer!
