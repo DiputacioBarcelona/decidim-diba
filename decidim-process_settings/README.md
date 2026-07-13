@@ -93,6 +93,47 @@ component = process.components.find_by(manifest_name: "process_settings")
 component.settings.automatic_step_change # => true / false
 ```
 
+## Testing
+
+The specs live under `spec/` and follow the standard Decidim conventions:
+each spec starts with `require "spec_helper"`, factories come from `decidim-dev`
+and the dependency modules, and there is **no** `.rspec` or `rails_helper.rb`.
+Specs boot against a generated Decidim "dummy app".
+
+### Inside the Decidim monorepo
+
+`spec/spec_helper.rb` points `Decidim::Dev.dummy_app_path` at the shared dummy
+app generated at the repository root (note the `".."`). Generate it once from
+the repo root, then run the specs from this module:
+
+```
+bundle exec rake test_app                                  # from the repo root (shared app)
+cd decidim-process_settings && bundle exec rspec
+```
+
+### As an independent repository
+
+A standalone gem generates its **own** dummy app inside the module. The only
+code change required is the `dummy_app_path` line in `spec/spec_helper.rb` —
+drop the `".."` so it points inside the module:
+
+```ruby
+Decidim::Dev.dummy_app_path = File.expand_path(File.join("spec", "decidim_dummy_app"))
+```
+
+The standalone repo also needs a `Gemfile` (declaring `decidim`, this gem via
+`path: "."`, and `decidim-dev`), a `bin/rails`, and the gemspec depending on
+`decidim-core`. The `Rakefile` already defines the `test_app` task. Then:
+
+```
+bundle install
+bundle exec rake test_app                                  # -> <module>/spec/decidim_dummy_app (own)
+bundle exec rspec
+```
+
+Both setups share the same specs and the same `decidim-dev` test harness; only
+that one `dummy_app_path` line differs.
+
 ## License
 
 This engine is distributed under the GNU Affero General Public License v3.0 or later.

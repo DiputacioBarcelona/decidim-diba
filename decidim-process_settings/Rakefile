@@ -1,3 +1,13 @@
 # frozen_string_literal: true
 
 require "decidim/dev/common_rake"
+
+# These tasks are used when this module lives in its OWN repository, to generate
+# the test / development dummy apps under `spec/decidim_dummy_app` and
+# `development_app`. Inside the Decidim monorepo the shared dummy app is
+# generated from the repository root instead, so they are simply unused there.
+desc "Generates a dummy app for testing"
+task test_app: "decidim:generate_external_test_app"
+
+desc "Generates a development app."
+task development_app: "decidim:generate_external_development_app"
