@@ -92,6 +92,43 @@ module Decidim
             expect(matching_step.reload).not_to be_active
           end
         end
+
+        context "with a look-ahead window in minutes" do
+          around do |example|
+            original = ActiveJob::Base.queue_adapter
+            ActiveJob::Base.queue_adapter = :test
+            example.run
+            ActiveJob::Base.queue_adapter = original
+          end
+
+          let!(:upcoming_step) do
+            create(:participatory_process_step, participatory_process:, active: false,
+                                                start_date: 10.minutes.from_now, end_date: 2.days.from_now)
+          end
+
+          it "re-schedules itself at the next phase-change boundary within the window" do
+            described_class.perform_now(15)
+
+            job = ActiveJob::Base.queue_adapter.enqueued_jobs.find { |enqueued| enqueued[:job] == described_class }
+            expect(job).to be_present
+            expect(job[:args]).to eq([])
+            expect(Time.zone.at(job[:at])).to be_within(2.seconds).of(upcoming_step.reload.start_date)
+          end
+
+          it "does not re-schedule when no phase change falls within the window" do
+            described_class.perform_now(1)
+
+            rescheduled = ActiveJob::Base.queue_adapter.enqueued_jobs.select { |enqueued| enqueued[:job] == described_class }
+            expect(rescheduled).to be_empty
+          end
+
+          it "does not re-schedule when no window is given" do
+            described_class.perform_now
+
+            rescheduled = ActiveJob::Base.queue_adapter.enqueued_jobs.select { |enqueued| enqueued[:job] == described_class }
+            expect(rescheduled).to be_empty
+          end
+        end
       end
     end
   end

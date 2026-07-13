@@ -13,3 +13,7 @@ decidim_initiatives_check_published:
 decidim_initiatives_notify_progress:
   cron: '0 5 * * * Europe/Madrid'
   class: 'DecidimInitiativesNotifyProgress'
+decidim_process_settings_active_step:
+  cron: '*/15 * * * * Europe/Madrid'
+  class: 'Decidim::ProcessSettings::SetActiveStepByDateJob'
+  args: [15]

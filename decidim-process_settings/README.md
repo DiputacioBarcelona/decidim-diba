@@ -78,13 +78,52 @@ automatically, schedule the rake task like Decidim's own
 
 ```cron
 # Move participatory process active steps based on the current date
-*/15 * * * * cd /home/user/decidim_application && RAILS_ENV=production bundle exec rake decidim_process_settings:set_active_step_by_date
+*/15 * * * * cd /home/user/decidim_application && RAILS_ENV=production bundle exec rake 'decidim_process_settings:set_active_step_by_date[15]'
 ```
 
 The task only enqueues `Decidim::ProcessSettings::SetActiveStepByDateJob`, so the
 actual work runs in the background (ActiveJob / Sidekiq); the cron invocation
 returns immediately. Alternatively you can use the `whenever` gem or your
 hosting provider's scheduled jobs.
+
+### With sidekiq-cron (preferred if your app uses it)
+
+If your application already uses
+[sidekiq-cron](https://github.com/sidekiq-cron/sidekiq-cron) (i.e. it loads a
+`config/schedule.yml`), schedule the job there instead of the OS crontab. It is
+versioned with the app, runs inside the already-running Sidekiq process (no
+extra Rails boot per tick) and appears in the Sidekiq Web UI "Cron" tab. Point
+the entry straight at the job:
+
+```yaml
+# config/schedule.yml
+decidim_process_settings_active_step:
+  cron: '*/15 * * * * Europe/Madrid'
+  class: 'Decidim::ProcessSettings::SetActiveStepByDateJob'
+  args: [15]
+```
+
+`args: [15]` is the look-ahead window in minutes (see below). The schedule is
+loaded on the next Sidekiq server start. Use **either** this **or** the OS
+crontab above — not both (the job is idempotent, but running it twice is
+wasteful).
+
+### Precise phase changes (look-ahead window)
+
+The optional `[window_in_minutes]` argument makes the job switch phases at the
+exact minute instead of only on the cron tick. Pass the **cron interval** as the
+window: on each run the job checks whether a step's start/end date falls within
+the next `window` minutes and, if so, re-enqueues itself to run again at that
+exact moment.
+
+For example, with the crontab above (every 15 minutes, `[15]`): a phase change
+due at 12:10 is detected by the 12:00 run, which schedules an extra run for
+12:10 — so the phase flips at 12:10 rather than waiting until 12:15. The job is
+idempotent (activating the already-active step is a no-op), so the extra run and
+the following cron tick don't conflict.
+
+Omit the argument (`…:set_active_step_by_date`) to only activate on the cron
+tick, without the look-ahead re-scheduling.
 
 ## Reading the settings
 
