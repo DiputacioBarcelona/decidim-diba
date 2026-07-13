@@ -7,3 +7,7 @@ es:
         settings:
           global:
             automatic_step_change: Cambiar la fase activa automáticamente en función de la fecha actual
+    process_settings:
+      admin:
+        components:
+          creation_not_allowed: Este componente solo se puede añadir una vez, y solo a un proceso participativo.

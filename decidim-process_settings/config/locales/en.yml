@@ -7,3 +7,7 @@ en:
         settings:
           global:
             automatic_step_change: Change the active phase automatically based on the current date
+    process_settings:
+      admin:
+        components:
+          creation_not_allowed: This component can only be added once, and only to a participatory process.
