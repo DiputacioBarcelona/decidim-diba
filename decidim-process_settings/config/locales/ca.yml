@@ -1,0 +1,17 @@
+---
+ca:
+  decidim:
+    components:
+      process_settings:
+        name: Configuracions extra del procés
+        settings:
+          global:
+            automatic_step_change: Canvia la fase activa automàticament en funció de la data actual
+    process_settings:
+      admin:
+        components:
+          creation_not_allowed: Aquest component només es pot afegir una vegada, i només a un procés participatiu.
+        settings:
+          show:
+            explanation: Aquest component només proporciona configuracions extra per administrar el procés participatiu.
+            no_front: No té una part pública (front-end).
