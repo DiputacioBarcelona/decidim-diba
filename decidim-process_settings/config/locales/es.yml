@@ -11,3 +11,7 @@ es:
       admin:
         components:
           creation_not_allowed: Este componente solo se puede añadir una vez, y solo a un proceso participativo.
+        settings:
+          show:
+            explanation: Este componente solo proporciona configuraciones extra para administrar el proceso participativo.
+            no_front: No tiene una parte pública (front-end).

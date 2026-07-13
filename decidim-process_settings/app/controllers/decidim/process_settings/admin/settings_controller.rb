@@ -3,15 +3,11 @@
 module Decidim
   module ProcessSettings
     module Admin
-      # The component has no dedicated admin screen. Its "Manage" entry point
-      # simply redirects to the generic component "Configure" (settings) form,
-      # which is where the extra settings are actually edited.
+      # "Manage" entry point of the component. It renders a short explanation
+      # (the component is admin-only, has no public/front part) and links to the
+      # generic "Configure" form where the settings are actually edited.
       class SettingsController < ApplicationController
-        def show
-          redirect_to Decidim::EngineRouter
-            .admin_proxy(current_participatory_space)
-            .edit_component_path(current_component.id)
-        end
+        def show; end
       end
     end
   end

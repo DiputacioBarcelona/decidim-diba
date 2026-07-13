@@ -11,3 +11,7 @@ ca:
       admin:
         components:
           creation_not_allowed: Aquest component només es pot afegir una vegada, i només a un procés participatiu.
+        settings:
+          show:
+            explanation: Aquest component només proporciona configuracions extra per administrar el procés participatiu.
+            no_front: No té una part pública (front-end).

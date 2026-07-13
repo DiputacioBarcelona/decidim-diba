@@ -22,10 +22,21 @@ module Decidim
         end
 
         describe "GET show" do
-          it "redirects to the component's Configure (edition) form" do
+          render_views
+
+          it "renders the explanation" do
             get :show
 
-            expect(response).to redirect_to(
+            expect(response).to have_http_status(:ok)
+            expect(response.body).to include(
+              I18n.t("decidim.process_settings.admin.settings.show.explanation")
+            )
+          end
+
+          it "links to the component's Configure (edition) form" do
+            get :show
+
+            expect(response.body).to include(
               Decidim::EngineRouter.admin_proxy(participatory_process).edit_component_path(component.id)
             )
           end
