@@ -10,13 +10,14 @@ module Decidim
     #
     # When called with a look-ahead window (in minutes) — meant to match the cron
     # interval — it also looks for the next phase-change boundary (any step
-    # start/end date) within `(now, now + window]` and enqueues a one-off run at
-    # that exact moment. That precise run is enqueued WITHOUT a window, so it only
-    # activates and does not look ahead again: each boundary is scheduled exactly
-    # once (by the cron tick whose window contains it), avoiding duplicate
-    # scheduled jobs. The following cron tick performs the look-ahead for the next
-    # window. This lets a coarse cron (e.g. every 15 min) still switch phases on
-    # time: the 12:00 run detects a change at 12:10 and enqueues a run for 12:10.
+    # start/end date) within `(now, now + window]` and re-enqueues itself to run
+    # at that exact moment, passing the window along so that run looks ahead
+    # again. This chaining catches every boundary within the window precisely,
+    # even when several fall in the same cron interval — e.g. a phase ending at
+    # 10:09 and the next starting at 10:11 are both applied on time (the 10:09
+    # run schedules the 10:11 one), instead of the 10:11 change waiting for the
+    # next tick. The job is idempotent (activating the already-active step is a
+    # no-op), so an occasional duplicate scheduled run is harmless.
     class SetActiveStepByDateJob < ApplicationJob
       queue_as :default
 
@@ -47,10 +48,10 @@ module Decidim
         Decidim::ParticipatoryProcess.published.where(id: component_process_ids).ids
       end
 
-      # Enqueues a one-off run at the next step start/end date within
-      # `(now, now + window]`, so a phase change is applied at the exact minute
-      # instead of waiting for the next cron tick. The run is enqueued without a
-      # window so it does not chain (each boundary is scheduled only once).
+      # Re-enqueues this job to run at the next step start/end date within
+      # `(now, now + window]`, passing the window along so the run looks ahead
+      # again and chains to subsequent boundaries. A phase change is thus applied
+      # at the exact minute instead of waiting for the next cron tick.
       def reschedule_at_next_phase_change(process_ids, now, window_in_minutes)
         window_end = now + window_in_minutes.minutes
 
@@ -64,7 +65,7 @@ module Decidim
 
         return if boundary.blank?
 
-        self.class.set(wait_until: boundary).perform_later
+        self.class.set(wait_until: boundary).perform_later(window_in_minutes)
         Rails.logger.info(
           "[decidim-process_settings] Scheduled a run at #{boundary.iso8601} for the next phase change within #{window_in_minutes} min"
         )
