@@ -100,13 +100,16 @@ the entry straight at the job:
 decidim_process_settings_active_step:
   cron: '*/15 * * * * Europe/Madrid'
   class: 'Decidim::ProcessSettings::SetActiveStepByDateJob'
+  queue: process_settings
   args: [15]
 ```
 
-`args: [15]` is the look-ahead window in minutes (see below). The schedule is
-loaded on the next Sidekiq server start. Use **either** this **or** the OS
-crontab above — not both (the job is idempotent, but running it twice is
-wasteful).
+The explicit `queue:` is **required**: sidekiq-cron enqueues with
+`.set(queue: …)` and defaults to `default`, which would otherwise override the
+job's own `queue_as :process_settings`. `args: [15]` is the look-ahead window in
+minutes (see below). The schedule is loaded on the next Sidekiq server start, so
+restart Sidekiq after changing it. Use **either** this **or** the OS crontab
+above — not both (the job is idempotent, but running it twice is wasteful).
 
 ### Precise phase changes (look-ahead window)
 
