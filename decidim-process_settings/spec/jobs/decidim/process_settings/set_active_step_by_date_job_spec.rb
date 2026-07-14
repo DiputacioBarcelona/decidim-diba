@@ -111,7 +111,7 @@ module Decidim
 
             job = ActiveJob::Base.queue_adapter.enqueued_jobs.find { |enqueued| enqueued[:job] == described_class }
             expect(job).to be_present
-            expect(job[:args]).to eq([])
+            expect(job[:args]).to eq([15])
             expect(Time.zone.at(job[:at])).to be_within(2.seconds).of(upcoming_step.reload.start_date)
           end
 
@@ -127,6 +127,28 @@ module Decidim
 
             rescheduled = ActiveJob::Base.queue_adapter.enqueued_jobs.select { |enqueued| enqueued[:job] == described_class }
             expect(rescheduled).to be_empty
+          end
+
+          context "when a phase ends before the next one starts (a gap within the window)" do
+            # The active phase has just ended...
+            let!(:matching_step) do
+              create(:participatory_process_step, participatory_process:, active: true,
+                                                  start_date: 2.days.ago, end_date: 1.second.ago)
+            end
+            # ...and the next one starts shortly after, still inside the window.
+            let!(:next_step) do
+              create(:participatory_process_step, participatory_process:, active: false,
+                                                  start_date: 5.minutes.from_now, end_date: 2.days.from_now)
+            end
+
+            it "schedules the run at the upcoming phase start, carrying the window so it keeps chaining" do
+              described_class.perform_now(15)
+
+              job = ActiveJob::Base.queue_adapter.enqueued_jobs.find { |enqueued| enqueued[:job] == described_class }
+              expect(job).to be_present
+              expect(job[:args]).to eq([15])
+              expect(Time.zone.at(job[:at])).to be_within(2.seconds).of(next_step.reload.start_date)
+            end
           end
         end
       end
