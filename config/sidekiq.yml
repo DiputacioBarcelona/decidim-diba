@@ -4,6 +4,7 @@
   - active_storage_purge
   - block_user
   - decidim_events
+  - process_settings
   - default
   - events
   - exports

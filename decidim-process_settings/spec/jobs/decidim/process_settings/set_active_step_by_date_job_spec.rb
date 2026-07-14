@@ -21,6 +21,10 @@ module Decidim
                                             start_date: 10.days.ago, end_date: 5.days.ago)
       end
 
+      it "runs on its own queue" do
+        expect(described_class.queue_name).to eq("process_settings")
+      end
+
       describe "#perform" do
         it "activates the single step whose date range contains now" do
           described_class.perform_now

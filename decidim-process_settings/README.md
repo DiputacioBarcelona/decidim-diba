@@ -100,13 +100,16 @@ the entry straight at the job:
 decidim_process_settings_active_step:
   cron: '*/15 * * * * Europe/Madrid'
   class: 'Decidim::ProcessSettings::SetActiveStepByDateJob'
+  queue: process_settings
   args: [15]
 ```
 
-`args: [15]` is the look-ahead window in minutes (see below). The schedule is
-loaded on the next Sidekiq server start. Use **either** this **or** the OS
-crontab above — not both (the job is idempotent, but running it twice is
-wasteful).
+The explicit `queue:` is **required**: sidekiq-cron enqueues with
+`.set(queue: …)` and defaults to `default`, which would otherwise override the
+job's own `queue_as :process_settings`. `args: [15]` is the look-ahead window in
+minutes (see below). The schedule is loaded on the next Sidekiq server start, so
+restart Sidekiq after changing it. Use **either** this **or** the OS crontab
+above — not both (the job is idempotent, but running it twice is wasteful).
 
 ### Precise phase changes (look-ahead window)
 
@@ -124,6 +127,24 @@ the following cron tick don't conflict.
 
 Omit the argument (`…:set_active_step_by_date`) to only activate on the cron
 tick, without the look-ahead re-scheduling.
+
+### Queue
+
+`SetActiveStepByDateJob` runs on its own `process_settings` queue instead of the
+shared, busy `default` queue (which in Decidim also carries search indexing,
+imports, etc.), so a backlog there cannot delay phase changes. **The host app
+must add `process_settings` to its Sidekiq queues.** Sidekiq serves its queue
+list in strict priority order (top first), so list it **before** `default` to
+avoid it starving behind that queue's backlog:
+
+```yaml
+# config/sidekiq.yml
+:queues:
+  # ...
+  - process_settings
+  - default
+  # ...
+```
 
 ## Reading the settings
 

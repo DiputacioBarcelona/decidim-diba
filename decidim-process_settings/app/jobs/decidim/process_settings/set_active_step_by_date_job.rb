@@ -19,7 +19,10 @@ module Decidim
     # next tick. The job is idempotent (activating the already-active step is a
     # no-op), so an occasional duplicate scheduled run is harmless.
     class SetActiveStepByDateJob < ApplicationJob
-      queue_as :default
+      # Runs on its own queue (rather than the busy shared `default` queue) so a
+      # backlog there — search indexing, imports, etc. — cannot delay phase
+      # changes. The host app must list `process_settings` in its Sidekiq queues.
+      queue_as :process_settings
 
       def perform(window_in_minutes = nil)
         now = Time.zone.now

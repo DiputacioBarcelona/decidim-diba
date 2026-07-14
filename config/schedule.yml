@@ -16,4 +16,7 @@ decidim_initiatives_notify_progress:
 decidim_process_settings_active_step:
   cron: '*/15 * * * * Europe/Madrid'
   class: 'Decidim::ProcessSettings::SetActiveStepByDateJob'
+  # sidekiq-cron forces the queue via `.set(queue: ...)`, overriding the job's
+  # `queue_as`, and defaults to "default" — so it must be set explicitly here.
+  queue: process_settings
   args: [15]
