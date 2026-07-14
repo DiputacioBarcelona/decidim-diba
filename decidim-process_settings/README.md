@@ -125,6 +125,24 @@ the following cron tick don't conflict.
 Omit the argument (`…:set_active_step_by_date`) to only activate on the cron
 tick, without the look-ahead re-scheduling.
 
+### Queue
+
+`SetActiveStepByDateJob` runs on its own `process_settings` queue instead of the
+shared, busy `default` queue (which in Decidim also carries search indexing,
+imports, etc.), so a backlog there cannot delay phase changes. **The host app
+must add `process_settings` to its Sidekiq queues.** Sidekiq serves its queue
+list in strict priority order (top first), so list it **before** `default` to
+avoid it starving behind that queue's backlog:
+
+```yaml
+# config/sidekiq.yml
+:queues:
+  # ...
+  - process_settings
+  - default
+  # ...
+```
+
 ## Reading the settings
 
 ```ruby
