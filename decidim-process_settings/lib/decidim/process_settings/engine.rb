@@ -13,6 +13,20 @@ module Decidim
     # `lib/tasks`, `config/locales`, `app/` code and Deface overrides into the
     # host application, and to apply the extensions below.
     class Engine < ::Rails::Engine
+      # Adds an admin endpoint to toggle the `automatic_step_change` setting from
+      # the participatory process steps page (see the Deface override + modal).
+      # It is appended to the participatory processes admin engine so it lives
+      # under `/admin/participatory_processes/:participatory_process_slug/...`.
+      initializer "decidim_process_settings.admin_routes" do
+        Decidim::ParticipatoryProcesses::AdminEngine.routes.append do
+          scope "/participatory_processes/:participatory_process_slug" do
+            patch "automatic_step_change",
+                  to: "/decidim/process_settings/admin/automatic_step_change#update",
+                  as: :process_settings_automatic_step_change
+          end
+        end
+      end
+
       initializer "decidim_process_settings.overrides" do |app|
         app.config.to_prepare do
           # Hide the process_settings component from the "Add component" dropdown
