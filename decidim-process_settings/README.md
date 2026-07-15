@@ -17,8 +17,10 @@ Right now it exposes a single global setting:
   The task enqueues `Decidim::ProcessSettings::SetActiveStepByDateJob`, which
   selects only the published participatory processes that have a
   `process_settings` component with this setting enabled, and activates the
-  single step whose date range contains the current time (it does nothing for a
-  process when none or more than one step matches). See [Scheduling](#scheduling).
+  first step by position whose date range contains the current time (it does
+  nothing for a process only when no step matches; when several overlapping
+  phases match, the earliest one by position is activated). See
+  [Scheduling](#scheduling).
 
 ## Usage
 
