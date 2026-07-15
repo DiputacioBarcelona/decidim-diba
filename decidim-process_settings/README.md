@@ -17,8 +17,10 @@ Right now it exposes a single global setting:
   The task enqueues `Decidim::ProcessSettings::SetActiveStepByDateJob`, which
   selects only the published participatory processes that have a
   `process_settings` component with this setting enabled, and activates the
-  single step whose date range contains the current time (it does nothing for a
-  process when none or more than one step matches). See [Scheduling](#scheduling).
+  first step by position whose date range contains the current time (it does
+  nothing for a process only when no step matches; when several overlapping
+  phases match, the earliest one by position is activated). See
+  [Scheduling](#scheduling).
 
 ## Usage
 
@@ -67,6 +69,27 @@ The admin "Manage" action redirects to the *Configure* form (see
 `Decidim::ProcessSettings::Admin::SettingsController`).
 
 Note: publishing this component is out of scope; keep it unpublished.
+
+## Toggle from the process steps page
+
+On the participatory process **steps (phases)** admin page, when the process has
+the `process_settings` component, a Deface override adds an "Automatic phase
+change" button next to *New step*. It opens a modal with:
+
+- a switch to enable/disable `automatic_step_change`, applied via `remote: true`
+  (rails-ujs — no full page reload, no custom bundled JS); and
+- a **phases schedule summary** (built by `Decidim::ProcessSettings::StepScheduleSummary`)
+  showing which phase is active now or will be activated, **gaps** between
+  phases (and how the module holds the previous phase until the next one
+  starts), and **overlaps** (during which the earliest overlapping phase by
+  position is the one activated).
+
+The toggle endpoint is
+`PATCH /admin/participatory_processes/:slug/automatic_step_change`
+(`Decidim::ProcessSettings::Admin::AutomaticStepChangeController`), added by
+appending a route to the participatory processes admin engine, and it persists
+the setting through `Decidim.traceability`. The modal uses Decidim's bundled
+`data-dialog` system, so no extra assets are required.
 
 ## Scheduling
 

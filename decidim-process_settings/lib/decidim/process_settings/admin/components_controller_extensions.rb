@@ -9,10 +9,16 @@ module Decidim
       # process and ONLY once. This module enforces that both in the UI and in
       # the actions:
       #
-      #   * `index` removes it from the "Add component" dropdown unless the space
-      #     is a participatory process that does not already have it, and
+      #   * `index` hides it from the components table and removes it from the
+      #     "Add component" dropdown (the latter only unless the space is a
+      #     participatory process that does not already have it), and
       #   * a `before_action` blocks the `new`/`create` actions in the same cases
       #     (defence in depth, e.g. against hand-crafted URLs).
+      #
+      # Hiding it from the table (and the sidebar, see ComponentsMenu) is a
+      # deliberate simplification while its only setting is managed from the
+      # process steps page. Its own admin views/paths stay reachable directly,
+      # so the listing can be restored once more settings appear.
       module ComponentsControllerExtensions
         def self.prepended(base)
           base.before_action :prevent_process_settings_component_creation, only: [:new, :create]
@@ -20,6 +26,10 @@ module Decidim
 
         def index
           super
+
+          # Hide the settings-only component from the components table; it is
+          # managed from the process steps page, not from here.
+          @components = @components.where.not(manifest_name: "process_settings")
 
           return if offer_process_settings_component?
 

@@ -5,8 +5,9 @@ module Decidim
     # Moves the active step of the participatory processes that enabled it
     # through the `process_settings` component, based on the current date.
     #
-    # For each such *published* process it activates the single step whose date
-    # range contains the current time (no-op if none or more than one match).
+    # For each such *published* process it activates the first step by position
+    # whose date range contains the current time (no-op only when none match;
+    # on overlapping phases the earliest-by-position one wins).
     #
     # When called with a look-ahead window (in minutes) — meant to match the cron
     # interval — it also looks for the next phase-change boundary (any step
@@ -75,11 +76,12 @@ module Decidim
       end
 
       def activate_matching_step(process, now)
-        steps = process.steps.to_a
+        steps = process.steps.order(position: :asc).to_a
         matching = steps.select { |step| step_compatible_with?(step, now) }
 
-        # Only act when exactly one step matches the current date.
-        return unless matching.size == 1
+        # Activate the first matching step by position; skip only when none
+        # match. On overlapping phases the earliest-by-position one wins.
+        return if matching.empty?
 
         target = matching.first
         return if target.active?

@@ -1,0 +1,58 @@
+<% modal_scope = "decidim.process_settings.admin.steps.modal" %>
+<% status_scope = "#{modal_scope}.status" %>
+
+<% phases = summary.relevant_phases %>
+<% if phases.empty? %>
+  <p><%= t("none_now", scope: modal_scope) %></p>
+<% else %>
+  <ul class="list-disc pl-4 table-list">
+    <% phases.each do |item| %>
+      <li>
+        <% if item.step.active? %>
+          <span class="table-list icon-active"></span>
+        <% end %>
+
+        <strong><%= translated_attribute(item.step.title) %></strong> —
+
+        <% if item.status == :current && !automatic_enabled && !item.step.active? %>
+          <%= t("current_will_activate", scope: status_scope) %>
+        <% else %>
+          <%= t(item.status, scope: status_scope,
+                 start: item.step.start_date ? l(item.step.start_date, format: :short) : nil) %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
+<% if summary.pending_gaps.any? %>
+  <h5 class="h5 mt-4"><%= t("gaps_title", scope: modal_scope) %></h5>
+  <p class="mb-2"><%= t("gap_note", scope: modal_scope) %></p>
+  <ul class="list-disc pl-4">
+    <% summary.pending_gaps.each do |gap| %>
+      <li>
+        <%= t("gap_html", scope: modal_scope,
+               after: tag.strong(translated_attribute(gap.after_step.title)),
+               before: tag.strong(translated_attribute(gap.before_step.title)),
+               from: l(gap.starts_at, format: :short),
+               to: l(gap.ends_at, format: :short)) %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
+<% if summary.pending_overlaps.any? %>
+  <h5 class="h5 mt-4"><%= t("overlaps_title", scope: modal_scope) %></h5>
+  <p class="mb-2"><%= t("ovelap_note", scope: modal_scope) %></p>
+  <ul class="list-disc pl-4">
+    <% summary.pending_overlaps.each do |overlap| %>
+      <li>
+        <%= t("overlap_html", scope: modal_scope,
+               a: tag.strong(translated_attribute(overlap.step_a.title)),
+               b: tag.strong(translated_attribute(overlap.step_b.title)),
+               from: l(overlap.starts_at, format: :short),
+               to: l(overlap.ends_at, format: :short)) %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>

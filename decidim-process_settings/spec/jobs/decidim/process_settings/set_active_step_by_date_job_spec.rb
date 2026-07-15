@@ -26,7 +26,7 @@ module Decidim
       end
 
       describe "#perform" do
-        it "activates the single step whose date range contains now" do
+        it "activates the step whose date range contains now" do
           described_class.perform_now
 
           expect(matching_step.reload).to be_active
@@ -72,16 +72,25 @@ module Decidim
           end
         end
 
-        context "when more than one step matches" do
-          let!(:past_step) do
-            create(:participatory_process_step, participatory_process:, active: false,
+        context "when more than one step matches (overlapping phases)" do
+          # No past step here; both steps below contain the current time.
+          let!(:past_step) { nil }
+
+          # Declared/created first but placed *last* by position, to prove the
+          # module picks by position rather than by creation order.
+          let!(:matching_step) do
+            create(:participatory_process_step, participatory_process:, active: false, position: 1,
+                                                start_date: 1.day.ago, end_date: 1.day.from_now)
+          end
+          let!(:first_by_position) do
+            create(:participatory_process_step, participatory_process:, active: false, position: 0,
                                                 start_date: 2.days.ago, end_date: 2.days.from_now)
           end
 
-          it "does not change anything" do
+          it "activates the first matching step by position" do
             described_class.perform_now
+            expect(first_by_position.reload).to be_active
             expect(matching_step.reload).not_to be_active
-            expect(past_step.reload).not_to be_active
           end
         end
 

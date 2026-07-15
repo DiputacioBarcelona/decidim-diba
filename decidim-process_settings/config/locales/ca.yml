@@ -6,12 +6,46 @@ ca:
         name: Configuracions extra del procés
         settings:
           global:
-            automatic_step_change: Canvia la fase activa automàticament en funció de la data actual
+            automatic_step_change: Canvia la fase activa automàticament en funció
+              de la data actual
     process_settings:
       admin:
         components:
-          creation_not_allowed: Aquest component només es pot afegir una vegada, i només a un procés participatiu.
+          creation_not_allowed: Aquest component només es pot afegir una vegada, i
+            només a un procés participatiu.
         settings:
           show:
-            explanation: Aquest component només proporciona configuracions extra per administrar el procés participatiu.
+            explanation: Aquest component només proporciona configuracions extra per
+              administrar el procés participatiu.
             no_front: No té una part pública (front-end).
+        steps:
+          modal:
+            active: Fase activa
+            apply: Aplica
+            gap_html: 'Entre el final de %{after} i l''inici de %{before}: %{from} - %{to}'
+            gap_note: Períodes de temps entre la primera i l'última data de totes les fases que no estan coberts per cap fase. En aquests casos el canvi automàtic manté activa la fase anterior fins que comença la següent.
+            gaps_title: Buits entre fases
+            no_steps: Aquest procés encara no té fases.
+            none_now: Cap fase no cobreix la data actual.
+            overlap_html: 'Solapament de %{a} i %{b}: %{from} - %{to}'
+            ovelap_note: Quan hi ha fases amb dates que se solapen, s'activa automàticament la primera per posició mentre estan solapades.
+            overlaps_title: Fases solapades
+            status:
+              current: Coincideix amb la data actual
+              current_will_activate: Coincideix amb la data actual, s'activarà automàticament si s'habilita el canvi automàtic de fase
+              kept_active: Actualment activa — cap fase no cobreix la data actual, així que el canvi automàtic la manté activa
+              overlapped: Ara se solapa amb una fase anterior — s'activa la primera
+                per posició
+              past: Finalitzada
+              undated: Sense dates — mai no s'activa automàticament
+              upcoming: Comença el %{start}
+            status_disabled: El canvi automàtic de fase està desactivat.
+            status_enabled: El canvi automàtic de fase està activat.
+            summary_title: Calendari de fases
+            switch_label: Canvia la fase activa automàticament en funció de la data
+              actual
+            title: Canvi automàtic de fase
+          toggle:
+            button: Canvi automàtic de fase
+            disabled: Desactivat
+            enabled: Activat
