@@ -2,6 +2,7 @@
 
 require "decidim/process_settings/admin/components_controller_extensions"
 require "decidim/process_settings/admin/create_participatory_process_extensions"
+require "decidim/process_settings/admin/components_menu"
 
 module Decidim
   module ProcessSettings
@@ -24,6 +25,18 @@ module Decidim
                   to: "/decidim/process_settings/admin/automatic_step_change#update",
                   as: :process_settings_automatic_step_change
           end
+        end
+      end
+
+      # Remove the process_settings component from the participatory process
+      # admin sidebar submenu. Registered after the core menu so the item it
+      # adds is already present when this block removes it. The component's
+      # admin views/paths stay reachable directly.
+      initializer "decidim_process_settings.hide_component_menu", after: "decidim_participatory_processes.menu" do
+        Decidim.menu :admin_participatory_process_components_menu do |menu|
+          next unless respond_to?(:current_participatory_space)
+
+          Decidim::ProcessSettings::Admin::ComponentsMenu.hide_process_settings(menu, current_participatory_space)
         end
       end
 

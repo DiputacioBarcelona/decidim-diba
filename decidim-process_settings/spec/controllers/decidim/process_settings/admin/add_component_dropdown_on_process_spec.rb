@@ -46,6 +46,15 @@ describe Decidim::ParticipatoryProcesses::Admin::ComponentsController do # ruboc
 
         expect(assigns(:manifests).map(&:name)).not_to include(:process_settings)
       end
+
+      it "hides the process_settings component from the components table but keeps the others" do
+        other = create(:component, participatory_space: participatory_process)
+
+        get :index, params: params
+
+        expect(assigns(:components)).to include(other)
+        expect(assigns(:components)).not_to include(component)
+      end
     end
 
     describe "GET new" do
