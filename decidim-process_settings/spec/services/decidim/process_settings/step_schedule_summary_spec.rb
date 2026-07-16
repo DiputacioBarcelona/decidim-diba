@@ -11,161 +11,77 @@ module Decidim
       let(:participatory_process) { create(:participatory_process, organization:) }
       let(:now) { Time.zone.now }
 
-      def step(start_at, end_at, **attrs)
-        create(:participatory_process_step, participatory_process:, start_date: start_at, end_date: end_at, **attrs)
+      def step(start_at, **attrs)
+        create(:participatory_process_step, participatory_process:, start_date: start_at, end_date: nil, **attrs)
       end
 
-      context "when exactly one step contains now" do
-        let!(:current) { step(1.day.ago, 1.day.from_now) }
-        let!(:past) { step(10.days.ago, 5.days.ago) }
-
-        it "reports it as the current step and is not overlapping" do
-          expect(summary.current_step).to eq(current)
-          expect(summary.overlapping_now?).to be(false)
-        end
-
-        it "classifies statuses" do
-          statuses = summary.steps_with_status.to_h { |item| [item.step, item.status] }
-          expect(statuses[current]).to eq(:current)
-          expect(statuses[past]).to eq(:past)
-        end
-
-        it "shows the covering phase (no upcoming), with no pending gap or overlap" do
-          expect(summary.relevant_phases.map(&:step)).to eq([current])
-          expect(summary.relevant_phases.map(&:status)).to eq([:current])
-          expect(summary.pending_gaps).to be_empty
-          expect(summary.pending_overlaps).to be_empty
-        end
+      def status_of(step_status_list, step)
+        step_status_list.find { |item| item.step == step }&.status
       end
 
-      context "when more than one step contains now (overlap)" do
-        # Declared first but placed last by position, to prove the summary
-        # picks the current step by position rather than by creation order.
-        let!(:a) { step(1.day.ago, 1.day.from_now, position: 1) }
-        let!(:b) { step(2.days.ago, 2.days.from_now, position: 0) }
+      context "when several phases have started and one is still upcoming" do
+        let!(:first) { step(10.days.ago, position: 0) }
+        let!(:second) { step(5.days.ago, position: 1) }
+        let!(:third) { step(3.days.from_now, position: 2) }
 
-        it "is overlapping and picks the first step by position as current" do
-          expect(summary.overlapping_now?).to be(true)
-          expect(summary.current_step).to eq(b)
+        it "makes the latest started phase the current one" do
+          expect(summary.current_step).to eq(second)
         end
 
-        it "reports the overlap" do
-          expect(summary.overlaps.size).to eq(1)
-          overlap = summary.overlaps.first
-          expect([overlap.step_a, overlap.step_b]).to contain_exactly(a, b)
-        end
-
-        it "marks the first-by-position as current and the rest as overlapped" do
-          statuses = summary.steps_with_status.to_h { |item| [item.step, item.status] }
-          expect(statuses[b]).to eq(:current)
-          expect(statuses[a]).to eq(:overlapped)
-        end
-
-        it "shows both covering phases and the pending overlap" do
-          expect(summary.relevant_phases.map(&:step)).to contain_exactly(a, b)
-          expect(summary.pending_overlaps.size).to eq(1)
+        it "classifies each phase by position" do
+          statuses = summary.steps_with_status
+          expect(statuses.map(&:step)).to eq([first, second, third])
+          expect(status_of(statuses, first)).to eq(:past)
+          expect(status_of(statuses, second)).to eq(:current)
+          expect(status_of(statuses, third)).to eq(:upcoming)
         end
       end
 
-      context "when there is a gap between two phases" do
-        # The already-finished phase is the one flagged active, so it stays
-        # active through the gap (the automatic change no-ops meanwhile).
-        let!(:ended) { step(10.days.ago, 5.days.ago, active: true) }
-        let!(:upcoming) { step(2.days.from_now, 5.days.from_now) }
+      context "when a phase has no start date" do
+        let!(:dated) { step(2.days.ago, position: 0) }
+        let!(:undated) { step(nil, position: 1) }
 
-        it "detects the gap" do
-          expect(summary.gaps.size).to eq(1)
-          gap = summary.gaps.first
-          expect(gap.after_step).to eq(ended)
-          expect(gap.before_step).to eq(upcoming)
-          expect(gap.starts_at).to be_within(1.second).of(ended.reload.end_date)
-          expect(gap.ends_at).to be_within(1.second).of(upcoming.reload.start_date)
-        end
-
-        it "reports the upcoming step and no overlaps" do
-          expect(summary.upcoming_steps).to eq([upcoming])
-          expect(summary.overlaps).to be_empty
-        end
-
-        it "is inside the gap now, keeping the active step active" do
-          expect(summary.pending_gaps).to eq(summary.gaps)
-          expect(summary.kept_active_step).to eq(ended)
-        end
-
-        it "shows the kept-active step followed by the upcoming phase" do
-          expect(summary.relevant_phases.map(&:step)).to eq([ended, upcoming])
-          expect(summary.relevant_phases.map(&:status)).to eq([:kept_active, :upcoming])
+        it "never activates it and marks it accordingly" do
+          expect(summary.current_step).to eq(dated)
+          expect(status_of(summary.steps_with_status, undated)).to eq(:no_start_date)
         end
       end
 
-      context "when no phase covers now but a step is active" do
-        # The active step is NOT the most recently finished one, proving
-        # #kept_active_step follows the `active` flag rather than the dates.
-        let!(:recent) { step(10.days.ago, 3.days.ago) }
-        let!(:older_active) { step(30.days.ago, 20.days.ago, active: true) }
+      context "when no phase has started yet" do
+        let!(:upcoming) { step(2.days.from_now, position: 0) }
 
-        it "keeps the active step, not the most recently finished one" do
-          expect(summary.kept_active_step).to eq(older_active)
-          expect(summary.relevant_phases.map(&:step)).to eq([older_active])
-          expect(summary.relevant_phases.map(&:status)).to eq([:kept_active])
+        it "has no current step and marks the phase as upcoming" do
+          expect(summary.current_step).to be_nil
+          expect(status_of(summary.steps_with_status, upcoming)).to eq(:upcoming)
         end
       end
 
-      context "when now is before every phase" do
-        let!(:upcoming) { step(2.days.from_now, 5.days.from_now) }
+      context "when future phases share the same start date" do
+        let(:shared_start) { 4.days.from_now }
+        # Declared out of order to prove position (not creation) decides the winner.
+        let!(:loser) { step(shared_start, position: 1) }
+        let!(:winner) { step(shared_start, position: 0) }
 
-        it "shows only the upcoming phase and keeps none active" do
-          expect(summary.relevant_phases.map(&:step)).to eq([upcoming])
-          expect(summary.relevant_phases.map(&:status)).to eq([:upcoming])
-          expect(summary.kept_active_step).to be_nil
-          expect(summary.pending_gaps).to be_empty
-          expect(summary.pending_overlaps).to be_empty
+        it "activates the first by position and blocks the others" do
+          statuses = summary.steps_with_status
+          expect(status_of(statuses, winner)).to eq(:upcoming)
+
+          loser_status = statuses.find { |item| item.step == loser }
+          expect(loser_status.status).to eq(:blocked_by_tie)
+          expect(loser_status.related_step).to eq(winner)
         end
       end
 
-      context "with an already-finished gap and overlap" do
-        let!(:overlap_a) { step(20.days.ago, 17.days.ago) }
-        let!(:overlap_b) { step(19.days.ago, 16.days.ago) } # overlaps overlap_a
-        let!(:after_gap) { step(14.days.ago, 12.days.ago) } # gap between overlap_b and it
+      context "when started phases share the same start date" do
+        let(:shared_start) { 3.days.ago }
+        let!(:winner) { step(shared_start, position: 0) }
+        let!(:loser) { step(shared_start, position: 1) }
 
-        it "computes the gap and overlap but treats neither as pending" do
-          expect(summary.gaps.size).to eq(1)
-          expect(summary.overlaps.size).to eq(1)
-          expect(summary.pending_gaps).to be_empty
-          expect(summary.pending_overlaps).to be_empty
-        end
-      end
-
-      context "with a gap and an overlap still in the future" do
-        let!(:overlap_a) { step(5.days.from_now, 8.days.from_now) }
-        let!(:overlap_b) { step(6.days.from_now, 9.days.from_now) } # overlaps overlap_a
-        let!(:after_gap) { step(14.days.from_now, 16.days.from_now) } # gap between overlap_b and it
-
-        it "keeps the future gap and overlap as pending" do
-          expect(summary.pending_gaps.map { |gap| [gap.after_step, gap.before_step] }).to eq([[overlap_b, after_gap]])
-          expect(summary.pending_overlaps.map { |o| [o.step_a, o.step_b] }).to eq([[overlap_a, overlap_b]])
-          expect(summary.pending_gaps).to all(satisfy { |gap| gap.starts_at > now })
-          expect(summary.pending_overlaps).to all(satisfy { |o| o.starts_at > now })
-        end
-      end
-
-      context "with a current, an upcoming and a past step" do
-        let!(:current) { step(1.day.ago, 1.day.from_now) }
-        let!(:future) { step(3.days.from_now, 5.days.from_now) }
-        let!(:past) { step(10.days.ago, 8.days.ago) }
-
-        it "affects the current one plus the upcoming ones" do
-          expect(summary.affected_steps).to contain_exactly(current, future)
-        end
-      end
-
-      context "with an undated step" do
-        let!(:undated) { step(nil, nil) }
-
-        it "classifies it as undated and never current/upcoming" do
-          statuses = summary.steps_with_status.to_h { |item| [item.step, item.status] }
-          expect(statuses[undated]).to eq(:undated)
-          expect(summary.affected_steps).to be_empty
+        it "makes the first by position current and the rest past" do
+          expect(summary.current_step).to eq(winner)
+          statuses = summary.steps_with_status
+          expect(status_of(statuses, winner)).to eq(:current)
+          expect(status_of(statuses, loser)).to eq(:past)
         end
       end
     end

@@ -3,22 +3,21 @@
 module Decidim
   module ProcessSettings
     # Moves the active step of the participatory processes that enabled it
-    # through the `process_settings` component, based on the current date.
+    # through the `process_settings` component, based on the phase *start dates*.
     #
-    # For each such *published* process it activates the first step by position
-    # whose date range contains the current time (no-op only when none match;
-    # on overlapping phases the earliest-by-position one wins).
+    # The rule is deliberately simple: as time moves forward the active phase is
+    # the last one whose start date has been reached. So for each *published*
+    # process it activates the phase with the latest start date that is not in
+    # the future; if several share that exact start date, the first one by
+    # position wins. Phases without a start date are never activated.
     #
     # When called with a look-ahead window (in minutes) — meant to match the cron
-    # interval — it also looks for the next phase-change boundary (any step
-    # start/end date) within `(now, now + window]` and re-enqueues itself to run
-    # at that exact moment, passing the window along so that run looks ahead
-    # again. This chaining catches every boundary within the window precisely,
-    # even when several fall in the same cron interval — e.g. a phase ending at
-    # 10:09 and the next starting at 10:11 are both applied on time (the 10:09
-    # run schedules the 10:11 one), instead of the 10:11 change waiting for the
-    # next tick. The job is idempotent (activating the already-active step is a
-    # no-op), so an occasional duplicate scheduled run is harmless.
+    # interval — it also looks for the next phase *start date* within
+    # `(now, now + window]` and re-enqueues itself to run at that exact moment,
+    # passing the window along so that run looks ahead again. This chaining
+    # applies each phase change at the exact minute instead of waiting for the
+    # next cron tick. The job is idempotent (activating the already-active step
+    # is a no-op), so an occasional duplicate scheduled run is harmless.
     class SetActiveStepByDateJob < ApplicationJob
       # Runs on its own queue (rather than the busy shared `default` queue) so a
       # backlog there — search indexing, imports, etc. — cannot delay phase
@@ -52,18 +51,17 @@ module Decidim
         Decidim::ParticipatoryProcess.published.where(id: component_process_ids).ids
       end
 
-      # Re-enqueues this job to run at the next step start/end date within
+      # Re-enqueues this job to run at the next phase *start date* within
       # `(now, now + window]`, passing the window along so the run looks ahead
-      # again and chains to subsequent boundaries. A phase change is thus applied
-      # at the exact minute instead of waiting for the next cron tick.
+      # again and chains to subsequent start dates. A phase change is thus
+      # applied at the exact minute instead of waiting for the next cron tick.
       def reschedule_at_next_phase_change(process_ids, now, window_in_minutes)
         window_end = now + window_in_minutes.minutes
 
         boundary = Decidim::ParticipatoryProcessStep
                    .where(decidim_participatory_process_id: process_ids)
-                   .pluck(:start_date, :end_date)
-                   .flatten
-                   .compact
+                   .where.not(start_date: nil)
+                   .pluck(:start_date)
                    .select { |time| time > now && time <= window_end }
                    .min
 
@@ -76,38 +74,30 @@ module Decidim
       end
 
       def activate_matching_step(process, now)
-        steps = process.steps.order(position: :asc).to_a
-        matching = steps.select { |step| step_compatible_with?(step, now) }
-
-        # Activate the first matching step by position; skip only when none
-        # match. On overlapping phases the earliest-by-position one wins.
-        return if matching.empty?
-
-        target = matching.first
+        target = target_step(process, now)
+        return if target.nil?
         return if target.active?
 
         ActiveRecord::Base.transaction do
           # Deactivate the current active step first so the per-process
           # uniqueness validation on `active` does not fail while switching.
-          steps.select(&:active?).each { |step| step.update!(active: false) }
+          process.steps.select(&:active?).each { |step| step.update!(active: false) }
           target.update!(active: true)
         end
 
         Rails.logger.info("[decidim-process_settings] Participatory process ##{process.id}: activated step ##{target.id}")
       end
 
-      # Whether a step's date range contains +now+ (open-ended when a date is
-      # missing; never when both are missing).
-      def step_compatible_with?(step, now)
-        if step.start_date && step.end_date
-          now >= step.start_date && now <= step.end_date
-        elsif step.start_date
-          now >= step.start_date
-        elsif step.end_date
-          now <= step.end_date
-        else
-          false
-        end
+      # The phase to activate now: among the phases whose start date has been
+      # reached (start_date <= now), the one with the latest start date; ties on
+      # that exact start date are broken by the lowest position. Phases without a
+      # start date are ignored. Returns nil when no phase has started yet.
+      def target_step(process, now)
+        started = process.steps.where(start_date: ..now)
+        return if started.none?
+
+        latest_start = started.maximum(:start_date)
+        started.where(start_date: latest_start).order(position: :asc).first
       end
     end
   end

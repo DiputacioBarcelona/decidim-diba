@@ -20,31 +20,24 @@ es:
             no_front: No tiene una parte pública (front-end).
         steps:
           modal:
-            active: Fase activa
             apply: Aplicar
-            gap_html: 'Entre el final de %{after} y el inicio de %{before}: %{from} - %{to}'
-            gap_note: Periodos de tiempo entre la primera y la última fecha de todas las fases que no están cubiertos por ninguna fase. En esos casos el cambio automático mantiene activa la fase anterior hasta que empieza la siguiente.
-            gaps_title: Huecos entre fases
             no_steps: Este proceso todavía no tiene fases.
-            none_now: Ninguna fase cubre la fecha actual.
-            overlap_html: 'Solapamiento de %{a} y %{b}: %{from} - %{to}'
-            ovelap_note: Cuando hay fases cuyas fechas se solapan se activa automáticamente la primera por posición mientras están solapadas.
-            overlaps_title: Fases solapadas
             status:
-              current: Coincide con la fecha actual
-              current_will_activate: Coincide con la fecha actual, se activará automáticamente si se habilita el cambio automático de fase
-              kept_active: Actualmente activa — ninguna fase cubre la fecha actual, por lo que el cambio automático la mantiene activa
-              overlapped: Ahora se solapa con una fase anterior — se activa la primera
-                por posición
+              blocked_by_tie: Esta fase no se activará porque la fase "%{phase}" empieza a la vez
+              current: Fase actualmente vigente
+              current_will_activate: Fase actualmente vigente (se activará automáticamente si se activa la opción)
+              no_start_date: No se activará automáticamente (no tiene fecha de inicio)
               past: Finalizada
-              undated: Sin fechas — nunca se activa automáticamente
-              upcoming: Empieza el %{start}
+              upcoming: Se activará el %{at}
             status_disabled: El cambio automático de fase está desactivado.
             status_enabled: El cambio automático de fase está activado.
             summary_title: Calendario de fases
-            switch_label: Cambiar la fase activa automáticamente en función de la
-              fecha actual
+            switch_label: Cambiar la fase activa automáticamente en función de su
+              fecha de inicio
             title: Cambio automático de fase
+          note: En el modo automático los cambios de fase se ejecutan por orden
+            de fecha de inicio. Las fases sin fecha de inicio no se activarán. Si
+            varias fases comparten la misma fecha de inicio, solo se activará la primera.
           toggle:
             button: Cambio automático de fase
             disabled: Desactivado
