@@ -35,6 +35,9 @@ es:
             switch_label: Cambiar la fase activa automáticamente en función de su
               fecha de inicio
             title: Cambio automático de fase
+          note: En el modo automático los cambios de fase se ejecutan por orden
+            de fecha de inicio. Las fases sin fecha de inicio no se activarán. Si
+            varias fases comparten la misma fecha de inicio, solo se activará la primera.
           toggle:
             button: Cambio automático de fase
             disabled: Desactivado

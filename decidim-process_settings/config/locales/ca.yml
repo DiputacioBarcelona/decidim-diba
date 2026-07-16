@@ -35,6 +35,9 @@ ca:
             switch_label: Canvia la fase activa automàticament en funció de la seva
               data d'inici
             title: Canvi automàtic de fase
+          note: En el mode automàtic els canvis de fase s'executen per ordre de
+            data d'inici. Les fases sense data d'inici no s'activaran. Si diverses
+            fases comparteixen la mateixa data d'inici, només s'activarà la primera.
           toggle:
             button: Canvi automàtic de fase
             disabled: Desactivat

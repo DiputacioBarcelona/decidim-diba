@@ -37,6 +37,9 @@ en:
             switch_label: Change the active phase automatically based on its start
               date
             title: Automatic phase change
+          note: In automatic mode phase changes are executed in start date order.
+            Phases without a start date won't be activated. If several phases share
+            the same start date, only the first one will be activated.
           toggle:
             button: Automatic phase change
             disabled: Disabled
