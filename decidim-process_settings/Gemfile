@@ -7,8 +7,8 @@ ruby RUBY_VERSION
 DECIDIM_VERSION = "0.30.9"
 
 gem "decidim", DECIDIM_VERSION
-gem "decidim-process_settings", path: "."
 gem "decidim-participatory_processes", DECIDIM_VERSION
+gem "decidim-process_settings", path: "."
 
 gem "bootsnap", "~> 1.4"
 gem "puma", ">= 6.3.1"
