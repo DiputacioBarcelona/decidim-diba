@@ -17,10 +17,10 @@ Right now it exposes a single global setting:
   The task enqueues `Decidim::ProcessSettings::SetActiveStepByDateJob`, which
   selects only the published participatory processes that have a
   `process_settings` component with this setting enabled, and activates the
-  first step by position whose date range contains the current time (it does
-  nothing for a process only when no step matches; when several overlapping
-  phases match, the earliest one by position is activated). See
-  [Scheduling](#scheduling).
+  phase with the latest **start date** that has already been reached (if several
+  share that exact start date, the first one by position). Phases without a
+  start date are never activated, and nothing changes until a phase's start date
+  has passed. See [Scheduling](#scheduling).
 
 ## Usage
 
@@ -76,13 +76,14 @@ On the participatory process **steps (phases)** admin page, when the process has
 the `process_settings` component, a Deface override adds an "Automatic phase
 change" button next to *New step*. It opens a modal with:
 
-- a switch to enable/disable `automatic_step_change`, applied via `remote: true`
-  (rails-ujs — no full page reload, no custom bundled JS); and
+- a switch to enable/disable `automatic_step_change`, submitted as a plain form
+  that redirects back to the steps page (so the button and summary re-render
+  with the saved state); and
 - a **phases schedule summary** (built by `Decidim::ProcessSettings::StepScheduleSummary`)
-  showing which phase is active now or will be activated, **gaps** between
-  phases (and how the module holds the previous phase until the next one
-  starts), and **overlaps** (during which the earliest overlapping phase by
-  position is the one activated).
+  listing the phases by position and, for each, whether it is active now, has
+  already ended, has no start date (never auto-activated), or the date/time it
+  will be activated. When several future phases share a start date, only the
+  first by position is activated and the others say so.
 
 The toggle endpoint is
 `PATCH /admin/participatory_processes/:slug/automatic_step_change`
@@ -138,7 +139,7 @@ above — not both (the job is idempotent, but running it twice is wasteful).
 
 The optional `[window_in_minutes]` argument makes the job switch phases at the
 exact minute instead of only on the cron tick. Pass the **cron interval** as the
-window: on each run the job checks whether a step's start/end date falls within
+window: on each run the job checks whether a phase's start date falls within
 the next `window` minutes and, if so, re-enqueues itself to run again at that
 exact moment.
 

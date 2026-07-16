@@ -20,35 +20,21 @@ en:
             no_front: It has no public (front-end) part.
         steps:
           modal:
-            active: Active phase
             apply: Apply
-            gap_html: 'Between the end of %{after} and the start of %{before}: %{from}
-              - %{to}'
-            gap_note: Time periods between the first and the last date of all phases
-              that are not covered by any phase. In those cases the automatic change
-              keeps the previous phase active until the next one begins.
-            gaps_title: Gaps between phases
             no_steps: This process has no phases yet.
-            none_now: No phase covers the current date.
-            ovelap_note: When there are phases whose dates overlap, the first one
-              by position is automatically activated while they overlap.
-            overlap_html: 'Overlap of %{a} and %{b}: %{from} - %{to}'
-            overlaps_title: Overlapping phases
             status:
-              current: Matches the current date
-              current_will_activate: Matches the current date, it will be activated
-                automatically if the automatic phase change is enabled
-              kept_active: Currently active — no phase covers the current date,
-                so the automatic change keeps it active
-              overlapped: Overlaps now with an earlier phase — the earlier one (by
-                position) is the one activated
+              blocked_by_tie: This phase will not be activated because "%{phase}"
+                starts at the same time
+              current: Currently in effect
+              current_will_activate: Currently in effect (it will be activated automatically
+                if the option is enabled)
+              no_start_date: It will not be activated automatically (no start date)
               past: Ended
-              undated: No dates — it is never activated automatically
-              upcoming: Starts %{start}
+              upcoming: Will be activated on %{at}
             status_disabled: Automatic phase change is disabled.
             status_enabled: Automatic phase change is enabled.
             summary_title: Phases schedule
-            switch_label: Change the active phase automatically based on the current
+            switch_label: Change the active phase automatically based on its start
               date
             title: Automatic phase change
           toggle:
