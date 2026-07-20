@@ -41,7 +41,9 @@ Rails.application.configure do
     port: Rails.application.secrets.smtp_port,
     domain: Rails.application.secrets.smtp_domain,
     enable_starttls_auto: Rails.application.secrets.smtp_starttls_auto,
-    openssl_verify_mode: "none"
+    openssl_verify_mode: "none",
+    open_timeout: 30,
+    read_timeout: 60
   }.tap do |settings|
     # Net::SMTP only accepts :plain, :login, :cram_md5. Omit auth when "none" or blank.
     if smtp_auth.blank? || smtp_auth == "none"
