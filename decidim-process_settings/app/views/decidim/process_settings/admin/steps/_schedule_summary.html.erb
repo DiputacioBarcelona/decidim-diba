@@ -3,9 +3,9 @@
 
 <% phases = summary.steps_with_status %>
 <% if phases.empty? %>
-  <p><%= t("no_steps", scope: modal_scope) %></p>
+  <p class="help-text"><%= t("no_steps", scope: modal_scope) %></p>
 <% else %>
-  <ul class="list-disc pl-4 table-list">
+  <ul class="list-disc pl-4 table-list help-text">
     <% phases.each do |item| %>
       <li>
         <% if item.step.active? %>

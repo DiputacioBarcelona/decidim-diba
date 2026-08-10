@@ -34,8 +34,8 @@
 
         <hr class="my-4">
 
-        <p><%= t("note", scope: "decidim.process_settings.admin.steps") %></p>
-        <h4 class="h4"><%= t("summary_title", scope: modal_scope) %></h4>
+        <p class="help-text"><%= t("note", scope: "decidim.process_settings.admin.steps") %></p>
+        <h4 class="h4 mt-4 mb-2"><%= t("summary_title", scope: modal_scope) %></h4>
         <%= render partial: "decidim/process_settings/admin/steps/schedule_summary", locals: { summary:, automatic_enabled: enabled } %>
       </div>
     </div>
