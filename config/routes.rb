@@ -10,7 +10,9 @@ Rails.application.routes.draw do
 
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.application.config.action_mailer.delivery_method == :letter_opener_web
 
-  mount Sidekiq::Web => "/sidekiq"
+  authenticate :user, ->(u) { u.admin? } do
+    mount Sidekiq::Web => "/sidekiq"
+  end
 
   resource :system_status, only: :show
   resource :newsletter_settings, only: :show
