@@ -14,6 +14,7 @@ gem "decidim-decidim_awesome", git: "https://github.com/PopulateTools/decidim-mo
 gem "decidim-diba_census_api", path: "decidim-diba_census_api"
 gem "decidim-initiatives", DECIDIM_VERSION
 gem "decidim-ldap", path: "decidim-ldap"
+gem "decidim-process_settings", path: "decidim-process_settings"
 gem "decidim-templates", DECIDIM_VERSION
 
 gem "decidim-homepage_proposals", git: "https://github.com/PopulateTools/decidim-module_homepage_proposals.git", branch: "release/0.30-stable"

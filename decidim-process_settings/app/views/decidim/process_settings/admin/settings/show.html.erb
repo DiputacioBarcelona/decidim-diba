@@ -1,0 +1,15 @@
+<div class="card">
+  <div class="item_show__header item_show__header--with-action-options">
+    <h1 class="item_show__header-title">
+      <div><%= translated_attribute(current_component.name) %></div>
+      <div class="flex items-center gap-x-4">
+        <%= render partial: "decidim/admin/components/resource_action" %>
+      </div>
+    </h1>
+  </div>
+
+  <div class="card-section">
+    <p><%= t(".explanation") %></p>
+    <p><%= t(".no_front") %></p>
+  </div>
+</div>

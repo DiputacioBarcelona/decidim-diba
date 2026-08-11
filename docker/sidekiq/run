@@ -1,0 +1,16 @@
+#!/bin/sh
+# Sidekiq as a runit-supervised service (phusion baseimage).
+#
+# It replaces the previous docker/sidekiq.sh, which launched Sidekiq once at
+# boot as a DAEMONIZED (`-d`), UNSUPERVISED process: if it died, nothing
+# restarted it and the queues piled up.
+#
+# Here Sidekiq runs in the FOREGROUND (no `-d`/`-L`) so runit supervises it and
+# restarts it automatically whenever it exits. Its output goes to stdout, so it
+# shows up in `docker logs`.
+#
+# It runs as the `app` user (via `runuser -p`, which preserves the environment
+# set up at boot — including rvm/bundler, exactly as the previous script did) to
+# avoid creating root-owned files under tmp/ that break Passenger.
+exec 2>&1
+exec runuser -p app -c 'cd /home/app/decidim-diba && exec bundle exec sidekiq -e production -C config/sidekiq.yml'

@@ -1,0 +1,10 @@
+---
+
+base_locale: en
+locales: [en]
+
+ignore_unused:
+  - "decidim.process_settings.admin.steps.modal.*"
+  - "decidim.components.process_settings.name"
+  - "decidim.components.process_settings.settings.global.automatic_step_change"
+  - "decidim.process_settings.admin.components.creation_not_allowed"

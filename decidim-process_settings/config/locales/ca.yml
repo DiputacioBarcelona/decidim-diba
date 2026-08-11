@@ -1,0 +1,44 @@
+---
+ca:
+  decidim:
+    components:
+      process_settings:
+        name: Configuracions extra del procés
+        settings:
+          global:
+            automatic_step_change: Canvia la fase activa automàticament en funció
+              de la data actual
+    process_settings:
+      admin:
+        components:
+          creation_not_allowed: Aquest component només es pot afegir una vegada, i
+            només a un procés participatiu.
+        settings:
+          show:
+            explanation: Aquest component només proporciona configuracions extra per
+              administrar el procés participatiu.
+            no_front: No té una part pública (front-end).
+        steps:
+          modal:
+            apply: Aplica
+            no_steps: Aquest procés encara no té fases.
+            status:
+              blocked_by_tie: Aquesta fase no s'activarà perquè la fase "%{phase}" comença alhora
+              current: Fase actualment vigent
+              current_will_activate: Fase actualment vigent (s'activarà automàticament si s'activa l'opció)
+              no_start_date: No s'activarà automàticament (no té data d'inici)
+              past: Finalitzada
+              upcoming: S'activarà el %{at}
+            status_disabled: El canvi automàtic de fase està desactivat.
+            status_enabled: El canvi automàtic de fase està activat.
+            summary_title: Calendari de fases
+            switch_label: Canvia la fase activa automàticament en funció de la seva
+              data d'inici
+            title: Canvi automàtic de fase
+          note: En el mode automàtic els canvis de fase s'executen per ordre de
+            data d'inici. Les fases sense data d'inici no s'activaran. Si diverses
+            fases comparteixen la mateixa data d'inici, només s'activarà la primera.
+          toggle:
+            button: Canvi automàtic de fase
+            disabled: Desactivat
+            enabled: Activat

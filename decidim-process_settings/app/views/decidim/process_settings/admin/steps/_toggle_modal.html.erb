@@ -1,0 +1,43 @@
+<% component = current_participatory_process.components.find_by(manifest_name: "process_settings") %>
+<% if component && allowed_to?(:update, :process, process: current_participatory_process) %>
+  <% modal_scope = "decidim.process_settings.admin.steps.modal" %>
+  <% enabled = component.settings.automatic_step_change %>
+  <% summary = Decidim::ProcessSettings::StepScheduleSummary.new(current_participatory_process) %>
+
+  <%= decidim_modal id: "process-settings-dialog" do %>
+    <div data-dialog-container>
+      <h3 class="h3" id="dialog-title-process-settings-dialog" tabindex="-1" data-dialog-title>
+        <%= t("title", scope: modal_scope) %>
+      </h3>
+
+      <div id="dialog-desc-process-settings-dialog" class="my-4">
+        <%= form_tag(
+              decidim_admin_participatory_processes.process_settings_automatic_step_change_path(participatory_process_slug: current_participatory_process.slug),
+              method: :patch, id: "process-settings-form"
+            ) do %>
+          <div class="row column h5">
+            <label class="flex items-center gap-2">
+              <%= hidden_field_tag :automatic_step_change, "0" %>
+              <%= check_box_tag :automatic_step_change, "1", enabled %>
+              <span><%= t("switch_label", scope: modal_scope) %></span>
+            </label>
+          </div>
+
+          <p id="process-settings-status" class="text-sm mt-2">
+            <%= enabled ? t("status_enabled", scope: modal_scope) : t("status_disabled", scope: modal_scope) %>
+          </p>
+
+          <button type="submit" class="button button__sm button__secondary mt-2">
+            <%= t("apply", scope: modal_scope) %>
+          </button>
+        <% end %>
+
+        <hr class="my-4">
+
+        <p class="help-text"><%= t("note", scope: "decidim.process_settings.admin.steps") %></p>
+        <h4 class="h4 mt-4 mb-2"><%= t("summary_title", scope: modal_scope) %></h4>
+        <%= render partial: "decidim/process_settings/admin/steps/schedule_summary", locals: { summary:, automatic_enabled: enabled } %>
+      </div>
+    </div>
+  <% end %>
+<% end %>

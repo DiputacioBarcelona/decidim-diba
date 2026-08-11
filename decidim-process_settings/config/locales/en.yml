@@ -1,0 +1,46 @@
+---
+en:
+  decidim:
+    components:
+      process_settings:
+        name: Extra process settings
+        settings:
+          global:
+            automatic_step_change: Change the active phase automatically based on
+              the current date
+    process_settings:
+      admin:
+        components:
+          creation_not_allowed: This component can only be added once, and only to
+            a participatory process.
+        settings:
+          show:
+            explanation: This component only provides extra settings to administer
+              the participatory process.
+            no_front: It has no public (front-end) part.
+        steps:
+          modal:
+            apply: Apply
+            no_steps: This process has no phases yet.
+            status:
+              blocked_by_tie: This phase will not be activated because "%{phase}"
+                starts at the same time
+              current: Currently in effect
+              current_will_activate: Currently in effect (it will be activated automatically
+                if the option is enabled)
+              no_start_date: It will not be activated automatically (no start date)
+              past: Ended
+              upcoming: Will be activated on %{at}
+            status_disabled: Automatic phase change is disabled.
+            status_enabled: Automatic phase change is enabled.
+            summary_title: Phases schedule
+            switch_label: Change the active phase automatically based on its start
+              date
+            title: Automatic phase change
+          note: In automatic mode phase changes are executed in start date order.
+            Phases without a start date won't be activated. If several phases share
+            the same start date, only the first one will be activated.
+          toggle:
+            button: Automatic phase change
+            disabled: Disabled
+            enabled: Enabled

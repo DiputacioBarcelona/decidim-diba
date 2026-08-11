@@ -1,0 +1,44 @@
+---
+es:
+  decidim:
+    components:
+      process_settings:
+        name: Configuraciones extra del proceso
+        settings:
+          global:
+            automatic_step_change: Cambiar la fase activa automáticamente en función
+              de la fecha actual
+    process_settings:
+      admin:
+        components:
+          creation_not_allowed: Este componente solo se puede añadir una vez, y solo
+            a un proceso participativo.
+        settings:
+          show:
+            explanation: Este componente solo proporciona configuraciones extra para
+              administrar el proceso participativo.
+            no_front: No tiene una parte pública (front-end).
+        steps:
+          modal:
+            apply: Aplicar
+            no_steps: Este proceso todavía no tiene fases.
+            status:
+              blocked_by_tie: Esta fase no se activará porque la fase "%{phase}" empieza a la vez
+              current: Fase actualmente vigente
+              current_will_activate: Fase actualmente vigente (se activará automáticamente si se activa la opción)
+              no_start_date: No se activará automáticamente (no tiene fecha de inicio)
+              past: Finalizada
+              upcoming: Se activará el %{at}
+            status_disabled: El cambio automático de fase está desactivado.
+            status_enabled: El cambio automático de fase está activado.
+            summary_title: Calendario de fases
+            switch_label: Cambiar la fase activa automáticamente en función de su
+              fecha de inicio
+            title: Cambio automático de fase
+          note: En el modo automático los cambios de fase se ejecutan por orden
+            de fecha de inicio. Las fases sin fecha de inicio no se activarán. Si
+            varias fases comparten la misma fecha de inicio, solo se activará la primera.
+          toggle:
+            button: Cambio automático de fase
+            disabled: Desactivado
+            enabled: Activado

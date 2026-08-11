@@ -1,0 +1,34 @@
+<% modal_scope = "decidim.process_settings.admin.steps.modal" %>
+<% status_scope = "#{modal_scope}.status" %>
+
+<% phases = summary.steps_with_status %>
+<% if phases.empty? %>
+  <p class="help-text"><%= t("no_steps", scope: modal_scope) %></p>
+<% else %>
+  <ul class="list-disc pl-4 table-list help-text">
+    <% phases.each do |item| %>
+      <li>
+        <% if item.step.active? %>
+          <span class="table-list icon-active"></span>
+        <% end %>
+
+        <strong><%= translated_attribute(item.step.title) %></strong> —
+
+        <% case item.status %>
+        <% when :upcoming %>
+          <%= t("upcoming", scope: status_scope, at: l(item.step.start_date, format: :short)) %>
+        <% when :blocked_by_tie %>
+          <%= t("blocked_by_tie", scope: status_scope, phase: translated_attribute(item.related_step.title)) %>
+        <% when :current %>
+          <% if !automatic_enabled && !item.step.active? %>
+            <%= t("current_will_activate", scope: status_scope) %>
+          <% else %>
+            <%= t("current", scope: status_scope) %>
+          <% end %>
+        <% else %>
+          <%= t(item.status, scope: status_scope) %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>

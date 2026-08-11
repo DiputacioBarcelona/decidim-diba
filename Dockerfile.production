@@ -84,6 +84,7 @@ ADD decidim-census decidim-census
 ADD decidim-diba_census_api decidim-diba_census_api
 ADD decidim-age_action_authorization decidim-age_action_authorization
 ADD decidim-ldap decidim-ldap
+ADD decidim-process_settings decidim-process_settings
 RUN bundle config set without 'development test'
 RUN bundle config set deployment 'true'
 RUN bundle install --jobs=4
@@ -115,8 +116,12 @@ VOLUME $HOME/log
 RUN mkdir -p /etc/my_init.d
 ADD docker/fix_permissions.sh /etc/my_init.d/fix_permissions.sh
 ADD docker/replace_nginx_env_variables.sh /etc/my_init.d/replace_nginx_variables.sh
-ADD docker/sidekiq.sh /etc/my_init.d/sidekiq.sh
 RUN chmod +x /etc/my_init.d/*.sh
+
+# Run Sidekiq as a runit-supervised service so it is restarted automatically if
+# it dies (replaces the previous unsupervised, daemonized my_init.d/sidekiq.sh).
+ADD docker/sidekiq/run /etc/service/sidekiq/run
+RUN chmod +x /etc/service/sidekiq/run
 
 RUN chown -R app:app $HOME
 

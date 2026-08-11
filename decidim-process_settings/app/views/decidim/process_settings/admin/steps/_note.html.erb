@@ -1,0 +1,5 @@
+<% if current_participatory_process.components.exists?(manifest_name: "process_settings") %>
+  <div class="px-4 py-2">
+    <p class="help-text"><%= t("decidim.process_settings.admin.steps.note") %></p>
+  </div>
+<% end %>
