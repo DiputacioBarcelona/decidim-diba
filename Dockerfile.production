@@ -128,5 +128,8 @@ RUN chown -R app:app $HOME
 # cheat activestorage as it is still trying to create variants at storage/ even configuring public/uploads/storage as the local root path
 RUN ln -s public/uploads/storage storage
 
+COPY docker/sectigo_ov_r36.crt /usr/local/share/ca-certificates/sectigo_ov_r36.crt
+RUN update-ca-certificates
+
 # Clean up APT and bundler when done.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*.
