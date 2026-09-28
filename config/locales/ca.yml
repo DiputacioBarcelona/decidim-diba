@@ -66,8 +66,8 @@ ca:
       admin:
         questionnaires:
           display_condition:
-            save_warning: Recorda de guardar l'enquesta abans de configurar les condicions
-              de visualització
+            save_warning: Recorda guardar l'enquesta abans de configurar les condicions de
+              visualització
     newsletter_templates:
       basic_only_text_settings_form:
         header_background_color: Color de la capçalera
