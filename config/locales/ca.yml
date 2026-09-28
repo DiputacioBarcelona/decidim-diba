@@ -62,6 +62,12 @@ ca:
         unauthorized:
           explanation: Ho sentim, no pots dur a terme aquesta acció perquè les teves
             dades no compleixen els criteris de validació.
+    forms:
+      admin:
+        questionnaires:
+          display_condition:
+            save_warning: Recorda de guardar l'enquesta abans de configurar les condicions
+              de visualització
     newsletter_templates:
       basic_only_text_settings_form:
         header_background_color: Color de la capçalera
