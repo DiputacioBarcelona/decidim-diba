@@ -62,6 +62,11 @@ ca:
         unauthorized:
           explanation: Ho sentim, no pots dur a terme aquesta acció perquè les teves
             dades no compleixen els criteris de validació.
+    components:
+      budgets:
+        settings:
+          global:
+            vote_selected_projects_minimum: Número mínim de projectes a seleccionar
     forms:
       admin:
         questionnaires:
