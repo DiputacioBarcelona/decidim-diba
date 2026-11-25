@@ -15,6 +15,14 @@ checksums = [
       # to prepend the UTF-8 BOM. If this checksum changes, review the override.
       "/lib/decidim/exporters/csv.rb" => "26eeaecb13dbb4dbce28e39e8dc7a3fd"
     }
+  },
+  {
+    package: "decidim-meetings",
+    files: {
+      # Overridden by Decidim::Meetings::Admin::CopyMeetingOverrides (config/initializers/commands_overrides.rb)
+      # to copy taxonomies (decidim/decidim#15736). If this checksum changes, review the override.
+      "/app/commands/decidim/meetings/admin/copy_meeting.rb" => "3188dd734547277cc8b1c274852e649f"
+    }
   }
 ]
 
